@@ -1,0 +1,193 @@
+EXERCISE 2 - 1 x 6 CORRIDOR WITH RANDOM INITIAL DIRT ( '#' = dirty, '.' = clean )
+
+============================================================================================
+SCENARIO 1 - agent starts at the LEFT WALL (square 0)
+============================================================================================
+Initial world : [##.#.#]@0      steps : 20      random seed : 7
+
+>>> A. Naive reflex agent (no state)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (0, Dirty, L=True, R=False)  | Suck   | [.#.#.#]@0     |    +10 | -
+2     | (0, Clean, L=True, R=False)  | Right  | [.#.#.#]@1     |     +9 | -
+3     | (1, Dirty, L=False, R=False) | Suck   | [...#.#]@1     |    +19 | -
+4     | (1, Clean, L=False, R=False) | Right  | [...#.#]@2     |    +18 | -
+5     | (2, Clean, L=False, R=False) | Right  | [...#.#]@3     |    +17 | -
+6     | (3, Dirty, L=False, R=False) | Suck   | [.....#]@3     |    +27 | -
+7     | (3, Clean, L=False, R=False) | Right  | [.....#]@4     |    +26 | -
+8     | (4, Clean, L=False, R=False) | Right  | [.....#]@5     |    +25 | -
+9     | (5, Dirty, L=False, R=True)  | Suck   | [......]@5     |    +35 | -
+10    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +34 | -
+11    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +33 | -
+12    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +32 | -
+13    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +31 | -
+14    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +30 | -
+15    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +29 | -
+16    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +28 | -
+17    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +27 | -
+18    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +26 | -
+19    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +25 | -
+20    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +24 | -
+Final : [......]@4   score = +24   squares still dirty = 0
+
+>>> B. Reflex agent + heading (one bit of state)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (0, Dirty, L=True, R=False)  | Suck   | [.#.#.#]@0     |    +10 | heading=Right
+2     | (0, Clean, L=True, R=False)  | Right  | [.#.#.#]@1     |     +9 | heading=Right
+3     | (1, Dirty, L=False, R=False) | Suck   | [...#.#]@1     |    +19 | heading=Right
+4     | (1, Clean, L=False, R=False) | Right  | [...#.#]@2     |    +18 | heading=Right
+5     | (2, Clean, L=False, R=False) | Right  | [...#.#]@3     |    +17 | heading=Right
+6     | (3, Dirty, L=False, R=False) | Suck   | [.....#]@3     |    +27 | heading=Right
+7     | (3, Clean, L=False, R=False) | Right  | [.....#]@4     |    +26 | heading=Right
+8     | (4, Clean, L=False, R=False) | Right  | [.....#]@5     |    +25 | heading=Right
+9     | (5, Dirty, L=False, R=True)  | Suck   | [......]@5     |    +35 | heading=Right
+10    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +34 | heading=Left
+11    | (4, Clean, L=False, R=False) | Left   | [......]@3     |    +33 | heading=Left
+12    | (3, Clean, L=False, R=False) | Left   | [......]@2     |    +32 | heading=Left
+13    | (2, Clean, L=False, R=False) | Left   | [......]@1     |    +31 | heading=Left
+14    | (1, Clean, L=False, R=False) | Left   | [......]@0     |    +30 | heading=Left
+15    | (0, Clean, L=True, R=False)  | Right  | [......]@1     |    +29 | heading=Right
+16    | (1, Clean, L=False, R=False) | Right  | [......]@2     |    +28 | heading=Right
+17    | (2, Clean, L=False, R=False) | Right  | [......]@3     |    +27 | heading=Right
+18    | (3, Clean, L=False, R=False) | Right  | [......]@4     |    +26 | heading=Right
+19    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +25 | heading=Right
+20    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +24 | heading=Left
+Final : [......]@4   score = +24   squares still dirty = 0
+
+>>> C. Model-based agent (belief over all 6 squares)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (0, Dirty, L=True, R=False)  | Suck   | [.#.#.#]@0     |    +10 | .?????
+2     | (0, Clean, L=True, R=False)  | Right  | [.#.#.#]@1     |     +9 | .?????
+3     | (1, Dirty, L=False, R=False) | Suck   | [...#.#]@1     |    +19 | ..????
+4     | (1, Clean, L=False, R=False) | Right  | [...#.#]@2     |    +18 | ..????
+5     | (2, Clean, L=False, R=False) | Right  | [...#.#]@3     |    +17 | ...???
+6     | (3, Dirty, L=False, R=False) | Suck   | [.....#]@3     |    +27 | ....??
+7     | (3, Clean, L=False, R=False) | Right  | [.....#]@4     |    +26 | ....??
+8     | (4, Clean, L=False, R=False) | Right  | [.....#]@5     |    +25 | .....?
+9     | (5, Dirty, L=False, R=True)  | Suck   | [......]@5     |    +35 | ......
+10    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+11    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+12    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+13    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+14    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+15    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+16    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+17    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+18    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+19    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+20    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+Final : [......]@5   score = +35   squares still dirty = 0
+
+Summary of this scenario
+Agent                                      | Score        | Dirty squares left
+--------------------------------------------------------------------------------
+Naive reflex (no state)                    | 24           | 0
+Reflex + heading (1 bit of state)          | 24           | 0
+Model-based (full belief + NoOp)           | 35           | 0
+
+============================================================================================
+SCENARIO 2 - agent starts in the MIDDLE (square 3)
+============================================================================================
+Initial world : [##.#.#]@3      steps : 20      random seed : 7
+
+>>> A. Naive reflex agent (no state)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (3, Dirty, L=False, R=False) | Suck   | [##...#]@3     |    +10 | -
+2     | (3, Clean, L=False, R=False) | Right  | [##...#]@4     |     +9 | -
+3     | (4, Clean, L=False, R=False) | Right  | [##...#]@5     |     +8 | -
+4     | (5, Dirty, L=False, R=True)  | Suck   | [##....]@5     |    +18 | -
+5     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +17 | -
+6     | (4, Clean, L=False, R=False) | Right  | [##....]@5     |    +16 | -
+7     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +15 | -
+8     | (4, Clean, L=False, R=False) | Right  | [##....]@5     |    +14 | -
+9     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +13 | -
+10    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |    +12 | -
+11    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +11 | -
+12    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |    +10 | -
+13    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |     +9 | -
+14    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |     +8 | -
+15    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |     +7 | -
+16    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |     +6 | -
+17    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |     +5 | -
+18    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |     +4 | -
+19    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |     +3 | -
+20    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |     +2 | -
+Final : [##....]@5   score = +2   squares still dirty = 2
+
+>>> B. Reflex agent + heading (one bit of state)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (3, Dirty, L=False, R=False) | Suck   | [##...#]@3     |    +10 | heading=Right
+2     | (3, Clean, L=False, R=False) | Right  | [##...#]@4     |     +9 | heading=Right
+3     | (4, Clean, L=False, R=False) | Right  | [##...#]@5     |     +8 | heading=Right
+4     | (5, Dirty, L=False, R=True)  | Suck   | [##....]@5     |    +18 | heading=Right
+5     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +17 | heading=Left
+6     | (4, Clean, L=False, R=False) | Left   | [##....]@3     |    +16 | heading=Left
+7     | (3, Clean, L=False, R=False) | Left   | [##....]@2     |    +15 | heading=Left
+8     | (2, Clean, L=False, R=False) | Left   | [##....]@1     |    +14 | heading=Left
+9     | (1, Dirty, L=False, R=False) | Suck   | [#.....]@1     |    +24 | heading=Left
+10    | (1, Clean, L=False, R=False) | Left   | [#.....]@0     |    +23 | heading=Left
+11    | (0, Dirty, L=True, R=False)  | Suck   | [......]@0     |    +33 | heading=Left
+12    | (0, Clean, L=True, R=False)  | Right  | [......]@1     |    +32 | heading=Right
+13    | (1, Clean, L=False, R=False) | Right  | [......]@2     |    +31 | heading=Right
+14    | (2, Clean, L=False, R=False) | Right  | [......]@3     |    +30 | heading=Right
+15    | (3, Clean, L=False, R=False) | Right  | [......]@4     |    +29 | heading=Right
+16    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +28 | heading=Right
+17    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +27 | heading=Left
+18    | (4, Clean, L=False, R=False) | Left   | [......]@3     |    +26 | heading=Left
+19    | (3, Clean, L=False, R=False) | Left   | [......]@2     |    +25 | heading=Left
+20    | (2, Clean, L=False, R=False) | Left   | [......]@1     |    +24 | heading=Left
+Final : [......]@1   score = +24   squares still dirty = 0
+
+>>> C. Model-based agent (belief over all 6 squares)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (3, Dirty, L=False, R=False) | Suck   | [##...#]@3     |    +10 | ???.??
+2     | (3, Clean, L=False, R=False) | Right  | [##...#]@4     |     +9 | ???.??
+3     | (4, Clean, L=False, R=False) | Right  | [##...#]@5     |     +8 | ???..?
+4     | (5, Dirty, L=False, R=True)  | Suck   | [##....]@5     |    +18 | ???...
+5     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +17 | ???...
+6     | (4, Clean, L=False, R=False) | Left   | [##....]@3     |    +16 | ???...
+7     | (3, Clean, L=False, R=False) | Left   | [##....]@2     |    +15 | ???...
+8     | (2, Clean, L=False, R=False) | Left   | [##....]@1     |    +14 | ??....
+9     | (1, Dirty, L=False, R=False) | Suck   | [#.....]@1     |    +24 | ?.....
+10    | (1, Clean, L=False, R=False) | Left   | [#.....]@0     |    +23 | ?.....
+11    | (0, Dirty, L=True, R=False)  | Suck   | [......]@0     |    +33 | ......
+12    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+13    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+14    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+15    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+16    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+17    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+18    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+19    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+20    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+Final : [......]@0   score = +33   squares still dirty = 0
+
+Summary of this scenario
+Agent                                      | Score        | Dirty squares left
+--------------------------------------------------------------------------------
+Naive reflex (no state)                    | 2            | 2
+Reflex + heading (1 bit of state)          | 24           | 0
+Model-based (full belief + NoOp)           | 33           | 0
+
+============================================================================================
+SCALING WITH CORRIDOR LENGTH  (start in the middle, 20 steps, seed 7)
+============================================================================================
+N      | naive reflex   | reflex+heading   | model-based    | dirty left (naive / heading / model)
+----------------------------------------------------------------------------------------------------
+2      | 2              | 2                | 19             | 0 / 0 / 0
+4      | -9             | 13               | 26             | 2 / 0 / 0
+6      | 2              | 24               | 33             | 2 / 0 / 0
+8      | 2              | 35               | 40             | 3 / 0 / 0
+10     | 24             | 57               | 57             | 3 / 0 / 0
+
+The naive rule 'if not at the right wall, go Right' has no memory of
+where it came from, so once it bounces off the right wall it is
+trapped between the last two squares and never returns to the dirt
+it left behind.  One bit of state - the heading - is enough to
+sweep the whole corridor; a full belief over the corridor is what
+lets the agent know when to stop.

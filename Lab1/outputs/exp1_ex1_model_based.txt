@@ -1,0 +1,68 @@
+====================================================================================================
+EXERCISE 1 - SIMPLE REFLEX  vs  MODEL-BASED REFLEX  (20 steps)
+====================================================================================================
+
+>>> A. Simple reflex agent (no internal state)
+Step  | Percept          | Action | Resulting world state     | Score  | CleanCredit
+------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | 2
+3     | (B, Dirty)       | Suck   | A=Clean  B=Clean  agent@B |    +19 | 4
+4     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +18 | 6
+5     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +17 | 8
+6     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +16 | 10
+7     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +15 | 12
+8     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +14 | 14
+9     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +13 | 16
+10    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +12 | 18
+11    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +11 | 20
+12    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +10 | 22
+13    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |     +9 | 24
+14    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |     +8 | 26
+15    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |     +7 | 28
+16    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |     +6 | 30
+17    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |     +5 | 32
+18    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |     +4 | 34
+19    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |     +3 | 36
+20    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |     +2 | 38
+Final : A=Clean  B=Clean  agent@A   score = +2   clean-square credit = 38
+
+>>> B. Model-based reflex agent (remembers both squares)
+Step  | Percept          | Action | Resulting world state     | Score  | Agent's internal model
+-----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | {A: Clean, B: Unknown}
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | {A: Clean, B: Unknown}
+3     | (B, Dirty)       | Suck   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+4     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+5     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+6     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+7     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+8     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+9     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+10    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+11    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+12    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+13    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+14    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+15    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+16    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+17    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+18    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+19    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+20    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+Final : A=Clean  B=Clean  agent@B   score = +19   clean-square credit = 38
+
+====================================================================================================
+COMPARISON OVER 20 STEPS
+====================================================================================================
+Agent                            | Task score   | Clean-square credit
+--------------------------------------------------------------------------
+Simple reflex                    | 2            | 38
+Model-based reflex               | 19           | 38
+--------------------------------------------------------------------------
+Difference (model - reflex)      | 17           | 0
+
+Both agents clean the world in the same first three steps.  After
+that the simple reflex agent pays -1 per step for ever, while the
+model-based agent recognises that its model shows both squares
+Clean and issues NoOp at zero cost.

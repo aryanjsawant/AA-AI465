@@ -1,0 +1,1293 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>LAB_1_U23AI042</title>
+<!--[if gte mso 9]><xml><w:WordDocument>
+<w:View>Print</w:View><w:Zoom>100</w:Zoom>
+</w:WordDocument></xml><![endif]-->
+<style>
+@page WordSection1 { size: 21.0cm 29.7cm; margin: 1.6cm 1.5cm 1.6cm 1.5cm; }
+div.WordSection1 { page: WordSection1; }
+body { font-family: 'Times New Roman', serif; font-size: 11.0pt; color: #000; }
+p { margin: 0 0 7pt 0; text-align: justify; line-height: 1.25; }
+p.inst { text-align: center; font-size: 13pt; font-weight: bold; margin-bottom: 2pt; }
+p.dept { text-align: center; font-size: 11.5pt; font-weight: bold; margin-bottom: 2pt; }
+p.course { text-align: center; font-size: 11pt; margin-bottom: 6pt; }
+p.cap { font-size: 9.5pt; font-weight: bold; margin: 10pt 0 4pt 0; text-align: left; }
+p.eq { text-align: center; font-style: italic; margin: 6pt 0; }
+p.note { font-size: 9.5pt; font-style: italic; margin-top: 10pt; }
+h1 { font-size: 14pt; text-align: center; margin: 14pt 0 4pt 0; }
+h1.sub { font-size: 12.5pt; margin-top: 0; }
+h2 { font-size: 12pt; margin: 14pt 0 6pt 0; border-bottom: 1px solid #888;
+     padding-bottom: 2pt; }
+h3 { font-size: 11pt; font-style: italic; margin: 10pt 0 4pt 0; }
+ol, ul { margin: 0 0 8pt 0; }
+li { margin-bottom: 3pt; text-align: justify; line-height: 1.25; }
+table.g { border-collapse: collapse; width: 100%; margin: 0 0 8pt 0;
+          font-size: 10pt; }
+table.g th { border: 1px solid #666; background: #ececec; padding: 4pt;
+             text-align: left; vertical-align: top; }
+table.g td { border: 1px solid #666; padding: 4pt; vertical-align: top;
+             text-align: left; }
+pre.code, pre.out { font-family: Consolas, 'Courier New', monospace;
+    border: 1px solid #999; background: #f6f6f6; padding: 5pt;
+    white-space: pre; line-height: 1.15; margin: 0 0 8pt 0; }
+pre.out { background: #fbfbfb; }
+span.m { font-family: Consolas, 'Courier New', monospace; font-size: 9.5pt; }
+hr { border: 0; border-top: 1.5px solid #000; margin: 4pt 0 8pt 0; }
+</style>
+</head>
+<body><div class=WordSection1><p class=inst>Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat</p><p class=dept>Department of Artificial Intelligence</p><p class=course>Agentic AI (IA462) &mdash; Semester VIII</p><hr><table class=g><tr><th>Name</th><th>Roll No.</th><th>Experiment</th><th>Date</th></tr><tr><td>&nbsp;</td><td>U23AI042</td><td>1</td><td>13 August 2026</td></tr></table><h1>Experiment 1</h1><h1 class=sub>Simple Reflex (Reactive) Agent &mdash; The Vacuum-Cleaner World</h1><h2>Aim</h2><p>To implement a reactive agent that maps percepts directly to actions through condition&ndash;action rules, and to measure its behaviour with a performance score in a simulated environment.</p><h2>Theory</h2><p>An agent is anything that perceives its environment through sensors and acts upon it through actuators. The <i>simple reflex agent</i> is the smallest architecture that still earns the name. It holds a fixed set of condition&ndash;action rules, matches the current percept against the conditions, and executes the action of the rule that fires. It stores no history, builds no model of the world and performs no look-ahead, so its behaviour is a pure function of the percept it is looking at at this instant: the same percept always produces the same action, whatever happened before.</p><p>Russell and Norvig's vacuum-cleaner world is the standard testbed for this architecture. There are two squares, A and B; each is either Clean or Dirty; the agent occupies one of them and can Suck, move Left, move Right, or do nothing. Cleaning is rewarded and movement costs energy, so the agent cannot simply thrash about and still score well.</p><p>This experiment also fixes the agent&ndash;environment interface that every later experiment reuses. The environment object owns the truth: the dirt status of both squares, the agent's location and the score. It exposes exactly two operations to the outside world &mdash; <span class=m>percept()</span>, which returns what the sensors can see, and <span class=m>execute(action)</span>, which applies an actuator command and returns the reward it earned. The agent is a plain Python function that receives the percept and returns an action; it never reads the environment's attributes. Everything the agent knows, it knows because it was told through a percept.</p><p>The instructive part of the experiment is the failure mode. Because the percept <span class=m>(A, Clean)</span> carries no information about square B, the rule table must map it to one fixed action. Mapping it to <i>Right</i> makes the agent oscillate for ever once both squares are clean, bleeding one point per step; mapping it to <i>NoOp</i> makes the agent freeze on square A and never discover that B is dirty. Both runs are reproduced below. The fix is not a better rule table &mdash; it is internal state, which is Experiment 2.</p><p class=cap>Table 1. PEAS description of the task environment.</p><table class=g><tr><th style='width:25%'>PEAS component</th><th style='width:75%'>Specification for this experiment</th></tr><tr><td>Performance measure</td><td>+10 for each successful Suck and &minus;1 for every movement (energy cost), as prescribed by the algorithm. The PEAS-level measure of the manual &mdash; +1 for each clean square at each time step &mdash; is also tracked, in the column <span class=m>CleanCredit</span>, so that the two views of &quot;performance&quot; can be compared.</td></tr><tr><td>Environment</td><td>Two squares A and B, each Clean or Dirty; deterministic, static (until Exercise 3), discrete, and fully observable only locally &mdash; the agent sees the square it stands on and nothing else.</td></tr><tr><td>Actuators</td><td>Suck, Left, Right, NoOp</td></tr><tr><td>Sensors</td><td>Location sensor and dirt sensor, giving the percept (location, status)</td></tr></table><p class=cap>Table 2. The condition&ndash;action rule table implemented in <span class=m>simple_reflex_agent()</span>.</p><table class=g><tr><th style='width:10%'>Rule</th><th style='width:55%'>Condition (percept)</th><th style='width:35%'>Action</th></tr><tr><td>R1</td><td>(any square, Dirty)</td><td>Suck</td></tr><tr><td>R2</td><td>(A, Clean)</td><td>Right</td></tr><tr><td>R3</td><td>(B, Clean)</td><td>Left</td></tr></table><h2>Algorithm</h2><ol><li>Build an environment class holding the dirt status of both locations, the agent's location and a performance score.</li><li>Implement <span class=m>percept()</span>, returning (location, status), and <span class=m>execute(action)</span>, applying Suck / Left / Right with rewards +10 and &minus;1.</li><li>Implement the agent as a pure function: if the current square is dirty then Suck, otherwise move to the other square.</li><li>Run the perception&ndash;action loop for a fixed number of steps: perceive, decide, act, score the time step.</li><li>Report the initial state, the percept&ndash;action trace of every step, and the final state with the performance score.</li></ol><p>The loop itself is four lines, and they are the whole of agency at this level:</p><pre class=code style='font-size:9pt'>for t in range(1, steps + 1):
+    percept = env.percept()          # 1. perceive
+    action  = agent(percept)         # 2. decide  (rule table)
+    reward  = env.execute(action)    # 3. act
+    env.tick_clean_credit()          # 4. score the time step</pre><br style='page-break-before:always'><h2>Procedure and Result</h2><h3>Program &mdash; exp1_reflex_agent.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 1 - Simple Reflex (Reactive) Agent : The Vacuum-Cleaner World
+Agentic AI (IA462), Semester VIII - SVNIT Surat
+
+Reference program.  Python standard library only; no agent framework is used
+(Rules and Regulations, clause 3.1).  Every part of the perception-action loop
+- the environment, the percept, the condition-action rules and the driver loop
+- appears explicitly below.
+
+Design note (agent-environment separation):
+    The environment owns the TRUE state (dirt in both squares, agent location,
+    score).  It exposes exactly two methods to the outside world:
+        percept()        -&gt; (location, status)   what the sensors report
+        execute(action)  -&gt; reward              what the actuators do
+    The agent is a pure function.  It receives nothing but the percept and
+    returns nothing but an action.  It has no memory and no model of the world.
+&quot;&quot;&quot;
+
+CLEAN = &quot;Clean&quot;
+DIRTY = &quot;Dirty&quot;
+
+SUCK, LEFT, RIGHT, NOOP = &quot;Suck&quot;, &quot;Left&quot;, &quot;Right&quot;, &quot;NoOp&quot;
+
+REWARD_SUCK = +10      # cleaning is rewarded          (Algorithm, step 2)
+REWARD_MOVE = -1       # every movement costs energy   (Algorithm, step 2)
+
+
+# --------------------------------------------------------------------------- #
+# 1. The environment: it holds the true state of the world.
+# --------------------------------------------------------------------------- #
+class VacuumEnvironment:
+    &quot;&quot;&quot;Two squares, A and B, each Clean or Dirty.&quot;&quot;&quot;
+
+    def __init__(self, status=None, location=&quot;A&quot;):
+        # status maps square name -&gt; CLEAN / DIRTY
+        self.status = dict(status) if status else {&quot;A&quot;: DIRTY, &quot;B&quot;: DIRTY}
+        self.location = location
+        self.score = 0          # task performance measure (+10 suck, -1 move)
+        self.clean_credit = 0   # PEAS measure: +1 per clean square per step
+
+    # -- sensors ------------------------------------------------------------ #
+    def percept(self):
+        &quot;&quot;&quot;All the agent is ever allowed to see.&quot;&quot;&quot;
+        return (self.location, self.status[self.location])
+
+    # -- actuators ---------------------------------------------------------- #
+    def execute(self, action):
+        &quot;&quot;&quot;Apply an action to the world and return the reward it earned.&quot;&quot;&quot;
+        reward = 0
+        if action == SUCK:
+            if self.status[self.location] == DIRTY:
+                self.status[self.location] = CLEAN
+                reward = REWARD_SUCK
+        elif action == LEFT:
+            self.location = &quot;A&quot;
+            reward = REWARD_MOVE
+        elif action == RIGHT:
+            self.location = &quot;B&quot;
+            reward = REWARD_MOVE
+        elif action == NOOP:
+            reward = 0
+        else:
+            raise ValueError(&quot;unknown action: %r&quot; % (action,))
+
+        self.score += reward
+        return reward
+
+    # -- book-keeping ------------------------------------------------------- #
+    def tick_clean_credit(self):
+        &quot;&quot;&quot;+1 for each square that is clean at this time step (PEAS measure).&quot;&quot;&quot;
+        gained = sum(1 for s in self.status.values() if s == CLEAN)
+        self.clean_credit += gained
+        return gained
+
+    def world_state(self):
+        return &quot;A=%-5s  B=%-5s  agent@%s&quot; % (
+            self.status[&quot;A&quot;], self.status[&quot;B&quot;], self.location)
+
+
+# --------------------------------------------------------------------------- #
+# 2. The agent: a pure function from percept to action.  No internal state.
+# --------------------------------------------------------------------------- #
+def simple_reflex_agent(percept):
+    &quot;&quot;&quot;Condition-action rules of Russell &amp; Norvig&#x27;s reflex vacuum agent.
+
+        if status is Dirty      -&gt; Suck
+        else if location is A   -&gt; Right
+        else                    -&gt; Left
+    &quot;&quot;&quot;
+    location, status = percept
+    if status == DIRTY:
+        return SUCK
+    elif location == &quot;A&quot;:
+        return RIGHT
+    else:
+        return LEFT
+
+
+def noop_when_clean_agent(percept):
+    &quot;&quot;&quot;A second, equally memoryless rule table, used in RUN 4 as a control.
+
+        if status is Dirty -&gt; Suck   else -&gt; NoOp
+
+    It removes the oscillation, and with it the agent&#x27;s only way of ever
+    reaching the other square.
+    &quot;&quot;&quot;
+    location, status = percept
+    return SUCK if status == DIRTY else NOOP
+
+
+# --------------------------------------------------------------------------- #
+# 3. The perception-action loop.
+# --------------------------------------------------------------------------- #
+def run(env, agent, steps):
+    print(&quot;Initial state : %s&quot; % env.world_state())
+    print(&quot;Performance   : score = %d&quot; % env.score)
+    print()
+    header = &quot;%-5s | %-16s | %-6s | %-25s | %-7s | %-6s | %s&quot; % (
+        &quot;Step&quot;, &quot;Percept&quot;, &quot;Action&quot;, &quot;Resulting world state&quot;,
+        &quot;Reward&quot;, &quot;Score&quot;, &quot;CleanCredit&quot;)
+    print(header)
+    print(&quot;-&quot; * len(header))
+
+    for t in range(1, steps + 1):
+        percept = env.percept()          # 1. perceive
+        action = agent(percept)          # 2. decide  (condition-action rules)
+        reward = env.execute(action)     # 3. act
+        env.tick_clean_credit()          # 4. environment scores the time step
+
+        print(&quot;%-5d | %-16s | %-6s | %-25s | %+7d | %+6d | %d&quot; % (
+            t, &quot;(%s, %s)&quot; % percept, action, env.world_state(),
+            reward, env.score, env.clean_credit))
+
+    print()
+    print(&quot;Final state   : %s&quot; % env.world_state())
+    print(&quot;Performance   : score = %d   (clean-square credit = %d over %d steps)&quot;
+          % (env.score, env.clean_credit, steps))
+    return env.score
+
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;=&quot; * 96)
+    print(&quot;EXPERIMENT 1 - SIMPLE REFLEX AGENT - VACUUM-CLEANER WORLD&quot;)
+    print(&quot;=&quot; * 96)
+    print()
+
+    print(&quot;&gt;&gt;&gt; RUN 1 : both squares initially Dirty, agent starts at A, 10 steps&quot;)
+    print()
+    env = VacuumEnvironment(status={&quot;A&quot;: DIRTY, &quot;B&quot;: DIRTY}, location=&quot;A&quot;)
+    run(env, simple_reflex_agent, steps=10)
+
+    print()
+    print(&quot;=&quot; * 96)
+    print(&quot;&gt;&gt;&gt; RUN 2 : only B dirty, agent starts at A, 10 steps&quot;)
+    print()
+    env2 = VacuumEnvironment(status={&quot;A&quot;: CLEAN, &quot;B&quot;: DIRTY}, location=&quot;A&quot;)
+    run(env2, simple_reflex_agent, steps=10)
+
+    print()
+    print(&quot;=&quot; * 96)
+    print(&quot;&gt;&gt;&gt; RUN 3 : effect of the horizon - same start, increasing step budget&quot;)
+    print()
+    print(&quot;%-8s | %-12s | %s&quot; % (&quot;Steps&quot;, &quot;Final score&quot;, &quot;Clean-square credit&quot;))
+    print(&quot;-&quot; * 48)
+    for n in (2, 5, 10, 20, 50, 100):
+        e = VacuumEnvironment(status={&quot;A&quot;: DIRTY, &quot;B&quot;: DIRTY}, location=&quot;A&quot;)
+        for _ in range(n):
+            e.execute(simple_reflex_agent(e.percept()))
+            e.tick_clean_credit()
+        print(&quot;%-8d | %-12d | %d&quot; % (n, e.score, e.clean_credit))
+    print()
+    print(&quot;The score falls by 1 for every step after the world is clean:&quot;)
+    print(&quot;the reflex agent oscillates A -&gt; B -&gt; A -&gt; ... for ever.&quot;)
+
+    print()
+    print(&quot;=&quot; * 96)
+    print(&quot;&gt;&gt;&gt; RUN 4 : control - can a different rule table fix it without memory?&quot;)
+    print(&quot;            rules: Dirty -&gt; Suck, Clean -&gt; NoOp;  world: only B dirty&quot;)
+    print()
+    env4 = VacuumEnvironment(status={&quot;A&quot;: CLEAN, &quot;B&quot;: DIRTY}, location=&quot;A&quot;)
+    run(env4, noop_when_clean_agent, steps=10)
+    print()
+    print(&quot;It stops paying the movement cost, but it never reaches B either:&quot;)
+    print(&quot;B stays dirty for ever.  The percept (A, Clean) has to be mapped to&quot;)
+    print(&quot;exactly one action, and the same percept occurs both when the world&quot;)
+    print(&quot;is finished and when B is still dirty.  No memoryless rule table can&quot;)
+    print(&quot;be right in both cases - the limitation is the architecture, not the&quot;)
+    print(&quot;choice of rules.&quot;)</pre><br style='page-break-before:always'><h3>Output</h3><p class=cap>Snapshot of the console output (Python 3.12.1 on Windows (AMD64), executed 13 August 2026, 00:25).</p><pre class=out style='font-size:6.5pt'>================================================================================================
+EXPERIMENT 1 - SIMPLE REFLEX AGENT - VACUUM-CLEANER WORLD
+================================================================================================
+
+&gt;&gt;&gt; RUN 1 : both squares initially Dirty, agent starts at A, 10 steps
+
+Initial state : A=Dirty  B=Dirty  agent@A
+Performance   : score = 0
+
+Step  | Percept          | Action | Resulting world state     | Reward  | Score  | CleanCredit
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |     +10 |    +10 | 1
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |      -1 |     +9 | 2
+3     | (B, Dirty)       | Suck   | A=Clean  B=Clean  agent@B |     +10 |    +19 | 4
+4     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |      -1 |    +18 | 6
+5     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |      -1 |    +17 | 8
+6     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |      -1 |    +16 | 10
+7     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |      -1 |    +15 | 12
+8     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |      -1 |    +14 | 14
+9     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |      -1 |    +13 | 16
+10    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |      -1 |    +12 | 18
+
+Final state   : A=Clean  B=Clean  agent@A
+Performance   : score = 12   (clean-square credit = 18 over 10 steps)
+
+================================================================================================
+&gt;&gt;&gt; RUN 2 : only B dirty, agent starts at A, 10 steps
+
+Initial state : A=Clean  B=Dirty  agent@A
+Performance   : score = 0
+
+Step  | Percept          | Action | Resulting world state     | Reward  | Score  | CleanCredit
+----------------------------------------------------------------------------------------------
+1     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |      -1 |     -1 | 1
+2     | (B, Dirty)       | Suck   | A=Clean  B=Clean  agent@B |     +10 |     +9 | 3
+3     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |      -1 |     +8 | 5
+4     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |      -1 |     +7 | 7
+5     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |      -1 |     +6 | 9
+6     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |      -1 |     +5 | 11
+7     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |      -1 |     +4 | 13
+8     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |      -1 |     +3 | 15
+9     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |      -1 |     +2 | 17
+10    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |      -1 |     +1 | 19
+
+Final state   : A=Clean  B=Clean  agent@B
+Performance   : score = 1   (clean-square credit = 19 over 10 steps)
+
+================================================================================================
+&gt;&gt;&gt; RUN 3 : effect of the horizon - same start, increasing step budget
+
+Steps    | Final score  | Clean-square credit
+------------------------------------------------
+2        | 9            | 2
+5        | 17           | 8
+10       | 12           | 18
+20       | 2            | 38
+50       | -28          | 98
+100      | -78          | 198
+
+The score falls by 1 for every step after the world is clean:
+the reflex agent oscillates A -&gt; B -&gt; A -&gt; ... for ever.
+
+================================================================================================
+&gt;&gt;&gt; RUN 4 : control - can a different rule table fix it without memory?
+            rules: Dirty -&gt; Suck, Clean -&gt; NoOp;  world: only B dirty
+
+Initial state : A=Clean  B=Dirty  agent@A
+Performance   : score = 0
+
+Step  | Percept          | Action | Resulting world state     | Reward  | Score  | CleanCredit
+----------------------------------------------------------------------------------------------
+1     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 1
+2     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 2
+3     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 3
+4     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 4
+5     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 5
+6     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 6
+7     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 7
+8     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 8
+9     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 9
+10    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |      +0 |     +0 | 10
+
+Final state   : A=Clean  B=Dirty  agent@A
+Performance   : score = 0   (clean-square credit = 10 over 10 steps)
+
+It stops paying the movement cost, but it never reaches B either:
+B stays dirty for ever.  The percept (A, Clean) has to be mapped to
+exactly one action, and the same percept occurs both when the world
+is finished and when B is still dirty.  No memoryless rule table can
+be right in both cases - the limitation is the architecture, not the
+choice of rules.</pre><br style='page-break-before:always'><h2>Observations</h2><h3>1. Why the agent keeps moving after both squares are clean</h3><p>The agent has exactly one input, the percept of the square it stands on, and that percept does not mention the other square. At step 5 of RUN 1 the agent perceives <span class=m>(A, Clean)</span>; it perceived exactly the same thing at step 2, when B was still dirty. Nothing in the agent distinguishes the two situations, so it must take the same action in both. Rule R2 says <i>Right</i>, and it says <i>Right</i> for ever: the agent walks A &rarr; B &rarr; A &rarr; B, paying &minus;1 a step for work it has already finished.</p><p>RUN 4 is the control that shows this is not a bad choice of rules. Replacing R2 and R3 with &quot;if Clean then NoOp&quot; does stop the oscillation &mdash; and in a world where only B is dirty the agent then sits on the clean square A for all ten steps, scores 0 and leaves B dirty for ever. One memoryless table wastes energy; the other never finishes the job. Since both worlds present the identical percept <span class=m>(A, Clean)</span>, no memoryless table can be correct in both. The limitation is architectural.</p><h3>2. How the performance score changes with the number of steps</h3><p>RUN 3 measures this directly. Starting from both squares dirty, the agent needs three steps to clean the world (Suck, Right, Suck) and reaches its maximum score of +19 at step 3. Every step after that is a movement, so for a horizon of <i>n</i> &ge; 3 steps the final score is exactly</p><p class=eq>score(n) = 19 &minus; (n &minus; 3)</p><p>which is +12 at n = 10, +2 at n = 20, &minus;28 at n = 50 and &minus;78 at n = 100. The score crosses zero at n = 22 and then falls without bound: the agent's lifetime performance is a strictly decreasing function of how long it is allowed to live, because it has no way to recognise that it is done. Under the PEAS-style measure the picture inverts &mdash; <span class=m>CleanCredit</span> grows by +2 per step once the world is clean, so the same behaviour looks perfect. Which agent is &quot;good&quot; is decided by the performance measure, not by the agent; this is the point of insisting that rationality is always relative to a stated measure.</p><h3>3. What this says about the need for internal state</h3><p>The agent's trouble is not that its rules are wrong but that its percept is smaller than the state it needs to act on. The world has four states (A/B &times; the two dirt bits); the agent can distinguish only two percepts per location. Two bits of memory &mdash; a remembered status for A and for B &mdash; close that gap exactly, and Exercise 1 measures what they are worth: +19 against +2 over twenty steps, with the gap widening by one point per additional step for ever. That is the step from the reflex agent to the model-based reflex agent, and it is the smallest amount of state that buys anything at all.</p><br style='page-break-before:always'><h2>Exercise 1 &mdash; Model-based variant, compared over 20 steps</h2><p><b>Task.</b> Add a model-based variant that remembers the status of both squares and executes a no-op once everything is known to be clean; compare scores over 20 steps.</p><p><b>Approach.</b> The agent becomes an object rather than a pure function, because it now carries state between calls. Its model is a dictionary <span class=m>{A: Unknown, B: Unknown}</span>, filled in only from percepts the agent has actually received &mdash; it never reads the environment. When the agent sucks it records the square as Clean, since it knows the effect of its own action; this is the &quot;model of how the world evolves&quot; half of the model-based architecture. The rules then fire on the model rather than on the bare percept, which is what makes the NoOp decision possible.</p><h3>Program &mdash; exp1_ex1_model_based.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 1 - Exercise 1
+Model-based reflex agent : remembers the status of both squares and executes a
+no-op once everything is known to be clean.  Scores are compared over 20 steps.
+
+Agentic AI (IA462), SVNIT Surat.  Standard library only; no agent framework.
+&quot;&quot;&quot;
+
+from exp1_reflex_agent import (
+    VacuumEnvironment, simple_reflex_agent,
+    CLEAN, DIRTY, SUCK, LEFT, RIGHT, NOOP,
+)
+
+
+# --------------------------------------------------------------------------- #
+# The model-based agent.  It is NOT a pure function: it carries a model of the
+# world between calls.  The model is built only from percepts it has actually
+# received - it never reads the environment&#x27;s private state.
+# --------------------------------------------------------------------------- #
+class ModelBasedReflexAgent:
+    &quot;&quot;&quot;Reflex rules + internal state (a belief about both squares).&quot;&quot;&quot;
+
+    def __init__(self):
+        # &quot;Unknown&quot; until the agent has visited the square itself.
+        self.model = {&quot;A&quot;: &quot;Unknown&quot;, &quot;B&quot;: &quot;Unknown&quot;}
+
+    def __call__(self, percept):
+        location, status = percept
+
+        # ---- update internal state from the percept --------------------- #
+        self.model[location] = status
+
+        # ---- condition-action rules over the MODEL, not just the percept - #
+        if status == DIRTY:
+            self.model[location] = CLEAN     # sucking will clean it
+            return SUCK
+        if all(v == CLEAN for v in self.model.values()):
+            return NOOP                      # nothing left to do: stop moving
+        return RIGHT if location == &quot;A&quot; else LEFT
+
+    def dump(self):
+        return &quot;{A: %s, B: %s}&quot; % (self.model[&quot;A&quot;], self.model[&quot;B&quot;])
+
+
+def run_agent(env, agent, steps, label, show_model=False):
+    print(&quot;%s&quot; % label)
+    header = &quot;%-5s | %-16s | %-6s | %-25s | %-6s | %s&quot; % (
+        &quot;Step&quot;, &quot;Percept&quot;, &quot;Action&quot;, &quot;Resulting world state&quot;, &quot;Score&quot;,
+        &quot;Agent&#x27;s internal model&quot; if show_model else &quot;CleanCredit&quot;)
+    print(header)
+    print(&quot;-&quot; * len(header))
+    for t in range(1, steps + 1):
+        percept = env.percept()
+        action = agent(percept)
+        env.execute(action)
+        env.tick_clean_credit()
+        tail = agent.dump() if show_model else str(env.clean_credit)
+        print(&quot;%-5d | %-16s | %-6s | %-25s | %+6d | %s&quot; % (
+            t, &quot;(%s, %s)&quot; % percept, action, env.world_state(),
+            env.score, tail))
+    print(&quot;Final : %s   score = %+d   clean-square credit = %d&quot;
+          % (env.world_state(), env.score, env.clean_credit))
+    print()
+    return env.score, env.clean_credit
+
+
+if __name__ == &quot;__main__&quot;:
+    STEPS = 20
+    START = {&quot;A&quot;: DIRTY, &quot;B&quot;: DIRTY}
+
+    print(&quot;=&quot; * 100)
+    print(&quot;EXERCISE 1 - SIMPLE REFLEX  vs  MODEL-BASED REFLEX  (20 steps)&quot;)
+    print(&quot;=&quot; * 100)
+    print()
+
+    env_a = VacuumEnvironment(status=START, location=&quot;A&quot;)
+    s_reflex, c_reflex = run_agent(
+        env_a, simple_reflex_agent, STEPS,
+        &quot;&gt;&gt;&gt; A. Simple reflex agent (no internal state)&quot;)
+
+    env_b = VacuumEnvironment(status=START, location=&quot;A&quot;)
+    s_model, c_model = run_agent(
+        env_b, ModelBasedReflexAgent(), STEPS,
+        &quot;&gt;&gt;&gt; B. Model-based reflex agent (remembers both squares)&quot;,
+        show_model=True)
+
+    print(&quot;=&quot; * 100)
+    print(&quot;COMPARISON OVER %d STEPS&quot; % STEPS)
+    print(&quot;=&quot; * 100)
+    print(&quot;%-32s | %-12s | %s&quot; % (&quot;Agent&quot;, &quot;Task score&quot;, &quot;Clean-square credit&quot;))
+    print(&quot;-&quot; * 74)
+    print(&quot;%-32s | %-12d | %d&quot; % (&quot;Simple reflex&quot;, s_reflex, c_reflex))
+    print(&quot;%-32s | %-12d | %d&quot; % (&quot;Model-based reflex&quot;, s_model, c_model))
+    print(&quot;-&quot; * 74)
+    print(&quot;%-32s | %-12d | %d&quot; % (&quot;Difference (model - reflex)&quot;,
+                                  s_model - s_reflex, c_model - c_reflex))
+    print()
+    print(&quot;Both agents clean the world in the same first three steps.  After&quot;)
+    print(&quot;that the simple reflex agent pays -1 per step for ever, while the&quot;)
+    print(&quot;model-based agent recognises that its model shows both squares&quot;)
+    print(&quot;Clean and issues NoOp at zero cost.&quot;)</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>====================================================================================================
+EXERCISE 1 - SIMPLE REFLEX  vs  MODEL-BASED REFLEX  (20 steps)
+====================================================================================================
+
+&gt;&gt;&gt; A. Simple reflex agent (no internal state)
+Step  | Percept          | Action | Resulting world state     | Score  | CleanCredit
+------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | 2
+3     | (B, Dirty)       | Suck   | A=Clean  B=Clean  agent@B |    +19 | 4
+4     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +18 | 6
+5     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +17 | 8
+6     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +16 | 10
+7     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +15 | 12
+8     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +14 | 14
+9     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +13 | 16
+10    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +12 | 18
+11    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +11 | 20
+12    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +10 | 22
+13    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |     +9 | 24
+14    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |     +8 | 26
+15    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |     +7 | 28
+16    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |     +6 | 30
+17    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |     +5 | 32
+18    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |     +4 | 34
+19    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |     +3 | 36
+20    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |     +2 | 38
+Final : A=Clean  B=Clean  agent@A   score = +2   clean-square credit = 38
+
+&gt;&gt;&gt; B. Model-based reflex agent (remembers both squares)
+Step  | Percept          | Action | Resulting world state     | Score  | Agent&#x27;s internal model
+-----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | {A: Clean, B: Unknown}
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | {A: Clean, B: Unknown}
+3     | (B, Dirty)       | Suck   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+4     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+5     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+6     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+7     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+8     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+9     | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+10    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+11    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+12    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+13    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+14    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+15    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+16    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+17    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+18    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+19    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+20    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +19 | {A: Clean, B: Clean}
+Final : A=Clean  B=Clean  agent@B   score = +19   clean-square credit = 38
+
+====================================================================================================
+COMPARISON OVER 20 STEPS
+====================================================================================================
+Agent                            | Task score   | Clean-square credit
+--------------------------------------------------------------------------
+Simple reflex                    | 2            | 38
+Model-based reflex               | 19           | 38
+--------------------------------------------------------------------------
+Difference (model - reflex)      | 17           | 0
+
+Both agents clean the world in the same first three steps.  After
+that the simple reflex agent pays -1 per step for ever, while the
+model-based agent recognises that its model shows both squares
+Clean and issues NoOp at zero cost.</pre><h3>Discussion</h3><p>Both agents behave identically for the first three steps and clean the world at the same moment; the model-based agent is not a better cleaner. The difference is entirely in knowing when to stop. At step 3 the model reads <span class=m>{A: Clean, B: Clean}</span>, the NoOp rule fires, and the score freezes at +19 while the reflex agent's decays to +2. The gap after n steps is (n &minus; 3) points and grows without limit.</p><p>The <span class=m>CleanCredit</span> column is worth reading beside it: both agents score 38 there, because both left the world clean. The two agents are indistinguishable under one performance measure and differ by 17 points under the other. Memory bought nothing about the state of the world &mdash; it bought the ability to stop paying for actions that no longer achieve anything.</p><p>One caveat visible in the trace: the model-based agent's belief is only sound because the environment is static. Nothing else in the world changes the squares, so a fact recorded once stays true. Exercise 3 removes that guarantee and the same agent becomes the worst of the four.</p><br style='page-break-before:always'><h2>Exercise 2 &mdash; A 1 &times; N corridor</h2><p><b>Task.</b> Extend the world to a 1 &times; N corridor of N squares with random initial dirt and adapt the rules.</p><p><b>Approach.</b> The environment generalises to a list of N squares; the percept grows two boolean wall sensors, <span class=m>(location, status, at_left_wall, at_right_wall)</span>, because an agent that cannot feel a wall cannot even turn round. Three agents are compared on the identical world (seeded, so the dirt layout is reproducible):</p><ul><li><b>A. Naive reflex</b> &mdash; Dirty &rarr; Suck; at the right wall &rarr; Left; otherwise &rarr; Right. Memoryless, the direct generalisation of the two-square rules.</li><li><b>B. Reflex + heading</b> &mdash; the same rules plus a single bit of state, the direction the agent is currently travelling, flipped at each wall.</li><li><b>C. Model-based</b> &mdash; a belief over all N squares plus the heading; NoOp once every square is believed clean.</li></ul><h3>Program &mdash; exp1_ex2_corridor.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 1 - Exercise 2
+The 1 x N corridor : N squares, random initial dirt, adapted condition-action
+rules.  Three agents are compared on the same world.
+
+Agentic AI (IA462), SVNIT Surat.  Standard library only; no agent framework.
+&quot;&quot;&quot;
+
+import random
+
+CLEAN, DIRTY = &quot;Clean&quot;, &quot;Dirty&quot;
+SUCK, LEFT, RIGHT, NOOP = &quot;Suck&quot;, &quot;Left&quot;, &quot;Right&quot;, &quot;NoOp&quot;
+REWARD_SUCK, REWARD_MOVE = +10, -1
+
+
+# --------------------------------------------------------------------------- #
+# Environment : a 1 x N corridor.  Same interface as the two-square world.
+# --------------------------------------------------------------------------- #
+class CorridorEnvironment:
+    def __init__(self, n, dirt_probability=0.5, location=0, seed=None):
+        rng = random.Random(seed)
+        self.n = n
+        self.status = [DIRTY if rng.random() &lt; dirt_probability else CLEAN
+                       for _ in range(n)]
+        self.location = location
+        self.score = 0
+
+    def percept(self):
+        &quot;&quot;&quot;(location, status, at_left_wall, at_right_wall) - local sensors only.&quot;&quot;&quot;
+        return (self.location,
+                self.status[self.location],
+                self.location == 0,
+                self.location == self.n - 1)
+
+    def execute(self, action):
+        reward = 0
+        if action == SUCK:
+            if self.status[self.location] == DIRTY:
+                self.status[self.location] = CLEAN
+                reward = REWARD_SUCK
+        elif action == LEFT:
+            self.location = max(0, self.location - 1)
+            reward = REWARD_MOVE
+        elif action == RIGHT:
+            self.location = min(self.n - 1, self.location + 1)
+            reward = REWARD_MOVE
+        elif action == NOOP:
+            reward = 0
+        else:
+            raise ValueError(&quot;unknown action: %r&quot; % (action,))
+        self.score += reward
+        return reward
+
+    def world_state(self):
+        cells = &quot;&quot;.join(&quot;.&quot; if s == CLEAN else &quot;#&quot; for s in self.status)
+        marker = &quot; &quot; * self.location + &quot;^&quot;
+        return &quot;[%s]  agent@%d\n%s%s&quot; % (cells, self.location, &quot; &quot; * 1, marker)
+
+    def compact(self):
+        return &quot;[%s]@%d&quot; % (
+            &quot;&quot;.join(&quot;.&quot; if s == CLEAN else &quot;#&quot; for s in self.status),
+            self.location)
+
+    def dirty_left(self):
+        return sum(1 for s in self.status if s == DIRTY)
+
+
+# --------------------------------------------------------------------------- #
+# Agent 1 : naive reflex.  Dirty -&gt; Suck, at a wall -&gt; turn, otherwise -&gt; Right.
+#           No state at all, so it cannot remember which way it was going.
+# --------------------------------------------------------------------------- #
+def naive_reflex_agent(percept):
+    location, status, at_left, at_right = percept
+    if status == DIRTY:
+        return SUCK
+    if at_right:
+        return LEFT
+    return RIGHT
+
+
+# --------------------------------------------------------------------------- #
+# Agent 2 : reflex + one bit of state (the current heading).  This is the
+#           smallest change that makes the corridor sweepable.
+# --------------------------------------------------------------------------- #
+class SweepingReflexAgent:
+    def __init__(self):
+        self.heading = RIGHT          # the single bit of internal state
+
+    def __call__(self, percept):
+        location, status, at_left, at_right = percept
+        if status == DIRTY:
+            return SUCK
+        if at_right:
+            self.heading = LEFT
+        elif at_left:
+            self.heading = RIGHT
+        return self.heading
+
+    def dump(self):
+        return &quot;heading=%s&quot; % self.heading
+
+
+# --------------------------------------------------------------------------- #
+# Agent 3 : model-based.  Keeps a belief about every square and stops once the
+#           whole corridor is known to be clean.
+# --------------------------------------------------------------------------- #
+class ModelBasedCorridorAgent:
+    def __init__(self, n):
+        self.model = [&quot;Unknown&quot;] * n
+        self.heading = RIGHT
+
+    def __call__(self, percept):
+        location, status, at_left, at_right = percept
+        self.model[location] = status
+
+        if status == DIRTY:
+            self.model[location] = CLEAN
+            return SUCK
+        if all(s == CLEAN for s in self.model):
+            return NOOP
+        if at_right:
+            self.heading = LEFT
+        elif at_left:
+            self.heading = RIGHT
+        return self.heading
+
+    def dump(self):
+        return &quot;&quot;.join({&quot;Unknown&quot;: &quot;?&quot;, CLEAN: &quot;.&quot;, DIRTY: &quot;#&quot;}[s]
+                       for s in self.model)
+
+
+# --------------------------------------------------------------------------- #
+def run(env, agent, steps, label, trace=True, show_model=False, quiet=False):
+    if not quiet:
+        print(label)
+    if trace and not quiet:
+        header = &quot;%-5s | %-28s | %-6s | %-14s | %-6s | %s&quot; % (
+            &quot;Step&quot;, &quot;Percept&quot;, &quot;Action&quot;, &quot;World&quot;, &quot;Score&quot;, &quot;Agent state&quot;)
+        print(header)
+        print(&quot;-&quot; * len(header))
+    for t in range(1, steps + 1):
+        p = env.percept()
+        action = agent(p)
+        env.execute(action)
+        if trace and not quiet:
+            state = agent.dump() if show_model else &quot;-&quot;
+            print(&quot;%-5d | %-28s | %-6s | %-14s | %+6d | %s&quot; % (
+                t, &quot;(%d, %s, L=%s, R=%s)&quot; % p, action, env.compact(),
+                env.score, state))
+    if not quiet:
+        print(&quot;Final : %s   score = %+d   squares still dirty = %d&quot;
+              % (env.compact(), env.score, env.dirty_left()))
+        print()
+    return env.score, env.dirty_left()
+
+
+def scenario(n, steps, seed, start, title):
+    print(&quot;=&quot; * 92)
+    print(title)
+    print(&quot;=&quot; * 92)
+    print(&quot;Initial world : %s      steps : %d      random seed : %d&quot;
+          % (CorridorEnvironment(n, seed=seed, location=start).compact(),
+             steps, seed))
+    print()
+
+    r1 = run(CorridorEnvironment(n, seed=seed, location=start),
+             naive_reflex_agent, steps,
+             &quot;&gt;&gt;&gt; A. Naive reflex agent (no state)&quot;)
+    r2 = run(CorridorEnvironment(n, seed=seed, location=start),
+             SweepingReflexAgent(), steps,
+             &quot;&gt;&gt;&gt; B. Reflex agent + heading (one bit of state)&quot;, show_model=True)
+    r3 = run(CorridorEnvironment(n, seed=seed, location=start),
+             ModelBasedCorridorAgent(n), steps,
+             &quot;&gt;&gt;&gt; C. Model-based agent (belief over all %d squares)&quot; % n,
+             show_model=True)
+
+    print(&quot;Summary of this scenario&quot;)
+    print(&quot;%-42s | %-12s | %s&quot; % (&quot;Agent&quot;, &quot;Score&quot;, &quot;Dirty squares left&quot;))
+    print(&quot;-&quot; * 80)
+    for name, res in ((&quot;Naive reflex (no state)&quot;, r1),
+                      (&quot;Reflex + heading (1 bit of state)&quot;, r2),
+                      (&quot;Model-based (full belief + NoOp)&quot;, r3)):
+        print(&quot;%-42s | %-12d | %d&quot; % (name, res[0], res[1]))
+    print()
+    return r1, r2, r3
+
+
+if __name__ == &quot;__main__&quot;:
+    N, STEPS, SEED = 6, 20, 7
+
+    print(&quot;EXERCISE 2 - 1 x %d CORRIDOR WITH RANDOM INITIAL DIRT &quot;
+          &quot;( &#x27;#&#x27; = dirty, &#x27;.&#x27; = clean )&quot; % N)
+    print()
+
+    scenario(N, STEPS, SEED, 0,
+             &quot;SCENARIO 1 - agent starts at the LEFT WALL (square 0)&quot;)
+
+    scenario(N, STEPS, SEED, N // 2,
+             &quot;SCENARIO 2 - agent starts in the MIDDLE (square %d)&quot; % (N // 2))
+
+    print(&quot;=&quot; * 92)
+    print(&quot;SCALING WITH CORRIDOR LENGTH  (start in the middle, %d steps, seed %d)&quot;
+          % (STEPS, SEED))
+    print(&quot;=&quot; * 92)
+    print(&quot;%-6s | %-14s | %-16s | %-14s | %s&quot; % (
+        &quot;N&quot;, &quot;naive reflex&quot;, &quot;reflex+heading&quot;, &quot;model-based&quot;,
+        &quot;dirty left (naive / heading / model)&quot;))
+    print(&quot;-&quot; * 100)
+    for n in (2, 4, 6, 8, 10):
+        start = n // 2
+        a = run(CorridorEnvironment(n, seed=SEED, location=start),
+                naive_reflex_agent, STEPS, &quot;&quot;, quiet=True)
+        b = run(CorridorEnvironment(n, seed=SEED, location=start),
+                SweepingReflexAgent(), STEPS, &quot;&quot;, quiet=True)
+        c = run(CorridorEnvironment(n, seed=SEED, location=start),
+                ModelBasedCorridorAgent(n), STEPS, &quot;&quot;, quiet=True)
+        print(&quot;%-6d | %-14d | %-16d | %-14d | %d / %d / %d&quot; % (
+            n, a[0], b[0], c[0], a[1], b[1], c[1]))
+    print()
+    print(&quot;The naive rule &#x27;if not at the right wall, go Right&#x27; has no memory of&quot;)
+    print(&quot;where it came from, so once it bounces off the right wall it is&quot;)
+    print(&quot;trapped between the last two squares and never returns to the dirt&quot;)
+    print(&quot;it left behind.  One bit of state - the heading - is enough to&quot;)
+    print(&quot;sweep the whole corridor; a full belief over the corridor is what&quot;)
+    print(&quot;lets the agent know when to stop.&quot;)</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>EXERCISE 2 - 1 x 6 CORRIDOR WITH RANDOM INITIAL DIRT ( &#x27;#&#x27; = dirty, &#x27;.&#x27; = clean )
+
+============================================================================================
+SCENARIO 1 - agent starts at the LEFT WALL (square 0)
+============================================================================================
+Initial world : [##.#.#]@0      steps : 20      random seed : 7
+
+&gt;&gt;&gt; A. Naive reflex agent (no state)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (0, Dirty, L=True, R=False)  | Suck   | [.#.#.#]@0     |    +10 | -
+2     | (0, Clean, L=True, R=False)  | Right  | [.#.#.#]@1     |     +9 | -
+3     | (1, Dirty, L=False, R=False) | Suck   | [...#.#]@1     |    +19 | -
+4     | (1, Clean, L=False, R=False) | Right  | [...#.#]@2     |    +18 | -
+5     | (2, Clean, L=False, R=False) | Right  | [...#.#]@3     |    +17 | -
+6     | (3, Dirty, L=False, R=False) | Suck   | [.....#]@3     |    +27 | -
+7     | (3, Clean, L=False, R=False) | Right  | [.....#]@4     |    +26 | -
+8     | (4, Clean, L=False, R=False) | Right  | [.....#]@5     |    +25 | -
+9     | (5, Dirty, L=False, R=True)  | Suck   | [......]@5     |    +35 | -
+10    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +34 | -
+11    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +33 | -
+12    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +32 | -
+13    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +31 | -
+14    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +30 | -
+15    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +29 | -
+16    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +28 | -
+17    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +27 | -
+18    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +26 | -
+19    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +25 | -
+20    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +24 | -
+Final : [......]@4   score = +24   squares still dirty = 0
+
+&gt;&gt;&gt; B. Reflex agent + heading (one bit of state)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (0, Dirty, L=True, R=False)  | Suck   | [.#.#.#]@0     |    +10 | heading=Right
+2     | (0, Clean, L=True, R=False)  | Right  | [.#.#.#]@1     |     +9 | heading=Right
+3     | (1, Dirty, L=False, R=False) | Suck   | [...#.#]@1     |    +19 | heading=Right
+4     | (1, Clean, L=False, R=False) | Right  | [...#.#]@2     |    +18 | heading=Right
+5     | (2, Clean, L=False, R=False) | Right  | [...#.#]@3     |    +17 | heading=Right
+6     | (3, Dirty, L=False, R=False) | Suck   | [.....#]@3     |    +27 | heading=Right
+7     | (3, Clean, L=False, R=False) | Right  | [.....#]@4     |    +26 | heading=Right
+8     | (4, Clean, L=False, R=False) | Right  | [.....#]@5     |    +25 | heading=Right
+9     | (5, Dirty, L=False, R=True)  | Suck   | [......]@5     |    +35 | heading=Right
+10    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +34 | heading=Left
+11    | (4, Clean, L=False, R=False) | Left   | [......]@3     |    +33 | heading=Left
+12    | (3, Clean, L=False, R=False) | Left   | [......]@2     |    +32 | heading=Left
+13    | (2, Clean, L=False, R=False) | Left   | [......]@1     |    +31 | heading=Left
+14    | (1, Clean, L=False, R=False) | Left   | [......]@0     |    +30 | heading=Left
+15    | (0, Clean, L=True, R=False)  | Right  | [......]@1     |    +29 | heading=Right
+16    | (1, Clean, L=False, R=False) | Right  | [......]@2     |    +28 | heading=Right
+17    | (2, Clean, L=False, R=False) | Right  | [......]@3     |    +27 | heading=Right
+18    | (3, Clean, L=False, R=False) | Right  | [......]@4     |    +26 | heading=Right
+19    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +25 | heading=Right
+20    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +24 | heading=Left
+Final : [......]@4   score = +24   squares still dirty = 0
+
+&gt;&gt;&gt; C. Model-based agent (belief over all 6 squares)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (0, Dirty, L=True, R=False)  | Suck   | [.#.#.#]@0     |    +10 | .?????
+2     | (0, Clean, L=True, R=False)  | Right  | [.#.#.#]@1     |     +9 | .?????
+3     | (1, Dirty, L=False, R=False) | Suck   | [...#.#]@1     |    +19 | ..????
+4     | (1, Clean, L=False, R=False) | Right  | [...#.#]@2     |    +18 | ..????
+5     | (2, Clean, L=False, R=False) | Right  | [...#.#]@3     |    +17 | ...???
+6     | (3, Dirty, L=False, R=False) | Suck   | [.....#]@3     |    +27 | ....??
+7     | (3, Clean, L=False, R=False) | Right  | [.....#]@4     |    +26 | ....??
+8     | (4, Clean, L=False, R=False) | Right  | [.....#]@5     |    +25 | .....?
+9     | (5, Dirty, L=False, R=True)  | Suck   | [......]@5     |    +35 | ......
+10    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+11    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+12    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+13    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+14    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+15    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+16    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+17    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+18    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+19    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+20    | (5, Clean, L=False, R=True)  | NoOp   | [......]@5     |    +35 | ......
+Final : [......]@5   score = +35   squares still dirty = 0
+
+Summary of this scenario
+Agent                                      | Score        | Dirty squares left
+--------------------------------------------------------------------------------
+Naive reflex (no state)                    | 24           | 0
+Reflex + heading (1 bit of state)          | 24           | 0
+Model-based (full belief + NoOp)           | 35           | 0
+
+============================================================================================
+SCENARIO 2 - agent starts in the MIDDLE (square 3)
+============================================================================================
+Initial world : [##.#.#]@3      steps : 20      random seed : 7
+
+&gt;&gt;&gt; A. Naive reflex agent (no state)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (3, Dirty, L=False, R=False) | Suck   | [##...#]@3     |    +10 | -
+2     | (3, Clean, L=False, R=False) | Right  | [##...#]@4     |     +9 | -
+3     | (4, Clean, L=False, R=False) | Right  | [##...#]@5     |     +8 | -
+4     | (5, Dirty, L=False, R=True)  | Suck   | [##....]@5     |    +18 | -
+5     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +17 | -
+6     | (4, Clean, L=False, R=False) | Right  | [##....]@5     |    +16 | -
+7     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +15 | -
+8     | (4, Clean, L=False, R=False) | Right  | [##....]@5     |    +14 | -
+9     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +13 | -
+10    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |    +12 | -
+11    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +11 | -
+12    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |    +10 | -
+13    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |     +9 | -
+14    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |     +8 | -
+15    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |     +7 | -
+16    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |     +6 | -
+17    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |     +5 | -
+18    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |     +4 | -
+19    | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |     +3 | -
+20    | (4, Clean, L=False, R=False) | Right  | [##....]@5     |     +2 | -
+Final : [##....]@5   score = +2   squares still dirty = 2
+
+&gt;&gt;&gt; B. Reflex agent + heading (one bit of state)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (3, Dirty, L=False, R=False) | Suck   | [##...#]@3     |    +10 | heading=Right
+2     | (3, Clean, L=False, R=False) | Right  | [##...#]@4     |     +9 | heading=Right
+3     | (4, Clean, L=False, R=False) | Right  | [##...#]@5     |     +8 | heading=Right
+4     | (5, Dirty, L=False, R=True)  | Suck   | [##....]@5     |    +18 | heading=Right
+5     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +17 | heading=Left
+6     | (4, Clean, L=False, R=False) | Left   | [##....]@3     |    +16 | heading=Left
+7     | (3, Clean, L=False, R=False) | Left   | [##....]@2     |    +15 | heading=Left
+8     | (2, Clean, L=False, R=False) | Left   | [##....]@1     |    +14 | heading=Left
+9     | (1, Dirty, L=False, R=False) | Suck   | [#.....]@1     |    +24 | heading=Left
+10    | (1, Clean, L=False, R=False) | Left   | [#.....]@0     |    +23 | heading=Left
+11    | (0, Dirty, L=True, R=False)  | Suck   | [......]@0     |    +33 | heading=Left
+12    | (0, Clean, L=True, R=False)  | Right  | [......]@1     |    +32 | heading=Right
+13    | (1, Clean, L=False, R=False) | Right  | [......]@2     |    +31 | heading=Right
+14    | (2, Clean, L=False, R=False) | Right  | [......]@3     |    +30 | heading=Right
+15    | (3, Clean, L=False, R=False) | Right  | [......]@4     |    +29 | heading=Right
+16    | (4, Clean, L=False, R=False) | Right  | [......]@5     |    +28 | heading=Right
+17    | (5, Clean, L=False, R=True)  | Left   | [......]@4     |    +27 | heading=Left
+18    | (4, Clean, L=False, R=False) | Left   | [......]@3     |    +26 | heading=Left
+19    | (3, Clean, L=False, R=False) | Left   | [......]@2     |    +25 | heading=Left
+20    | (2, Clean, L=False, R=False) | Left   | [......]@1     |    +24 | heading=Left
+Final : [......]@1   score = +24   squares still dirty = 0
+
+&gt;&gt;&gt; C. Model-based agent (belief over all 6 squares)
+Step  | Percept                      | Action | World          | Score  | Agent state
+-------------------------------------------------------------------------------------
+1     | (3, Dirty, L=False, R=False) | Suck   | [##...#]@3     |    +10 | ???.??
+2     | (3, Clean, L=False, R=False) | Right  | [##...#]@4     |     +9 | ???.??
+3     | (4, Clean, L=False, R=False) | Right  | [##...#]@5     |     +8 | ???..?
+4     | (5, Dirty, L=False, R=True)  | Suck   | [##....]@5     |    +18 | ???...
+5     | (5, Clean, L=False, R=True)  | Left   | [##....]@4     |    +17 | ???...
+6     | (4, Clean, L=False, R=False) | Left   | [##....]@3     |    +16 | ???...
+7     | (3, Clean, L=False, R=False) | Left   | [##....]@2     |    +15 | ???...
+8     | (2, Clean, L=False, R=False) | Left   | [##....]@1     |    +14 | ??....
+9     | (1, Dirty, L=False, R=False) | Suck   | [#.....]@1     |    +24 | ?.....
+10    | (1, Clean, L=False, R=False) | Left   | [#.....]@0     |    +23 | ?.....
+11    | (0, Dirty, L=True, R=False)  | Suck   | [......]@0     |    +33 | ......
+12    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+13    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+14    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+15    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+16    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+17    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+18    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+19    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+20    | (0, Clean, L=True, R=False)  | NoOp   | [......]@0     |    +33 | ......
+Final : [......]@0   score = +33   squares still dirty = 0
+
+Summary of this scenario
+Agent                                      | Score        | Dirty squares left
+--------------------------------------------------------------------------------
+Naive reflex (no state)                    | 2            | 2
+Reflex + heading (1 bit of state)          | 24           | 0
+Model-based (full belief + NoOp)           | 33           | 0
+
+============================================================================================
+SCALING WITH CORRIDOR LENGTH  (start in the middle, 20 steps, seed 7)
+============================================================================================
+N      | naive reflex   | reflex+heading   | model-based    | dirty left (naive / heading / model)
+----------------------------------------------------------------------------------------------------
+2      | 2              | 2                | 19             | 0 / 0 / 0
+4      | -9             | 13               | 26             | 2 / 0 / 0
+6      | 2              | 24               | 33             | 2 / 0 / 0
+8      | 2              | 35               | 40             | 3 / 0 / 0
+10     | 24             | 57               | 57             | 3 / 0 / 0
+
+The naive rule &#x27;if not at the right wall, go Right&#x27; has no memory of
+where it came from, so once it bounces off the right wall it is
+trapped between the last two squares and never returns to the dirt
+it left behind.  One bit of state - the heading - is enough to
+sweep the whole corridor; a full belief over the corridor is what
+lets the agent know when to stop.</pre><h3>Discussion</h3><p>Scenario 1 is deliberately flattering: the agent starts at the left wall, so &quot;always go Right unless at the right wall&quot; happens to sweep the whole corridor, and agents A and B score identically (+24). The rule looks adequate.</p><p>Scenario 2 starts the same agent in the middle and the naive rule collapses. It sweeps rightwards, bounces off the right wall, and then &mdash; having no memory of where it came from &mdash; the rule &quot;not at the right wall, so go Right&quot; fires again and sends it straight back. It is trapped oscillating between the last two squares for the rest of its life, and the two dirty squares to its left are never cleaned: final score +2 with 2 squares still dirty, against +24 and a clean corridor for the agent that carries one extra bit. In the scaling table this holds for every N tested: the naive agent leaves 2 or 3 squares dirty, both stateful agents leave none.</p><p>This is a sharper version of the two-square lesson. In the two-square world memorylessness cost energy; here it costs correctness &mdash; part of the task simply never gets done, no matter how long the agent runs. It is also a useful piece of engineering intuition: the heading bit is the cheapest state imaginable, and it converts a broken agent into a complete one. The full belief over N squares adds one further thing, termination, worth another 9 to 11 points over 20 steps.</p><br style='page-break-before:always'><h2>Exercise 3 &mdash; Dirt reappears with probability 0.1 per step</h2><p><b>Task.</b> Make dirt reappear with probability 0.1 per step and discuss whether the reflex agent is now rational.</p><p><b>Approach.</b> After the agent acts, every clean square is re-dirtied independently with probability p. The world is now <i>dynamic</i>: it changes while the agent is deliberating, and a fact the agent recorded a moment ago may already be false. Four agents are run against the same seeded stream of re-dirtying events, so any difference in score is caused by the policy and not by luck:</p><ul><li><b>Simple reflex</b> &mdash; the original memoryless agent.</li><li><b>Model-based + NoOp</b> &mdash; the winner of Exercise 1, unchanged.</li><li><b>Model-based + decay(3)</b> &mdash; the same agent, except that a square it has not seen for 3 steps is demoted back to Unknown, so a stale belief stops justifying a NoOp.</li><li><b>Lazy</b> &mdash; never moves, sucks whatever it is standing on. A do-nothing baseline that any claim of rationality has to beat.</li></ul><h3>Program &mdash; exp1_ex3_stochastic_dirt.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 1 - Exercise 3
+Dirt reappears with probability p = 0.1 per square per time step.
+Is the simple reflex agent rational now?
+
+Three agents are compared under the same stream of random events:
+    A. simple reflex          - patrols for ever, no memory
+    B. model-based + NoOp     - the Exercise-1 agent, stops when it believes
+                                the world is clean
+    C. model-based + decay    - keeps a belief but distrusts it once it is
+                                stale, so it resumes patrolling
+
+Agentic AI (IA462), SVNIT Surat.  Standard library only; no agent framework.
+&quot;&quot;&quot;
+
+import random
+
+from exp1_reflex_agent import (
+    VacuumEnvironment, simple_reflex_agent,
+    CLEAN, DIRTY, SUCK, LEFT, RIGHT, NOOP,
+)
+from exp1_ex1_model_based import ModelBasedReflexAgent
+
+
+# --------------------------------------------------------------------------- #
+# Environment : the two-square world, but dirt reappears stochastically.
+# --------------------------------------------------------------------------- #
+class StochasticVacuumEnvironment(VacuumEnvironment):
+    def __init__(self, p_dirt=0.1, seed=None, **kwargs):
+        super().__init__(**kwargs)
+        self.p_dirt = p_dirt
+        self.rng = random.Random(seed)
+        self.redirtied = 0
+
+    def step_world(self):
+        &quot;&quot;&quot;Called once per time step, after the agent has acted.&quot;&quot;&quot;
+        events = []
+        for square in (&quot;A&quot;, &quot;B&quot;):
+            if self.status[square] == CLEAN and self.rng.random() &lt; self.p_dirt:
+                self.status[square] = DIRTY
+                self.redirtied += 1
+                events.append(square)
+        return events
+
+
+# --------------------------------------------------------------------------- #
+# Agent C : model-based agent whose belief decays.  A square not seen for
+#           `patience` steps is demoted back to &quot;Unknown&quot;, so the agent goes
+#           and looks instead of sitting on a stale model.
+# --------------------------------------------------------------------------- #
+class DecayingModelAgent:
+    def __init__(self, patience=3):
+        self.model = {&quot;A&quot;: &quot;Unknown&quot;, &quot;B&quot;: &quot;Unknown&quot;}
+        self.age = {&quot;A&quot;: 0, &quot;B&quot;: 0}
+        self.patience = patience
+
+    def __call__(self, percept):
+        location, status = percept
+
+        # age every belief by one step, then refresh the one we can see
+        for s in self.age:
+            self.age[s] += 1
+            if self.age[s] &gt; self.patience:
+                self.model[s] = &quot;Unknown&quot;       # too old to trust
+        self.model[location] = status
+        self.age[location] = 0
+
+        if status == DIRTY:
+            self.model[location] = CLEAN
+            return SUCK
+        if all(v == CLEAN for v in self.model.values()):
+            return NOOP
+        return RIGHT if location == &quot;A&quot; else LEFT
+
+    def dump(self):
+        return &quot;{A:%s/%d, B:%s/%d}&quot; % (self.model[&quot;A&quot;][:5], self.age[&quot;A&quot;],
+                                       self.model[&quot;B&quot;][:5], self.age[&quot;B&quot;])
+
+
+# --------------------------------------------------------------------------- #
+def run(p_dirt, agent_factory, steps, seed, trace=False, label=&quot;&quot;):
+    env = StochasticVacuumEnvironment(
+        p_dirt=p_dirt, seed=seed, status={&quot;A&quot;: DIRTY, &quot;B&quot;: DIRTY}, location=&quot;A&quot;)
+    agent = agent_factory()
+
+    if trace:
+        print(label)
+        header = &quot;%-5s | %-16s | %-6s | %-22s | %-6s | %-11s | %s&quot; % (
+            &quot;Step&quot;, &quot;Percept&quot;, &quot;Action&quot;, &quot;World after action&quot;, &quot;Score&quot;,
+            &quot;CleanCredit&quot;, &quot;Re-dirtied&quot;)
+        print(header)
+        print(&quot;-&quot; * len(header))
+
+    for t in range(1, steps + 1):
+        percept = env.percept()
+        action = agent(percept)
+        env.execute(action)
+        env.tick_clean_credit()          # score the world as the agent left it
+        events = env.step_world()        # then nature dirties squares again
+
+        if trace:
+            print(&quot;%-5d | %-16s | %-6s | %-22s | %+6d | %-11d | %s&quot; % (
+                t, &quot;(%s, %s)&quot; % percept, action, env.world_state(),
+                env.score, env.clean_credit,
+                &quot;,&quot;.join(events) if events else &quot;-&quot;))
+
+    if trace:
+        print(&quot;Final : %s   score = %+d   clean-square credit = %d   &quot;
+              &quot;re-dirtying events = %d&quot;
+              % (env.world_state(), env.score, env.clean_credit, env.redirtied))
+        print()
+    return env.score, env.clean_credit, env.redirtied
+
+
+def average(p_dirt, agent_factory, steps, trials):
+    tot_s = tot_c = 0
+    for k in range(trials):
+        s, c, _ = run(p_dirt, agent_factory, steps, seed=1000 + k)
+        tot_s += s
+        tot_c += c
+    return tot_s / trials, tot_c / trials
+
+
+# --------------------------------------------------------------------------- #
+# Agent D : the &quot;lazy&quot; baseline.  It never moves; it only sucks the square it
+#           happens to be standing on.  Included because it costs nothing, and
+#           in a world where dirt comes to you, doing nothing is a real
+#           strategy that any claim of rationality has to beat.
+# --------------------------------------------------------------------------- #
+def lazy_agent(percept):
+    location, status = percept
+    return SUCK if status == DIRTY else NOOP
+
+
+AGENTS = (
+    (&quot;Simple reflex (no state)&quot;, lambda: simple_reflex_agent),
+    (&quot;Model-based + NoOp&quot;,       lambda: ModelBasedReflexAgent()),
+    (&quot;Model-based + decay(3)&quot;,   lambda: DecayingModelAgent(patience=3)),
+    (&quot;Lazy (never moves)&quot;,       lambda: lazy_agent),
+)
+
+
+if __name__ == &quot;__main__&quot;:
+    P, STEPS, TRIALS = 0.1, 30, 200
+
+    print(&quot;=&quot; * 104)
+    print(&quot;EXERCISE 3 - DIRT REAPPEARS WITH PROBABILITY p = %.2f PER SQUARE &quot;
+          &quot;PER STEP&quot; % P)
+    print(&quot;=&quot; * 104)
+    print()
+
+    print(&quot;&gt;&gt;&gt; Sample traces, %d steps, random seed 1000 &quot;
+          &quot;(the same stream of re-dirtying events for every agent)&quot; % STEPS)
+    print()
+    for name, factory in AGENTS:
+        run(P, factory, STEPS, seed=1000, trace=True, label=&quot;&gt;&gt;&gt; %s&quot; % name)
+
+    print(&quot;=&quot; * 104)
+    print(&quot;AVERAGE OVER %d INDEPENDENT RUNS OF %d STEPS  (p = %.2f)&quot;
+          % (TRIALS, STEPS, P))
+    print(&quot;=&quot; * 104)
+    print(&quot;%-30s | %-16s | %s&quot; % (&quot;Agent&quot;, &quot;Mean task score&quot;,
+                                  &quot;Mean clean-square credit (max %d)&quot; % (2 * STEPS)))
+    print(&quot;-&quot; * 92)
+    for name, factory in AGENTS:
+        s, c = average(P, factory, STEPS, TRIALS)
+        print(&quot;%-30s | %-16.2f | %.2f&quot; % (name, s, c))
+
+    print()
+    print(&quot;=&quot; * 104)
+    print(&quot;SENSITIVITY TO p  (mean task score / mean clean-square credit, &quot;
+          &quot;%d runs of %d steps)&quot; % (TRIALS, STEPS))
+    print(&quot;=&quot; * 104)
+    print(&quot;%-6s | %s&quot; % (&quot;p&quot;, &quot; | &quot;.join(&quot;%-19s&quot; % n for n, _ in AGENTS)))
+    print(&quot;-&quot; * 100)
+    for p in (0.0, 0.02, 0.05, 0.1, 0.2, 0.4):
+        cells = []
+        for name, factory in AGENTS:
+            s, c = average(p, factory, STEPS, TRIALS)
+            cells.append(&quot;%7.2f /%6.2f&quot; % (s, c))
+        print(&quot;%-6.2f | %s&quot; % (p, &quot; | &quot;.join(&quot;%-19s&quot; % c for c in cells)))
+    print()
+    print(&quot;Best agent by task score, and by clean-square credit, at each p:&quot;)
+    print(&quot;%-6s | %-26s | %s&quot; % (&quot;p&quot;, &quot;best task score&quot;, &quot;best clean-square credit&quot;))
+    print(&quot;-&quot; * 70)
+    for p in (0.0, 0.02, 0.05, 0.1, 0.2, 0.4):
+        res = [(name,) + average(p, factory, STEPS, TRIALS)
+               for name, factory in AGENTS]
+        best_s = max(res, key=lambda r: r[1])
+        best_c = max(res, key=lambda r: r[2])
+        print(&quot;%-6.2f | %-26s | %s&quot; % (p, &quot;%s (%.1f)&quot; % (best_s[0], best_s[1]),
+                                       &quot;%s (%.1f)&quot; % (best_c[0], best_c[2])))
+
+    print()
+    print(&quot;Reading the table: at p = 0 the memoryless agent is dominated - it&quot;)
+    print(&quot;pays -1 for ever.  As p grows, patrolling starts to pay for itself,&quot;)
+    print(&quot;because a square the agent never revisits cannot be cleaned.  The&quot;)
+    print(&quot;agent that only *believes* the world is clean is the one that fails:&quot;)
+    print(&quot;its model is correct when written and wrong one step later.  Note&quot;)
+    print(&quot;also that the do-nothing agent beats the reflex agent at small p:&quot;)
+    print(&quot;the reflex agent is not rational there either, because it pays to&quot;)
+    print(&quot;move without weighing that cost against the chance of finding dirt.&quot;)</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>========================================================================================================
+EXERCISE 3 - DIRT REAPPEARS WITH PROBABILITY p = 0.10 PER SQUARE PER STEP
+========================================================================================================
+
+&gt;&gt;&gt; Sample traces, 30 steps, random seed 1000 (the same stream of re-dirtying events for every agent)
+
+&gt;&gt;&gt; Simple reflex (no state)
+Step  | Percept          | Action | World after action     | Score  | CleanCredit | Re-dirtied
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1           | -
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | 2           | -
+3     | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +19 | 4           | A
+4     | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +18 | 5           | -
+5     | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +28 | 7           | -
+6     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +27 | 9           | -
+7     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +26 | 11          | -
+8     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +25 | 13          | -
+9     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +24 | 15          | -
+10    | (A, Clean)       | Right  | A=Dirty  B=Clean  agent@B |    +23 | 17          | A
+11    | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +22 | 18          | -
+12    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +32 | 20          | -
+13    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +31 | 22          | -
+14    | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +30 | 24          | A
+15    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +40 | 26          | -
+16    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +39 | 28          | -
+17    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +38 | 30          | -
+18    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +37 | 32          | -
+19    | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +36 | 34          | A
+20    | (A, Dirty)       | Suck   | A=Dirty  B=Clean  agent@A |    +46 | 36          | A
+21    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +56 | 38          | -
+22    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +55 | 40          | -
+23    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +54 | 42          | -
+24    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +53 | 44          | -
+25    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +52 | 46          | -
+26    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +51 | 48          | -
+27    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +50 | 50          | -
+28    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +49 | 52          | -
+29    | (B, Clean)       | Left   | A=Clean  B=Dirty  agent@A |    +48 | 54          | B
+30    | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |    +47 | 55          | -
+Final : A=Clean  B=Dirty  agent@B   score = +47   clean-square credit = 55   re-dirtying events = 6
+
+&gt;&gt;&gt; Model-based + NoOp
+Step  | Percept          | Action | World after action     | Score  | CleanCredit | Re-dirtied
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1           | -
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | 2           | -
+3     | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +19 | 4           | A
+4     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 5           | -
+5     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 6           | -
+6     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 7           | -
+7     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 8           | -
+8     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 9           | -
+9     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 10          | -
+10    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 11          | -
+11    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 12          | -
+12    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 13          | -
+13    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 14          | -
+14    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 15          | -
+15    | (B, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@B |    +19 | 16          | B
+16    | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +29 | 17          | -
+17    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 18          | -
+18    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 19          | -
+19    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 20          | -
+20    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 21          | -
+21    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 22          | -
+22    | (B, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@B |    +29 | 23          | B
+23    | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +39 | 24          | -
+24    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 25          | -
+25    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 26          | -
+26    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 27          | -
+27    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 28          | -
+28    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 29          | -
+29    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 30          | -
+30    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 31          | -
+Final : A=Dirty  B=Clean  agent@B   score = +39   clean-square credit = 31   re-dirtying events = 3
+
+&gt;&gt;&gt; Model-based + decay(3)
+Step  | Percept          | Action | World after action     | Score  | CleanCredit | Re-dirtied
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1           | -
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | 2           | -
+3     | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +19 | 4           | A
+4     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 5           | -
+5     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 6           | -
+6     | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +18 | 7           | -
+7     | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +28 | 9           | -
+8     | (A, Clean)       | NoOp   | A=Clean  B=Clean  agent@A |    +28 | 11          | -
+9     | (A, Clean)       | NoOp   | A=Clean  B=Clean  agent@A |    +28 | 13          | -
+10    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +27 | 15          | -
+11    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +27 | 17          | A
+12    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +27 | 18          | -
+13    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +27 | 19          | -
+14    | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +26 | 20          | -
+15    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +36 | 22          | -
+16    | (A, Clean)       | NoOp   | A=Dirty  B=Clean  agent@A |    +36 | 24          | A
+17    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +46 | 26          | -
+18    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +45 | 28          | -
+19    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +45 | 30          | -
+20    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +45 | 32          | -
+21    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +45 | 34          | A
+22    | (B, Clean)       | Left   | A=Dirty  B=Dirty  agent@A |    +44 | 35          | B
+23    | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +54 | 36          | -
+24    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +54 | 37          | -
+25    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +54 | 38          | -
+26    | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |    +53 | 39          | -
+27    | (B, Dirty)       | Suck   | A=Clean  B=Clean  agent@B |    +63 | 41          | -
+28    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +63 | 43          | -
+29    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +63 | 45          | -
+30    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +62 | 47          | -
+Final : A=Clean  B=Clean  agent@A   score = +62   clean-square credit = 47   re-dirtying events = 5
+
+&gt;&gt;&gt; Lazy (never moves)
+Step  | Percept          | Action | World after action     | Score  | CleanCredit | Re-dirtied
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1           | -
+2     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +10 | 2           | -
+3     | (A, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@A |    +10 | 3           | A
+4     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +20 | 4           | -
+5     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 5           | -
+6     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 6           | -
+7     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 7           | -
+8     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 8           | -
+9     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 9           | -
+10    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 10          | -
+11    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 11          | -
+12    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 12          | -
+13    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 13          | -
+14    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 14          | -
+15    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 15          | -
+16    | (A, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@A |    +20 | 16          | A
+17    | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +30 | 17          | -
+18    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 18          | -
+19    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 19          | -
+20    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 20          | -
+21    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 21          | -
+22    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 22          | -
+23    | (A, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@A |    +30 | 23          | A
+24    | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +40 | 24          | -
+25    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 25          | -
+26    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 26          | -
+27    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 27          | -
+28    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 28          | -
+29    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 29          | -
+30    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 30          | -
+Final : A=Clean  B=Dirty  agent@A   score = +40   clean-square credit = 30   re-dirtying events = 3
+
+========================================================================================================
+AVERAGE OVER 200 INDEPENDENT RUNS OF 30 STEPS  (p = 0.10)
+========================================================================================================
+Agent                          | Mean task score  | Mean clean-square credit (max 60)
+--------------------------------------------------------------------------------------------
+Simple reflex (no state)       | 47.16            | 54.53
+Model-based + NoOp             | 45.65            | 38.38
+Model-based + decay(3)         | 58.03            | 51.66
+Lazy (never moves)             | 37.85            | 30.00
+
+========================================================================================================
+SENSITIVITY TO p  (mean task score / mean clean-square credit, 200 runs of 30 steps)
+========================================================================================================
+p      | Simple reflex (no state) | Model-based + NoOp  | Model-based + decay(3) | Lazy (never moves) 
+----------------------------------------------------------------------------------------------------
+0.00   |   -8.00 / 58.00     |   19.00 / 58.00     |   12.00 / 58.00     |   10.00 / 30.00    
+0.02   |    3.44 / 57.41     |   23.20 / 50.74     |   21.68 / 56.67     |   14.85 / 30.00    
+0.05   |   21.20 / 56.42     |   32.15 / 44.09     |   36.39 / 54.48     |   23.60 / 30.00    
+0.10   |   47.16 / 54.53     |   45.65 / 38.38     |   58.03 / 51.66     |   37.85 / 30.00    
+0.20   |   97.22 / 50.20     |   75.35 / 33.99     |   98.12 / 46.19     |   68.45 / 30.00    
+0.40   |  163.54 / 41.22     |  133.70 / 31.50     |  155.67 / 38.03     |  128.30 / 30.00    
+
+Best agent by task score, and by clean-square credit, at each p:
+p      | best task score            | best clean-square credit
+----------------------------------------------------------------------
+0.00   | Model-based + NoOp (19.0)  | Simple reflex (no state) (58.0)
+0.02   | Model-based + NoOp (23.2)  | Simple reflex (no state) (57.4)
+0.05   | Model-based + decay(3) (36.4) | Simple reflex (no state) (56.4)
+0.10   | Model-based + decay(3) (58.0) | Simple reflex (no state) (54.5)
+0.20   | Model-based + decay(3) (98.1) | Simple reflex (no state) (50.2)
+0.40   | Simple reflex (no state) (163.5) | Simple reflex (no state) (41.2)
+
+Reading the table: at p = 0 the memoryless agent is dominated - it
+pays -1 for ever.  As p grows, patrolling starts to pay for itself,
+because a square the agent never revisits cannot be cleaned.  The
+agent that only *believes* the world is clean is the one that fails:
+its model is correct when written and wrong one step later.  Note
+also that the do-nothing agent beats the reflex agent at small p:
+the reflex agent is not rational there either, because it pays to
+move without weighing that cost against the chance of finding dirt.</pre><h3>Discussion &mdash; is the reflex agent rational now?</h3><p>A rational agent is one that, for each percept sequence, selects the action expected to maximise the performance measure, given the evidence of its percepts and whatever knowledge it has built in. Rationality is therefore relative to four things &mdash; the measure, the environment, the actuators and the sensors &mdash; and three of those have just changed. The honest answer the numbers support is: <b>the reflex agent is no longer dominated, but it is still not rational.</b></p><p><b>What improved.</b> In the static world, movement after cleaning was pure waste. In the stochastic world the agent's sensors are local, so moving is the only way to <i>find out</i> whether the other square has become dirty: patrolling is now sensing as well as travelling, and it pays for itself. Over 200 runs of 30 steps the reflex agent goes from being 17 points behind the model-based NoOp agent at p = 0 to ahead of it by p = 0.10 (47.16 against 45.65), and far ahead at p = 0.40 (163.54 against 133.70). On the PEAS measure, cleanliness of the world per time step, the reflex agent is the best of the four at every non-zero p.</p><p><b>What did not improve.</b> The reflex agent still never weighs the &minus;1 cost of a move against the probability of finding dirt at the other end. At small p that is a real error, and the lazy baseline exposes it: at p = 0.02 doing nothing scores 14.85 while patrolling scores 3.44. An agent that walks back and forth to check a square that is dirty two per cent of the time is not behaving rationally, it is merely behaving. A rational policy here would depend on p and on the ratio of the suck reward to the movement cost, and would need to be derived, not guessed &mdash; which is the decision-theoretic agent, not the reflex agent.</p><p><b>The most interesting casualty is memory.</b> The model-based agent that won Exercise 1 is the worst performer on cleanliness at every non-zero p (38.38 at p = 0.10 against the reflex agent's 54.53). Its model is not wrong when it is written; it goes stale, and the agent keeps acting on it, sitting still and issuing NoOp while both squares quietly turn dirty behind its back. Adding a three-step decay to the same belief fixes it and produces the best agent in the table over the whole middle range of p (58.03 at p = 0.10). The lesson is that internal state is only an asset if the agent also knows how fast it rots &mdash; in a dynamic environment a model needs a refresh policy, and that is precisely the sensing/updating machinery the later experiments build.</p><br style='page-break-before:always'><h2>Conclusion</h2><p>A simple reflex agent for the vacuum-cleaner world was implemented from first principles: an environment owning the true state and exposing only <span class=m>percept()</span> and <span class=m>execute(action)</span>, an agent that is a pure function from percept to action, and a perception&ndash;action loop connecting the two. The agent cleans both squares in three steps and reaches its peak score of +19, after which it oscillates for ever and loses one point per step, ending at +12 after 10 steps and &minus;78 after 100. A control run confirmed that no memoryless rule table avoids this: the alternative rules stop the oscillation only by never reaching the other square.</p><p>Three exercises quantified what the missing state is worth. Two bits of memory and a NoOp rule turn +2 into +19 over twenty steps (Exercise 1). In a 1 &times; N corridor started from the middle, a single heading bit is the difference between finishing the job and leaving squares permanently dirty (Exercise 2). When dirt returns with probability p, patrolling becomes sensing and the memoryless agent stops being dominated, while the agent with an un-refreshed model becomes the worst of the four; a belief with a decay rule is best (Exercise 3).</p><p>The general point carried into the later experiments is that agent architecture, performance measure and environment cannot be judged separately. The same agent is excellent under one measure and terrible under another, and the same memory is an asset in a static world and a liability in a dynamic one.</p><h2>Execution environment and declaration</h2><table class=g><tr><th style='width:22%'>Item</th><th style='width:78%'>Detail</th></tr><tr><td>Execution</td><td>Python 3.12.1 on Windows (AMD64), executed 13 August 2026, 00:25</td></tr><tr><td>Files</td><td>exp1_reflex_agent.py, exp1_ex1_model_based.py, exp1_ex2_corridor.py, exp1_ex3_stochastic_dirt.py, make_report.py</td></tr><tr><td>Libraries used</td><td>Python standard library only (<span class=m>random</span>, <span class=m>subprocess</span>, <span class=m>html</span>, <span class=m>datetime</span>). No agent framework or orchestration library was used, in accordance with clause 3.1 of the Rules and Regulations.</td></tr><tr><td>Reproducibility</td><td>All random worlds are seeded (corridor seed 7; stochastic runs seeds 1000&ndash;1199), so every figure in this record reproduces exactly. Removing the seed varies the dirt layout but not the conclusions.</td></tr><tr><td>Sources consulted</td><td>S. Russell and P. Norvig, <i>Artificial Intelligence: A Modern Approach</i>, chapter 2 (agents, PEAS, rationality, the vacuum world); course manual for Experiment 1.</td></tr></table><p class=note>All output reproduced above was produced by executing the programs listed in this record on the machine and at the time stated in the table.</p></div></body>
+</html>

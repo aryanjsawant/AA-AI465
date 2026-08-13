@@ -1,0 +1,186 @@
+========================================================================================================
+EXERCISE 3 - DIRT REAPPEARS WITH PROBABILITY p = 0.10 PER SQUARE PER STEP
+========================================================================================================
+
+>>> Sample traces, 30 steps, random seed 1000 (the same stream of re-dirtying events for every agent)
+
+>>> Simple reflex (no state)
+Step  | Percept          | Action | World after action     | Score  | CleanCredit | Re-dirtied
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1           | -
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | 2           | -
+3     | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +19 | 4           | A
+4     | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +18 | 5           | -
+5     | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +28 | 7           | -
+6     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +27 | 9           | -
+7     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +26 | 11          | -
+8     | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +25 | 13          | -
+9     | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +24 | 15          | -
+10    | (A, Clean)       | Right  | A=Dirty  B=Clean  agent@B |    +23 | 17          | A
+11    | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +22 | 18          | -
+12    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +32 | 20          | -
+13    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +31 | 22          | -
+14    | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +30 | 24          | A
+15    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +40 | 26          | -
+16    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +39 | 28          | -
+17    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +38 | 30          | -
+18    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +37 | 32          | -
+19    | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +36 | 34          | A
+20    | (A, Dirty)       | Suck   | A=Dirty  B=Clean  agent@A |    +46 | 36          | A
+21    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +56 | 38          | -
+22    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +55 | 40          | -
+23    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +54 | 42          | -
+24    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +53 | 44          | -
+25    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +52 | 46          | -
+26    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +51 | 48          | -
+27    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +50 | 50          | -
+28    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +49 | 52          | -
+29    | (B, Clean)       | Left   | A=Clean  B=Dirty  agent@A |    +48 | 54          | B
+30    | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |    +47 | 55          | -
+Final : A=Clean  B=Dirty  agent@B   score = +47   clean-square credit = 55   re-dirtying events = 6
+
+>>> Model-based + NoOp
+Step  | Percept          | Action | World after action     | Score  | CleanCredit | Re-dirtied
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1           | -
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | 2           | -
+3     | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +19 | 4           | A
+4     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 5           | -
+5     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 6           | -
+6     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 7           | -
+7     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 8           | -
+8     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 9           | -
+9     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 10          | -
+10    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 11          | -
+11    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 12          | -
+12    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 13          | -
+13    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 14          | -
+14    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 15          | -
+15    | (B, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@B |    +19 | 16          | B
+16    | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +29 | 17          | -
+17    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 18          | -
+18    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 19          | -
+19    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 20          | -
+20    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 21          | -
+21    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +29 | 22          | -
+22    | (B, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@B |    +29 | 23          | B
+23    | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +39 | 24          | -
+24    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 25          | -
+25    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 26          | -
+26    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 27          | -
+27    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 28          | -
+28    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 29          | -
+29    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 30          | -
+30    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +39 | 31          | -
+Final : A=Dirty  B=Clean  agent@B   score = +39   clean-square credit = 31   re-dirtying events = 3
+
+>>> Model-based + decay(3)
+Step  | Percept          | Action | World after action     | Score  | CleanCredit | Re-dirtied
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1           | -
+2     | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |     +9 | 2           | -
+3     | (B, Dirty)       | Suck   | A=Dirty  B=Clean  agent@B |    +19 | 4           | A
+4     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 5           | -
+5     | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +19 | 6           | -
+6     | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +18 | 7           | -
+7     | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +28 | 9           | -
+8     | (A, Clean)       | NoOp   | A=Clean  B=Clean  agent@A |    +28 | 11          | -
+9     | (A, Clean)       | NoOp   | A=Clean  B=Clean  agent@A |    +28 | 13          | -
+10    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +27 | 15          | -
+11    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +27 | 17          | A
+12    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +27 | 18          | -
+13    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +27 | 19          | -
+14    | (B, Clean)       | Left   | A=Dirty  B=Clean  agent@A |    +26 | 20          | -
+15    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +36 | 22          | -
+16    | (A, Clean)       | NoOp   | A=Dirty  B=Clean  agent@A |    +36 | 24          | A
+17    | (A, Dirty)       | Suck   | A=Clean  B=Clean  agent@A |    +46 | 26          | -
+18    | (A, Clean)       | Right  | A=Clean  B=Clean  agent@B |    +45 | 28          | -
+19    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +45 | 30          | -
+20    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +45 | 32          | -
+21    | (B, Clean)       | NoOp   | A=Dirty  B=Clean  agent@B |    +45 | 34          | A
+22    | (B, Clean)       | Left   | A=Dirty  B=Dirty  agent@A |    +44 | 35          | B
+23    | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +54 | 36          | -
+24    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +54 | 37          | -
+25    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +54 | 38          | -
+26    | (A, Clean)       | Right  | A=Clean  B=Dirty  agent@B |    +53 | 39          | -
+27    | (B, Dirty)       | Suck   | A=Clean  B=Clean  agent@B |    +63 | 41          | -
+28    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +63 | 43          | -
+29    | (B, Clean)       | NoOp   | A=Clean  B=Clean  agent@B |    +63 | 45          | -
+30    | (B, Clean)       | Left   | A=Clean  B=Clean  agent@A |    +62 | 47          | -
+Final : A=Clean  B=Clean  agent@A   score = +62   clean-square credit = 47   re-dirtying events = 5
+
+>>> Lazy (never moves)
+Step  | Percept          | Action | World after action     | Score  | CleanCredit | Re-dirtied
+----------------------------------------------------------------------------------------------
+1     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +10 | 1           | -
+2     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +10 | 2           | -
+3     | (A, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@A |    +10 | 3           | A
+4     | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +20 | 4           | -
+5     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 5           | -
+6     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 6           | -
+7     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 7           | -
+8     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 8           | -
+9     | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 9           | -
+10    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 10          | -
+11    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 11          | -
+12    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 12          | -
+13    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 13          | -
+14    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 14          | -
+15    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +20 | 15          | -
+16    | (A, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@A |    +20 | 16          | A
+17    | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +30 | 17          | -
+18    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 18          | -
+19    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 19          | -
+20    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 20          | -
+21    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 21          | -
+22    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +30 | 22          | -
+23    | (A, Clean)       | NoOp   | A=Dirty  B=Dirty  agent@A |    +30 | 23          | A
+24    | (A, Dirty)       | Suck   | A=Clean  B=Dirty  agent@A |    +40 | 24          | -
+25    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 25          | -
+26    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 26          | -
+27    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 27          | -
+28    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 28          | -
+29    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 29          | -
+30    | (A, Clean)       | NoOp   | A=Clean  B=Dirty  agent@A |    +40 | 30          | -
+Final : A=Clean  B=Dirty  agent@A   score = +40   clean-square credit = 30   re-dirtying events = 3
+
+========================================================================================================
+AVERAGE OVER 200 INDEPENDENT RUNS OF 30 STEPS  (p = 0.10)
+========================================================================================================
+Agent                          | Mean task score  | Mean clean-square credit (max 60)
+--------------------------------------------------------------------------------------------
+Simple reflex (no state)       | 47.16            | 54.53
+Model-based + NoOp             | 45.65            | 38.38
+Model-based + decay(3)         | 58.03            | 51.66
+Lazy (never moves)             | 37.85            | 30.00
+
+========================================================================================================
+SENSITIVITY TO p  (mean task score / mean clean-square credit, 200 runs of 30 steps)
+========================================================================================================
+p      | Simple reflex (no state) | Model-based + NoOp  | Model-based + decay(3) | Lazy (never moves) 
+----------------------------------------------------------------------------------------------------
+0.00   |   -8.00 / 58.00     |   19.00 / 58.00     |   12.00 / 58.00     |   10.00 / 30.00    
+0.02   |    3.44 / 57.41     |   23.20 / 50.74     |   21.68 / 56.67     |   14.85 / 30.00    
+0.05   |   21.20 / 56.42     |   32.15 / 44.09     |   36.39 / 54.48     |   23.60 / 30.00    
+0.10   |   47.16 / 54.53     |   45.65 / 38.38     |   58.03 / 51.66     |   37.85 / 30.00    
+0.20   |   97.22 / 50.20     |   75.35 / 33.99     |   98.12 / 46.19     |   68.45 / 30.00    
+0.40   |  163.54 / 41.22     |  133.70 / 31.50     |  155.67 / 38.03     |  128.30 / 30.00    
+
+Best agent by task score, and by clean-square credit, at each p:
+p      | best task score            | best clean-square credit
+----------------------------------------------------------------------
+0.00   | Model-based + NoOp (19.0)  | Simple reflex (no state) (58.0)
+0.02   | Model-based + NoOp (23.2)  | Simple reflex (no state) (57.4)
+0.05   | Model-based + decay(3) (36.4) | Simple reflex (no state) (56.4)
+0.10   | Model-based + decay(3) (58.0) | Simple reflex (no state) (54.5)
+0.20   | Model-based + decay(3) (98.1) | Simple reflex (no state) (50.2)
+0.40   | Simple reflex (no state) (163.5) | Simple reflex (no state) (41.2)
+
+Reading the table: at p = 0 the memoryless agent is dominated - it
+pays -1 for ever.  As p grows, patrolling starts to pay for itself,
+because a square the agent never revisits cannot be cleaned.  The
+agent that only *believes* the world is clean is the one that fails:
+its model is correct when written and wrong one step later.  Note
+also that the do-nothing agent beats the reflex agent at small p:
+the reflex agent is not rational there either, because it pays to
+move without weighing that cost against the chance of finding dirt.
