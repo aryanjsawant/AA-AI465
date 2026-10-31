@@ -1,0 +1,317 @@
+{
+ "idx": 904,
+ "question": "There are 9 Fast and the Furious movies, Deepa has seen each one in the theatre three times. She has spent $216 seeing these movies. What is the average price she paid per ticket?",
+ "gold": "8",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:34:42",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "There are 9 Fast and the Furious movies, Deepa has seen each one in the theatre three times. She has spent $216 seeing these movies. What is the average price she paid per ticket?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 13.822,
+   "samples": [
+    {
+     "seed": 22090400,
+     "text": "Deepa has seen each of the 9 Fast and the Furious movies 3 times, so she has seen 9 * 3 = 27 tickets in total. If she has spent $216 in total, then the average price per ticket is $216 / 27 = $8.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 71,
+     "latency_s": 12.434,
+     "error": null,
+     "sample_index": 0,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090401,
+     "text": "Deepa has seen each of the 9 Fast and the Furious movies 3 times, for a total of 9 * 3 = 27 movie tickets. She has spent $216 total, so the average price she paid per ticket is 216 / 27 = $8.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 70,
+     "latency_s": 12.291,
+     "error": null,
+     "sample_index": 1,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090402,
+     "text": "Deepa has seen the 9 movies in total, so she has seen 9 * 3 = 27 tickets. She has spent $216 total, so on average she paid $216 / 27 = $8 per ticket.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 60,
+     "latency_s": 10.263,
+     "error": null,
+     "sample_index": 2,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090403,
+     "text": "If Deepa has seen each of the 9 Fast and the Furious movies three times, she has seen a total of 9 * 3 = 27 tickets. If she has spent $216 seeing these movies, the average price she paid per ticket is $216 / 27 = $8.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 73,
+     "latency_s": 12.641,
+     "error": null,
+     "sample_index": 3,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090404,
+     "text": "Deepa spent a total of $216 on movie tickets. Since she has seen each of the 9 movies 3 times, she has seen a total of 9 * 3 = 27 tickets. To find the average price per ticket, we divide the total amount spent by the number of tickets: $216 / 27 = $8. Therefore, the average price she paid per ticket is $8.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 96,
+     "latency_s": 13.819,
+     "error": null,
+     "sample_index": 4,
+     "pred": "8",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 12.173,
+   "samples": [
+    {
+     "seed": 22090405,
+     "text": "Deepa has seen 9 * 3 = 27 movies in total. The average price per movie is 216 / 27 = 8 dollars. Therefore, she paid 8 dollars on average per movie ticket.",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 50,
+     "latency_s": 8.702,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22090406,
+     "text": "Deepa has seen all 9 movies 3 times, so she has seen 9 * 3 = 27 tickets in total. She has spent $216 in total, so the average price per ticket is $216 / 27 = $8.\nFinal answer: $8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 64,
+     "latency_s": 11.225,
+     "error": null,
+     "sample_index": 6,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090407,
+     "text": "Deepa has seen the 9 Fast and the Furious movies 3 times each, so she has seen 9 * 3 = 27 movies. She has spent $216 on these, so the average price per ticket is $216 / 27 = $8.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 67,
+     "latency_s": 11.556,
+     "error": null,
+     "sample_index": 7,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090408,
+     "text": "Deepa has seen 9 movies * 3 times each = 27 movie tickets in total. She spent $216 on these movie tickets, so the average price per ticket is $216 / 27 = $8.\nFinal answer: $8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 57,
+     "latency_s": 10.232,
+     "error": null,
+     "sample_index": 8,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090409,
+     "text": "Deepa has seen the 9 Fast and the Furious movies 3 times each, so she has seen the movies a total of 9 * 3 = 27 times. If she has spent $216 seeing these movies, then the average price she paid per ticket is 216 / 27 = 8 dollars per ticket.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 79,
+     "latency_s": 12.17,
+     "error": null,
+     "sample_index": 9,
+     "pred": "8",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 11.113,
+   "samples": [
+    {
+     "seed": 22090410,
+     "text": "Deepa has seen 9 movies * 3 = 27 tickets in total. The average price per ticket is 216 / 27 = 8 dollars.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 43,
+     "latency_s": 6.811,
+     "error": null,
+     "sample_index": 10,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090411,
+     "text": "Deepa has seen 9 movies * 3 = 27 tickets. The average price per ticket is 216 / 27 = 8 dollars.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 41,
+     "latency_s": 6.493,
+     "error": null,
+     "sample_index": 11,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090412,
+     "text": "Deepa has seen 9 movies * 3 times = 27 times in total. She has spent $216, so on average, she paid $216 / 27 = $8 per ticket.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 53,
+     "latency_s": 8.281,
+     "error": null,
+     "sample_index": 12,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090413,
+     "text": "The total cost Deepa paid is $216. She has seen each movie three times, which means she has watched a total of 9 * 3 = 27 movies. To find the average price she paid per ticket, we divide the total cost by the number of movies, which is $216 / 27 = $8 per movie.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 82,
+     "latency_s": 11.111,
+     "error": null,
+     "sample_index": 13,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090414,
+     "text": "Deepa has spent $216 seeing the 9 Fast and Furious movies, so each movie was $216 / 9 = $24. She has watched each movie three times, so she spent $24 * 3 = $72 per movie. The average price she paid per ticket is $72 / 9 = $8.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 81,
+     "latency_s": 11.035,
+     "error": null,
+     "sample_index": 14,
+     "pred": "8",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 14.365,
+   "samples": [
+    {
+     "seed": 22090415,
+     "text": "Deepa has seen 9 movies three times each, so she has seen 9 * 3 = 27 movie tickets. She has spent $216 total, so the average price she paid per ticket is $216 / 27 = $8.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 63,
+     "latency_s": 12.968,
+     "error": null,
+     "sample_index": 15,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090416,
+     "text": "Deepa has seen each of the 9 Fast and the Furious movies 3 times, which means she has watched a total of 9 * 3 = 27 movies. If she has spent $216 seeing these movies, the average price she paid per ticket is $216 / 27 = $8.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 75,
+     "latency_s": 14.363,
+     "error": null,
+     "sample_index": 16,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090417,
+     "text": "Deepa has seen each of the 9 Fast and the Furious movies 3 times, making a total of 9 * 3 = 27 movie tickets. She has spent $216 in total, so the average price per ticket is $216 / 27 = $8.\nFinal answer: $8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 69,
+     "latency_s": 13.923,
+     "error": null,
+     "sample_index": 17,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090418,
+     "text": "Deepa has seen 9 movies * 3 times = 27 tickets. The average price per ticket is $216 / 27 = $8.\nFinal answer: $8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 41,
+     "latency_s": 9.044,
+     "error": null,
+     "sample_index": 18,
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "seed": 22090419,
+     "text": "Deepa has seen 9 movies * 3 tickets/movie = 27 tickets. The price per ticket is $216 / 27 tickets = $8 per ticket.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 400,
+     "completion_tokens": 44,
+     "latency_s": 9.601,
+     "error": null,
+     "sample_index": 19,
+     "pred": "8",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

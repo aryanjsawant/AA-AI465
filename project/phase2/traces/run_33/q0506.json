@@ -1,0 +1,317 @@
+{
+ "idx": 506,
+ "question": "Mario needs to buy snowshoes for his 6 sled dogs.  Assuming his dogs each has four legs and each pair of snowshoes costs $12.00, how much will it cost him to buy snowshoes for all of his dogs?",
+ "gold": "144",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 12:55:07",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Mario needs to buy snowshoes for his 6 sled dogs.  Assuming his dogs each has four legs and each pair of snowshoes costs $12.00, how much will it cost him to buy snowshoes for all of his dogs?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 10.783,
+   "samples": [
+    {
+     "seed": 33050600,
+     "text": "Mario has 6 dogs, and each dog has 4 legs. Therefore, he needs 6 / 2 = 3 pairs of snowshoes. Each pair costs $12.00, so 3 pairs will cost 3 * $12.00 = $36.00. The final answer is 36.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 74,
+     "latency_s": 9.597,
+     "error": null,
+     "sample_index": 0,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 33050601,
+     "text": "Mario has 6 dogs and each dog has 4 legs. That means he needs 6 / 2 = 3 pairs of snowshoes. Each pair costs $12.00 so 3 * $12.00 = $36.00. It will cost Mario $36.00 to buy snowshoes for all of his dogs.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 86,
+     "latency_s": 10.449,
+     "error": null,
+     "sample_index": 1,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 33050602,
+     "text": "Mario needs to buy snowshoes for 6 dogs, and each pair of snowshoes costs $12.00. So, the total cost is 6 * 12 = $72.00.\nFinal answer: 72",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 54,
+     "latency_s": 6.566,
+     "error": null,
+     "sample_index": 2,
+     "pred": "72",
+     "correct": false
+    },
+    {
+     "seed": 33050603,
+     "text": "Each dog has four legs, so Mario needs snowshoes for 6 * 4 = 24 legs. Each pair of snowshoes costs $12, so it will cost Mario 24 / 2 * $12 = $144 to buy snowshoes for all of his dogs.\nFinal answer: 144",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 74,
+     "latency_s": 9.602,
+     "error": null,
+     "sample_index": 3,
+     "pred": "144",
+     "correct": true
+    },
+    {
+     "seed": 33050604,
+     "text": "The total number of legs of the dogs is 6 * 4 = 24. Each pair of snowshoes covers 2 legs, so the number of snowshoe pairs needed is 24 / 2 = 12. Each pair of snowshoes costs $12.00, so the total cost is 12 * 12 = $144.00.\nFinal answer: 144",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 94,
+     "latency_s": 10.78,
+     "error": null,
+     "sample_index": 4,
+     "pred": "144",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 11.071,
+   "samples": [
+    {
+     "seed": 33050605,
+     "text": "Since there are 6 dogs and each dog has 4 legs, the total number of legs that need snowshoes is 6 * 4 = 24. Because each pair of snowshoes costs $12, the total cost is 24 / 2 * 12 = $144.  \nFinal answer: 144",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 76,
+     "latency_s": 9.785,
+     "error": null,
+     "sample_index": 5,
+     "pred": "144",
+     "correct": true
+    },
+    {
+     "seed": 33050606,
+     "text": "Each dog has 4 legs, so each dog needs one pair of snowshoes. Mario has 6 dogs, so he needs 6 pairs of snowshoes. Each pair costs $12.00, so the total cost is 6 * $12.00 = $72.00.\nFinal answer: 72",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 74,
+     "latency_s": 9.551,
+     "error": null,
+     "sample_index": 6,
+     "pred": "72",
+     "correct": false
+    },
+    {
+     "seed": 33050607,
+     "text": "Each dog has 4 legs, so each dog needs one pair of snowshoes. Since Mario has 6 dogs, he needs 6 pairs of snowshoes. Each pair costs $12.00, so the total cost is 6 * $12.00 = $72.00.\nFinal answer: $72",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 74,
+     "latency_s": 9.555,
+     "error": null,
+     "sample_index": 7,
+     "pred": "72",
+     "correct": false
+    },
+    {
+     "seed": 33050608,
+     "text": "Mario needs to buy snowshoes for 6 dogs, so he needs 6 / 2 = 3 pairs of snowshoes. Each pair costs $12.00, so 3 * $12.00 = $36.00. It will cost Mario $36.00 to buy snowshoes for all of his dogs.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 85,
+     "latency_s": 10.464,
+     "error": null,
+     "sample_index": 8,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 33050609,
+     "text": "Each dog has 4 legs, so for 6 dogs, we have 6 * 4 = 24 legs. Since each pair of snowshoes covers 2 legs, we need 24 / 2 = 12 pairs of snowshoes. At $12.00 per pair, the total cost will be 12 * $12.00 = $144.00.\nFinal answer: $144",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 98,
+     "latency_s": 11.068,
+     "error": null,
+     "sample_index": 9,
+     "pred": "144",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 9.405,
+   "samples": [
+    {
+     "seed": 33050610,
+     "text": "Each dog has 4 legs, so each dog needs 2 pairs of snowshoes. That means Mario needs 6 * 2 = 12 pairs of snowshoes. Each pair costs $12, so 12 * $12 = $144. It will cost Mario $144 to buy snowshoes for all of his dogs.\nFinal answer: 144",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 86,
+     "latency_s": 9.404,
+     "error": null,
+     "sample_index": 10,
+     "pred": "144",
+     "correct": true
+    },
+    {
+     "seed": 33050611,
+     "text": "The total number of legs of the dogs is 6 * 4 = 24 legs. Since each pair of snowshoes covers two legs, he needs 24 / 2 = 12 pairs of snowshoes. Each pair costs $12, so 12 * $12 = $144. The answer is 144.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 79,
+     "latency_s": 9.098,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33050612,
+     "text": "Since each dog has four legs, the number of pairs of snowshoes Mario needs is 6 / 4 = 1.5 pairs. Since each pair costs $12.00, the total cost is 1.5 * $12.00 = $18.00.\nFinal answer: 18",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 71,
+     "latency_s": 8.349,
+     "error": null,
+     "sample_index": 12,
+     "pred": "18",
+     "correct": false
+    },
+    {
+     "seed": 33050613,
+     "text": "Each dog needs 2 pairs of snowshoes, so he needs 6 * 2 = 12 pairs. The snowshoes cost $12 each, so 12 * $12 = $144.00. The answer is 144.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 61,
+     "latency_s": 7.523,
+     "error": null,
+     "sample_index": 13,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33050614,
+     "text": "Mario has 6 dogs and each dog has 4 legs, so he needs 6 * 4 / 2 = 12 pairs of snowshoes. Each pair costs $12.00, so he will spend 12 * $12 = $144.00 on snowshoes.\nFinal answer: 144",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 76,
+     "latency_s": 8.895,
+     "error": null,
+     "sample_index": 14,
+     "pred": "144",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 10.455,
+   "samples": [
+    {
+     "seed": 33050615,
+     "text": "Each dog has 4 legs, so Mario needs 6 * 4 = 24 pairs of snowshoes. Each pair costs $12.00, so 24 pairs cost 24 * $12.00 = $288.00.\nFinal answer: $288.00",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 71,
+     "latency_s": 8.959,
+     "error": null,
+     "sample_index": 15,
+     "pred": "288",
+     "correct": false
+    },
+    {
+     "seed": 33050616,
+     "text": "Mario has 6 dogs and each dog has 4 legs, so he needs 6 * 4 = 24 leg pairs. Since each pair of snowshoes costs $12.00, he will need to buy 24 / 2 = 12 pairs of snowshoes. The total cost will be 12 * $12.00 = $144.00.\nFinal answer: 144",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 96,
+     "latency_s": 10.453,
+     "error": null,
+     "sample_index": 16,
+     "pred": "144",
+     "correct": true
+    },
+    {
+     "seed": 33050617,
+     "text": "First find the total number of legs: 6 dogs * 4 legs/dog = 24 legs. Then multiply that number by the price per pair of snowshoes to find the total cost: 24 legs * $12.00/leg = $288.00.  \nFinal answer: 288",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 73,
+     "latency_s": 9.189,
+     "error": null,
+     "sample_index": 17,
+     "pred": "288",
+     "correct": false
+    },
+    {
+     "seed": 33050618,
+     "text": "Mario needs 6 legs / 2 = 3 pairs of snowshoes. So he needs to spend 3 pairs * $12.00 = $36.00. \nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 48,
+     "latency_s": 5.884,
+     "error": null,
+     "sample_index": 18,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 33050619,
+     "text": "Each dog has 4 legs, so each dog needs 2 pairs of snowshoes. Since Mario has 6 dogs, he needs 6 * 2 = 12 pairs of snowshoes. Each pair costs $12, so 12 pairs will cost 12 * $12 = $144. \n\nFinal answer: $144",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 79,
+     "latency_s": 9.791,
+     "error": null,
+     "sample_index": 19,
+     "pred": "144",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

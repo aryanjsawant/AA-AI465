@@ -1,0 +1,111 @@
+=== Role specifications ===
+Manager
+  goal          : Decompose the task, delegate it, route revisions and deliver the final answer to the user.
+  tools         : none
+  may send to   : Researcher, Writer, Reviewer, User
+  output fields : subtasks
+  system prompt : You are the Manager. Split the comparison task into a research subtask and a writing subtask, delegate each, route any revision to the role named by the Reviewer, and deliver the approved draft. You hold no tools; never read documents yourself.
+
+Researcher
+  goal          : Find both models, read their current notes and compute the accuracy gap.
+  tools         : search, read_doc, calculator
+  may send to   : Manager
+  output fields : values, sources, result
+  system prompt : You are the Researcher. Use search() to locate each model's note, read_doc() to read it and calculator() to compute the gap. Prefer the current note over any superseded or draft twin. Report values, sources and result to the Manager only.
+
+Writer
+  goal          : Turn the finding into a cited answer of at most 60 words.
+  tools         : none
+  may send to   : Manager
+  output fields : draft, citations
+  system prompt : You are the Writer. Write at most 60 words stating the winner and the gap, citing both document ids given to you. You hold no tools; write only from the finding you are handed.
+
+Reviewer
+  goal          : Re-read the cited sources and check values, winner and citations.
+  tools         : read_doc
+  may send to   : Manager
+  output fields : verdict, reasons
+  system prompt : You are the Reviewer. Re-read each cited document with read_doc() and check the stated values, the winner, the citations and the word limit. Return approve, or revise naming the role responsible. You may not edit the draft.
+
+=== Message format ===
+Message(sender, recipient, task_id, intent, payload)
+  intent is one of: assign | report | review | deliver
+  payload carries exactly the sending role's required output fields
+  rendered below as:  sender -> recipient [intent] payload-keys
+
+=== Document store (near-duplicate titles marked) ===
+  d01  Orion-7B benchmark note          Orion-7B   acc=62.4  
+  d02  Orion-7B benchmark note (old)    Orion-7B   acc=58.1  <- superseded twin
+  d03  Vega-13B evaluation              Vega-13B   acc=68.9  
+  d04  Vega-13B evaluation draft        Vega-13B   acc=71.2  <- superseded twin
+  d05  Lyra-3B benchmark note           Lyra-3B    acc=49.7  
+  d06  Cygnus-30B benchmark note        Cygnus-30B acc=74.5  
+  d07  Draco-1B benchmark note          Draco-1B   acc=38.2  
+  d08  Perseus-20B benchmark note       Perseus-20B acc=70.1  
+  d09  Altair-8B benchmark note         Altair-8B  acc=64.8  
+  d10  Rigel-5B benchmark note          Rigel-5B   acc=55.3  
+
+=== One complete message trace (with a revision) ===
+task t1, seed 101: Which of Orion-7B and Vega-13B scores higher on MMLU, and by how many points?
+gold: winner=Vega-13B gap=6.5 sources=d01, d03
+
+  Manager    -> Researcher [assign ] question, subtasks
+  Researcher -> Manager    [report ] result, sources, values
+  Manager    -> Writer     [assign ] finding
+  Writer     -> Manager    [report ] citations, draft
+  Manager    -> Reviewer   [assign ] citations, draft
+  Reviewer   -> Manager    [review ] reasons, verdict
+        verdict=revise reasons=[('Researcher', 'cited a superseded note'), ('Researcher', 'sourced the wrong note'), ('Researcher', 'stated gap does not match sources')]
+  Manager    -> Researcher [assign ] revision
+  Researcher -> Manager    [report ] result, sources, values
+  Writer     -> Manager    [report ] citations, draft
+  Manager    -> Reviewer   [assign ] citations, draft
+  Reviewer   -> Manager    [review ] reasons, verdict
+        verdict=revise reasons=[('Researcher', 'stated gap does not match sources')]
+  Manager    -> Researcher [assign ] revision
+  Researcher -> Manager    [report ] result, sources, values
+  Writer     -> Manager    [report ] citations, draft
+  Manager    -> User       [deliver] citations, draft
+        draft: Vega-13B scores higher on MMLU than Orion-7B, by 6.5 points [d01, d03].
+
+  revisions=2  checklist={'number': True, 'winner': True, 'sources': True, 'length': True}  passed=True
+
+=== Comparison over 10 seeds x 8 tasks = 80 runs ===
+
+--- team ---
+  task success     : 0.875 (70/80)
+  model calls      : 394 total
+      Manager      80
+      Researcher   92
+      Reviewer     110
+      Writer       112
+  role violations  : 27
+      by role : {'Writer': 17, 'Researcher': 7, 'Reviewer': 3}
+      by kind : {'tool': 17, 'recipient': 10}
+  revisions        : 32
+  faults missed by Reviewer : 10
+
+--- generalist ---
+  task success     : 0.450 (36/80)
+  model calls      : 80 total
+      Generalist   80
+  role violations  : 0
+  revisions        : 0
+  faults missed by Reviewer : 0
+
+=== Per-task success (team vs generalist) ===
+task  team        generalist  
+t1    9/10        1/10        
+t2    10/10       5/10        
+t3    8/10        6/10        
+t4    10/10       6/10        
+t5    8/10        5/10        
+t6    8/10        5/10        
+t7    9/10        5/10        
+t8    8/10        3/10        
+
+Extra model calls spent by the team : 314
+Extra correct answers gained        : 34
+Model calls per additional correct answer : 9.24
+
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab6\outputs\exp6_role_agents.txt]

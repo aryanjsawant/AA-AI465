@@ -1,0 +1,71 @@
+{
+ "idx": 754,
+ "question": "Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?",
+ "gold": "89",
+ "run": "greedy",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.0,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 17:56:00",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 14.779,
+   "samples": [
+    {
+     "seed": 0,
+     "text": "Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers, which is 30 * 0.9 = 27 small stickers. She trades 50% of her large stickers, which is 40 * 0.5 = 20 large stickers. She trades the rest of her large stickers, which is 40 - 20 = 20 large stickers. She trades 20 large stickers for 20 / 3 = 6.666666666666667 small buttons. She trades 27 small stickers for 27 / 3 = 9 large buttons. She trades 20 large stickers for 20 / 3 = 6.666666666666667 small buttons. In total, she has 6.666666666666667 + 9 + 6.666666666666667 = 22.333333333333334 buttons.\n",
+     "finish_reason": "length",
+     "prompt_tokens": 462,
+     "completion_tokens": 256,
+     "latency_s": 14.778,
+     "error": null,
+     "sample_index": 0,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

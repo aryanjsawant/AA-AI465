@@ -1,0 +1,317 @@
+{
+ "idx": 793,
+ "question": "Jamie earns $20 per hour for 8 hours of work each day. Should she need to work additional hours, she is paid a special hourly rate that is 150% of her regular hourly rate. Last Tuesday, she worked 11 hours. How much was she paid, in dollars, for her work that day?",
+ "gold": "250",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 17:54:34",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Jamie earns $20 per hour for 8 hours of work each day. Should she need to work additional hours, she is paid a special hourly rate that is 150% of her regular hourly rate. Last Tuesday, she worked 11 hours. How much was she paid, in dollars, for her work that day?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 17.635,
+   "samples": [
+    {
+     "seed": 22079300,
+     "text": "Jamie's regular hourly rate is $20 per hour. Her special hourly rate is 150% of $20, which is 1.5 * 20 = $30 per hour. For the additional hours, she earns $30 per hour. She worked 11 hours in total, so for the additional hours, she earned 11 * 30 = $330. Jamie also worked 8 hours at her regular rate, which amounts to 8 * 20 = $160. Adding the two amounts together, Jamie was paid $330 + $160 = $490 for her work that day.",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 143,
+     "latency_s": 17.633,
+     "error": null,
+     "sample_index": 0,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22079301,
+     "text": "First, calculate Jamie's regular pay for the day: 8 hours * $20/hour = $160. Then, calculate her overtime pay: 3 hours * ($20/hour * 1.5) = $90. So, her total pay for the day is $160 + $90 = $250.",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 77,
+     "latency_s": 11.958,
+     "error": null,
+     "sample_index": 1,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22079302,
+     "text": "Jamie's regular hourly rate is $20. The special hourly rate is 150% of $20, which is $30. For the first 8 hours, she earns $20/hour * 8 hours = $160. For the additional 3 hours (since she worked 11 hours total), she earns $30/hour * 3 hours = $90. Her total pay for the day is $160 + $90 = $250.\nFinal answer: 250",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 116,
+     "latency_s": 16.223,
+     "error": null,
+     "sample_index": 2,
+     "pred": "250",
+     "correct": true
+    },
+    {
+     "seed": 22079303,
+     "text": "Jamie's regular hourly rate is $20, so her special rate for additional hours is 20 * 1.5 = $30 per hour. For the extra 3 hours, she is paid 3 * 30 = $90. Jamie's total earnings for the day are 90 + 20 * 8 = $210.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 86,
+     "latency_s": 13.524,
+     "error": null,
+     "sample_index": 3,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22079304,
+     "text": "For the first 8 hours, she earns $20 * 8 = $160. For the additional 3 hours, she is paid 150% of $20, which is $20 * 1.5 = $30. In total, she earns $160 + $30 = $190 for that day.\nFinal answer: 190",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 86,
+     "latency_s": 13.528,
+     "error": null,
+     "sample_index": 4,
+     "pred": "190",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 17.416,
+   "samples": [
+    {
+     "seed": 22079305,
+     "text": "Her regular hourly rate is $20/hour. So her special hourly rate is 20 * 1.5 = $30/hour. She worked 11 hours so she earned 11 * 30 = $330.",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 55,
+     "latency_s": 8.543,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22079306,
+     "text": "Jamie's regular hourly rate is $20. With the special rate, she earns $20 * 1.5 = $30 per hour for extra hours. She worked 11 - 8 = 3 hours on extra hours. Jamie earned 3 * 30 = $90 for her extra hours. Jamie's total pay for the day was $20 * 8 + $90 = $200.\nFinal answer: 200",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 100,
+     "latency_s": 13.989,
+     "error": null,
+     "sample_index": 6,
+     "pred": "200",
+     "correct": false
+    },
+    {
+     "seed": 22079307,
+     "text": "Jamie's regular hourly rate is $20. The special hourly rate for additional hours is 150% of her regular rate, which is $20 * 1.5 = $30. She worked 11 hours on Tuesday, which includes her regular 8 hours, so she worked an additional 11 - 8 = 3 hours. For the additional hours, she earns $30/hour * 3 = $90. For the regular hours, she earns $20/hour * 3 = $60. In total, she is paid $60 + $90 = $150.",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 136,
+     "latency_s": 17.413,
+     "error": null,
+     "sample_index": 7,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22079308,
+     "text": "For the first 8 hours, Jamie earned 8 * $20 = $160. She worked an additional 3 hours at a rate of $20 * 1.5 = $30 per hour. So, for the additional 3 hours, she earned 3 * $30 = $90. Jamie’s total earnings for that day were $160 + $90 = $250.",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 92,
+     "latency_s": 12.889,
+     "error": null,
+     "sample_index": 8,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22079309,
+     "text": "Jamie’s regular hourly rate is $20. For working additional hours, she gets paid at 150% of her regular rate, which is 150/100 * $20 = $30 per additional hour. The total hours worked on Tuesday is 11 hours. The amount paid for regular hours is $20 * 8 = $160. The amount paid for additional hours is $30 * (11 - 8) = $90. Therefore, her total pay for that day is $160 + $90 = $250.",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 129,
+     "latency_s": 17.049,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 18.857,
+   "samples": [
+    {
+     "seed": 22079310,
+     "text": "Jamie's regular hourly rate is $20. When she works additional hours, she gets paid at a rate of 150% of $20, which is $30 per hour. For the extra 11 - 8 = 3 hours, she was paid 3 * $30 = $90. Adding to her regular pay, her total earnings for the day were $20 * 8 + $90 = $260.\nFinal answer: 260",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 106,
+     "latency_s": 15.928,
+     "error": null,
+     "sample_index": 10,
+     "pred": "260",
+     "correct": false
+    },
+    {
+     "seed": 22079311,
+     "text": "Jamie earns $20 per hour for regular hours, which means 8 hours, and an extra $20 per hour for any additional hours. The additional hours worked are 11 - 8 = 3 hours. Jamie's regular hourly rate is $20, so the additional hourly rate is 1.5 * $20 = $30. Jamie earned $20 * 8 = $160 for regular hours. For the additional hours, she earned $30 * 3 = $90. Therefore, her total earnings for the day are $160 + $90 = $250.\nFinal answer: 250",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 141,
+     "latency_s": 18.854,
+     "error": null,
+     "sample_index": 11,
+     "pred": "250",
+     "correct": true
+    },
+    {
+     "seed": 22079312,
+     "text": "Her regular hourly rate is $20, so for 8 hours she would earn 20 * 8 = $160. She worked 11 hours and for an additional 3 hours, her regular rate applies. She earns 160 * 1.5 = $240 for the first 8 hours. She then earns 3 * 20 = $60 for the additional 3 hours. Her total for the day is 240 + 60 = $300.\nFinal answer: 300",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 119,
+     "latency_s": 17.705,
+     "error": null,
+     "sample_index": 12,
+     "pred": "300",
+     "correct": false
+    },
+    {
+     "seed": 22079313,
+     "text": "Jamie's regular hourly rate is $20, so her special hourly rate for additional hours is 20 * 1.5 = $30 per hour. She worked 11 hours, so the additional hours she worked are 11 - 8 = 3 hours. The total amount she was paid for the additional hours is 3 * 30 = $90. Adding the regular hours, her total pay for the day is 8 * 20 + 90 = $250. \n\nFinal answer: 250",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 118,
+     "latency_s": 17.608,
+     "error": null,
+     "sample_index": 13,
+     "pred": "250",
+     "correct": true
+    },
+    {
+     "seed": 22079314,
+     "text": "Jamie's regular hourly rate is $20, so her special hourly rate is 20 * 1.5 = $30. For her regular hours, she earned 8 * 20 = $160. For the additional hours, she earned 3 * 30 = $90. In total, she was paid 160 + 90 = $250. \nFinal answer: 250",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 95,
+     "latency_s": 14.686,
+     "error": null,
+     "sample_index": 14,
+     "pred": "250",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 16.218,
+   "samples": [
+    {
+     "seed": 22079315,
+     "text": "Jamie's regular hourly rate is $20. For additional hours, she gets paid 150% of her regular rate, which is 1.5 * $20 = $30 per hour. For the extra 2 hours, she earns 2 * $30 = $60. Adding her regular earnings, she earned $20 * 8 = $160 in regular hours. Therefore, she was paid $160 + $60 = $220 in total for that day.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 118,
+     "latency_s": 16.216,
+     "error": null,
+     "sample_index": 15,
+     "pred": "220",
+     "correct": false
+    },
+    {
+     "seed": 22079316,
+     "text": "Her regular hourly rate is $20 per hour. For additional hours, she is paid 150% of her regular rate, which is 1.5 * $20 = $30 per hour. She worked 11 - 8 = 3 extra hours. So, she worked 3 * $30 = $90 for the extra hours. In total, she earned $20 * 8 + $90 = $200 for the day. \nFinal answer: 200",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 111,
+     "latency_s": 15.863,
+     "error": null,
+     "sample_index": 16,
+     "pred": "200",
+     "correct": false
+    },
+    {
+     "seed": 22079317,
+     "text": "Jamie's regular hourly rate is $20 per hour. For additional hours, she is paid at a rate of 20 * 1.5 = $30 per hour. For the additional 11 - 8 = 3 hours, she is paid 3 * 30 = $90. So, for the entire day, she earns 90 + 20 * 8 = $190.\nFinal answer: 190",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 99,
+     "latency_s": 14.834,
+     "error": null,
+     "sample_index": 17,
+     "pred": "190",
+     "correct": false
+    },
+    {
+     "seed": 22079318,
+     "text": "Her regular rate is $20 per hour. So for extra hours, she earns $20 * 150% = $30 per hour. She worked 11 - 8 = 3 hours overtime. So for overtime, she earns 3 * $30 = $90. Adding the regular pay, she is paid $20 * 8 + $90 = $270. So the answer is 270.",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 98,
+     "latency_s": 14.697,
+     "error": null,
+     "sample_index": 18,
+     "pred": "270",
+     "correct": false
+    },
+    {
+     "seed": 22079319,
+     "text": "Jamie's regular hourly rate is $20 per hour, so her special hourly rate is 150% * $20 = $30 per hour. For the 11 hours she worked, she was paid $30/hour * 11 hours = $330. If she had worked fewer hours, she would have been paid a lesser amount.\nFinal answer: $330",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 86,
+     "latency_s": 13.33,
+     "error": null,
+     "sample_index": 19,
+     "pred": "330",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,480 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>LAB_3_U23AI042</title>
+<!--[if gte mso 9]><xml><w:WordDocument>
+<w:View>Print</w:View><w:Zoom>100</w:Zoom>
+</w:WordDocument></xml><![endif]-->
+<style>
+@page WordSection1 { size: 21.0cm 29.7cm; margin: 1.6cm 1.5cm 1.6cm 1.5cm; }
+div.WordSection1 { page: WordSection1; }
+body { font-family: 'Times New Roman', serif; font-size: 11.0pt; color: #000; }
+p { margin: 0 0 7pt 0; text-align: justify; line-height: 1.25; }
+p.inst { text-align: center; font-size: 13pt; font-weight: bold; margin-bottom: 2pt; }
+p.dept { text-align: center; font-size: 11.5pt; font-weight: bold; margin-bottom: 2pt; }
+p.course { text-align: center; font-size: 11pt; margin-bottom: 6pt; }
+p.cap { font-size: 9.5pt; font-weight: bold; margin: 10pt 0 4pt 0; text-align: left; }
+p.eq { text-align: center; font-style: italic; margin: 6pt 0; }
+p.note { font-size: 9.5pt; font-style: italic; margin-top: 10pt; }
+h1 { font-size: 14pt; text-align: center; margin: 14pt 0 4pt 0; }
+h1.sub { font-size: 12.5pt; margin-top: 0; }
+h2 { font-size: 12pt; margin: 14pt 0 6pt 0; border-bottom: 1px solid #888;
+     padding-bottom: 2pt; }
+h3 { font-size: 11pt; font-style: italic; margin: 10pt 0 4pt 0; }
+ol, ul { margin: 0 0 8pt 0; }
+li { margin-bottom: 3pt; text-align: justify; line-height: 1.25; }
+table.g { border-collapse: collapse; width: 100%; margin: 0 0 8pt 0;
+          font-size: 10pt; }
+table.g th { border: 1px solid #666; background: #ececec; padding: 4pt;
+             text-align: left; vertical-align: top; }
+table.g td { border: 1px solid #666; padding: 4pt; vertical-align: top;
+             text-align: left; }
+pre.code, pre.out { font-family: Consolas, 'Courier New', monospace;
+    border: 1px solid #999; background: #f6f6f6; padding: 5pt;
+    white-space: pre; line-height: 1.15; margin: 0 0 8pt 0; }
+pre.out { background: #fbfbfb; }
+span.m { font-family: Consolas, 'Courier New', monospace; font-size: 9.5pt; }
+hr { border: 0; border-top: 1.5px solid #000; margin: 4pt 0 8pt 0; }
+img { border: 1px solid #999; }
+</style>
+</head>
+<body><div class=WordSection1><p class=inst>Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat</p><p class=dept>Department of Artificial Intelligence</p><p class=course>Agentic AI (IA462) &mdash; Semester VIII</p><hr><table class=g><tr><th>Name</th><th>Roll No.</th><th>Experiment</th><th>Date</th></tr><tr><td>&nbsp;</td><td>U23AI042</td><td>3</td><td>10 September 2026</td></tr></table><h1>Experiment 3</h1><h1 class=sub>Tool-Using Agent &mdash; The Function-Calling Pattern</h1><h2>Aim</h2><p>To implement the runtime half of LLM function calling &mdash; parsing a structured tool call, dispatching it to a registered Python function, and returning the result as an observation the agent can reason over.</p><h2>Theory</h2><p>A language model cannot compute reliably, does not know today's date and cannot reach external systems. Function calling closes that gap. The model is shown a set of tool schemas &mdash; for each tool a name, a description and its argument names and types &mdash; and instead of replying in prose it emits a structured request naming one tool and the arguments to call it with. The model itself executes nothing. The runtime parses the request, looks the name up in a tool registry, invokes the function and returns the value as an observation. That division is the whole point of the pattern: the model decides, the runtime executes, and every side effect therefore passes through code the developer controls.</p><p>This experiment implements the runtime side completely and scripts the model side, so the entire contract is visible without an API key or network access. The registry and dispatch function written here are reused in Experiment 4, where the same machinery sits behind the interleaved thought&ndash;action&ndash;observation steps of the ReAct loop.</p><p>Note the limitation visible in the sample run: dispatch trusts whatever it is handed, so a malformed JSON call or an unregistered tool name aborts the loop rather than producing a recoverable observation. Note also that the calculator is deliberately given a restricted evaluation environment, since a plain <span class=m>eval</span> would run any expression the model chose to emit. Hardening the runtime against both is Exercise 1.</p><p class=cap>Table 1. Tool registry exposed to the model.</p><table class=g><tr><th style='width:18%'>Tool name</th><th style='width:38%'>Arguments (name: type)</th><th style='width:44%'>What it returns</th></tr><tr><td>calculator</td><td>expression: string</td><td>Value of an arithmetic expression evaluated in a restricted namespace (sqrt, pow, pi)</td></tr><tr><td>days_between</td><td>d1: string, d2: string (ISO YYYY-MM-DD)</td><td>Whole number of days between the two dates</td></tr><tr><td>unit_convert</td><td>value: number, frm: string, to: string</td><td>The value converted between km/miles, kg/lb or &deg;C/&deg;F</td></tr></table><h2>Algorithm</h2><ol><li>Implement each tool as an ordinary Python function, register the functions in a name &rarr; function dictionary (the tool registry), and write a JSON schema for each one giving its name, description and argument types &mdash; the artifact a real model is shown.</li><li>Implement <span class=m>dispatch()</span>: parse the JSON tool call, look the name up in the registry, invoke the function with the unpacked arguments and wrap the return value in a structured observation; then feed a scripted sequence of tool calls through it, printing each call with the observation it produced.</li></ol><pre class=code style='font-size:8.5pt'>def dispatch(tool_call_json):
+    call = json.loads(tool_call_json)          # parse
+    name = call[&quot;tool&quot;]
+    args = call.get(&quot;arguments&quot;, {})
+
+    fn = TOOL_REGISTRY[name]                   # look up
+    result = fn(**args)                        # invoke
+
+    return {                                   # wrap as observation
+        &quot;tool&quot;: name,
+        &quot;arguments&quot;: args,
+        &quot;observation&quot;: result,
+    }</pre><br style='page-break-before:always'><h2>Procedure and Result</h2><h3>Program &mdash; exp3_tool_agent.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 3 - Tool-Using Agent (Function-Calling Pattern)
+
+Implements the runtime half of LLM function calling:
+  - a tool registry (name -&gt; Python function)
+  - a JSON schema for each tool (the artifact a real model would be shown)
+  - dispatch(): parse a structured tool call, look it up in the registry,
+    invoke it, and wrap the result as an observation
+
+The &quot;model side&quot; is scripted here (a fixed sequence of tool calls) so the
+whole contract is visible without an API key or network access.
+&quot;&quot;&quot;
+
+import json
+import math
+import os
+from datetime import date
+
+OUT_DIR = os.path.join(os.path.dirname(__file__), &quot;outputs&quot;)
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+# ---------------------------------------------------------------------------
+# 1. Tools - ordinary Python functions
+# ---------------------------------------------------------------------------
+
+def calculator(expression):
+    &quot;&quot;&quot;Evaluate an arithmetic expression in a restricted namespace.&quot;&quot;&quot;
+    allowed_names = {
+        &quot;sqrt&quot;: math.sqrt,
+        &quot;pow&quot;: math.pow,
+        &quot;pi&quot;: math.pi,
+    }
+    # no builtins exposed - a plain eval(expression) would let the model
+    # run arbitrary code (import os, open(...), etc.)
+    code = compile(expression, &quot;&lt;calculator&gt;&quot;, &quot;eval&quot;)
+    for name in code.co_names:
+        if name not in allowed_names:
+            raise NameError(f&quot;use of &#x27;{name}&#x27; is not allowed&quot;)
+    return eval(code, {&quot;__builtins__&quot;: {}}, allowed_names)
+
+
+def days_between(d1, d2):
+    &quot;&quot;&quot;Whole number of days between two ISO YYYY-MM-DD dates.&quot;&quot;&quot;
+    date1 = date.fromisoformat(d1)
+    date2 = date.fromisoformat(d2)
+    return abs((date2 - date1).days)
+
+
+_CONVERSIONS = {
+    (&quot;km&quot;, &quot;miles&quot;): lambda v: v * 0.621371,
+    (&quot;miles&quot;, &quot;km&quot;): lambda v: v / 0.621371,
+    (&quot;kg&quot;, &quot;lb&quot;): lambda v: v * 2.20462,
+    (&quot;lb&quot;, &quot;kg&quot;): lambda v: v / 2.20462,
+    (&quot;c&quot;, &quot;f&quot;): lambda v: v * 9 / 5 + 32,
+    (&quot;f&quot;, &quot;c&quot;): lambda v: (v - 32) * 5 / 9,
+}
+
+
+def unit_convert(value, frm, to):
+    &quot;&quot;&quot;Convert value between km/miles, kg/lb or C/F.&quot;&quot;&quot;
+    key = (frm.lower(), to.lower())
+    if key not in _CONVERSIONS:
+        raise ValueError(f&quot;unsupported conversion: {frm} -&gt; {to}&quot;)
+    return _CONVERSIONS[key](value)
+
+
+# ---------------------------------------------------------------------------
+# Tool registry: name -&gt; function
+# ---------------------------------------------------------------------------
+
+TOOL_REGISTRY = {
+    &quot;calculator&quot;: calculator,
+    &quot;days_between&quot;: days_between,
+    &quot;unit_convert&quot;: unit_convert,
+}
+
+# JSON schemas exposed to the model. Each entry gives the model everything
+# it needs to *call* the tool correctly without ever seeing its Python body.
+TOOL_SCHEMAS = [
+    {
+        &quot;name&quot;: &quot;calculator&quot;,
+        &quot;description&quot;: &quot;Evaluate an arithmetic expression in a restricted &quot;
+                        &quot;namespace (sqrt, pow, pi are available).&quot;,
+        &quot;arguments&quot;: {
+            &quot;expression&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Arithmetic expression, e.g. &#x27;sqrt(16) + 2&#x27;&quot;}
+        },
+    },
+    {
+        &quot;name&quot;: &quot;days_between&quot;,
+        &quot;description&quot;: &quot;Compute the whole number of days between two ISO dates.&quot;,
+        &quot;arguments&quot;: {
+            &quot;d1&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;First date, YYYY-MM-DD&quot;},
+            &quot;d2&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Second date, YYYY-MM-DD&quot;},
+        },
+    },
+    {
+        &quot;name&quot;: &quot;unit_convert&quot;,
+        &quot;description&quot;: &quot;Convert a numeric value between km/miles, kg/lb or degC/degF.&quot;,
+        &quot;arguments&quot;: {
+            &quot;value&quot;: {&quot;type&quot;: &quot;number&quot;, &quot;description&quot;: &quot;Value to convert&quot;},
+            &quot;frm&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Source unit&quot;},
+            &quot;to&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Target unit&quot;},
+        },
+    },
+]
+
+
+# ---------------------------------------------------------------------------
+# 2. dispatch(): parse -&gt; look up -&gt; invoke -&gt; wrap as observation
+# ---------------------------------------------------------------------------
+
+def dispatch(tool_call_json):
+    &quot;&quot;&quot;
+    tool_call_json: a JSON string of the form
+        &#x27;{&quot;tool&quot;: &quot;&lt;name&gt;&quot;, &quot;arguments&quot;: {...}}&#x27;
+    Returns a structured observation dict.
+    &quot;&quot;&quot;
+    call = json.loads(tool_call_json)          # parse
+    name = call[&quot;tool&quot;]
+    args = call.get(&quot;arguments&quot;, {})
+
+    fn = TOOL_REGISTRY[name]                   # look up
+    result = fn(**args)                        # invoke
+
+    return {                                   # wrap as observation
+        &quot;tool&quot;: name,
+        &quot;arguments&quot;: args,
+        &quot;observation&quot;: result,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Scripted &quot;model side&quot;: a fixed sequence of tool calls
+# ---------------------------------------------------------------------------
+
+SCRIPTED_CALLS = [
+    &#x27;{&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expression&quot;: &quot;sqrt(144) + pow(2, 3)&quot;}}&#x27;,
+    &#x27;{&quot;tool&quot;: &quot;days_between&quot;, &quot;arguments&quot;: {&quot;d1&quot;: &quot;2026-01-01&quot;, &quot;d2&quot;: &quot;2026-08-20&quot;}}&#x27;,
+    &#x27;{&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 100, &quot;frm&quot;: &quot;km&quot;, &quot;to&quot;: &quot;miles&quot;}}&#x27;,
+    &#x27;{&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 98.6, &quot;frm&quot;: &quot;f&quot;, &quot;to&quot;: &quot;c&quot;}}&#x27;,
+    &#x27;{&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expression&quot;: &quot;pi * pow(3, 2)&quot;}}&#x27;,
+]
+
+
+def main():
+    lines = []
+
+    def emit(s=&quot;&quot;):
+        print(s)
+        lines.append(s)
+
+    emit(&quot;=== Tool schemas presented to the model ===&quot;)
+    emit(json.dumps(TOOL_SCHEMAS, indent=2))
+    emit()
+
+    emit(&quot;=== Scripted tool calls and observations ===&quot;)
+    for i, call_json in enumerate(SCRIPTED_CALLS, 1):
+        emit(f&quot;\n--- Call {i} ---&quot;)
+        emit(f&quot;Request : {call_json}&quot;)
+        observation = dispatch(call_json)
+        emit(f&quot;Observation: {json.dumps(observation)}&quot;)
+
+    out_path = os.path.join(OUT_DIR, &quot;exp3_tool_agent.txt&quot;)
+    with open(out_path, &quot;w&quot;) as f:
+        f.write(&quot;\n&quot;.join(lines) + &quot;\n&quot;)
+    print(f&quot;\n[saved output to {out_path}]&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</pre><br style='page-break-before:always'><h3>Output</h3><p class=cap>Snapshot of the console output (Python 3.12.1 on Windows (AMD64), executed 10 September 2026, 11:12).</p><pre class=out style='font-size:6.5pt'>=== Tool schemas presented to the model ===
+[
+  {
+    &quot;name&quot;: &quot;calculator&quot;,
+    &quot;description&quot;: &quot;Evaluate an arithmetic expression in a restricted namespace (sqrt, pow, pi are available).&quot;,
+    &quot;arguments&quot;: {
+      &quot;expression&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;Arithmetic expression, e.g. &#x27;sqrt(16) + 2&#x27;&quot;
+      }
+    }
+  },
+  {
+    &quot;name&quot;: &quot;days_between&quot;,
+    &quot;description&quot;: &quot;Compute the whole number of days between two ISO dates.&quot;,
+    &quot;arguments&quot;: {
+      &quot;d1&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;First date, YYYY-MM-DD&quot;
+      },
+      &quot;d2&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;Second date, YYYY-MM-DD&quot;
+      }
+    }
+  },
+  {
+    &quot;name&quot;: &quot;unit_convert&quot;,
+    &quot;description&quot;: &quot;Convert a numeric value between km/miles, kg/lb or degC/degF.&quot;,
+    &quot;arguments&quot;: {
+      &quot;value&quot;: {
+        &quot;type&quot;: &quot;number&quot;,
+        &quot;description&quot;: &quot;Value to convert&quot;
+      },
+      &quot;frm&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;Source unit&quot;
+      },
+      &quot;to&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;Target unit&quot;
+      }
+    }
+  }
+]
+
+=== Scripted tool calls and observations ===
+
+--- Call 1 ---
+Request : {&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expression&quot;: &quot;sqrt(144) + pow(2, 3)&quot;}}
+Observation: {&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expression&quot;: &quot;sqrt(144) + pow(2, 3)&quot;}, &quot;observation&quot;: 20.0}
+
+--- Call 2 ---
+Request : {&quot;tool&quot;: &quot;days_between&quot;, &quot;arguments&quot;: {&quot;d1&quot;: &quot;2026-01-01&quot;, &quot;d2&quot;: &quot;2026-08-20&quot;}}
+Observation: {&quot;tool&quot;: &quot;days_between&quot;, &quot;arguments&quot;: {&quot;d1&quot;: &quot;2026-01-01&quot;, &quot;d2&quot;: &quot;2026-08-20&quot;}, &quot;observation&quot;: 231}
+
+--- Call 3 ---
+Request : {&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 100, &quot;frm&quot;: &quot;km&quot;, &quot;to&quot;: &quot;miles&quot;}}
+Observation: {&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 100, &quot;frm&quot;: &quot;km&quot;, &quot;to&quot;: &quot;miles&quot;}, &quot;observation&quot;: 62.137100000000004}
+
+--- Call 4 ---
+Request : {&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 98.6, &quot;frm&quot;: &quot;f&quot;, &quot;to&quot;: &quot;c&quot;}}
+Observation: {&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 98.6, &quot;frm&quot;: &quot;f&quot;, &quot;to&quot;: &quot;c&quot;}, &quot;observation&quot;: 37.0}
+
+--- Call 5 ---
+Request : {&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expression&quot;: &quot;pi * pow(3, 2)&quot;}}
+Observation: {&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expression&quot;: &quot;pi * pow(3, 2)&quot;}, &quot;observation&quot;: 28.274333882308138}
+
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab3\outputs\exp3_tool_agent.txt]</pre><br style='page-break-before:always'><h2>Observations</h2><h3>1. Which side of the contract executes the tool, and why the separation matters</h3><p>The model only ever <i>decides</i>: it emits a JSON object naming a tool and its arguments, and nothing more. Every actual side effect &mdash; evaluating an expression, computing a date difference, touching a file &mdash; happens inside <span class=m>dispatch()</span>, which is ordinary developer-owned Python. This separation matters because it keeps the model, which cannot be fully trusted to emit safe or correct instructions, out of the execution path entirely. Every call the model proposes still passes through code the developer wrote and can validate, sandbox or reject &mdash; here, the calculator's restricted namespace is exactly that control point, refusing to expose <span class=m>__builtins__</span> to whatever expression the model produced.</p><h3>2. What happens when a call names a tool that is not in the registry</h3><p>In the base <span class=m>dispatch()</span> implementation, <span class=m>TOOL_REGISTRY[name]</span> raises a <span class=m>KeyError</span> that is never caught, so the whole loop aborts on the first unregistered call &mdash; there is no recoverable observation to hand back to the model, and no way for an agent loop built on top of it to continue reasoning. Exercise 1's <span class=m>dispatch_safe()</span> fixes exactly this: it checks membership in the registry before invoking anything and returns a structured <span class=m>{"error": {"type": "unknown_tool", ...}}</span> observation instead, so the surrounding loop can inspect the failure and decide what to do next rather than crashing.</p><h3>3. What the schema must contain for the model to call a tool correctly without seeing its implementation</h3><p>The schema is the entire interface the model has to a tool &mdash; it never sees the Python body. It must therefore state the exact <span class=m>name</span> the dispatch step will match against, a <span class=m>description</span> precise enough that the model can tell when the tool is applicable (e.g. distinguishing <span class=m>unit_convert</span>'s three supported unit pairs from an unsupported one), and for every argument its exact <span class=m>name</span> and <span class=m>type</span>. Argument names matter as much as their types: Exercise 1's Demo 3 shows that supplying a value under the wrong key (<span class=m>expr</span> instead of <span class=m>expression</span>) is indistinguishable, from the runtime's point of view, from omitting the argument entirely &mdash; the schema is the only contract preventing that mismatch.</p><br style='page-break-before:always'><h2>Exercise 1 &mdash; Structured error handling in the runtime</h2><p><b>Task.</b> Add error handling to the runtime so that malformed JSON, an unknown tool name, a wrong argument name and an exception raised inside a tool each produce a structured error observation instead of crashing; demonstrate with one call of each kind.</p><p><b>Approach.</b> <span class=m>dispatch_safe()</span> wraps each of the four failure points in the original pipeline with an explicit check or a <span class=m>try/except</span>, returning <span class=m>{"error": {"type": ..., "message": ...}}</span> instead of propagating an exception: a <span class=m>json.JSONDecodeError</span> during parsing becomes a <span class=m>malformed_json</span> error; a name absent from the registry becomes <span class=m>unknown_tool</span>; a mismatch between the arguments given and the schema's expected argument names (extra, missing, or both) becomes <span class=m>bad_arguments</span>; and any exception the tool itself raises during invocation is caught and reported as <span class=m>tool_exception:&lt;type&gt;</span> with the original message preserved.</p><h3>Program &mdash; exp3_exercises.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 3 - Exercises
+
+Exercise 1: Harden dispatch() so malformed JSON, an unknown tool name, a
+wrong argument name and an exception raised inside a tool each produce a
+structured error observation instead of crashing.
+
+Exercise 2: Register a fourth tool, csv_mean, that reads a CSV file and
+returns the mean of a named column.
+&quot;&quot;&quot;
+
+import csv
+import json
+import os
+
+from exp3_tool_agent import TOOL_REGISTRY, TOOL_SCHEMAS, calculator, days_between, unit_convert
+
+OUT_DIR = os.path.join(os.path.dirname(__file__), &quot;outputs&quot;)
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+# ---------------------------------------------------------------------------
+# Exercise 2: a fourth tool - csv_mean
+# ---------------------------------------------------------------------------
+
+def csv_mean(path, column):
+    &quot;&quot;&quot;Read a CSV file and return the mean of a named numeric column.&quot;&quot;&quot;
+    with open(path, newline=&quot;&quot;) as f:
+        reader = csv.DictReader(f)
+        if column not in (reader.fieldnames or []):
+            raise KeyError(f&quot;column &#x27;{column}&#x27; not found in {path}&quot;)
+        values = [float(row[column]) for row in reader if row[column] != &quot;&quot;]
+    if not values:
+        raise ValueError(f&quot;column &#x27;{column}&#x27; has no numeric values&quot;)
+    return sum(values) / len(values)
+
+
+TOOL_REGISTRY_EXT = dict(TOOL_REGISTRY)
+TOOL_REGISTRY_EXT[&quot;csv_mean&quot;] = csv_mean
+
+TOOL_SCHEMAS_EXT = TOOL_SCHEMAS + [
+    {
+        &quot;name&quot;: &quot;csv_mean&quot;,
+        &quot;description&quot;: &quot;Read a CSV file and return the mean of a named column.&quot;,
+        &quot;arguments&quot;: {
+            &quot;path&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Path to the CSV file&quot;},
+            &quot;column&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Name of the numeric column to average&quot;},
+        },
+    }
+]
+
+
+# ---------------------------------------------------------------------------
+# Exercise 1: hardened dispatch with structured error observations
+# ---------------------------------------------------------------------------
+
+def dispatch_safe(tool_call_raw, registry=TOOL_REGISTRY_EXT, schemas=TOOL_SCHEMAS_EXT):
+    &quot;&quot;&quot;
+    Same contract as dispatch(), but never raises. On any failure it
+    returns {&quot;error&quot;: {&quot;type&quot;: ..., &quot;message&quot;: ...}} instead of an
+    &quot;observation&quot; key, so the loop can keep going.
+    &quot;&quot;&quot;
+    # 1. malformed JSON
+    try:
+        call = json.loads(tool_call_raw)
+    except json.JSONDecodeError as e:
+        return {&quot;request&quot;: tool_call_raw, &quot;error&quot;: {&quot;type&quot;: &quot;malformed_json&quot;, &quot;message&quot;: str(e)}}
+
+    name = call.get(&quot;tool&quot;)
+    args = call.get(&quot;arguments&quot;, {})
+
+    # 2. unknown tool name
+    if name not in registry:
+        return {&quot;request&quot;: call, &quot;error&quot;: {&quot;type&quot;: &quot;unknown_tool&quot;, &quot;message&quot;: f&quot;&#x27;{name}&#x27; is not registered&quot;}}
+
+    # 3. wrong argument name
+    schema = next(s for s in schemas if s[&quot;name&quot;] == name)
+    expected_args = set(schema[&quot;arguments&quot;].keys())
+    given_args = set(args.keys())
+    unexpected = given_args - expected_args
+    missing = expected_args - given_args
+    if unexpected or missing:
+        return {
+            &quot;request&quot;: call,
+            &quot;error&quot;: {
+                &quot;type&quot;: &quot;bad_arguments&quot;,
+                &quot;message&quot;: f&quot;unexpected={sorted(unexpected)} missing={sorted(missing)}&quot;,
+            },
+        }
+
+    # 4. exception raised inside the tool
+    fn = registry[name]
+    try:
+        result = fn(**args)
+    except Exception as e:
+        return {
+            &quot;request&quot;: call,
+            &quot;error&quot;: {&quot;type&quot;: f&quot;tool_exception:{type(e).__name__}&quot;, &quot;message&quot;: str(e)},
+        }
+
+    return {&quot;request&quot;: call, &quot;arguments&quot;: args, &quot;observation&quot;: result}
+
+
+# ---------------------------------------------------------------------------
+# Demonstration calls: one of each error kind, plus the csv_mean success case
+# ---------------------------------------------------------------------------
+
+DEMO_CALLS = [
+    # malformed JSON (missing closing brace)
+    &#x27;{&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expression&quot;: &quot;sqrt(9)&quot;}&#x27;,
+    # unknown tool name
+    &#x27;{&quot;tool&quot;: &quot;weather_lookup&quot;, &quot;arguments&quot;: {&quot;city&quot;: &quot;Surat&quot;}}&#x27;,
+    # wrong argument name (should be &quot;expression&quot;, not &quot;expr&quot;)
+    &#x27;{&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expr&quot;: &quot;1 + 1&quot;}}&#x27;,
+    # exception raised inside a tool (unsupported conversion)
+    &#x27;{&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 10, &quot;frm&quot;: &quot;km&quot;, &quot;to&quot;: &quot;kg&quot;}}&#x27;,
+]
+
+
+SAMPLE_CSV_PATH = os.path.join(os.path.dirname(__file__), &quot;sample_temperatures.csv&quot;)
+
+
+def main():
+    lines = []
+
+    def emit(s=&quot;&quot;):
+        print(s)
+        lines.append(s)
+
+    emit(&quot;=== Exercise 1: structured error handling ===&quot;)
+    for i, call in enumerate(DEMO_CALLS, 1):
+        emit(f&quot;\n--- Demo {i} ---&quot;)
+        emit(f&quot;Request : {call}&quot;)
+        result = dispatch_safe(call)
+        emit(f&quot;Result  : {json.dumps(result)}&quot;)
+
+    emit(&quot;\n=== Exercise 2: csv_mean tool ===&quot;)
+    csv_path = SAMPLE_CSV_PATH
+    emit(f&quot;Using sample CSV at {csv_path}&quot;)
+
+    schema_entry = next(s for s in TOOL_SCHEMAS_EXT if s[&quot;name&quot;] == &quot;csv_mean&quot;)
+    emit(f&quot;Schema  : {json.dumps(schema_entry)}&quot;)
+
+    call = json.dumps({&quot;tool&quot;: &quot;csv_mean&quot;, &quot;arguments&quot;: {&quot;path&quot;: csv_path, &quot;column&quot;: &quot;temperature&quot;}})
+    emit(f&quot;Request : {call}&quot;)
+    result = dispatch_safe(call)
+    emit(f&quot;Result  : {json.dumps(result)}&quot;)
+
+    out_path = os.path.join(OUT_DIR, &quot;exp3_exercises.txt&quot;)
+    with open(out_path, &quot;w&quot;) as f:
+        f.write(&quot;\n&quot;.join(lines) + &quot;\n&quot;)
+    print(f&quot;\n[saved output to {out_path}]&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>=== Exercise 1: structured error handling ===
+
+--- Demo 1 ---
+Request : {&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expression&quot;: &quot;sqrt(9)&quot;}
+Result  : {&quot;request&quot;: &quot;{\&quot;tool\&quot;: \&quot;calculator\&quot;, \&quot;arguments\&quot;: {\&quot;expression\&quot;: \&quot;sqrt(9)\&quot;}&quot;, &quot;error&quot;: {&quot;type&quot;: &quot;malformed_json&quot;, &quot;message&quot;: &quot;Expecting &#x27;,&#x27; delimiter: line 1 column 62 (char 61)&quot;}}
+
+--- Demo 2 ---
+Request : {&quot;tool&quot;: &quot;weather_lookup&quot;, &quot;arguments&quot;: {&quot;city&quot;: &quot;Surat&quot;}}
+Result  : {&quot;request&quot;: {&quot;tool&quot;: &quot;weather_lookup&quot;, &quot;arguments&quot;: {&quot;city&quot;: &quot;Surat&quot;}}, &quot;error&quot;: {&quot;type&quot;: &quot;unknown_tool&quot;, &quot;message&quot;: &quot;&#x27;weather_lookup&#x27; is not registered&quot;}}
+
+--- Demo 3 ---
+Request : {&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expr&quot;: &quot;1 + 1&quot;}}
+Result  : {&quot;request&quot;: {&quot;tool&quot;: &quot;calculator&quot;, &quot;arguments&quot;: {&quot;expr&quot;: &quot;1 + 1&quot;}}, &quot;error&quot;: {&quot;type&quot;: &quot;bad_arguments&quot;, &quot;message&quot;: &quot;unexpected=[&#x27;expr&#x27;] missing=[&#x27;expression&#x27;]&quot;}}
+
+--- Demo 4 ---
+Request : {&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 10, &quot;frm&quot;: &quot;km&quot;, &quot;to&quot;: &quot;kg&quot;}}
+Result  : {&quot;request&quot;: {&quot;tool&quot;: &quot;unit_convert&quot;, &quot;arguments&quot;: {&quot;value&quot;: 10, &quot;frm&quot;: &quot;km&quot;, &quot;to&quot;: &quot;kg&quot;}}, &quot;error&quot;: {&quot;type&quot;: &quot;tool_exception:ValueError&quot;, &quot;message&quot;: &quot;unsupported conversion: km -&gt; kg&quot;}}
+
+=== Exercise 2: csv_mean tool ===
+Using sample CSV at C:\Users\aryan\Documents\GitHub\AA-AI465\lab3\sample_temperatures.csv
+Schema  : {&quot;name&quot;: &quot;csv_mean&quot;, &quot;description&quot;: &quot;Read a CSV file and return the mean of a named column.&quot;, &quot;arguments&quot;: {&quot;path&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Path to the CSV file&quot;}, &quot;column&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Name of the numeric column to average&quot;}}}
+Request : {&quot;tool&quot;: &quot;csv_mean&quot;, &quot;arguments&quot;: {&quot;path&quot;: &quot;C:\\Users\\aryan\\Documents\\GitHub\\AA-AI465\\lab3\\sample_temperatures.csv&quot;, &quot;column&quot;: &quot;temperature&quot;}}
+Result  : {&quot;request&quot;: {&quot;tool&quot;: &quot;csv_mean&quot;, &quot;arguments&quot;: {&quot;path&quot;: &quot;C:\\Users\\aryan\\Documents\\GitHub\\AA-AI465\\lab3\\sample_temperatures.csv&quot;, &quot;column&quot;: &quot;temperature&quot;}}, &quot;arguments&quot;: {&quot;path&quot;: &quot;C:\\Users\\aryan\\Documents\\GitHub\\AA-AI465\\lab3\\sample_temperatures.csv&quot;, &quot;column&quot;: &quot;temperature&quot;}, &quot;observation&quot;: 30.639999999999997}
+
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab3\outputs\exp3_exercises.txt]</pre><h3>Discussion</h3><p>Each of the four demo calls exercises exactly one failure mode and none of them crash the process: a truncated JSON string is caught at the parsing step, a fictitious <span class=m>weather_lookup</span> tool is caught at the registry lookup, a calculator call using the key <span class=m>expr</span> instead of <span class=m>expression</span> is caught by the argument-name check before the function is ever invoked, and an unsupported <span class=m>km &rarr; kg</span> conversion is caught by the surrounding <span class=m>try/except</span> after <span class=m>unit_convert</span> raises <span class=m>ValueError</span> internally. In every case the caller receives a well-formed dictionary it can branch on, which is what lets a ReAct-style loop treat a failed tool call as just another observation to reason over, rather than a fatal error.</p><br style='page-break-before:always'><h2>Exercise 2 &mdash; A fourth tool: csv_mean</h2><p><b>Task.</b> Register a fourth tool that reads a CSV file and returns the mean of a named column. Write its schema and the tool call that invokes it, and report the observation returned.</p><p><b>Approach.</b> <span class=m>csv_mean(path, column)</span> opens the file with <span class=m>csv.DictReader</span>, checks the requested column exists, converts every non-empty cell in that column to <span class=m>float</span> and returns the arithmetic mean. It is registered in <span class=m>TOOL_REGISTRY_EXT</span> alongside the original three tools and given the schema below, so it is callable through the same <span class=m>dispatch_safe()</span> path with no special casing.</p><pre class=code style='font-size:8.5pt'>{
+  &quot;name&quot;: &quot;csv_mean&quot;,
+  &quot;description&quot;: &quot;Read a CSV file and return the mean of a named column.&quot;,
+  &quot;arguments&quot;: {
+    &quot;path&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Path to the CSV file&quot;},
+    &quot;column&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Name of the numeric column to average&quot;}
+  }
+}</pre><p>A five-row sample CSV (<span class=m>sample_temperatures.csv</span>, checked into the lab directory) with a <span class=m>temperature</span> column of [30.5, 31.2, 29.8, 33.0, 28.7] is read by the tool call</p><pre class=code style='font-size:8.5pt'>{&quot;tool&quot;: &quot;csv_mean&quot;, &quot;arguments&quot;: {&quot;path&quot;: &quot;sample_temperatures.csv&quot;, &quot;column&quot;: &quot;temperature&quot;}}</pre><p>returns the observation <span class=m>30.64</span> (see the &ldquo;Exercise 2&rdquo; section of the output above for the exact run), matching the arithmetic mean of the five values by hand-check.</p><br style='page-break-before:always'><h2>Conclusion</h2><p>The runtime half of the function-calling pattern was implemented end to end: three tools registered against their JSON schemas, and a <span class=m>dispatch()</span> function that parses a structured tool call, invokes the matching Python function and returns the result as an observation, exercised against five scripted calls. Because the model side is scripted rather than live, the entire decide/execute boundary that function calling depends on is visible without any external API.</p><p>The two exercises then hardened and extended that boundary. Exercise 1 replaced the runtime's four silent crash points &mdash; bad JSON, an unregistered tool, a misnamed argument, and an exception inside a tool &mdash; with structured error observations, which is what allows a calling loop to keep reasoning after a failed call instead of terminating. Exercise 2 showed the registry design scales cleanly: adding a fourth tool, <span class=m>csv_mean</span>, required only a new function, a new schema entry and a registry entry, with no change to <span class=m>dispatch()</span> itself.</p><h2>Execution environment and declaration</h2><table class=g><tr><th style='width:22%'>Item</th><th style='width:78%'>Detail</th></tr><tr><td>Execution</td><td>Python 3.12.1 on Windows (AMD64), executed 10 September 2026, 11:12</td></tr><tr><td>Files</td><td>exp3_tool_agent.py, exp3_exercises.py, make_report.py</td></tr><tr><td>Libraries used</td><td>Python standard library only (<span class=m>json</span>, <span class=m>math</span>, <span class=m>datetime</span>, <span class=m>csv</span>). No agent framework or orchestration library was used, in accordance with clause 3.1 of the Rules and Regulations.</td></tr><tr><td>Reproducibility</td><td>All tool calls are fixed scripted JSON strings and every tool is a deterministic function, so every run of every program reproduces exactly.</td></tr><tr><td>Sources consulted</td><td>Course manual for Experiment 3 (function-calling pattern, tool registry, dispatch contract).</td></tr></table><p class=note>All output reproduced above was produced by executing the programs listed in this record on the machine and at the time stated in the table.</p></div></body>
+</html>

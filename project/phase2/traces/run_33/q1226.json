@@ -1,0 +1,317 @@
+{
+ "idx": 1226,
+ "question": "A basic manicure starts at $35 while a pedicure starts at $40. A certain salon offers 20% off if you get both. Suppose Karen chooses to do both and would also like to add nail art on each of her fingers, which costs $3 per nail. How much would she pay in all?",
+ "gold": "90",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:07:42",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "A basic manicure starts at $35 while a pedicure starts at $40. A certain salon offers 20% off if you get both. Suppose Karen chooses to do both and would also like to add nail art on each of her fingers, which costs $3 per nail. How much would she pay in all?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 25.647,
+   "samples": [
+    {
+     "seed": 33122600,
+     "text": "A basic manicure and a pedicure are $35 + $40 = $75. A 20% discount off the total means she pays 100 - 20 = 80% of the total. Thus she pays 80 / 100 * $75 = $60 for both of the basic manicure and pedicure. Adding the cost of the nail art, her total cost is $60 + $3 * 10 = $90.\nFinal answer: 90",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 116,
+     "latency_s": 22.662,
+     "error": null,
+     "sample_index": 0,
+     "pred": "90",
+     "correct": true
+    },
+    {
+     "seed": 33122601,
+     "text": "The cost of the manicure and pedicure without the discount is 35 + 40 = $75. The 20% discount is 75 * 0.2 = $15. So the total cost without the nail art is 75 - 15 = $60. Adding the nail art costs 60 + 3 = $63.  \nFinal answer: 63",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 91,
+     "latency_s": 17.926,
+     "error": null,
+     "sample_index": 1,
+     "pred": "63",
+     "correct": false
+    },
+    {
+     "seed": 33122602,
+     "text": "The cost of one manicure is $35, so the cost of two manicures is 2 * $35 = $70. The cost of one pedicure is $40, so the cost of two pedicures is 2 * $40 = $80. The total cost without the nail art would be $70 + $80 = $150. There is a 20% discount, so the discount amount is 20 / 100 * $150 = $30. The total cost with the nail art and discount is $150 - $30 = $120.\nFinal answer: 120",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 148,
+     "latency_s": 25.644,
+     "error": null,
+     "sample_index": 2,
+     "pred": "120",
+     "correct": false
+    },
+    {
+     "seed": 33122603,
+     "text": "The total cost of the manicure and pedicure is $35 + $40 = $75. With the 20% off, the total cost is $75 - 0.20 * $75 = $56.5. The cost of the nail art is $3 per nail, so for 10 fingers, it will be $3 * 10 = $30. The total cost is $56.5 + $30 = $86.5.\nFinal answer: 86.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 118,
+     "latency_s": 22.931,
+     "error": null,
+     "sample_index": 3,
+     "pred": "86.5",
+     "correct": false
+    },
+    {
+     "seed": 33122604,
+     "text": "First, we calculate the cost of both manicures without the discount: 2 * $35 = $70. With the 20% discount, the total cost of the manicures becomes 80% of $70, which is 0.8 * $70 = $56. Adding the cost of the pedicures: 2 * $40 = $80. Therefore, the total cost including both manicures and pedicures is $56 + $80 = $136. Finally, adding the cost of the nail art: $136 + 6 * $3 = $154.\nFinal answer: $154",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 146,
+     "latency_s": 25.529,
+     "error": null,
+     "sample_index": 4,
+     "pred": "154",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 20.131,
+   "samples": [
+    {
+     "seed": 33122605,
+     "text": "Without the discount, the total cost for both manicures and pedicures is 2 * (35 + 40) = $140. With the 20% discount, the total cost is 140 * 0.8 = $112. Adding the cost of the nail art, Karen would pay 112 + 3 * 10 = $142 in total.\nFinal answer: 142",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 98,
+     "latency_s": 16.548,
+     "error": null,
+     "sample_index": 5,
+     "pred": "142",
+     "correct": false
+    },
+    {
+     "seed": 33122606,
+     "text": "First, calculate the total cost of the manicures: $35 (manicure) + $35 (pedicure) = $70. Then, apply the 20% discount: $70 * 0.8 = $56. Finally, add the cost of the nail art: $56 + $3 * 10 = $56 + $30 = $86.  \nFinal answer: 86",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 97,
+     "latency_s": 16.385,
+     "error": null,
+     "sample_index": 6,
+     "pred": "86",
+     "correct": false
+    },
+    {
+     "seed": 33122607,
+     "text": "The total cost of a basic manicure and a pedicure is $35 + $40 = $75. The discount for 20% off is 75 * 0.20 = $15. The total cost of both manicures is $75 - $15 = $60. Since she wants to add nail art for all her fingers, this would cost her 5 * 3 = $15. So the final total cost is $60 + $15 = $75.\nFinal answer: 75",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 120,
+     "latency_s": 19.963,
+     "error": null,
+     "sample_index": 7,
+     "pred": "75",
+     "correct": false
+    },
+    {
+     "seed": 33122608,
+     "text": "A basic manicure is $35 and a pedicure is $40, so both services cost 35 + 40 = $75. 20% off on both services is 75 * .20 = $15. So, the cost for both with the 20% discount is 75 - 15 = $60. The cost of the nail art is 3 * 10 = $30. So, Karen would pay 60 + 30 = $90.\nFinal answer: 90",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 123,
+     "latency_s": 20.129,
+     "error": null,
+     "sample_index": 8,
+     "pred": "90",
+     "correct": true
+    },
+    {
+     "seed": 33122609,
+     "text": "The total cost for the manicure and pedicure without the discount is 2 * ($35 + $40) = $140. The discount for both treatments is 20 / 100 * $140 = $28. The final cost with the discount is $140 - $28 = $112. Adding the cost of the nail art, Karen will pay $112 + 2 * $3 = $118.\nFinal answer: 118",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 112,
+     "latency_s": 19.048,
+     "error": null,
+     "sample_index": 9,
+     "pred": "118",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 20.729,
+   "samples": [
+    {
+     "seed": 33122610,
+     "text": "The total cost for both services is 35 + 40 = 75 dollars. The 20% off means she would pay 75 * .8 = 60 dollars. The cost of the nail art is 2 * 3 = 6 dollars. So the total cost is 60 + 6 = 66 dollars.\nFinal answer: 66",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 83,
+     "latency_s": 13.945,
+     "error": null,
+     "sample_index": 10,
+     "pred": "66",
+     "correct": false
+    },
+    {
+     "seed": 33122611,
+     "text": "The cost of a basic manicure is $35, and the cost of a pedicure is $40. The total cost without any discounts is $35 + $40 = $75. With a 20% discount on both, Karen would pay 80% of the total price, which is 0.8 * $75 = $60. Adding the cost of the nail art, which is $3 per nail on 10 fingers, she would pay $3 * 10 = $30 for the nail art. Therefore, the total cost for Karen is $60 + $30 = $90.\nFinal answer: $90",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 146,
+     "latency_s": 20.727,
+     "error": null,
+     "sample_index": 11,
+     "pred": "90",
+     "correct": true
+    },
+    {
+     "seed": 33122612,
+     "text": "First, we calculate the total cost without the discount: manicure + pedicure = 35 + 40 = 75 dollars. With a 20% discount, she pays 75 * 0.8 = 60 dollars for both services. Adding the cost of the nail art, she ends up paying 60 + 3 * 12 = 96 dollars. \nFinal answer: 96",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 94,
+     "latency_s": 15.313,
+     "error": null,
+     "sample_index": 12,
+     "pred": "96",
+     "correct": false
+    },
+    {
+     "seed": 33122613,
+     "text": "The total cost of both manicure and pedicure without discount is $35 + $40 = $75. The discount for doing both is 20% of $75, so the discount is 20/100 * $75 = $15. The cost after the discount is $75 - $15 = $60. Adding the cost of the nail art, which is $3 per nail, Karen needs to add $3 * $6 = $18. The total cost is $60 + $18 = $78.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 131,
+     "latency_s": 19.77,
+     "error": null,
+     "sample_index": 13,
+     "pred": "78",
+     "correct": false
+    },
+    {
+     "seed": 33122614,
+     "text": "The pedicure costs $40, and the manicure also costs $35, so both total $75. The 20% discount on both means $75 * .20 = $15 off. The total then becomes 75 - 15 = $60. Adding the cost of the nail art on both hands gives $60 + 3 * 2 * 2 = $66.\nFinal answer: 66",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 99,
+     "latency_s": 16.072,
+     "error": null,
+     "sample_index": 14,
+     "pred": "66",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 19.375,
+   "samples": [
+    {
+     "seed": 33122615,
+     "text": "The cost of a manicure with a 20% discount is 35 * 0.8 = $28. The cost of a pedicure with a 20% discount is 40 * 0.8 = $32. The cost of adding nail art is 10 * 3 = $30. The total cost is 28 + 32 + 30 = $90. \nFinal answer: 90",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 101,
+     "latency_s": 17.452,
+     "error": null,
+     "sample_index": 15,
+     "pred": "90",
+     "correct": true
+    },
+    {
+     "seed": 33122616,
+     "text": "First, the total cost for both manicures and pedicures before the discount is $35 + $40 = $75. The discount for both services is 20% of $75, which is $75 * 0.20 = $15. So the total cost for both manicures and pedicures after the discount is $75 - $15 = $60. Adding the cost of the nail art, which is $3 per nail, Karen will pay a total of $60 + $3 = $63.\nFinal answer: 63",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 127,
+     "latency_s": 19.374,
+     "error": null,
+     "sample_index": 16,
+     "pred": "63",
+     "correct": false
+    },
+    {
+     "seed": 33122617,
+     "text": "Without the discount, the total cost would be 2 * 35 + 2 * 40 = $140. With the 20% off, the total cost is 140 * 0.8 = $112. Adding the cost for nail art, Karen would pay 112 + 2 * 3 = $120 in all.\nFinal answer: 120",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 91,
+     "latency_s": 15.715,
+     "error": null,
+     "sample_index": 17,
+     "pred": "120",
+     "correct": false
+    },
+    {
+     "seed": 33122618,
+     "text": "The total cost without discount is 2 * (35 + 40) = $140. The total cost with 20% discount is 140 - (140 * 20 / 100) = $112. The total cost including the extra cost for the nail art on each finger is 112 + 2 * 3 = $118.\nFinal answer: 118",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 97,
+     "latency_s": 16.832,
+     "error": null,
+     "sample_index": 18,
+     "pred": "118",
+     "correct": false
+    },
+    {
+     "seed": 33122619,
+     "text": "The basic manicure would cost 35 * 2 = $70. The pedicure would cost 40 * 2 = $80. The total cost without the nail art is 70 + 80 = $150. With 20% off, that's 150 * .8 = $120. Adding the cost of the nail art makes it 120 + 3 * 10 = $130. \nFinal answer: 130",
+     "finish_reason": "stop",
+     "prompt_tokens": 426,
+     "completion_tokens": 112,
+     "latency_s": 18.507,
+     "error": null,
+     "sample_index": 19,
+     "pred": "130",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

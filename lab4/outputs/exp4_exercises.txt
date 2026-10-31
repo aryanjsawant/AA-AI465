@@ -1,0 +1,48 @@
+=== Exercise 1: similarity threshold / abstention ===
+Threshold = 0.2
+
+Q: What data structure does breadth-first search use for its frontier?
+  best_score=0.338  abstained=False  expected_answerable=True  correct=True
+  -> A FIFO queue [doc1_bfs.txt#0].
+
+Q: What does the inverse document frequency part of TF-IDF do?
+  best_score=0.630  abstained=False  expected_answerable=True  correct=True
+  -> It down-weights words that appear in many documents, since common words carry little distinguishing information [doc3_tfidf.txt#0].
+
+Q: What is the time complexity of quicksort in the worst case?
+  best_score=0.168  abstained=True  expected_answerable=False  correct=True
+  -> The answer is not in the corpus.
+
+Q: Who invented the transformer architecture?
+  best_score=0.000  abstained=True  expected_answerable=False  correct=True
+  -> The answer is not in the corpus.
+
+All 4 questions were handled correctly at threshold=0.2 (abstained only on the two unanswerable ones).
+
+=== Exercise 2: chunk size / overlap sweep ===
+=== chunk_size=1, overlap=0  (17 chunks) ===
+  rank=1  score=0.395  : What data structure does breadth-first search use for its frontier?
+  rank=4  score=0.181  : How does uniform-cost search decide a node's cost is final?
+  rank=2  score=0.405  : What does the inverse document frequency part of TF-IDF do?
+  rank=1  score=0.521  : Why can a RAG system be updated without retraining the model?
+
+=== chunk_size=2, overlap=0  (9 chunks) ===
+  rank=1  score=0.314  : What data structure does breadth-first search use for its frontier?
+  rank=1  score=0.502  : How does uniform-cost search decide a node's cost is final?
+  rank=1  score=0.645  : What does the inverse document frequency part of TF-IDF do?
+  rank=1  score=0.526  : Why can a RAG system be updated without retraining the model?
+
+=== chunk_size=2, overlap=1  (13 chunks) ===
+  rank=1  score=0.338  : What data structure does breadth-first search use for its frontier?
+  rank=1  score=0.514  : How does uniform-cost search decide a node's cost is final?
+  rank=1  score=0.630  : What does the inverse document frequency part of TF-IDF do?
+  rank=1  score=0.347  : Why can a RAG system be updated without retraining the model?
+
+=== chunk_size=4, overlap=2  (5 chunks) ===
+  rank=1  score=0.312  : What data structure does breadth-first search use for its frontier?
+  rank=1  score=0.624  : How does uniform-cost search decide a node's cost is final?
+  rank=1  score=0.596  : What does the inverse document frequency part of TF-IDF do?
+  rank=1  score=0.275  : Why can a RAG system be updated without retraining the model?
+
+Discussion: chunk_size=1 (no overlap) is the setting that breaks: the uniform-cost-search finality fact spans two adjacent sentences ('It replaces the FIFO queue with a priority queue...' / 'A node is only finalised when it is popped...'), so with one-sentence chunks and no overlap that fact is split across two separate chunks and the best matching single chunk falls to rank 4 instead of rank 1 - a direct demonstration that retrieval can only return what chunking has made retrievable. Every 2-sentence setting (overlap 0 or 1) keeps that same fact whole in one chunk and recovers rank 1 with a much higher score (0.50-0.52). Between the two, chunk_size=2/overlap=1 is the one to ship: overlap=0 scores marginally higher on this small corpus but relies on the sentence boundaries happening to line up with each fact; the 1-sentence overlap costs 4 extra chunks (13 vs 9) but guards against a fact that straddles a chunk boundary in a way overlap=0 cannot. The largest setting (4/2) does not miss any fact here because the corpus documents are short enough that a 4-sentence window still isolates one topic, but on a longer, more varied corpus its wider window would increasingly dilute the TF-IDF vector with unrelated sentences and push the right chunk down in rank - a risk not worth taking for the small score gain it shows on two of the four questions here.
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab4\outputs\exp4_exercises.txt]

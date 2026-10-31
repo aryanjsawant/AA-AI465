@@ -1,0 +1,317 @@
+{
+ "idx": 1237,
+ "question": "Last Friday, 13 of the 82 teachers at Rydell Elementary School were sick. There were 9 substitute teachers called in to help. How many teachers were at school that day?",
+ "gold": "78",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:25:07",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Last Friday, 13 of the 82 teachers at Rydell Elementary School were sick. There were 9 substitute teachers called in to help. How many teachers were at school that day?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 8.735,
+   "samples": [
+    {
+     "seed": 33123700,
+     "text": "The total number of teachers and substitute teachers at school is 82 + 9 = 91 teachers. Since 13 of the 82 teachers were sick, the number of teachers present that day is 91 - 13 = 78 teachers.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 64,
+     "latency_s": 8.733,
+     "error": null,
+     "sample_index": 0,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123701,
+     "text": "There were 82 - 13 = 69 teachers at school that day. Therefore, 69 + 9 = 78 teachers were at school that day.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 45,
+     "latency_s": 7.487,
+     "error": null,
+     "sample_index": 1,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123702,
+     "text": "The number of teachers who were not sick is 82 - 13 = 69 teachers. So, the total number of teachers at school is 69 + 9 = 78 teachers.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 51,
+     "latency_s": 8.047,
+     "error": null,
+     "sample_index": 2,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123703,
+     "text": "The total number of teachers at school that day is 82 - 13 + 9 = 78.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 32,
+     "latency_s": 5.8,
+     "error": null,
+     "sample_index": 3,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123704,
+     "text": "The total number of teachers and substitute teachers at school on that day is 82 + 9 = 91 teachers.\nFinal answer: 91",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 33,
+     "latency_s": 5.994,
+     "error": null,
+     "sample_index": 4,
+     "pred": "91",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 7.616,
+   "samples": [
+    {
+     "seed": 33123705,
+     "text": "There were 82 - 13 - 9 = 60 teachers at school that day.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 29,
+     "latency_s": 4.478,
+     "error": null,
+     "sample_index": 5,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 33123706,
+     "text": "To find the number of teachers present, we subtract the number of teachers sick and the substitute teachers from the total number of teachers: 82 - 13 - 9 = 60 teachers were at school that day.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 54,
+     "latency_s": 6.886,
+     "error": null,
+     "sample_index": 6,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 33123707,
+     "text": "The number of teachers present that day is 82 - 13 - 9 = 60 teachers.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 31,
+     "latency_s": 4.758,
+     "error": null,
+     "sample_index": 7,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 33123708,
+     "text": "The number of teachers present that day is 82 - 13 = 69 teachers. In addition to the 69 teachers, there were 9 substitute teachers, so 69 + 9 = 78 teachers were at Rydell Elementary School that day.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 66,
+     "latency_s": 7.614,
+     "error": null,
+     "sample_index": 8,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123709,
+     "text": "The total number of teachers at school that day is 82 + 9 = 91 teachers.",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 23,
+     "latency_s": 3.788,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 7.924,
+   "samples": [
+    {
+     "seed": 33123710,
+     "text": "The total number of teachers at school that day is 82 - 13 + 9 = 78 teachers.",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 27,
+     "latency_s": 4.406,
+     "error": null,
+     "sample_index": 10,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33123711,
+     "text": "The total number of teachers on duty is 82 - 13 + 9 = 78 teachers.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 31,
+     "latency_s": 5.127,
+     "error": null,
+     "sample_index": 11,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123712,
+     "text": "To find out how many teachers were at school, we need to subtract the number of teachers who were sick and the number of substitute teachers from the total number of teachers. 82 - 13 - 9 = 60 teachers were at school that day.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 62,
+     "latency_s": 7.922,
+     "error": null,
+     "sample_index": 12,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 33123713,
+     "text": "There were 82 - 13 = 69 teachers who were not sick. Including the 9 substitute teachers, there were 69 + 9 = 78 teachers at school that day.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 51,
+     "latency_s": 7.326,
+     "error": null,
+     "sample_index": 13,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123714,
+     "text": "The total number of teachers at school is 82 - 13 + 9 = 78 teachers.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 31,
+     "latency_s": 5.142,
+     "error": null,
+     "sample_index": 14,
+     "pred": "78",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 8.187,
+   "samples": [
+    {
+     "seed": 33123715,
+     "text": "The total number of teachers at school is 82 teachers - 13 teachers sick = 69 teachers. The total number of teachers at school that day is 69 teachers + 9 substitute teachers = 78 teachers.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 56,
+     "latency_s": 8.186,
+     "error": null,
+     "sample_index": 15,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123716,
+     "text": "13 sick teachers + 9 substitute teachers = 22 teachers were not at school that day. So 22 + 82 = 104 teachers were at school that day.\nFinal answer: 104",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 49,
+     "latency_s": 7.685,
+     "error": null,
+     "sample_index": 16,
+     "pred": "104",
+     "correct": false
+    },
+    {
+     "seed": 33123717,
+     "text": "There were 82 - 13 = 69 teachers who were not sick and at work. So, in total, 69 + 9 = 78 teachers were at school that day.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 51,
+     "latency_s": 7.912,
+     "error": null,
+     "sample_index": 17,
+     "pred": "78",
+     "correct": true
+    },
+    {
+     "seed": 33123718,
+     "text": "There were 82 - 13 - 9 = 60 teachers at school that day.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 29,
+     "latency_s": 4.674,
+     "error": null,
+     "sample_index": 18,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 33123719,
+     "text": "The number of teachers at school that day is 82 - 13 - 9 = 60.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 31,
+     "latency_s": 5.033,
+     "error": null,
+     "sample_index": 19,
+     "pred": "60",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

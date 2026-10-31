@@ -1,0 +1,317 @@
+{
+ "idx": 754,
+ "question": "Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?",
+ "gold": "89",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 17:58:13",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 34.354,
+   "samples": [
+    {
+     "seed": 11075400,
+     "text": "First, Lorraine trades 30 * 0.9 = 27 small stickers for large buttons. This leaves her with 40 - 27 = 13 large stickers. Then she trades 13 * 0.5 = 6.5 large stickers for large buttons. This leaves her with 13 - 6.5 = 6.5 large stickers. Now she trades 6.5 * 3 = 19.5 small buttons for large stickers. This leaves her with 6.5 - 19.5 / 3 = 6.5 - 6 = 0.5 small buttons. So, she has 6.5 large buttons and 0.5 small buttons.\nFinal answer: 6.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 164,
+     "latency_s": 27.838,
+     "error": null,
+     "sample_index": 0,
+     "pred": "6.5",
+     "correct": false
+    },
+    {
+     "seed": 11075401,
+     "text": "Lorraine trades 30 * 0.9 = 27 small stickers for large buttons. She trades 40 * 0.5 = 20 large stickers for large buttons. She has 40 - 20 = 20 large stickers left. She has 20 * 3 = 60 large buttons. She has 27 + 60 = 87 buttons by the end.\nFinal answer: 87",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 98,
+     "latency_s": 19.858,
+     "error": null,
+     "sample_index": 1,
+     "pred": "87",
+     "correct": false
+    },
+    {
+     "seed": 11075402,
+     "text": "Lorraine has 30 small stickers * 3 = 90 large buttons to trade for large buttons. 90% of her stickers are 30 * .9 = 27 small stickers. She uses 27 small stickers * 3 = 81 large buttons. Lorraine has 40 large stickers * .5 = 20 small stickers to trade for buttons. She has 20 small stickers * 3 = 60 large buttons. She trades 40 large stickers * .5 = 20 large buttons. In total, Lorraine has 81 + 60 = 141 large buttons. She has 90 large buttons + 60 large buttons = 150 large buttons. She has 150 large buttons + 27 large buttons = 177 large buttons. She has 150 large buttons + 27 large buttons = 177 large buttons. She has 177 large buttons + 20 small buttons = 197 buttons.\nFinal answer: 197",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 232,
+     "latency_s": 34.351,
+     "error": null,
+     "sample_index": 2,
+     "pred": "197",
+     "correct": false
+    },
+    {
+     "seed": 11075403,
+     "text": "First, calculate the value of Lorraine's stickers and buttons. 1 small sticker is worth 1 small button, so 30 small stickers are worth 30 small buttons. 1 large sticker is worth 3 small stickers, so 40 large stickers are worth 120 small stickers.\n\nLorraine trades 90% of her small stickers for large buttons:\n\\( 30 \\times 0.9 = 27 \\) small buttons worth 27 large buttons.\n\nShe then trades 50% of her large stickers for large buttons:\n\\( 40 \\times 0.5 = 20 \\) large stickers worth 60 small buttons.\n\nShe trades the rest (50% of 40 large stickers) for small buttons:\n\\( 20 \\times 0.5 = 10 \\) large stickers worth 30 small buttons.\n\nSo now, Lorraine has \\( 27 + 60 + 30 = 117 \\) buttons in total.",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 218,
+     "latency_s": 33.621,
+     "error": null,
+     "sample_index": 3,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11075404,
+     "text": "Lorraine starts with 30 small stickers and trades 90% of them, which is 30 * 0.9 = 27 small stickers for large buttons. This means she gets 27 large buttons in return. She starts with 40 large stickers and trades 50% of them, which is 40 * 0.5 = 20 large stickers for large buttons. This means she gets 20 large buttons in return. Lorraine also trades the remaining large stickers for small buttons, which is 40 - 20 = 20 large stickers. Since each large sticker is worth one small button, she gets 20 small buttons in return. Adding all the buttons, she gets 27 + 20 + 20 = 67 buttons by the end.\nFinal answer: 67",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 181,
+     "latency_s": 30.081,
+     "error": null,
+     "sample_index": 4,
+     "pred": "67",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 35.418,
+   "samples": [
+    {
+     "seed": 11075405,
+     "text": "She traded 30 * 0.9 = 27 small stickers for large buttons. So she got 27 / 3 = 9 large buttons. The total amount of large buttons she got is 40 + 9 = 49. She traded 40 * 0.5 = 20 large stickers for large buttons. The total amount of large buttons she got is 49 + 20 = 69. She traded 40 - 20 = 20 large stickers for small buttons. So she got 20 / 3 = 6 small buttons. She traded 30 - 27 = 3 small stickers for small buttons. So she got 3 / 1 = 3 small buttons. She has 69 + 6 + 3 = 78 buttons in total.\nFinal answer: 78",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 188,
+     "latency_s": 29.257,
+     "error": null,
+     "sample_index": 5,
+     "pred": "78",
+     "correct": false
+    },
+    {
+     "seed": 11075406,
+     "text": "Lorraine trades 30 * 0.9 = 27 small stickers for large buttons, which is worth 27 * 3 = 81 large buttons. She trades 40 * 0.5 = 20 large stickers for large buttons, which is worth 20 * 3 = 60 large buttons. She trades the rest of her large stickers, which is 40 - 20 = 20 large stickers, for small buttons, which is 20 * 3 = 60 small buttons. In total she has 81 + 60 + 60 = 201 buttons.\nFinal answer: 201",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 147,
+     "latency_s": 22.717,
+     "error": null,
+     "sample_index": 6,
+     "pred": "201",
+     "correct": false
+    },
+    {
+     "seed": 11075407,
+     "text": "Lorraine starts with 30 small stickers and 40 large stickers.\nShe trades 90% of her 30 small stickers, which is 90 * 30 / 100 = 27 small stickers for large buttons.\nSo she has 40 - 27 = 13 large buttons from this trade.\nShe trades 50% of her 40 large stickers, which is 50 * 40 / 100 = 20 large stickers for large buttons.\nSo she has 40 - 20 = 20 large buttons from this trade.\nShe trades the rest of her large stickers, which is 40 - 20 = 20 large stickers, for small buttons.\nSince each large sticker is worth 3 small buttons, she gets 20 * 3 = 60 small buttons from this trade.\nNow, Lorraine already has 13 large buttons and 20 small buttons, so she has 13 + 20 = 33 buttons by the end.\nFinal answer: 33",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 234,
+     "latency_s": 34.128,
+     "error": null,
+     "sample_index": 7,
+     "pred": "33",
+     "correct": false
+    },
+    {
+     "seed": 11075408,
+     "text": "First, Lorraine trades 30% of her small stickers for large buttons. She has 30 * 30 = 9 small stickers for large buttons. This means she trades 90 / 100 * 30 = 27 small stickers for large buttons. Now she has 40 - 27 = 13 large stickers left. She then trades 50% of her large stickers for large buttons. This means she trades 50 / 100 * 13 = 6.5 large stickers for large buttons. Since she can't trade half a sticker, we'll assume she rounds down to 6 large buttons. Now she has 13 - 6 = 7 large stickers left. She trades the rest of the large stickers for small buttons. This means she trades 13 - 6 = 7 large stickers for small buttons. Each large sticker is worth 3 small buttons, so she trades 7 * 3 = 21 small buttons for small stickers. Now she has 13 - 6 = 7 large stickers for small buttons. She trades the rest of the large stickers for small buttons. This means she trades 7 / 1",
+     "finish_reason": "length",
+     "prompt_tokens": 462,
+     "completion_tokens": 256,
+     "latency_s": 35.415,
+     "error": null,
+     "sample_index": 8,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11075409,
+     "text": "Lorraine trades 30 * 0.9 = 27 small stickers for large buttons. Each large sticker is worth three small stickers, so she gets 27 * 3 = 81 small buttons. She trades 40 * 0.5 = 20 large stickers for large buttons. She gets 20 * 3 = 60 small buttons. She trades the rest of her 40 large stickers for small buttons, which is 40 - 20 = 20 large stickers. Each large sticker is worth three small stickers, so she gets 20 * 3 = 60 small buttons. In total, Lorraine gets 60 + 81 + 60 = 201 buttons.\nFinal answer: 201",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 169,
+     "latency_s": 26.6,
+     "error": null,
+     "sample_index": 9,
+     "pred": "201",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 26.95,
+   "samples": [
+    {
+     "seed": 11075410,
+     "text": "Lorraine starts with 30 small stickers and 40 large stickers. 30 small stickers traded for 30 / 3 = 10 large buttons. 50% of the large stickers are 40 * 50 / 100 = 20 large buttons. 10 + 20 = 30 large buttons. 100% of the large buttons are worth 30 / 3 = 10 small buttons. She trades the rest of her large stickers for small buttons, so she gets 20 / 30 * 10 = 20 small buttons. Adding up, she has 30 + 20 = 50 buttons.\nFinal answer: 50",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 160,
+     "latency_s": 21.929,
+     "error": null,
+     "sample_index": 10,
+     "pred": "50",
+     "correct": false
+    },
+    {
+     "seed": 11075411,
+     "text": "Lorraine trades 30 * 0.9 = 27 small stickers for large buttons. Thus, she has 27 / 3 = 9 large buttons. Lorraine trades 40 * 0.5 = 20 large stickers for large buttons. Thus, she has 20 / 3 = 6 large buttons. Lorraine gets 9 + 6 = 15 large buttons. She trades 40 - 20 = 20 large stickers for small buttons. Thus, she has 20 * 3 = 60 small buttons. Lorraine ends up with 60 + 15 = 75 buttons.\nFinal answer: 75",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 150,
+     "latency_s": 21.03,
+     "error": null,
+     "sample_index": 11,
+     "pred": "75",
+     "correct": false
+    },
+    {
+     "seed": 11075412,
+     "text": "Lorraine trades 30 * 0.9 = 27 small stickers for large buttons. This is worth 27 * 3 = 81 large stickers. She also trades 40 * 0.5 = 20 large stickers for large buttons. This is worth 20 * 3 = 60 large stickers. For the remaining large stickers, 40 - 20 = 20 large stickers remain. These are worth 20 * 3 = 60 large buttons. Altogether, Lorraine has 81 + 60 + 60 = 201 buttons.\nFinal answer: 201",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 143,
+     "latency_s": 20.075,
+     "error": null,
+     "sample_index": 12,
+     "pred": "201",
+     "correct": false
+    },
+    {
+     "seed": 11075413,
+     "text": "Lorraine trades 30 * 0.9 = 27 small stickers for large buttons. She trades 40 * 0.5 = 20 large stickers for large buttons. She trades 40 - 20 = 20 large stickers for small buttons. 27 + 20 + 20 = 67 buttons.\nFinal answer: 67",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 84,
+     "latency_s": 13.146,
+     "error": null,
+     "sample_index": 13,
+     "pred": "67",
+     "correct": false
+    },
+    {
+     "seed": 11075414,
+     "text": "Lorraine starts with 30 small stickers and 40 large stickers. Trading 90% of her small stickers for large buttons means she trades 30 * 0.9 = 27 small stickers for large buttons. She has 40 - 27 = 13 large stickers left to trade. Trading 50% of her large stickers for large buttons means she trades 13 * 0.5 = 6.5 large stickers for large buttons. Since you can't trade half a sticker, she actually trades 6 large stickers for large buttons. She has 40 - 6 = 34 large stickers left to trade. Trading 13 small stickers for large buttons means she gets 13 * 3 = 39 large stickers. She has 34 + 39 = 73 large stickers. Trading 6 small stickers for large buttons means she gets 6 * 1 = 6 small buttons. She has 73 - 6 = 67 large buttons. Adding the 39 large buttons she traded for large stickers, she has 39 + 67 = 106 buttons.\nFinal answer: 106",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 255,
+     "latency_s": 26.942,
+     "error": null,
+     "sample_index": 14,
+     "pred": "106",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 36.19,
+   "samples": [
+    {
+     "seed": 11075415,
+     "text": "Lorraine has 30 / 0.9 = 33.333333 large stickers to trade for large buttons. She has 40 - 33.333333 = 6.666667 large stickers left to trade for small buttons. She has 30 / 0.5 = 60 small stickers to trade for small buttons. By the end, she has 66 large buttons and 60 small buttons.\nFinal answer: 126",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 113,
+     "latency_s": 17.892,
+     "error": null,
+     "sample_index": 15,
+     "pred": "126",
+     "correct": false
+    },
+    {
+     "seed": 11075416,
+     "text": "Lorraine trades 30 * 0.9 = 27 small stickers for large buttons, getting 27 / 3 = 9 large buttons. She trades 40 * 0.5 = 20 large stickers for large buttons, getting 20 / 3 = 6 and 2/3 large buttons. She trades 40 - 27 - 20 = 3 large buttons for small buttons, getting 3 * 3 = 9 small buttons. Altogether, she has 9 + 6 + 2/3 + 9 = 24 and 2/3 buttons.\nFinal answer: 24 and 2/3",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 147,
+     "latency_s": 23.897,
+     "error": null,
+     "sample_index": 16,
+     "pred": "24",
+     "correct": false
+    },
+    {
+     "seed": 11075417,
+     "text": "Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. That means she trades 30 * 0.9 = 27 small stickers for large buttons. She trades 50% of her large stickers for large buttons, which means she trades 40 * 0.5 = 20 large stickers for large buttons. She trades the rest, 40 - 20 = 20 large stickers, for small buttons. So, she has 27 + 20 = 47 large stickers. She trades these 47 large stickers for 47 / 3 = 15 large buttons (since each large sticker is worth 3 small buttons). Also, she trades the 20 large stickers for 20 / 3 = 6.666667 large buttons (since each large sticker is worth 3 small buttons). In total, she has 15 + 6.666667 = 21.666667 large buttons.",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 236,
+     "latency_s": 35.147,
+     "error": null,
+     "sample_index": 17,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11075418,
+     "text": "Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons, so she trades 30 * 0.9 = 27 small stickers for large buttons. She trades 50% of her large stickers for large buttons, so she trades 40 * 0.5 = 20 large stickers for large buttons. This leaves her with 40 - 20 = 20 large stickers. She trades the rest of her large stickers for small buttons, so she trades 40 - 20 = 20 large stickers for small buttons. She trades 1 large button for every 3 small stickers, so she gets 20 / 3 = 6 large buttons. Adding the large buttons from trading her small stickers, she gets 6 + 20 = 26 large buttons. She trades 90% of her small stickers for large buttons, so she gets 27 large buttons. Adding the large buttons from trading her large stickers, she gets 26 + 27 = 53 large buttons. She trades 50% of her large stickers for large buttons, so she gets ",
+     "finish_reason": "length",
+     "prompt_tokens": 462,
+     "completion_tokens": 256,
+     "latency_s": 36.186,
+     "error": null,
+     "sample_index": 18,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11075419,
+     "text": "Lorraine starts with 30 small stickers, which is 30 / 1 = 30 small buttons. She trades 90% of her small stickers, so she trades 30 * 0.9 = 27 small buttons for large buttons. She has 40 large stickers, and 50% of them are large buttons, so she gets 40 * 0.5 = 20 large buttons from the trade. Now she has 30 + 27 = 57 small buttons. She trades the rest of her large stickers for small buttons, so she trades 40 - 20 = 20 large stickers for 20 * 3 = 60 small buttons. Therefore, by the end, she has 57 + 60 = 117 buttons.",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 179,
+     "latency_s": 29.0,
+     "error": null,
+     "sample_index": 19,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

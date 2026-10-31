@@ -1,0 +1,317 @@
+{
+ "idx": 4,
+ "question": "Every day, Wendi feeds each of her chickens three cups of mixed chicken feed, containing seeds, mealworms and vegetables to help keep them healthy.  She gives the chickens their feed in three separate meals. In the morning, she gives her flock of chickens 15 cups of feed.  In the afternoon, she gives her chickens another 25 cups of feed.  How many cups of feed does she need to give her chickens in the final meal of the day if the size of Wendi's flock is 20 chickens?",
+ "gold": "20",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:25:19",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Every day, Wendi feeds each of her chickens three cups of mixed chicken feed, containing seeds, mealworms and vegetables to help keep them healthy.  She gives the chickens their feed in three separate meals. In the morning, she gives her flock of chickens 15 cups of feed.  In the afternoon, she gives her chickens another 25 cups of feed.  How many cups of feed does she need to give her chickens in the final meal of the day if the size of Wendi's flock is 20 chickens?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 18.923,
+   "samples": [
+    {
+     "seed": 22000400,
+     "text": "Each chicken eats 3 cups of feed per day. For 20 chickens, that's 3 * 20 = 60 cups of feed per day. Wendi gives out 15 + 25 = 40 cups of feed in the morning and afternoon. She needs 60 - 40 = 20 cups of feed for the final meal of the day.\nFinal answer: 20",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 90,
+     "latency_s": 14.392,
+     "error": null,
+     "sample_index": 0,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22000401,
+     "text": "In the morning, she feeds 15 cups of feed. In the afternoon, she feeds 25 cups of feed. In total, she feeds 15 + 25 = 40 cups of feed. She gives 3 cups of feed to each chicken. Thus, she feeds 3 * 20 = 60 cups of feed to the chickens. In the final meal, she needs to give 60 - 40 = 20 cups of feed.\nFinal answer: 20",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 109,
+     "latency_s": 17.095,
+     "error": null,
+     "sample_index": 1,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22000402,
+     "text": "First, calculate the total daily feed for all chickens: 20 chickens * 3 cups/chicken = 60 cups/day.\nNext, calculate the feed given in the morning: 15 cups.\nThen, calculate the feed given in the afternoon: 25 cups.\n\nNow, to find the number of cups needed for the final meal:\nTotal daily feed minus morning feed minus afternoon feed: 60 cups - 15 cups - 25 cups = 20 cups.\n\nSo, Wendi needs 20 cups of feed for the final meal of the day.\nFinal answer: 20 cups",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 129,
+     "latency_s": 18.92,
+     "error": null,
+     "sample_index": 2,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22000403,
+     "text": "Each chicken eats 3 cups of feed per day. The total number of cups for all chickens is 15 + 25 = 40 cups. Since there are 20 chickens, she needs 40 / 20 = 2 cups for each chicken in the final meal. The total amount of feed for the final meal is 20 * 2 = 40 cups.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 91,
+     "latency_s": 14.574,
+     "error": null,
+     "sample_index": 3,
+     "pred": "40",
+     "correct": false
+    },
+    {
+     "seed": 22000404,
+     "text": "In the morning, Wendi feeds 15 * 20 = 300 cups of feed to her chickens. In the afternoon, Wendi feeds 25 * 20 = 500 cups of feed to her chickens. In total, Wendi feeds her chickens 300 + 500 = 800 cups of feed. Therefore, Wendi needs to feed her chickens 800 - 15 - 25 = 760 cups of feed in the final meal of the day.\nFinal answer: 760",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 123,
+     "latency_s": 18.595,
+     "error": null,
+     "sample_index": 4,
+     "pred": "760",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 14.289,
+   "samples": [
+    {
+     "seed": 22000405,
+     "text": "Wendi feeds each chicken 3 cups of feed a day. She has 20 chickens, so she feeds 20 * 3 = 60 cups of feed per day. She gives 15 + 25 = 40 cups of feed in the morning and afternoon. The remaining feed is 60 - 40 = 20 cups.\nFinal answer: 20",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 85,
+     "latency_s": 12.919,
+     "error": null,
+     "sample_index": 5,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22000406,
+     "text": "The total amount of feed given daily is 15 + 25 = 40 cups. The total amount of feed given to all the chickens per day is 40 * 20 = 800 cups. In the final meal, she needs to give 800 / 3 = 266.666667 cups of feed.\nFinal answer: 266.67",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 91,
+     "latency_s": 13.539,
+     "error": null,
+     "sample_index": 6,
+     "pred": "266.67",
+     "correct": false
+    },
+    {
+     "seed": 22000407,
+     "text": "Each chicken gets 3 cups / day. So for 20 chickens the daily consumption is 20 * 3 = 60 cups. In the morning the chickens consume 15 cups and in the afternoon they consume 25 cups. That means they consume 15 + 25 = 40 cups in the first two meals. So the final meal of the day will be 60 - 40 = 20 cups of feed.\nFinal answer: 20",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 105,
+     "latency_s": 14.286,
+     "error": null,
+     "sample_index": 7,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22000408,
+     "text": "Each chicken has 3 cups of feed per day. That means 20 chickens have 3 * 20 = 60 cups of feed per day. She gives 15 + 25 = 40 cups in the morning and afternoon. So she has 60 - 40 = 20 cups of feed left for the final meal.\nFinal answer: 20",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 84,
+     "latency_s": 12.774,
+     "error": null,
+     "sample_index": 8,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22000409,
+     "text": "In the morning, she gives the chickens a total of 15 + 25 = 40 cups of feed. In one day, she gives each chicken 40 / 20 = 2 cups of feed. In the final meal, she needs 2 * 3 = 6 cups of feed.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 73,
+     "latency_s": 11.526,
+     "error": null,
+     "sample_index": 9,
+     "pred": "6",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 19.753,
+   "samples": [
+    {
+     "seed": 22000410,
+     "text": "First, we calculate the total amount of feed given to all the chickens in the two meals: 15 + 25 = 40 cups of feed. Since each chicken is given 3 cups of feed, the total number of chickens is 40 / 3 = 13.333333. Given the flock size is 20, the total amount of feed given in the final meal is 20 * 3 = 60 cups. \nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 109,
+     "latency_s": 16.303,
+     "error": null,
+     "sample_index": 10,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 22000411,
+     "text": "In total, Wendi feeds her chickens 15 + 25 = 40 cups of mixed feed per day. There are 40 / 20 = 2 cups of feed for each chicken.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 51,
+     "latency_s": 8.172,
+     "error": null,
+     "sample_index": 11,
+     "pred": "2",
+     "correct": false
+    },
+    {
+     "seed": 22000412,
+     "text": "In the morning and afternoon, Wendi has given a total of 15 + 25 = 40 cups of feed. Since there are 20 chickens, each chicken needs 40 / 20 = 2 cups of feed in the final meal.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 63,
+     "latency_s": 9.81,
+     "error": null,
+     "sample_index": 12,
+     "pred": "2",
+     "correct": false
+    },
+    {
+     "seed": 22000413,
+     "text": "First, we calculate the total amount of feed given to the chickens in the morning and afternoon:\n15 cups (morning) + 25 cups (afternoon) = 40 cups.\n\nNext, we divide the total amount of feed by the number of chickens to find out how much feed each chicken gets:\n40 cups / 20 chickens = 2 cups per chicken.\n\nSince each chicken gets 2 cups of feed, and they get three meals a day, we multiply the amount of feed per chicken by 3 to find out how much feed is given in each meal:\n2 cups per chicken * 3 meals per day = 6 cups per meal.\n\nTherefore, in the final meal of the day, Wendi needs to give each chicken 6 cups of feed.\nFinal answer: 6 cups",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 168,
+     "latency_s": 19.749,
+     "error": null,
+     "sample_index": 13,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 22000414,
+     "text": "Wendi feeds each chicken three cups of mixed chicken feed a day. So for 20 chickens, she feeds them 20 * 3 = 60 cups per day. In the morning, she gives them 15 cups, and in the afternoon, she gives them another 25 cups, so the total feed for the day is 15 + 25 = 40 cups. Therefore, she needs 60 - 40 = 20 cups of feed for the final meal.\nFinal answer: 20",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 115,
+     "latency_s": 16.949,
+     "error": null,
+     "sample_index": 14,
+     "pred": "20",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 17.811,
+   "samples": [
+    {
+     "seed": 22000415,
+     "text": "In the morning, Wendi gives the chickens 15 cups of feed. In the afternoon, she gives them 25 cups of feed. In total, she gives 15 + 25 = 40 cups of feed to the chickens in the morning and afternoon. Since she feeds each chicken 3 cups of feed per day, she needs 3 * 20 = 60 cups of feed for all the chickens in the flock. Thus, in the final meal, she needs to give the chickens 60 - 40 = 20 cups of feed. \nFinal answer: 20",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 130,
+     "latency_s": 17.81,
+     "error": null,
+     "sample_index": 15,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22000416,
+     "text": "In total, Wendi feeds her flock 15 + 25 = 40 cups of feed for the day. This is for 20 chickens, so each chicken gets 40 / 20 = 2 cups of feed for the day. She feeds each chicken 3 cups of feed, so the final meal for her flock is 3 * 2 = 6 cups of feed.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 91,
+     "latency_s": 13.736,
+     "error": null,
+     "sample_index": 16,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 22000417,
+     "text": "In the morning, Wendi gives 15 cups of feed to the chickens. In the afternoon, she gives 25 cups of feed to the chickens. So the total amount of feed given in the two meals is 15 + 25 = 40 cups of feed. If she has 20 chickens, then each chicken eats 40 / 20 = 2 cups of feed in the final meal of the day.",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 94,
+     "latency_s": 14.105,
+     "error": null,
+     "sample_index": 17,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22000418,
+     "text": "Each chicken gets 15 + 25 = 40 cups of feed throughout the day. Since Wendi has 20 chickens, she needs 20 * 40 = 800 cups of feed for all of her chickens. Each chicken should get 3 cups per meal, so Wendi needs 800 / 3 = 266.666667 cups of feed for the final meal. It would be necessary to round up to the nearest whole number since she cannot give a fraction of a cup of feed. Final answer: 267 cups.",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 128,
+     "latency_s": 17.701,
+     "error": null,
+     "sample_index": 18,
+     "pred": "267",
+     "correct": false
+    },
+    {
+     "seed": 22000419,
+     "text": "Wendi feeds her 20 chickens 3 * 15 + 3 * 25 = 45 + 75 = 120 cups of feed every day. In the final meal, she gives each chicken 120 / 20 = 6 cups of feed.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 468,
+     "completion_tokens": 70,
+     "latency_s": 11.291,
+     "error": null,
+     "sample_index": 19,
+     "pred": "6",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

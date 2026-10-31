@@ -1,0 +1,317 @@
+{
+ "idx": 1288,
+ "question": "Every day Charisma meditates for 15 minutes when she first wakes up and again before she goes to sleep.  5 days a week she practices 1 hour of yoga.  in 4 weeks, how much time has she spent on meditation/yoga practice?",
+ "gold": "34",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:14:32",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Every day Charisma meditates for 15 minutes when she first wakes up and again before she goes to sleep.  5 days a week she practices 1 hour of yoga.  in 4 weeks, how much time has she spent on meditation/yoga practice?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 27.212,
+   "samples": [
+    {
+     "seed": 11128800,
+     "text": "Charisma meditates for 15 minutes each day, so in one week, she spends 15 * 2 = 30 minutes on meditation. In 4 weeks, she spends 30 * 4 = 120 minutes on meditation. In one day, she practices yoga for 1 hour, which is 60 minutes. So in one week, she practices 60 * 5 = 300 minutes of yoga. In 4 weeks, she practices 300 * 4 = 1200 minutes of yoga. In total, she spends 1200 + 120 = 2400 minutes on meditation and yoga in 4 weeks.\nFinal answer: 2400",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 160,
+     "latency_s": 25.602,
+     "error": null,
+     "sample_index": 0,
+     "pred": "2400",
+     "correct": false
+    },
+    {
+     "seed": 11128801,
+     "text": "She meditates 2 times a day for a total of 2 * 15 = 30 minutes. She practices yoga for 1 hour, which is 60 minutes per day. In 4 weeks, she practices yoga 4 * 7 = 28 times. In 4 weeks, she practices yoga for 28 * 60 = 1680 minutes. She spends 4 * 7 = 28 days practicing yoga. So in 4 weeks, she spends 28 * 60 = 1680 minutes practicing yoga. In 4 weeks, she spends 4 * 7 * 15 = 420 minutes practicing meditation. In 4 weeks, she spends 1680 + 420 = 2100 minutes practicing yoga and meditation.\nFinal answer: 2100",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 187,
+     "latency_s": 27.21,
+     "error": null,
+     "sample_index": 1,
+     "pred": "2100",
+     "correct": false
+    },
+    {
+     "seed": 11128802,
+     "text": "Charisma meditates 15 * 2 = 30 minutes per day. In 4 weeks, she spends 30 * 5 = 150 minutes on meditation per week. In 4 weeks, she spends 150 * 4 = 600 minutes on meditation and yoga. This is 600 / 60 = 10 hours.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 90,
+     "latency_s": 17.941,
+     "error": null,
+     "sample_index": 2,
+     "pred": "10",
+     "correct": false
+    },
+    {
+     "seed": 11128803,
+     "text": "Charisma meditates for 15 * 2 = 30 minutes a day. In 5 days a week, she spends 30 * 5 = 150 minutes on meditation. In 4 weeks, she spends 150 * 4 = 600 minutes on meditation. In 4 weeks, she spends 600 * 60 = 36000 minutes on meditation.",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 93,
+     "latency_s": 18.396,
+     "error": null,
+     "sample_index": 3,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11128804,
+     "text": "Charisma meditates for 15 minutes each day. Over 5 days, she spends 15 * 5 = 75 minutes on meditation each week. In total, she spends 75 * 4 = 300 minutes on meditation in 4 weeks. This is equivalent to 300 / 60 = 5 hours.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 82,
+     "latency_s": 16.905,
+     "error": null,
+     "sample_index": 4,
+     "pred": "5",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 19.802,
+   "samples": [
+    {
+     "seed": 11128805,
+     "text": "Every day she meditates for 15 * 2 = 30 minutes. In a week, that's 30 * 5 = 150 minutes. That's 150 * 4 = 600 minutes in 4 weeks. 600 minutes is 10 hours.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 75,
+     "latency_s": 14.253,
+     "error": null,
+     "sample_index": 5,
+     "pred": "10",
+     "correct": false
+    },
+    {
+     "seed": 11128806,
+     "text": "She meditates 15 * 2 = 30 minutes per day. So in a week, she spends 30 * 5 = 150 minutes meditating. In a week, she practices yoga for 1 * 7 = 7 hours. In a week, she practices for 150 + 7 * 60 = 150 + 420 = 570 minutes. In 4 weeks, she practices for 4 * 570 = 2280 minutes.",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 116,
+     "latency_s": 19.677,
+     "error": null,
+     "sample_index": 6,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11128807,
+     "text": "Charisma meditates for 15 minutes twice a day, which is a total of 15 * 2 = 30 minutes per day. In 5 days, she practices yoga for 1 hour, which is 60 minutes. So in a week, she spends 30 minutes on meditation + 60 minutes on yoga = 90 minutes. In 4 weeks, she spends 4 * 90 = 360 minutes on meditation/yoga practice.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 111,
+     "latency_s": 19.096,
+     "error": null,
+     "sample_index": 7,
+     "pred": "360",
+     "correct": false
+    },
+    {
+     "seed": 11128808,
+     "text": "Every day she meditates for 15 * 2 = 30 minutes. 4 weeks is 4 * 7 = 28 days. 28 days is 28 * 30 = 840 minutes. 5 days a week she practices yoga, so in 4 weeks she practices 4 * 5 = 20 hours. 4 weeks is 4 * 24 = 96 hours. 840 + 96 = 936 hours.\nFinal answer: 936",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 118,
+     "latency_s": 19.799,
+     "error": null,
+     "sample_index": 8,
+     "pred": "936",
+     "correct": false
+    },
+    {
+     "seed": 11128809,
+     "text": "Every day she spends 15 minutes meditating + 15 minutes meditating = 30 minutes of meditation. In 5 days, that is 30 * 5 = 150 minutes. In 4 weeks, that is 150 * 4 = 600 minutes. In hours, that is 600 / 60 = 10 hours.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 92,
+     "latency_s": 16.544,
+     "error": null,
+     "sample_index": 9,
+     "pred": "10",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 21.283,
+   "samples": [
+    {
+     "seed": 11128810,
+     "text": "Charisma meditates for 15 minutes each day, so in 4 weeks, she meditates for 15 * 5 * 4 = 300 minutes. She also practices 1 hour of yoga each day, so in 4 weeks, she practices yoga for 60 * 5 * 4 = 1200 minutes. In total, she spends 300 + 1200 = 1500 minutes on meditation and yoga practice.\nFinal answer: 1500",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 113,
+     "latency_s": 19.561,
+     "error": null,
+     "sample_index": 10,
+     "pred": "1500",
+     "correct": false
+    },
+    {
+     "seed": 11128811,
+     "text": "Charisma meditates for 15 minutes every day for 5 days a week, which totals 15 * 5 = 75 minutes of meditation per week. She also practices 1 hour of yoga per day, which is 60 minutes. So, in total, she spends 75 + 60 = 135 minutes a week on meditation and yoga. Over 4 weeks, she spends 135 * 4 = 540 minutes on meditation and yoga practice.\nFinal answer: 540",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 115,
+     "latency_s": 19.755,
+     "error": null,
+     "sample_index": 11,
+     "pred": "540",
+     "correct": false
+    },
+    {
+     "seed": 11128812,
+     "text": "She meditates 15 * 2 = 30 minutes a day. Over 4 weeks, she spends 30 * 5 = 150 minutes a week on meditation. That means she spends 150 * 4 = 600 minutes a week on yoga and meditation. In total, over 4 weeks, she has spent 600 * 4 = 2400 minutes on meditation and yoga.\nFinal answer: 2400",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 104,
+     "latency_s": 18.368,
+     "error": null,
+     "sample_index": 12,
+     "pred": "2400",
+     "correct": false
+    },
+    {
+     "seed": 11128813,
+     "text": "Charisma meditates for 15 minutes per day, so in 4 weeks, she spends 15 * 5 * 4 = 300 minutes on meditation. Yoga takes 1 hour per day, so she spends 1 * 5 * 4 = 20 hours on yoga. Total time spent is 300 + 20 = 320 minutes or 5 hours.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 94,
+     "latency_s": 16.387,
+     "error": null,
+     "sample_index": 13,
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "seed": 11128814,
+     "text": "Charisma meditates for 15 minutes * 2 days = 30 minutes a day. In one week, she meditates for 30 minutes * 5 days = 150 minutes. In four weeks, she spends 150 minutes * 4 = 600 minutes on meditation. Yoga is practiced for 1 hour * 5 days = 50 minutes a day. In four weeks, she spends 50 minutes * 4 = 200 minutes on yoga. Altogether, she spends 600 + 200 = 800 minutes on meditation and yoga.\nFinal answer: 800",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 141,
+     "latency_s": 21.267,
+     "error": null,
+     "sample_index": 14,
+     "pred": "800",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 22.354,
+   "samples": [
+    {
+     "seed": 11128815,
+     "text": "Every day she meditates for 15 * 2 = 30 minutes. She practices yoga for 1 * 5 = 5 hours. In one week she practices 30 * 5 = 150 minutes of meditation and 5 * 60 = 300 minutes of yoga. In 4 weeks she practices 150 * 4 = 600 minutes of meditation and 300 * 4 = 1200 minutes of yoga.  In total, she practices 600 + 1200 = 1800 minutes of meditation and yoga.\nFinal answer: 1800",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 143,
+     "latency_s": 21.936,
+     "error": null,
+     "sample_index": 15,
+     "pred": "1800",
+     "correct": false
+    },
+    {
+     "seed": 11128816,
+     "text": "Charisma meditates for 15 * 2 = 30 minutes each day. In a week, she spends 30 * 5 = 150 minutes on meditation. In a week, she spends 60 * 5 = 300 minutes on yoga. In 4 weeks, she spends 150 * 4 = 600 minutes on meditation and 300 * 4 = 1200 minutes on yoga. In total, she spends 600 + 1200 = 1800 minutes on meditation and yoga practice.\nFinal answer: 1800",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 138,
+     "latency_s": 21.418,
+     "error": null,
+     "sample_index": 16,
+     "pred": "1800",
+     "correct": false
+    },
+    {
+     "seed": 11128817,
+     "text": "Charisma spends 15 * 2 = 30 minutes meditating each day. That means she spends 30 * 5 = 150 minutes a week on meditation. Since she practices yoga, 1 hour is 60 minutes a week, meaning she spends 60 + 150 = 210 minutes on meditation and yoga in a week. In 4 weeks, she has spent 210 * 4 = 840 minutes on meditation and yoga practice.\nFinal answer: 840",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 116,
+     "latency_s": 18.399,
+     "error": null,
+     "sample_index": 17,
+     "pred": "840",
+     "correct": false
+    },
+    {
+     "seed": 11128818,
+     "text": "Charisma meditates for 15 minutes a day, 5 days a week, so she spends 15 * 5 = 75 minutes per week on meditation. In 4 weeks, she spends 75 * 4 = 300 minutes on meditation. Yoga takes 1 hour a day, 5 days a week, which is 5 * 60 = 300 minutes per week. In 4 weeks, she spends 300 * 4 = 1200 minutes on yoga. Altogether, she spends 300 + 1200 = 1500 minutes on meditation and yoga practice.\nFinal answer: 1500",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 151,
+     "latency_s": 22.35,
+     "error": null,
+     "sample_index": 18,
+     "pred": "1500",
+     "correct": false
+    },
+    {
+     "seed": 11128819,
+     "text": "Charisma meditates for 15 minutes each of the 5 weekdays, which totals to 15 * 5 = 75 minutes per week. She also practices yoga for 1 hour each of the 5 weekdays, which totals to 60 minutes per week. In total, she spends 75 + 60 = 135 minutes per week on her meditation and yoga practice. Over 4 weeks, she spends 135 * 4 = 540 minutes practicing meditation and yoga.\n\nFinal answer: 540",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 118,
+     "latency_s": 18.727,
+     "error": null,
+     "sample_index": 19,
+     "pred": "540",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

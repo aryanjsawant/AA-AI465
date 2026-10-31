@@ -1,0 +1,317 @@
+{
+ "idx": 803,
+ "question": "Kris is trying to earn a video game achievement for playing a total of 30 hours. If Kris plays for half an hour every day for 2 weeks then plays for 2 hours every day for a week, how many hours does she still need to play to earn the achievement?",
+ "gold": "9",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:12:14",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Kris is trying to earn a video game achievement for playing a total of 30 hours. If Kris plays for half an hour every day for 2 weeks then plays for 2 hours every day for a week, how many hours does she still need to play to earn the achievement?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 20.307,
+   "samples": [
+    {
+     "seed": 22080300,
+     "text": "In 2 weeks, Kris plays 2 * 2 * 30 / 2 = 60 hours. In 1 week, she plays 1 * 2 * 30 = 60 hours. So in total, she has played 60 + 60 = 120 hours. To earn the achievement, she needs to play for 30 more hours, so she still needs to play 30 - 120 = -90 hours. Since she can't play a negative number of hours, she has already surpassed the requirement by 90 hours.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 133,
+     "latency_s": 20.306,
+     "error": null,
+     "sample_index": 0,
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "seed": 22080301,
+     "text": "Kris plays for 0.5 hours/day * 16 days = 8 hours in the first two weeks. She then plays for 2 hours/day * 7 days = 14 hours in the next week. In total, Kris has played 8 + 14 = 22 hours. To reach 30 hours, Kris needs to play 30 - 22 = 8 more hours.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 95,
+     "latency_s": 15.93,
+     "error": null,
+     "sample_index": 1,
+     "pred": "8",
+     "correct": false
+    },
+    {
+     "seed": 22080302,
+     "text": "In the first two weeks, Kris plays for 5 days a week, so that's 5 * 2 = 10 days. That's 10 * 0.5 = 5 hours. In the following week, she plays for 7 days a week, so that's 7 * 2 = 14 hours. This totals 5 + 14 = 19 hours so far. She needs to play 30 - 19 = 11 more hours to earn the achievement.",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 111,
+     "latency_s": 18.586,
+     "error": null,
+     "sample_index": 2,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22080303,
+     "text": "Kris plays for half an hour every day for 2 weeks, which is 2 * 16 = 32 hours. Then, she plays for 2 hours every day for a week, which is 1 * 2 = 2 hours. So, in total, she has played 32 + 2 = 34 hours. To earn the achievement, she needs to play for 30 hours, so she still needs to play 30 - 34 = -4 hours. Since she can't play negative hours, it means she has already exceeded the target.",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 125,
+     "latency_s": 19.862,
+     "error": null,
+     "sample_index": 3,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22080304,
+     "text": "In 2 weeks, Kris plays for 2 * 14 = 28 hours. In one week, Kris plays for 1 * 7 = 7 hours. Total playing time is 28 + 7 = 35 hours. To earn the achievement, Kris needs to play for 30 hours, so she still needs to play 30 - 35 = -5 hours. This negative value indicates she has already exceeded the requirement by 5 hours.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 107,
+     "latency_s": 18.089,
+     "error": null,
+     "sample_index": 4,
+     "pred": "0",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 19.176,
+   "samples": [
+    {
+     "seed": 22080305,
+     "text": "Kris plays for 30 / 2 = 15 hours in 2 weeks. She plays for 2 * 7 = 14 hours in the first week. In total, Kris has played for 15 + 14 = 29 hours. To reach 30 hours, Kris still needs to play for 30 - 29 = 1 hour.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 89,
+     "latency_s": 14.903,
+     "error": null,
+     "sample_index": 5,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22080306,
+     "text": "In two weeks, Kris plays for 2 * 30 / 2 = 30 hours. In a week, she plays for 2 * 2 = 4 hours. So in two weeks, she plays for 30 + 4 = 34 hours. In total, Kris needs to play 30 hours to earn the achievement, and she has already played 34 hours. Therefore, she still needs to play 34 - 30 = 4 hours to earn the achievement.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 114,
+     "latency_s": 18.525,
+     "error": null,
+     "sample_index": 6,
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "seed": 22080307,
+     "text": "Kris plays for half an hour every day for 2 weeks, which is 2 * 16 = 32 half hours. So she has played 32 half hours. That means she still needs to play 30 - 32 / 2 = 30 - 16 = 14 hours. Playing 2 hours every day for a week is 2 * 7 = 14 hours. So she still needs to play 14 - 14 = 0 hours to earn the achievement.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 119,
+     "latency_s": 19.114,
+     "error": null,
+     "sample_index": 7,
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "seed": 22080308,
+     "text": "In the first 2 weeks, Kris plays 2 * 1/2 * 7 = 7 hours. For the next week, she plays 2 * 7 = 14 hours. So, in total, she has played 7 + 14 = 21 hours. To reach 30 hours, Kris still needs to play 30 - 21 = 9 hours.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 92,
+     "latency_s": 15.266,
+     "error": null,
+     "sample_index": 8,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 22080309,
+     "text": "Kris plays for half an hour every day for 2 weeks, which is 2 * 16 = 32 half hours. Adding the 2 hours she plays every day for a week gives 2 * 7 = 14 hours. So, she has played 32 + 14 = 46 half hours. To play for a total of 30 hours, she needs to play 30 - 46 = -16 half hours. This means she needs to play for 16 more half hours to reach her goal.",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 120,
+     "latency_s": 19.173,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 17.875,
+   "samples": [
+    {
+     "seed": 22080310,
+     "text": "In the first 2 weeks, Kris plays for half an hour every day, so she plays for 2 * 7 * 0.5 = 7 hours. In the next week, she plays for 2 hours every day for a week, so she plays for 1 * 7 * 2 = 14 hours. Total, she has played for 7 + 14 = 21 hours. Kris still needs to play 30 - 21 = 9 more hours to earn the achievement.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 116,
+     "latency_s": 17.874,
+     "error": null,
+     "sample_index": 10,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 22080311,
+     "text": "Kris plays for half an hour every day for 2 weeks, which is 2 * 16 = 32 hours. She also plays for 2 hours every day for a week, which is 1 * 7 = 7 hours. So far, she has played 32 + 7 = 39 hours. To earn the achievement, she still needs to play 30 - 39 = -9 hours, which means she has already exceeded the 30-hour goal.",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 107,
+     "latency_s": 17.35,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22080312,
+     "text": "In 2 weeks, Kris plays for 2 * 14 = 28 days. On those days, she plays for 28 / 2 = 14 hours. In the week, she plays for 1 * 7 = 7 hours. So in total, Kris has played for 14 + 7 = 21 hours. Thus, Kris still needs to play for 30 - 21 = 9 hours to earn the achievement.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 106,
+     "latency_s": 17.241,
+     "error": null,
+     "sample_index": 12,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 22080313,
+     "text": "In 2 weeks, Kris plays for 2 * 2 = 4 hours a day. In total, Kris plays for 2 * 2 + 2 = 6 hours a day. She has already played for 6 * 2 + 4 = 16 hours. So, Kris still needs to play for 30 - 16 = 14 hours to earn the achievement.\nFinal answer: 14",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 92,
+     "latency_s": 15.067,
+     "error": null,
+     "sample_index": 13,
+     "pred": "14",
+     "correct": false
+    },
+    {
+     "seed": 22080314,
+     "text": "In 2 weeks, Kris plays for 14 days * 0.5 hour/day = 7 hours. In a week, she plays for 7 days * 2 hours/day = 14 hours. So far, she has played 7 + 14 = 21 hours. To earn the achievement, Kris still needs to play 30 - 21 = 9 hours.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 91,
+     "latency_s": 14.865,
+     "error": null,
+     "sample_index": 14,
+     "pred": "9",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 20.752,
+   "samples": [
+    {
+     "seed": 22080315,
+     "text": "In 2 weeks, Kris plays for 2 * 14 * 0.5 = 14 hours. In a week, she plays for 7 * 2 = 14 hours. So in total, she has played 14 + 14 = 28 hours. To earn the achievement, Kris needs to play a total of 30 hours, which means she still needs to play 30 - 28 = 2 hours.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 105,
+     "latency_s": 16.867,
+     "error": null,
+     "sample_index": 15,
+     "pred": "2",
+     "correct": false
+    },
+    {
+     "seed": 22080316,
+     "text": "Kris plays for half an hour every day for 2 weeks, which totals 2 * 16 * 0.5 = 16 hours. She also plays for 2 hours every day for a week, which totals 1 * 1 * 2 = 2 hours. In total, she has played for 16 + 2 = 18 hours. To reach 30 hours, Kris still needs to play for 30 - 18 = 12 hours.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 113,
+     "latency_s": 17.99,
+     "error": null,
+     "sample_index": 16,
+     "pred": "12",
+     "correct": false
+    },
+    {
+     "seed": 22080317,
+     "text": "For the first 2 weeks, Kris plays 2 * 14 * 0.5 = 14 hours. The second week she plays 7 * 2 = 14 hours. In total, Kris has played 14 + 14 = 28 hours. She still needs to play 30 - 28 = 2 hours to earn the achievement.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 88,
+     "latency_s": 14.814,
+     "error": null,
+     "sample_index": 17,
+     "pred": "2",
+     "correct": false
+    },
+    {
+     "seed": 22080318,
+     "text": "First, we calculate the total hours played in the first 2 weeks: \\( \\frac{1}{2} \\text{ hour/day} \\times 14 \\text{ days} = 7 \\text{ hours} \\). Then, we calculate the total hours played in the next week: \\( 2 \\text{ hours/day} \\times 7 \\text{ days} = 14 \\text{ hours} \\). Adding these together gives us \\( 7 + 14 = 21 \\text{ hours} \\). To earn the achievement, Kris needs to play 30 hours in total. Therefore, the remaining hours she needs to play are \\( 30 - 21 = 9 \\text{ hours} \\).\n\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 164,
+     "latency_s": 20.75,
+     "error": null,
+     "sample_index": 18,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 22080319,
+     "text": "Kris plays for half an hour every day for 2 weeks, which is 2 * 7 * 0.5 = 7 hours. She also plays for 2 hours every day for a week, which is 1 * 7 * 2 = 14 hours. In total, Kris has already played 7 + 14 = 21 hours. To reach the 30-hour goal, she still needs to play 30 - 21 = 9 hours.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 111,
+     "latency_s": 17.752,
+     "error": null,
+     "sample_index": 19,
+     "pred": "9",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

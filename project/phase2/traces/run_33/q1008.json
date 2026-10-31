@@ -1,0 +1,317 @@
+{
+ "idx": 1008,
+ "question": "Matteo traveled at 55 miles per hour for 4 hours. Shandy traveled at 45 miles per hour for 10 hours. How many miles farther did Shandy drive than Matteo?",
+ "gold": "230",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:23:54",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Matteo traveled at 55 miles per hour for 4 hours. Shandy traveled at 45 miles per hour for 10 hours. How many miles farther did Shandy drive than Matteo?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 10.035,
+   "samples": [
+    {
+     "seed": 33100800,
+     "text": "Matteo drove 55 * 4 = 220 miles. Shandy drove 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 9.532,
+     "error": null,
+     "sample_index": 0,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100801,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther than Matteo.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 65,
+     "latency_s": 9.91,
+     "error": null,
+     "sample_index": 1,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100802,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther than Matteo.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 65,
+     "latency_s": 9.904,
+     "error": null,
+     "sample_index": 2,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100803,
+     "text": "Matteo drove 55 * 4 = 220 miles. Shandy drove 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther than Matteo.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 65,
+     "latency_s": 9.898,
+     "error": null,
+     "sample_index": 3,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100804,
+     "text": "Matteo's distance is 55 * 4 = 220 miles. Shandy's distance is 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 66,
+     "latency_s": 10.031,
+     "error": null,
+     "sample_index": 4,
+     "pred": "230",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 13.223,
+   "samples": [
+    {
+     "seed": 33100805,
+     "text": "Matteo drove 55 * 4 = 220 miles. Shandy drove 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 13.21,
+     "error": null,
+     "sample_index": 5,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100806,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 13.214,
+     "error": null,
+     "sample_index": 6,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100807,
+     "text": "Matteo drove 55 * 4 = 220 miles. Shandy drove 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 13.027,
+     "error": null,
+     "sample_index": 7,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100808,
+     "text": "Matteo drove 55 * 4 = 220 miles. Shandy drove 45 * 10 = 450 miles. The difference is 450 - 220 = 230 miles.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 61,
+     "latency_s": 13.037,
+     "error": null,
+     "sample_index": 8,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100809,
+     "text": "Matteo drove 55 * 4 = 220 miles. Shandy drove 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 13.218,
+     "error": null,
+     "sample_index": 9,
+     "pred": "230",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 12.717,
+   "samples": [
+    {
+     "seed": 33100810,
+     "text": "Matteo drove 55 * 4 = 220 miles. Shandy drove 45 * 10 = 450 miles. So Shandy drove 450 - 220 = 230 miles farther than Matteo.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 66,
+     "latency_s": 12.715,
+     "error": null,
+     "sample_index": 10,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100811,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy traveled 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 12.254,
+     "error": null,
+     "sample_index": 11,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100812,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther than Matteo.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 65,
+     "latency_s": 12.643,
+     "error": null,
+     "sample_index": 12,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100813,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 12.103,
+     "error": null,
+     "sample_index": 13,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100814,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 12.261,
+     "error": null,
+     "sample_index": 14,
+     "pred": "230",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 15.349,
+   "samples": [
+    {
+     "seed": 33100815,
+     "text": "Matteo drives 55 * 4 = 220 miles. Shandy drives 45 * 10 = 450 miles. The difference is 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 14.67,
+     "error": null,
+     "sample_index": 15,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100816,
+     "text": "Matteo's distance is 55 * 4 = 220 miles. Shandy's distance is 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 66,
+     "latency_s": 15.347,
+     "error": null,
+     "sample_index": 16,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100817,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Thus, Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 64,
+     "latency_s": 15.138,
+     "error": null,
+     "sample_index": 17,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100818,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther than Matteo.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 65,
+     "latency_s": 15.271,
+     "error": null,
+     "sample_index": 18,
+     "pred": "230",
+     "correct": true
+    },
+    {
+     "seed": 33100819,
+     "text": "Matteo traveled 55 * 4 = 220 miles. Shandy traveled 45 * 10 = 450 miles. Shandy drove 450 - 220 = 230 miles farther.\nFinal answer: 230",
+     "finish_reason": "stop",
+     "prompt_tokens": 401,
+     "completion_tokens": 62,
+     "latency_s": 14.685,
+     "error": null,
+     "sample_index": 19,
+     "pred": "230",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

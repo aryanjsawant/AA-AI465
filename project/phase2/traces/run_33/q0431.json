@@ -1,0 +1,317 @@
+{
+ "idx": 431,
+ "question": "Dora wants to buy a skipping rope that costs $6, a board game that costs $11, and a playground ball that costs $2. She has saved $2 from her allowance, and her mother gave her $16. How much more money does Dora need to buy the skipping rope, the game, and the ball?",
+ "gold": "1",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:44:06",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Dora wants to buy a skipping rope that costs $6, a board game that costs $11, and a playground ball that costs $2. She has saved $2 from her allowance, and her mother gave her $16. How much more money does Dora need to buy the skipping rope, the game, and the ball?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 14.51,
+   "samples": [
+    {
+     "seed": 33043100,
+     "text": "First, we calculate the total cost of the items: $6 + $11 + $2 = $21. Then we add the money Dora has saved and her mother gave her: $2 + $16 = $18. Finally, we subtract the total amount of money she has from the total cost of the items: $21 - $18 = $3. Dora needs $3 more to buy the skipping rope, the game, and the ball.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 106,
+     "latency_s": 14.509,
+     "error": null,
+     "sample_index": 0,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33043101,
+     "text": "The total cost of the items is $6 + $11 + $2 = $21. Dora has $16 + $2 = $18. She needs $21 - $18 = $3 more to buy the items.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 59,
+     "latency_s": 11.673,
+     "error": null,
+     "sample_index": 1,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33043102,
+     "text": "The total cost for the items is 6 + 11 + 2 = 19 dollars. Dora has 2 + 16 = 18 dollars. She needs 19 - 18 = 1 more dollar. \nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 59,
+     "latency_s": 11.679,
+     "error": null,
+     "sample_index": 2,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33043103,
+     "text": "The total cost of the items is 6 + 11 + 2 = 19 dollars. Dora has 2 + 16 = 18 dollars. She needs 19 - 18 = 1 more dollar.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 58,
+     "latency_s": 11.552,
+     "error": null,
+     "sample_index": 3,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33043104,
+     "text": "The total cost is 6 + 11 + 2 = 19 dollars. Dora has 2 + 16 = 18 dollars. She still needs 19 - 18 = 1 more dollar.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 56,
+     "latency_s": 11.129,
+     "error": null,
+     "sample_index": 4,
+     "pred": "1",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 16.432,
+   "samples": [
+    {
+     "seed": 33043105,
+     "text": "The total cost of all three items is $6 + $11 + $2 = $21. Dora has $2 + $16 = $18. To find out how much more money Dora needs, we subtract the amount she has from the total cost: $21 - $18 = $3. Therefore, Dora needs 3 more dollars to buy the items.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 89,
+     "latency_s": 16.43,
+     "error": null,
+     "sample_index": 5,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33043106,
+     "text": "The total cost of the items is 6 + 11 + 2 = 19 dollars. Dora has 2 + 16 = 18 dollars in total. To buy all the items, she needs 19 - 18 = 1 dollar more.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 66,
+     "latency_s": 14.153,
+     "error": null,
+     "sample_index": 6,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33043107,
+     "text": "Dora has saved $2 + $16 = $18. The total cost of the items is $6 + $11 + $2 = $21. To buy all the items, Dora needs $21 - $18 = $3 more.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 63,
+     "latency_s": 13.652,
+     "error": null,
+     "sample_index": 7,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33043108,
+     "text": "The total cost is 6 + 11 + 2 = 29 dollars. Dora has 2 + 16 = 18 dollars. She still needs 29 - 18 = 11 dollars.\nFinal answer: 11",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 57,
+     "latency_s": 12.404,
+     "error": null,
+     "sample_index": 8,
+     "pred": "11",
+     "correct": false
+    },
+    {
+     "seed": 33043109,
+     "text": "Dora has a total of $2 + $16 = $18. She needs $6 + $11 + $2 = $21. The amount she lacks is $21 - $18 = $3.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 55,
+     "latency_s": 11.949,
+     "error": null,
+     "sample_index": 9,
+     "pred": "3",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 22.282,
+   "samples": [
+    {
+     "seed": 33043110,
+     "text": "Dora has a total of 2 + 16 = 18 dollars. The total cost of the items is 6 + 11 + 2 = 19 dollars. Dora needs 19 - 18 = 1 more dollar to buy all the items.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 67,
+     "latency_s": 20.587,
+     "error": null,
+     "sample_index": 10,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33043111,
+     "text": "The total cost of the items is 6 + 11 + 2 = 19 dollars. Dora has a total of 2 + 16 = 18 dollars. The amount Dora still needs is 19 - 18 = 1 dollar.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 65,
+     "latency_s": 20.352,
+     "error": null,
+     "sample_index": 11,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33043112,
+     "text": "First, we calculate the total cost of the items: $6 + $11 + $2 = $21. Dora has saved $2 and received an additional $16 from her mother, which totals to $2 + $16 = $18. To find out how much more money Dora needs, we subtract the amount she has from the total cost: $21 - $18 = $3. \nFinal answer: $3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 96,
+     "latency_s": 22.276,
+     "error": null,
+     "sample_index": 12,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33043113,
+     "text": "The total cost of the items is $6 + $11 + $2 = $29. Dora has $2 + $16 = $18. Thus, Dora needs $29 - $18 = $11 more.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 54,
+     "latency_s": 17.405,
+     "error": null,
+     "sample_index": 13,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33043114,
+     "text": "Dora has a total of $2 + $16 = $18. The total cost of the items is $6 + $11 + $2 = $21. To buy all the items, Dora needs $21 - $18 = $3 more.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 65,
+     "latency_s": 20.329,
+     "error": null,
+     "sample_index": 14,
+     "pred": "3",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 13.478,
+   "samples": [
+    {
+     "seed": 33043115,
+     "text": "The total cost of the items is $6 + $11 + $2 = $21. Adding the money Dora has saved and from her mother, she has $2 + $16 = $18. The amount she still needs is $21 - $18 = $3.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 69,
+     "latency_s": 12.996,
+     "error": null,
+     "sample_index": 15,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33043116,
+     "text": "Dora needs $6 + $11 + $2 = $21 to buy all the items. She has $2 + $16 = $18. To buy all the items, she still needs $21 - $18 = $3.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 61,
+     "latency_s": 11.86,
+     "error": null,
+     "sample_index": 16,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33043117,
+     "text": "The total cost of the items is $6 + $11 + $2 = $29. Dora has $2 + $16 = $18. To buy the items, she needs $29 - $18 = $11 more.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 56,
+     "latency_s": 10.801,
+     "error": null,
+     "sample_index": 17,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33043118,
+     "text": "Dora has $2 + $16 = $18. She needs $6 + $11 + $2 = $21. Therefore, Dora needs $21 - $18 = $3 more to buy the skipping rope, the game, and the ball.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 65,
+     "latency_s": 12.576,
+     "error": null,
+     "sample_index": 18,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33043119,
+     "text": "The total cost of all the items is $6 + $11 + $2 = $29. Adding her allowance and her mother's gift, Dora has $2 + $16 = $18. To buy all the items, Dora still needs $29 - $18 = $11. \n\nFinal answer: 11",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 75,
+     "latency_s": 13.474,
+     "error": null,
+     "sample_index": 19,
+     "pred": "11",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

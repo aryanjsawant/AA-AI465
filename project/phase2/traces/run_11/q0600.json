@@ -1,0 +1,317 @@
+{
+ "idx": 600,
+ "question": "Jamaal is at the gym. He has been using an 8-pound weight. He increases the weight that he uses by 50%. It turns out to be too heavy, so he uses a weight two pounds lighter than that. What is the weight, in pounds, that he now uses?",
+ "gold": "10",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:26:43",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Jamaal is at the gym. He has been using an 8-pound weight. He increases the weight that he uses by 50%. It turns out to be too heavy, so he uses a weight two pounds lighter than that. What is the weight, in pounds, that he now uses?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 14.229,
+   "samples": [
+    {
+     "seed": 11060000,
+     "text": "Jamaal starts with 8 pounds and increases by 50%, which is 8 * 0.5 = 4 pounds. So he now uses 8 + 4 = 12 pounds. Then he uses a weight two pounds lighter, which is 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 74,
+     "latency_s": 14.228,
+     "error": null,
+     "sample_index": 0,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060001,
+     "text": "First, he increased the weight by 50%, which is 8 * 0.5 = 4 pounds. So, his new weight is 8 + 4 = 12 pounds. Then, he uses a weight two pounds lighter, which means 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 73,
+     "latency_s": 14.172,
+     "error": null,
+     "sample_index": 1,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060002,
+     "text": "The new weight is 8 * (1 + 0.5) = 12 pounds. But, since he uses a weight two pounds lighter than that, the final weight is 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 57,
+     "latency_s": 12.314,
+     "error": null,
+     "sample_index": 2,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060003,
+     "text": "Jamaal increased the weight by 8 * 0.50 = 4 pounds. So, the new weight is 8 + 4 = 12 pounds. Then, he uses a weight two pounds lighter, meaning the new weight is 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 71,
+     "latency_s": 13.996,
+     "error": null,
+     "sample_index": 3,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060004,
+     "text": "He used an 8-pound weight initially. After increasing it by 50%, he uses 8 * 1.5 = 12 pounds. Then, he uses a weight two pounds lighter, which is 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 63,
+     "latency_s": 13.028,
+     "error": null,
+     "sample_index": 4,
+     "pred": "10",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 10.445,
+   "samples": [
+    {
+     "seed": 11060005,
+     "text": "Jamaal started with an 8-pound weight and increased it by 50%, making it 8 + 8 * 0.5 = 12 pounds. Then he used a weight that was two pounds lighter, making it 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 68,
+     "latency_s": 10.444,
+     "error": null,
+     "sample_index": 5,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060006,
+     "text": "Jamaal's first weight is 8 pounds. He increases that to 8 * 1.5 = 12 pounds. He then uses a two pound lighter weight, which is 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 58,
+     "latency_s": 9.786,
+     "error": null,
+     "sample_index": 6,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060007,
+     "text": "He first increases the weight by 50% to 8 + 0.5 * 8 = 12 pounds. Then, he uses a weight two pounds lighter than that, so he uses 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 61,
+     "latency_s": 10.037,
+     "error": null,
+     "sample_index": 7,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060008,
+     "text": "The weight increased by 50% from 8 pounds to 8 * 0.5 = 4 pounds. Now Jamaal uses a weight two pounds less than that, which is 4 - 2 = 2 pounds.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 55,
+     "latency_s": 9.358,
+     "error": null,
+     "sample_index": 8,
+     "pred": "2",
+     "correct": false
+    },
+    {
+     "seed": 11060009,
+     "text": "He initially used 8 * 1.5 = 12 pounds. He then used 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 38,
+     "latency_s": 6.358,
+     "error": null,
+     "sample_index": 9,
+     "pred": "10",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 11.779,
+   "samples": [
+    {
+     "seed": 11060010,
+     "text": "First, we find the weight after the increase: 8 pounds * 1.5 = 12 pounds. Then, we subtract the two pounds: 12 pounds - 2 pounds = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 53,
+     "latency_s": 8.674,
+     "error": null,
+     "sample_index": 10,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060011,
+     "text": "The weight he uses is 8 * (1 + 50 / 100) = 12 pounds. The weight that is two pounds lighter is 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 53,
+     "latency_s": 8.663,
+     "error": null,
+     "sample_index": 11,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060012,
+     "text": "First, he uses 8 * 1.5 = 12 pounds of weight. Then, it is 12 - 2 = 10 pounds of weight.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 44,
+     "latency_s": 7.024,
+     "error": null,
+     "sample_index": 12,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060013,
+     "text": "Jamaal increases the weight by 8 * 50/100 = 4 pounds. The weight is now 8 + 4 = 12 pounds. But it's 2 pounds lighter, so it's 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 67,
+     "latency_s": 10.25,
+     "error": null,
+     "sample_index": 13,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060014,
+     "text": "Jamaal originally uses an 8-pound weight. When he increases it by 50%, that makes 8 + (8 * 0.5) = 12 pounds. But then he finds that it's too heavy, so he uses a weight that's two pounds lighter than that, which means 12 - 2 = 10 pounds. So now he uses a 10-pound weight.\nFinal answer: 10 lbs",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 95,
+     "latency_s": 11.776,
+     "error": null,
+     "sample_index": 14,
+     "pred": "10",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 10.516,
+   "samples": [
+    {
+     "seed": 11060015,
+     "text": "Jamaal originally uses a 8-pound weight. After increasing it by 50%, he now uses 8 + 8 * 0.5 = 12 pounds. Then, he uses a weight two pounds lighter, so he uses 12 - 2 = 10 pounds.\nFinal answer: 10 pounds",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 71,
+     "latency_s": 10.515,
+     "error": null,
+     "sample_index": 15,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060016,
+     "text": "Jamaal's new weight is 8 * 1.5 = 12 pounds. His weight is now 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 43,
+     "latency_s": 7.03,
+     "error": null,
+     "sample_index": 16,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060017,
+     "text": "Jamaal starts with an 8-pound weight. When he increases it by 50%, he now uses 8 * 1.5 = 12 pounds. After that, he uses a weight two pounds lighter, so he now uses 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 70,
+     "latency_s": 10.432,
+     "error": null,
+     "sample_index": 17,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060018,
+     "text": "The original weight is 8 pounds. Increasing it by 50% makes it 8 + (0.5 * 8) = 12 pounds. Reducing that by 2 pounds makes it 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 62,
+     "latency_s": 9.408,
+     "error": null,
+     "sample_index": 18,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11060019,
+     "text": "First, he increases the weight by 50%, which means he now uses 8 + (8 * 0.5) = 12 pounds. Then, he uses a weight two pounds lighter, so he now uses 12 - 2 = 10 pounds.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 419,
+     "completion_tokens": 66,
+     "latency_s": 10.015,
+     "error": null,
+     "sample_index": 19,
+     "pred": "10",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,317 @@
+{
+ "idx": 474,
+ "question": "At a certain grade level, three-fourths of students have a desktop computer at home. If 20 students do not have desktop computers, how many students are there at that grade level?",
+ "gold": "80",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:16:45",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "At a certain grade level, three-fourths of students have a desktop computer at home. If 20 students do not have desktop computers, how many students are there at that grade level?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 19.532,
+   "samples": [
+    {
+     "seed": 11047400,
+     "text": "If 20 students do not have desktop computers, then 20 / 3 / 4 = 20 / 12 = 5/3 = 1 2/3 students have desktop computers at home. This is 1/4 of the total number of students, so the total number of students is 4 * 5/3 = 20/3 = 6 2/3. Since the number of students must be an integer, we round 6 2/3 to the nearest whole number, which is 7. Therefore, there are 7 students at that grade level.\nFinal answer: 7",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 136,
+     "latency_s": 19.531,
+     "error": null,
+     "sample_index": 0,
+     "pred": "7",
+     "correct": false
+    },
+    {
+     "seed": 11047401,
+     "text": "If 20 students do not have desktop computers, the remaining 1/4 of the students do have desktops. This means 20 = 1/4 * total students, so the total number of students is 20 * 4 = 80.\nFinal answer: 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 64,
+     "latency_s": 11.852,
+     "error": null,
+     "sample_index": 1,
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "seed": 11047402,
+     "text": "If 3/4 of the students have desktops, then 1/4 do not have desktops. If 20 students do not have desktops, then 20 / (1/4) = 80 students have desktops. So 80 + 20 = 100 students are at that grade level.\nFinal answer: 100",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 81,
+     "latency_s": 13.677,
+     "error": null,
+     "sample_index": 2,
+     "pred": "100",
+     "correct": false
+    },
+    {
+     "seed": 11047403,
+     "text": "If 20 students do not have desktop computers, that means that 4/4 - 1/4 = 3/4 of the students have desktop computers. So, 3/4 of the students is 20. That means the total number of students is 20 / 3/4 = 28.333 students.\nFinal answer: 28.333",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 86,
+     "latency_s": 14.406,
+     "error": null,
+     "sample_index": 3,
+     "pred": "28.333",
+     "correct": false
+    },
+    {
+     "seed": 11047404,
+     "text": "If 20 students do not have desktop computers, then 3/4 * x = 20. Solving for x, we multiply both sides by 4/3: (3/4 * x) * (4/3) = 20 * (4/3)  x = 20 * (4/3) = 26.6666666667. There are 26.6666666667 students at that grade level.\nFinal answer: 26.6666666667",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 129,
+     "latency_s": 19.117,
+     "error": null,
+     "sample_index": 4,
+     "pred": "26.666667",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 15.677,
+   "samples": [
+    {
+     "seed": 11047405,
+     "text": "If 3/4 of students have a desktop computer, then 1/4 of students do not have one. If 20 students do not have a desktop computer, then 20 / (1/4) = 80 students have a desktop computer. So, the total number of students is 80 + 20 = 100.\nFinal answer: 100",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 85,
+     "latency_s": 13.314,
+     "error": null,
+     "sample_index": 5,
+     "pred": "100",
+     "correct": false
+    },
+    {
+     "seed": 11047406,
+     "text": "If 20 students do not have desktop computers, that means 4/3 * total number of students = 20 students. Let's call the total number of students x. So, we can write: 4/3 * x = 20. To find x, we divide both sides by 4/3, which is the same as multiplying by 3/4: x = 20 * 3/4 = 15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 103,
+     "latency_s": 15.348,
+     "error": null,
+     "sample_index": 6,
+     "pred": "15",
+     "correct": false
+    },
+    {
+     "seed": 11047407,
+     "text": "Let \\( x \\) be the total number of students. Since \\( \\frac{3}{4} \\) of students have desktop computers, the remaining \\( \\frac{1}{4} \\) do not. Therefore, \\( \\frac{1}{4} \\times x = 20 \\).\n\nSolving for \\( x \\) gives \\( x = 20 \\times 4 = 80 \\).\n\nFinal answer: 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 94,
+     "latency_s": 14.39,
+     "error": null,
+     "sample_index": 7,
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "seed": 11047408,
+     "text": "If 20 students do not have desktop computers, then 3/4 of the students have desktop computers. Let's call the total number of students x. So, 3/4 * x = 20. Solving for x, we get x = 20 / (3/4) = 28.8. Since we can't have a fraction of a student, we round down to the nearest whole number, giving us 28 students at the grade level.\nFinal answer: 28",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 109,
+     "latency_s": 15.674,
+     "error": null,
+     "sample_index": 8,
+     "pred": "28",
+     "correct": false
+    },
+    {
+     "seed": 11047409,
+     "text": "Let the total number of students be \\( x \\). Since three-fourths have a desktop computer, one-fourth do not. Thus, \\( \\frac{1}{4}x = 20 \\). Solving for \\( x \\), we get \\( x = 20 \\times 4 = 80 \\).\n\nFinal answer: 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 75,
+     "latency_s": 12.137,
+     "error": null,
+     "sample_index": 9,
+     "pred": "80",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 13.151,
+   "samples": [
+    {
+     "seed": 11047410,
+     "text": "If 20 students do not have desktop computers, then 3/4 of students have desktop computers, meaning 1/4 don't. So 20 = 1/4 * total number of students. Multiplying both sides by 4 gives 80 = total number of students.\nFinal answer: 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 69,
+     "latency_s": 10.856,
+     "error": null,
+     "sample_index": 10,
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "seed": 11047411,
+     "text": "If 20 students do not have desktop computers, this means that 20/3/4 = 20/1.25 = 16 students have desktop computers at home. This means that 16 + 20 = 36 students are at that grade level.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 69,
+     "latency_s": 10.847,
+     "error": null,
+     "sample_index": 11,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11047412,
+     "text": "If 20 students do not have desktop computers, then three-fourths of the students have them. Let \\( x \\) be the total number of students. Then, \\( \\frac{3}{4} x = x - 20 \\). Solving this equation, we get \\( \\frac{1}{4} x = 20 \\), so \\( x = 20 * 4 = 80 \\) students.\nFinal answer: 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 99,
+     "latency_s": 13.148,
+     "error": null,
+     "sample_index": 12,
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "seed": 11047413,
+     "text": "If 20 students do not have desktop computers, that means 20 / (3/4 - 1/4) = 20 / 1/4 = 20 * 4 = 80 students have desktop computers. Therefore, the total number of students is 80 + 20 = 100.\nFinal answer: 100",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 81,
+     "latency_s": 12.176,
+     "error": null,
+     "sample_index": 13,
+     "pred": "100",
+     "correct": false
+    },
+    {
+     "seed": 11047414,
+     "text": "If 20 students do not have desktop computers, then 20 / (3/4) = 28 students have desktop computers at home. The total number of students is 28 + 20 = 48 students.\nFinal answer: 48",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 58,
+     "latency_s": 8.955,
+     "error": null,
+     "sample_index": 14,
+     "pred": "48",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 22.611,
+   "samples": [
+    {
+     "seed": 11047415,
+     "text": "If 20 students do not have desktop computers, then 1/4 of the students do not have desktop computers because 1 - 3/4 = 1/4. This means there are 20 * 4 = 80 students in total at that grade level.\nFinal answer: 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 67,
+     "latency_s": 11.76,
+     "error": null,
+     "sample_index": 15,
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "seed": 11047416,
+     "text": "If 20 students do not have desktop computers, then 1/4 of the students do not have desktop computers, which means 20 / 1/4 = 80 students have desktop computers. So, 1 - 1/4 = 3/4 of the students do not have desktop computers, which means 3/4 * total students = 80. Thus, total students = 80 / (3/4) = 80 * 4/3 = 320/3 = 106.66666666666666. Since the number of students must be a whole number, we round to the nearest whole number, and the answer is 107 students.\nFinal answer: 107",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 169,
+     "latency_s": 22.608,
+     "error": null,
+     "sample_index": 16,
+     "pred": "107",
+     "correct": false
+    },
+    {
+     "seed": 11047417,
+     "text": "If 20 students do not have a desktop computer, then 1/4 of the students do not have one because 1 - 3/4 = 1/4. Therefore, there are 1/4 * 20 = 5 students who do not have a desktop computer. If 5 students do not have a desktop computer, then there are 5 * 4 = 20 students who have a desktop computer. Altogether, there are 5 + 20 = 25 students at that grade level.\nFinal answer: 25",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 120,
+     "latency_s": 19.875,
+     "error": null,
+     "sample_index": 17,
+     "pred": "25",
+     "correct": false
+    },
+    {
+     "seed": 11047418,
+     "text": "If 20 students do not have desktop computers, this means that three-fourths of the students have desktop computers. Therefore, one-fourth of the students do not have desktop computers, which equals 20. So, one-fourth of the students is 20, meaning that the total number of students is 20 * 4 = 80.\nFinal answer: 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 83,
+     "latency_s": 15.055,
+     "error": null,
+     "sample_index": 18,
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "seed": 11047419,
+     "text": "If 20 students do not have a desktop computer, then one-fourth of students do not have one. So, 20 * 4 = 80 students do not have a desktop computer. Therefore, 80 / (3/4) = 80 * 4/3 = 106.666667 students are there in the grade level.\nFinal answer: 106.666667",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 98,
+     "latency_s": 17.309,
+     "error": null,
+     "sample_index": 19,
+     "pred": "106.666667",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

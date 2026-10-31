@@ -1,0 +1,317 @@
+{
+ "idx": 261,
+ "question": "There are 9,300 pennies in a cup. What is the total dollar amount in a stack that contains two thirds of the pennies in the cup?",
+ "gold": "62",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:31:59",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "There are 9,300 pennies in a cup. What is the total dollar amount in a stack that contains two thirds of the pennies in the cup?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 13.021,
+   "samples": [
+    {
+     "seed": 22026100,
+     "text": "There are 9,300 / 3 = 3,100 pennies in a stack. There are 3,100 / 100 = 31 dollars in a stack.\nFinal answer: 31",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 53,
+     "latency_s": 8.769,
+     "error": null,
+     "sample_index": 0,
+     "pred": "31",
+     "correct": false
+    },
+    {
+     "seed": 22026101,
+     "text": "If there are 9,300 pennies in a cup, two thirds of them would be 2/3 * 9,300 = 6,200 pennies. Since each dollar has 100 pennies, there are 6,200 / 100 = 62 dollars in the stack.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 82,
+     "latency_s": 12.883,
+     "error": null,
+     "sample_index": 1,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026102,
+     "text": "If there are 9,300 pennies in a cup, then two thirds of them are 2/3 * 9,300 = 6,200 pennies. Since there are 100 pennies in a dollar, there are 6,200 / 100 = 62 dollars.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 81,
+     "latency_s": 12.742,
+     "error": null,
+     "sample_index": 2,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026103,
+     "text": "If there are 9,300 pennies in a cup, then two thirds of the pennies is 9,300 * 2/3 = 6,200 pennies. Since there are 100 pennies in a dollar, this is 6,200 / 100 = $62.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 82,
+     "latency_s": 12.886,
+     "error": null,
+     "sample_index": 3,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026104,
+     "text": "If there are 9,300 pennies in the cup, then two thirds of them is 9,300 * 2/3 = 6,200 pennies. Since there are 100 pennies in a dollar, the total dollar amount is 6,200 / 100 = 62 dollars.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 84,
+     "latency_s": 13.018,
+     "error": null,
+     "sample_index": 4,
+     "pred": "62",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 16.401,
+   "samples": [
+    {
+     "seed": 22026105,
+     "text": "Two thirds of 9,300 pennies is 9,300 * (2/3) = 6,200 pennies. This means the stack is worth 6,200 * $0.01 = $62.00.\nFinal answer: $62.00",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 70,
+     "latency_s": 15.024,
+     "error": null,
+     "sample_index": 5,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026106,
+     "text": "A stack that contains two thirds of the pennies in the cup would have 9,300 / 3 * 2 = 6,200 pennies. There are 6,200 / 100 = 62 dollars in a stack.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 66,
+     "latency_s": 14.204,
+     "error": null,
+     "sample_index": 6,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026107,
+     "text": "There are 9,300 / 3 = 3,100 pennies in a stack that contains two thirds of the pennies in the cup. Since there are 100 pennies in a dollar, there are 3,100 / 100 = 31 dollars in a stack that contains two thirds of the pennies in the cup.\nFinal answer: 31",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 88,
+     "latency_s": 16.398,
+     "error": null,
+     "sample_index": 7,
+     "pred": "31",
+     "correct": false
+    },
+    {
+     "seed": 22026108,
+     "text": "Two thirds of 9,300 pennies is 9,300 * (2/3) = 6,200 pennies. Since each penny is worth $0.01, the total dollar amount is 6,200 * 0.01 = $62.",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 68,
+     "latency_s": 14.654,
+     "error": null,
+     "sample_index": 8,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22026109,
+     "text": "There are 9,300 / 3 = 3,100 pennies in a stack that contains two thirds of the pennies in the cup. There are 3,100 / 100 = 31 dollars in a stack that contains two thirds of the pennies in the cup.\nFinal answer: 31",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 75,
+     "latency_s": 15.716,
+     "error": null,
+     "sample_index": 9,
+     "pred": "31",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 14.358,
+   "samples": [
+    {
+     "seed": 22026110,
+     "text": "Two thirds of the pennies is 9,300 * (2/3) = 6,200 pennies. Each penny is worth 1/100 of a dollar, so 6,200 pennies is 6,200 / 100 = 62 dollars.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 77,
+     "latency_s": 12.014,
+     "error": null,
+     "sample_index": 10,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026111,
+     "text": "Two thirds of 9,300 pennies is 9,300 * 2/3 = 6,200 pennies. Since there are 100 pennies in a dollar, there are 6,200 / 100 = 62 dollars in the stack.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 75,
+     "latency_s": 11.728,
+     "error": null,
+     "sample_index": 11,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026112,
+     "text": "Two thirds of 9,300 pennies is 9,300 * (2/3) = 6,200 pennies. One dollar is 100 pennies, so 6,200 pennies is 6,200 / 100 = 62 dollars.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 78,
+     "latency_s": 12.116,
+     "error": null,
+     "sample_index": 12,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026113,
+     "text": "If there are 9,300 pennies in a cup, then one third of them is 9,300 / 3 = 3,100 pennies. Two thirds of the pennies is 3,100 * 2 = 6,200 pennies. There are 6,200 pennies in a stack and 1 dollar is worth 100 pennies. So, the total dollar amount is 6,200 / 100 = 62 dollars.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 123,
+     "latency_s": 14.356,
+     "error": null,
+     "sample_index": 13,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026114,
+     "text": "Two thirds of 9,300 pennies is 2 * 9,300 / 3 = 6,200 pennies. The dollar amount is 6,200 * $0.01 = $62.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 62,
+     "latency_s": 9.556,
+     "error": null,
+     "sample_index": 14,
+     "pred": "62",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 9.273,
+   "samples": [
+    {
+     "seed": 22026115,
+     "text": "The amount of pennies in the stack is 2/3 * 9,300 = 6,200 pennies. A dollar stack would contain 6,200 / 100 = 62 dollars.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 59,
+     "latency_s": 8.782,
+     "error": null,
+     "sample_index": 15,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026116,
+     "text": "There are 2/3 * 9,300 = 6,200 pennies in the stack. There are 6,200 / 100 = 62 dollars in the stack.\nFinal answer: 62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 55,
+     "latency_s": 8.31,
+     "error": null,
+     "sample_index": 16,
+     "pred": "62",
+     "correct": true
+    },
+    {
+     "seed": 22026117,
+     "text": "If there are 9,300 pennies in the cup, the amount in a stack containing two thirds of the pennies is 9300 * 2 / 3 = 6200 dollars.\nFinal answer: 6200",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 56,
+     "latency_s": 8.427,
+     "error": null,
+     "sample_index": 17,
+     "pred": "6200",
+     "correct": false
+    },
+    {
+     "seed": 22026118,
+     "text": "There are 9300 / 3 = 3100 pennies in the stack since two-thirds of the pennies in the cup are in the stack. There are 3100 / 1 = 3100 dollars in the stack.\nFinal answer: 3100",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 66,
+     "latency_s": 9.271,
+     "error": null,
+     "sample_index": 18,
+     "pred": "3100",
+     "correct": false
+    },
+    {
+     "seed": 22026119,
+     "text": "Two thirds of the pennies in the cup is 9,300 * (2/3) = 6,200 pennies.\nThe total dollar amount in the stack is 6,200 / 100 = $62.\nFinal answer: $62",
+     "finish_reason": "stop",
+     "prompt_tokens": 392,
+     "completion_tokens": 63,
+     "latency_s": 9.111,
+     "error": null,
+     "sample_index": 19,
+     "pred": "62",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

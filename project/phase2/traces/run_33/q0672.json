@@ -1,0 +1,317 @@
+{
+ "idx": 672,
+ "question": "Christina records her mood every day on a calendar. Over the past thirty days of moods, she had twelve good days and eight bad days and the rest were neutral. Her first eight days were good, her second eight days were bad, and her third eight days were neutral. If the next three days were good, neutral, and good, how many good days were left in the month?",
+ "gold": "2",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:13:41",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Christina records her mood every day on a calendar. Over the past thirty days of moods, she had twelve good days and eight bad days and the rest were neutral. Her first eight days were good, her second eight days were bad, and her third eight days were neutral. If the next three days were good, neutral, and good, how many good days were left in the month?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 22.697,
+   "samples": [
+    {
+     "seed": 33067200,
+     "text": "Christina had a total of 24 good days (12 + 8 + 8 + 3 = 33). Since 24 is the total for the month and she had twelve good days, there are 24 - 12 = 12 good days left in the month.",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 66,
+     "latency_s": 10.515,
+     "error": null,
+     "sample_index": 0,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33067201,
+     "text": "She had a total of 24 days in the month. She had 12 good days plus 8 bad days plus the neutral days which is 24 - 12 - 8 = 4 neutral days. The next three days were good, so she had 12 + 3 = 15 good days. Subtracting the neutral days gives 15 - 4 = 11 good days left in the month.\nFinal answer: 11",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 100,
+     "latency_s": 16.357,
+     "error": null,
+     "sample_index": 1,
+     "pred": "11",
+     "correct": false
+    },
+    {
+     "seed": 33067202,
+     "text": "On the first eight days, she had twelve good days, leaving 4 neutral and 4 bad days.\nOn the second eight days, she had eight bad days, leaving 4 neutral and 0 good days.\nOn the third eight days, she had eight neutral days, leaving 0 neutral and 4 good days.\nIf the next three days are good, neutral, and good, we add these to the good days to get 4 + 1 + 4 = 9 good days.\nThus, there are 9 good days left in the month.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 121,
+     "latency_s": 19.323,
+     "error": null,
+     "sample_index": 2,
+     "pred": "9",
+     "correct": false
+    },
+    {
+     "seed": 33067203,
+     "text": "First, let's calculate the total number of neutral days Christina has had. She had 24 neutral days in total, which were split as follows: 12 good days + 8 bad days = 20 neutral days. The rest of the neutral days are neutral days that she hasn't accounted for yet, which means she has 24 - 20 = 4 neutral days left.\n\nNow, let's add up all her good, bad, and neutral days:\nGood days: 12\nBad days: 8\nNeutral days: 4\nTotal: 12 + 8 + 4 = 24\n\nSince she has recorded her mood for 24 days, and she has 24 good days, it means she has no good days left in the month. The answer is 0 good days.",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 176,
+     "latency_s": 22.693,
+     "error": null,
+     "sample_index": 3,
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "seed": 33067204,
+     "text": "Christina initially had 12 good days. She also had 8 neutral days, which means 12 + 8 = 20 good and neutral days. This leaves 30 - 20 = 10 bad days. Her first eight days were good, her next eight were bad, and her third eight were neutral, totaling 20 days of neutral and 8 days of bad.\n\nThe next three days were good, which means she has 10 + 3 = 13 neutral days left.\n\nTherefore, she has 10 - 3 = 7 good days left in the month.\n\nFinal answer: 7",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 136,
+     "latency_s": 20.585,
+     "error": null,
+     "sample_index": 4,
+     "pred": "7",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 23.453,
+   "samples": [
+    {
+     "seed": 33067205,
+     "text": "There were 30 - 12 - 8 = 10 neutral days. The first 8 days were good, so there were 8 - 8 = 0 good days remaining from the first eight days. The second 8 days were bad, so there were 8 - 0 = 8 good days remaining from the second eight days. The third 8 days were neutral, so there were 8 - 8 = 0 good days remaining from the third eight days. The next three days were good, neutral, and good, so there are 0 + 0 + 1 = 1 more good day left in the month.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 143,
+     "latency_s": 23.451,
+     "error": null,
+     "sample_index": 5,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 33067206,
+     "text": "Christina originally had 12 good days and 8 bad days, making 12 + 8 = 20 days of different moods. She had 8 days of bad moods in the second part of the month, so she had 12 - 8 = 4 good days left from that part. She had 20 - 4 = 16 days left of different moods after the second part of the month. Adding the 3 good days from the last part of the month gives her 16 + 3 = 19 good days left in the month.\nFinal answer: 19",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 133,
+     "latency_s": 22.6,
+     "error": null,
+     "sample_index": 6,
+     "pred": "19",
+     "correct": false
+    },
+    {
+     "seed": 33067207,
+     "text": "The total number of good days in the month is 30 - 8 - 8 - 8 = 16. So, after the next good day, 16 - 1 = 15 good days are left in the month.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 60,
+     "latency_s": 9.501,
+     "error": null,
+     "sample_index": 7,
+     "pred": "15",
+     "correct": false
+    },
+    {
+     "seed": 33067208,
+     "text": "First, let's break it down day by day:\n\n- Total days: 30\n- Good days: 12\n- Bad days: 8\n- Neutral days: 30 - 12 - 8 = 10\n\nThe first eight days were good, so there are now 4 more good days left.\n\nThe next eight days were bad, so there are now 0 good days left.\n\nThe next three days were good, so there are now 1 more good day left.\n\nSo, the total number of good days left in the month is 4 + 0 + 1 = 5 good days.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 139,
+     "latency_s": 23.236,
+     "error": null,
+     "sample_index": 8,
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "seed": 33067209,
+     "text": "In the first three weeks, there were 12 good days. The next three days were good, making a total of 15 good days. Subtracting the good days from the total 30 gives neutral days: 30 - 15 = 15 neutral days. Subtracting the neutral days from the total gives the remaining days: 30 - 15 = 15 good days. Since the third week had 8 neutral days, we subtract those as well: 15 - 8 = 7 good days.\nFinal answer: 7",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 121,
+     "latency_s": 20.926,
+     "error": null,
+     "sample_index": 9,
+     "pred": "7",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 23.808,
+   "samples": [
+    {
+     "seed": 33067210,
+     "text": "Christina had 24 total days, so the first 3 were good and the next 3 were neutral. This leaves 24 - 3 - 3 = 18 neutral days. She started the month with 12 good days, then had 8 more, and the next 3 were good, for a total of 15 good days. After neutral days, she would have 18 - 8 = 10 neutral days left. Subtracting these from her total good days gives 15 - 10 = 5 good days left in the month.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 130,
+     "latency_s": 17.343,
+     "error": null,
+     "sample_index": 10,
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "seed": 33067211,
+     "text": "In the thirty days, there were 8 good days, 8 bad days, and 8 neutral days, totaling 24 days. Subtracting the 24 days from the total of 30 days, we have 6 neutral days. Over the next three days, two of them were good, leaving 6 - 2 = 4 good days.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 82,
+     "latency_s": 12.832,
+     "error": null,
+     "sample_index": 11,
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "seed": 33067212,
+     "text": "The total number of good days is 12 (from 1st 30 days) + 8 (first 8 days) + 3 (next 3 days) = 23 good days. Since there are 30 days in the month, the remaining good days are 30 - 23 = 7 good days.",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 75,
+     "latency_s": 12.062,
+     "error": null,
+     "sample_index": 12,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33067213,
+     "text": "Christina had a total of 24 good days over the past thirty days. Her first 8 days were good, and her second 8 days were bad. Her third 8 days were neutral. So, the total number of good days before the next three good days was 24 - 8 - 8 - 8 = 0. Therefore, she has 0 good days left in the month.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 92,
+     "latency_s": 14.079,
+     "error": null,
+     "sample_index": 13,
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "seed": 33067214,
+     "text": "First, we calculate the total number of good, bad, and neutral days Christina has recorded:\n- Good days: 12\n- Bad days: 8\n- Neutral days: 15 (since 30 days - 12 good days - 8 bad days = 15 neutral days)\n\nNext, we list her mood progression:\n- The first 8 days were good.\n- The next 8 days were bad.\n- The next 8 days were neutral.\n\nSince the third part of the month, which is the last 8 days, was all neutral, we can now determine the remaining good days:\n- First 8 days (good).\n- Next 8 days (bad).\n- Neutral days: 15 (since neutral days are 15).\n\nAdding the remaining neutral days to the neutral days already counted:\n- Neutral days: 15 + 1 = 16 (since neutral days were all counted in the last part of the month).\n\nNow, we add the good days from the first 8 days to the neutral days:\n- Good days: 12 + 8 = 20.\n\nThus, Christina has 20 good days left in the month.",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 250,
+     "latency_s": 23.804,
+     "error": null,
+     "sample_index": 14,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 25.482,
+   "samples": [
+    {
+     "seed": 33067215,
+     "text": "First, let's add up the good, bad, and neutral days from the past thirty days. We have 12 good days, 8 bad days, and 2 neutral days (since 30 - 12 - 8 = 10, and we need to split this evenly between the three categories, giving us 3 good days, 3 neutral days, and 4 bad days). So, the total number of good days is 12 + 8 + 3 = 23 good days.\n\nNow, let's add up the good, bad, and neutral days from the first eight days and the next three days. We have 12 good days, 8 bad days, and 3 neutral days (since 8 + 3 = 11, and we need to split this evenly between the three categories, giving us 4 good days, 4 neutral days, and 3 bad days). So, the total number of good days is 12 + 8 + 3 = 23 good days.\n\nFinally, to find the number of good days left in the month, we subtract the good days from the good days we've already counted: 23 - 12 =",
+     "finish_reason": "length",
+     "prompt_tokens": 437,
+     "completion_tokens": 256,
+     "latency_s": 25.48,
+     "error": null,
+     "sample_index": 15,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33067216,
+     "text": "Christina had a total of 30 days to record her mood. Out of these, 12 were good, 8 were bad, and the rest were neutral. That leaves 30 - 12 - 8 = 10 neutral days. Her first eight days were good, her second eight days were bad, and her third eight days were neutral. That's a total of 8 + 8 + 8 = 24 good days from the first three sets of eight days. Her next three days were good and neutral, which means 3 more good days. So, the total number of good days left in the month is 12 + 3 = 15 good days.",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 149,
+     "latency_s": 19.823,
+     "error": null,
+     "sample_index": 16,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33067217,
+     "text": "There were 30 - 8 - 8 - 8 = 6 neutral days. Since the total is 12 good days, the remaining good days are 12 - 6 - 3 = 3.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 54,
+     "latency_s": 8.36,
+     "error": null,
+     "sample_index": 17,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33067218,
+     "text": "In a month of 30 days, Christina had 12 good days, 8 bad days, and 10 neutral days. This means there were 30 - 12 - 8 - 10 = 10 days left in the month. On the next three days, she had 3 good days. Therefore, the number of good days left in the month is 10 - 3 = 7.\nFinal answer: 7",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 99,
+     "latency_s": 13.677,
+     "error": null,
+     "sample_index": 18,
+     "pred": "7",
+     "correct": false
+    },
+    {
+     "seed": 33067219,
+     "text": "The total number of days is 30. She had twelve good days, eight bad days, and three neutral days initially. So, the total number of good days initially is 12 + 3 = 15. She recorded her mood for 8 good days, 8 bad days, and 3 neutral days in the first eight days. For the next three days, she recorded 1 good day, 2 neutral days, and 1 more good day. So, the total number of good days left is 15 - 1 - 2 + 1 = 13.\nFinal answer: 13",
+     "finish_reason": "stop",
+     "prompt_tokens": 437,
+     "completion_tokens": 132,
+     "latency_s": 18.374,
+     "error": null,
+     "sample_index": 19,
+     "pred": "13",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

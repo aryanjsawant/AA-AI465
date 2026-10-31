@@ -1,0 +1,317 @@
+{
+ "idx": 423,
+ "question": "Cole wanted to buy new jeans for a dance contest. At the store, he couldn't decide between tattered jeans and jogger jeans. Since the jeans were on sale, he decided to buy them both. The tattered jeans cost $28 while the jogger jeans cost $6 less than the tattered jeans. He saved a total of $6. If he saved 1/3 of the total savings from the jogger jeans and the rest from the tattered jeans, how much more do jogger jeans originally cost than the tattered jeans?",
+ "gold": "8",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:38:00",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Cole wanted to buy new jeans for a dance contest. At the store, he couldn't decide between tattered jeans and jogger jeans. Since the jeans were on sale, he decided to buy them both. The tattered jeans cost $28 while the jogger jeans cost $6 less than the tattered jeans. He saved a total of $6. If he saved 1/3 of the total savings from the jogger jeans and the rest from the tattered jeans, how much more do jogger jeans originally cost than the tattered jeans?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 39.555,
+   "samples": [
+    {
+     "seed": 11042300,
+     "text": "The tattered jeans cost $28. The jogger jeans cost $6 less than the tattered jeans, so the jogger jeans cost $28 - $6 = $22. The total savings for both jeans is $6, with Cole saving 1/3 of the total savings from the jogger jeans and the rest from the tattered jeans. This means 2/3 of the total savings is from the tattered jeans and 1/3 is from the jogger jeans. Since the total savings is $6, 1/3 of the total savings is $6 / 3 = $2. This $2 is the savings from the tattered jeans, so the savings from the jogger jeans is $2. The cost difference between the jogger jeans and the tattered jeans is $22 - $28 = $6.\nFinal answer: $6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 184,
+     "latency_s": 39.099,
+     "error": null,
+     "sample_index": 0,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11042301,
+     "text": "Let's denote the cost of the jogger jeans as \\( J \\). Since the jogger jeans cost $6 less than the tattered jeans, we can write \\( J = 28 - 6 = 22 \\) dollars. Cole saved a total of $6, and he saved \\( \\frac{1}{3} \\) of the savings from the jogger jeans and the rest from the tattered jeans. Therefore, the savings from the jogger jeans is \\( \\frac{1}{3} \\times 6 = 2 \\) dollars and the savings from the tattered jeans is \\( 6 - 2 = 4 \\) dollars.\n\nThe cost of the tattered jeans is $28, and the cost of the jogger jeans is $22. The difference in cost is \\( 28 - 22 = 6 \\) dollars.\n\nThe final answer is 6.",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 191,
+     "latency_s": 39.553,
+     "error": null,
+     "sample_index": 1,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11042302,
+     "text": "First, find the cost of the jogger jeans: $28 - $6 = $22. Then, since Cole saved 1/3 of the total savings from the jogger jeans, the total savings from the jogger jeans is $22 * 3 = $66. The total savings from the tattered jeans is the total savings minus the savings from the jogger jeans: $66 - $6 = $60. Finally, find the difference between the original cost of the jogger jeans and the tattered jeans: $22 - $28 = -$6. So the jogger jeans originally cost $6 less than the tattered jeans.\nFinal answer: -6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 146,
+     "latency_s": 34.673,
+     "error": null,
+     "sample_index": 2,
+     "pred": "-6",
+     "correct": false
+    },
+    {
+     "seed": 11042303,
+     "text": "The tattered jeans cost $28. The jogger jeans cost $6 less, making the total cost $28 - $6 = $22 for both pairs. Cole saved a total of $6, which is 1/3 of the total savings from the jogger jeans. Therefore, the total savings from the jogger jeans is $6 / (1/3) = $18. \n\nThe cost of the tattered jeans is $28. So, the jogger jeans originally cost $18 + $28 = $46 more than the tattered jeans.\nFinal answer: 46",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 130,
+     "latency_s": 32.022,
+     "error": null,
+     "sample_index": 3,
+     "pred": "46",
+     "correct": false
+    },
+    {
+     "seed": 11042304,
+     "text": "The cost of the jogger jeans is $28 - $6 = $22. Cole saved a total of $6, meaning the total savings from both jeans combined is $6 * 3 = $18. Since he saved 1/3 of the total savings from the jogger jeans, the total savings for the jogger jeans is $18 - $6 = $12. The original cost of the jogger jeans is $22 - $12 = $10 more than the tattered jeans.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 117,
+     "latency_s": 30.473,
+     "error": null,
+     "sample_index": 4,
+     "pred": "10",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 27.384,
+   "samples": [
+    {
+     "seed": 11042305,
+     "text": "First, find the total savings from the jogger jeans: $6 * 3 = $18. Then, since he saved 1/3 of the total savings, he saved $18 * 3 = $54 from the tattered jeans. Next, find the original price of the jogger jeans: $18 + $54 = $72. Finally, find how much more the jogger jeans cost compared to the tattered jeans: $72 - $28 = $44.\nFinal answer: $44",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 115,
+     "latency_s": 20.076,
+     "error": null,
+     "sample_index": 5,
+     "pred": "44",
+     "correct": false
+    },
+    {
+     "seed": 11042306,
+     "text": "The cost of the jogger jeans is $28 - $6 = $22. Cole saved a total of $6, so the savings from the jogger jeans is $6 / (2/3) = $9. The savings from the tattered jeans is $6 - $9 = -$3. The difference in cost between the jogger jeans and the tattered jeans is $22 + $9 = $31.",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 92,
+     "latency_s": 16.098,
+     "error": null,
+     "sample_index": 6,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11042307,
+     "text": "The cost of the jogger jeans is $28 - $6 = $22. If Cole saved $6, then he saved 1/3 of the total savings, so the total savings is $6 * 3 = $18. The difference between the cost of the tattered jeans and the jogger jeans is $28 - $22 = $6.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 85,
+     "latency_s": 14.72,
+     "error": null,
+     "sample_index": 7,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11042308,
+     "text": "The tattered jeans cost $28. The jogger jeans cost $6 less than the tattered jeans, so they cost $28 - $6 = $22. Cole saved a total of $6, and if he saved 1/3 of the total savings from the jogger jeans, then he saved 1/3 * $6 = $2 from the jogger jeans. This means he saved 6 - 2 = $4 from the tattered jeans. The tattered jeans cost $28 and Cole saved $4 from them, so the original price of the tattered jeans is $28 + $4 = $32. The original price of the jogger jeans is $22, so the jogger jeans cost $32 - $22 = $10 more than the tattered jeans.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 181,
+     "latency_s": 27.38,
+     "error": null,
+     "sample_index": 8,
+     "pred": "10",
+     "correct": false
+    },
+    {
+     "seed": 11042309,
+     "text": "Let's calculate the cost of the jogger jeans. The tattered jeans cost $28 and the jogger jeans cost $6 less, so they cost $28 - $6 = $22. Cole saved a total of $6, with half coming from the jogger jeans and half from the tattered jeans. Therefore, he saved $6 / 2 = $3 from the jogger jeans.\n\nThe total savings from the tattered jeans is $6 - $3 = $3. Since the total savings are $6, the cost of the jogger jeans is $6 - $3 = $3. The difference in cost between the tattered jeans and the jogger jeans is $28 - $22 = $6.\n\nFinal answer: The jogger jeans originally cost $6 more than the tattered jeans.",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 173,
+     "latency_s": 26.881,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 37.828,
+   "samples": [
+    {
+     "seed": 11042310,
+     "text": "First, we calculate the cost of the jogger jeans. Since the jogger jeans cost $6 less than the tattered jeans, the cost of the jogger jeans is $28 - $6 = $22.\n\nNext, we know Cole saved a total of $6. Since he saved 1/3 of the total savings from the jogger jeans, we can calculate the total savings from the jogger jeans. If 1/3 of the savings is $6, then the total savings from the jogger jeans is $6 * 3 = $18.\n\nThe savings from the tattered jeans is the total savings minus the savings from the jogger jeans, which is $18 - $6 = $12.\n\nFinally, to find out how much more the jogger jeans cost than the tattered jeans, we subtract the cost of the tattered jeans from the cost of the jogger jeans: $22 - $28 = -$6. This means the tattered jeans cost $6 more than the jogger jeans.",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 217,
+     "latency_s": 37.827,
+     "error": null,
+     "sample_index": 10,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11042311,
+     "text": "The cost of jogger jeans is $28 - $6 = $22. The total savings from both jeans is $6, and since he saved 1/3 of the total savings from the jogger jeans, he saved $22 * 1/3 = $7.33 from the jogger jeans. The total savings from both jeans is $6, and since he saved $7.33 from the jogger jeans, the total savings from the tattered jeans is $6 - $7.33 = -$1.33. This means he didn't save anything from the tattered jeans, and the total savings from the tattered jeans is $1.33. The difference in cost between the jogger jeans and the tattered jeans is $22 - $28 = -$6, which means jogger jeans originally cost $6 more than the tattered jeans.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 194,
+     "latency_s": 34.846,
+     "error": null,
+     "sample_index": 11,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11042312,
+     "text": "The cost of the jogger jeans is 28 - 6 = $22. The total savings from the jeans are 6 * 3 = $18, since Cole saved 1/3 of the total savings from the jogger jeans. The total savings are 18 + 6 = $24. The original cost of the jogger jeans is 24 - 18 = $6. The difference in cost between the jeans is 22 - 28 = $6.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 113,
+     "latency_s": 20.18,
+     "error": null,
+     "sample_index": 12,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11042313,
+     "text": "The jogger jeans cost $28 - $6 = $22. Cole saved $6 / 2 = $3 from the tattered jeans. So, the tattered jeans originally cost $28 + $3 = $31. Therefore, the jogger jeans originally cost $31 - $22 = $9 more than the tattered jeans.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 82,
+     "latency_s": 14.311,
+     "error": null,
+     "sample_index": 13,
+     "pred": "9",
+     "correct": false
+    },
+    {
+     "seed": 11042314,
+     "text": "First, let's find the cost of the jogger jeans. The tattered jeans cost $28 and the jogger jeans cost $6 less than the tattered jeans, so they cost $28 - $6 = $22.\n\nNext, we find the total savings from both jeans. Since Cole saved a total of $6, the savings from the tattered jeans is $6 / (1/3) = $6 * 3 = $18.\n\nNow we can find the savings from the jogger jeans. The savings from the jogger jeans is the total savings minus the savings from the tattered jeans, so it is $6 - $18 = -$12.\n\nFinally, we calculate the difference in cost between the jogger jeans and the tattered jeans. The difference is the cost of the jogger jeans minus the cost of the tattered jeans, which is $22 - $28 = -$6.\n\nTherefore, the jogger jeans originally cost $6 more than the tattered jeans.",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 212,
+     "latency_s": 37.479,
+     "error": null,
+     "sample_index": 14,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 25.634,
+   "samples": [
+    {
+     "seed": 11042315,
+     "text": "The cost of the jogger jeans is $28 - $6 = $22. Cole saved a total of $6, which is 1/3 of the total savings from the jogger jeans, meaning the total savings from the jogger jeans is $6 * 3 = $18. So the total savings from the tattered jeans is $6 - $18 = $12. Hence the jogger jeans originally cost $22 - $12 = $10 more than the tattered jeans.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 116,
+     "latency_s": 23.32,
+     "error": null,
+     "sample_index": 15,
+     "pred": "10",
+     "correct": false
+    },
+    {
+     "seed": 11042316,
+     "text": "The cost of the jogger jeans is $28 - $6 = $22. The total savings from the jogger jeans is $22 * (2/3) = $14. The savings from the tattered jeans is $6 - $14 = -$8 (which means Cole saved $8 on the tattered jeans). The difference in cost between the tattered and jogger jeans is $28 - $22 = $6.\nFinal answer: $6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 102,
+     "latency_s": 21.295,
+     "error": null,
+     "sample_index": 16,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11042317,
+     "text": "The cost of the jogger jeans is $28 - $6 = $22. Cole saved $6 / 2 = $3 for the tattered jeans and $6 - $3 = $3 for the jogger jeans. So, the tattered jeans originally cost $28 - $3 = $25. The jogger jeans originally cost $22 + $3 = $25. The difference between the tattered and jogger jeans is $25 - $25 = $0.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 113,
+     "latency_s": 22.932,
+     "error": null,
+     "sample_index": 17,
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "seed": 11042318,
+     "text": "The cost of the jogger jeans is $28 - $6 = $22. The total savings for the jogger jeans is $6 * (1 - 1/3) = $4. The savings for the tattered jeans is $6 - $4 = $2. The cost difference between the tattered jeans and the jogger jeans is $28 - $22 = $6.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 91,
+     "latency_s": 19.114,
+     "error": null,
+     "sample_index": 18,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11042319,
+     "text": "Let's denote the cost of the jogger jeans as \\( x \\). The tattered jeans cost $28, so the jogger jeans cost \\( 28 - 6 = 22 \\) dollars. The total savings are $6, so we have \\( \\frac{1}{3}x + \\frac{2}{3}x = 6 \\), which simplifies to \\( \\frac{3}{3}x = 6 \\), so \\( x = 6 \\). The jogger jeans cost $22 and the tattered jeans cost $28, so the jogger jeans originally cost \\( 28 - 22 = 6 \\) dollars more than the tattered jeans.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 156,
+     "latency_s": 25.63,
+     "error": null,
+     "sample_index": 19,
+     "pred": "6",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

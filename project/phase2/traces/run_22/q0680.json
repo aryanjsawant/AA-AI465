@@ -1,0 +1,317 @@
+{
+ "idx": 680,
+ "question": "The elevator in Jack's building supports a maximum load of 700 kg. An adult weighs an average of 80 kg. If Jack rides the elevator with 8 other adults, by how much will they have exceeded the maximum load of the elevator?",
+ "gold": "20",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 12:51:55",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "The elevator in Jack's building supports a maximum load of 700 kg. An adult weighs an average of 80 kg. If Jack rides the elevator with 8 other adults, by how much will they have exceeded the maximum load of the elevator?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 8.625,
+   "samples": [
+    {
+     "seed": 22068000,
+     "text": "The total weight of the adults is 8 * 80 = 640 kg. The total weight of the people in the elevator is 640 + 80 = 720 kg. The elevator is at its maximum weight capacity when the weight is 700 kg, so they have exceeded the capacity by 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 93,
+     "latency_s": 8.624,
+     "error": null,
+     "sample_index": 0,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068001,
+     "text": "The total weight of Jack and 8 adults is 1 * 80 + 8 * 80 = 640 kg. Exceeding the maximum load by 700 - 640 = 60 kg.\nFinal answer: 60 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 60,
+     "latency_s": 6.525,
+     "error": null,
+     "sample_index": 1,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 22068002,
+     "text": "The total weight of 9 adults is 9 * 80 = 720 kg. The elevator can support 700 kg, so 20 kg has been exceeded.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 48,
+     "latency_s": 5.511,
+     "error": null,
+     "sample_index": 2,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068003,
+     "text": "The total weight of Jack and the 8 adults is 1 * 80 kg + 80 * 8 = 80 + 640 = 720 kg. They exceed the maximum load by 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 70,
+     "latency_s": 7.651,
+     "error": null,
+     "sample_index": 3,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068004,
+     "text": "If one adult weighs 80 kg, 8 adults will weigh 8 * 80 = 640 kg. Together, they will weigh 700 + 640 = 1340 kg, which exceeds the maximum load of 700 kg.\nFinal answer: 640 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 70,
+     "latency_s": 7.654,
+     "error": null,
+     "sample_index": 4,
+     "pred": "640",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 8.571,
+   "samples": [
+    {
+     "seed": 22068005,
+     "text": "The total weight of the 9 adults (Jack plus 8 others) is 9 * 80 = 720 kg. To find how much they have exceeded the maximum load, we subtract the maximum load from the total weight: 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 73,
+     "latency_s": 8.569,
+     "error": null,
+     "sample_index": 5,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068006,
+     "text": "The total weight of adults including Jack is 80 * 9 = 720 kg. The elevator has a maximum load of 700 kg. Thus they have exceeded the maximum load by 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 65,
+     "latency_s": 7.909,
+     "error": null,
+     "sample_index": 6,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068007,
+     "text": "The total weight of the adults is 8 * 80 = 640 kg. The elevator can support 700 kg, so they have exceeded the maximum load by 700 - 640 = 60 kg.\nFinal answer: 60 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 61,
+     "latency_s": 7.397,
+     "error": null,
+     "sample_index": 7,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 22068008,
+     "text": "The total weight of Jack and his 8 adults is 9 * 80 = 720 kg. This exceeds the maximum load of 700 kg by 720 - 700 = 20 kg.\nFinal answer: 20",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 58,
+     "latency_s": 6.976,
+     "error": null,
+     "sample_index": 8,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068009,
+     "text": "Each adult weighs 80 kg, so 8 adults weigh 8 * 80 = 640 kg. Together they weigh 640 + 80 = 720 kg. This exceeds the maximum load by 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 73,
+     "latency_s": 8.569,
+     "error": null,
+     "sample_index": 9,
+     "pred": "20",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 9.502,
+   "samples": [
+    {
+     "seed": 22068010,
+     "text": "Each adult weighs 80 kg, so 8 adults weigh 8 * 80 = 640 kg. The total weight of the 9 people is 640 + 80 = 720 kg. This exceeds the elevator's maximum load by 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 81,
+     "latency_s": 9.501,
+     "error": null,
+     "sample_index": 10,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068011,
+     "text": "The total weight of Jack and his 8 adults is 1 * 80 + 1 * 80 = 160 kg. This means they exceed the maximum load by 700 - 160 = 540 kg.\nFinal answer: 540 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 64,
+     "latency_s": 7.98,
+     "error": null,
+     "sample_index": 11,
+     "pred": "540",
+     "correct": false
+    },
+    {
+     "seed": 22068012,
+     "text": "The total weight of Jack and his 8 friends is 1 * 80 + 1 * 80 = 160 kg. The elevator can support a maximum of 700 kg, so they have exceeded the maximum load by 700 - 160 = 540 kg.\nFinal answer: 540 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 77,
+     "latency_s": 9.334,
+     "error": null,
+     "sample_index": 12,
+     "pred": "540",
+     "correct": false
+    },
+    {
+     "seed": 22068013,
+     "text": "The total weight of the 9 people (Jack and 8 adults) is 9 * 80 = 720 kg. Since the elevator's maximum load is 700 kg, they will have exceeded the maximum load by 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 73,
+     "latency_s": 8.984,
+     "error": null,
+     "sample_index": 13,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068014,
+     "text": "The total weight of the adults is 8 adults * 80 kg/adult = 640 kg. The elevator will support 700 kg - 640 kg = 60 kg more.",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 47,
+     "latency_s": 5.54,
+     "error": null,
+     "sample_index": 14,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 10.528,
+   "samples": [
+    {
+     "seed": 22068015,
+     "text": "The weight of one adult is 80 kg, and there are 9 adults riding in the elevator. So the total weight of the adults is 80 * 9 = 720 kg. The maximum load of the elevator is 700 kg, so 720 kg exceeds 700 kg by 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 92,
+     "latency_s": 10.527,
+     "error": null,
+     "sample_index": 15,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068016,
+     "text": "The total weight of the adults is 8 adults * 80 kg/ adult = 640 kg. The total weight inside the elevator is 640 kg + 80 kg = 720 kg. The excess weight is 720 kg - 700 kg = 20 kg. \nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 78,
+     "latency_s": 9.681,
+     "error": null,
+     "sample_index": 16,
+     "pred": "20",
+     "correct": true
+    },
+    {
+     "seed": 22068017,
+     "text": "The total weight of the adults is 8 * 80 = 640 kg. The weight that will be exceeded is 700 - 640 = 60 kg.\nFinal answer: 60 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 50,
+     "latency_s": 5.853,
+     "error": null,
+     "sample_index": 17,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 22068018,
+     "text": "The total weight of Jack and his 8 other adults is 1 * 80 + 8 * 80 = 640 kg. The elevator can support a maximum load of 700 kg, which means the weight of 640 kg is 700 - 640 = 60 kg over the limit. \nFinal answer: 60 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 84,
+     "latency_s": 10.183,
+     "error": null,
+     "sample_index": 18,
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "seed": 22068019,
+     "text": "The maximum weight the elevator can handle is 700 kg, and an adult weighs 80 kg. There are 9 adults in total, so the total weight is 9 * 80 = 720 kg. The excess weight is 720 - 700 = 20 kg.\nFinal answer: 20 kg",
+     "finish_reason": "stop",
+     "prompt_tokens": 410,
+     "completion_tokens": 76,
+     "latency_s": 9.45,
+     "error": null,
+     "sample_index": 19,
+     "pred": "20",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

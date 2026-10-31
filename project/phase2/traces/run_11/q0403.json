@@ -1,0 +1,317 @@
+{
+ "idx": 403,
+ "question": "Mel uses a 900-watt air conditioner for 8 hours a day. This means that each hour the AC uses 900 watts of energy. If he reduces the time he uses the air conditioner by 5 hours a day, how many kilowatts of electric energy will he save in 30 days?",
+ "gold": "81",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:20:14",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Mel uses a 900-watt air conditioner for 8 hours a day. This means that each hour the AC uses 900 watts of energy. If he reduces the time he uses the air conditioner by 5 hours a day, how many kilowatts of electric energy will he save in 30 days?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 22.111,
+   "samples": [
+    {
+     "seed": 11040300,
+     "text": "The 8 hours a day use 8 * 900 = 7200 watt-hours of electricity. A 5 hour reduction saves 5 * 900 = 4500 watt-hours. The 30 day period saves 4500 * 30 = 135000 watt-hours. 135000 watt-hours are 135 kilowatt-hours. Thus, Mel saves 135 kilowatt-hours of electric energy in 30 days.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 122,
+     "latency_s": 22.11,
+     "error": null,
+     "sample_index": 0,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11040301,
+     "text": "The AC uses 900 watts of energy per hour. If Mel reduces the usage to 3 hours a day, he saves 900 * 5 = 4500 watts. This equals 4500 / 1000 = 4.5 kilowatts per day. In 30 days, Mel saves 4.5 * 30 = 135 kilowatts of electric energy.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 95,
+     "latency_s": 19.198,
+     "error": null,
+     "sample_index": 1,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11040302,
+     "text": "Each hour of using the air conditioner is 900/1000 = 0.9 kilowatts of energy. If Mel reduces his usage by 5 hours a day, the air conditioner will use 5 * 0.9 = 4.5 kilowatts of energy a day. In 30 days, he will save 30 * 4.5 = 135 kilowatts of energy.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 101,
+     "latency_s": 20.334,
+     "error": null,
+     "sample_index": 2,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11040303,
+     "text": "First, we find the daily energy usage when using the AC for 8 hours: 900 watts * 8 hours = 7200 watt-hours. Reducing the usage by 5 hours, we get: 7200 watt-hours * 30 days = 216000 watt-hours. Converting to kilowatt-hours (kWh), 216000 watt-hours = 216 kWh.\nFinal answer: 216 kWh",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 106,
+     "latency_s": 21.069,
+     "error": null,
+     "sample_index": 3,
+     "pred": "216",
+     "correct": false
+    },
+    {
+     "seed": 11040304,
+     "text": "If Mel reduces the time he uses the air conditioner by 5 hours a day, he will use it for 8 - 5 = 3 hours a day. The AC uses 900 watts of energy per hour, which is 900 / 1000 = 0.9 kilowatts. So, he will save 0.9 * 3 * 30 = 81 kilowatt hours of energy in 30 days.\nFinal answer: 81",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 107,
+     "latency_s": 21.178,
+     "error": null,
+     "sample_index": 4,
+     "pred": "81",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 30.022,
+   "samples": [
+    {
+     "seed": 11040305,
+     "text": "The AC uses 900 watts per hour, which is 0.9 kilowatts per hour. If Mel uses the AC for 8 hours a day, he uses 8 * 0.9 = 7.2 kilowatts per day. If he reduces the use time by 5 hours, he will use 8 - 5 = 3 hours a day. Thus, the AC will use 3 * 0.9 = 2.7 kilowatts per day. Over 30 days, he will save 30 * 2.7 = 81 kilowatts of electric energy.\nFinal answer: 81",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 140,
+     "latency_s": 24.283,
+     "error": null,
+     "sample_index": 5,
+     "pred": "81",
+     "correct": true
+    },
+    {
+     "seed": 11040306,
+     "text": "If he reduces the usage by 5 hours a day, then the total reduction in energy usage is 5 * 900 = 4500 watt-hours per day. Over 30 days, this is 4500 * 30 = 135000 watt-hours. Converting to kilowatt-hours, this is 135000 / 1000 = 135 kilowatt-hours. So, he will save 135 kilowatt-hours of electric energy in 30 days.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 129,
+     "latency_s": 22.661,
+     "error": null,
+     "sample_index": 6,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11040307,
+     "text": "When he uses the AC for 8 hours a day, it uses 900 * 8 = 7200 watt-hours a day. When he uses it for 3 hours a day, it uses 900 * 3 = 2700 watt-hours a day. This means he saves 7200 - 2700 = 4500 watt-hours a day. In 30 days, he saves 4500 * 30 = 135000 watt-hours. Since 1 kilowatt-hour = 1000 watt-hours, he saves 135000 / 1000 = 135 kilowatts of electric energy.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 168,
+     "latency_s": 27.357,
+     "error": null,
+     "sample_index": 7,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11040308,
+     "text": "The total energy used per day is 900 watts * 8 hours = 7200 watts. The energy used per day is 7200 watts / 1000 = 7.2 kilowatts. The total energy used over 30 days is 30 days * 7.2 kilowatts/day = 216 kilowatts. If he reduces the usage time by 5 hours a day, the energy used per day is 900 watts * 3 hours = 2700 watts. The total energy used over 30 days is 30 days * 2700 watts/day = 81000 watts. The energy saved in 30 days is 81000 watts - 216 watts = 80784 watts. The energy saved in 30 days is 80784 / 1000 = 80.784 kilowatts.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 215,
+     "latency_s": 30.019,
+     "error": null,
+     "sample_index": 8,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11040309,
+     "text": "If Mel reduces the usage by 5 hours per day, the daily usage is 8 - 5 = 3 hours. Thus, the daily usage is 900 * 3 = 2700 watt-hours. In kilowatt-hours, this is 2700 / 1000 = 2.7 kilowatt-hours. Over 30 days, the total usage is 2.7 * 30 = 81 kilowatt-hours. Therefore, Mel will save 81 kilowatt-hours of electric energy.\nFinal answer: 81",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 127,
+     "latency_s": 22.302,
+     "error": null,
+     "sample_index": 9,
+     "pred": "81",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 25.141,
+   "samples": [
+    {
+     "seed": 11040310,
+     "text": "Each hour the AC uses 900 watts, which is 900 / 1000 = 0.9 kilowatts. If he reduces the use by 5 hours a day, the AC will save 5 * 0.9 = 4.5 kilowatts per day. Over 30 days, he saves 30 * 4.5 = 135 kilowatts of energy.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 101,
+     "latency_s": 16.531,
+     "error": null,
+     "sample_index": 10,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11040311,
+     "text": "Reducing the time by 5 hours a day means the AC uses 5 * 900 = 4500 watt-hours of energy a day. In 30 days, this amounts to 4500 * 30 = 135000 watt-hours. Since 1000 watt-hours = 1 kilowatt-hour, the AC saves 135000 / 1000 = 135 kilowatt-hours of energy in 30 days.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 113,
+     "latency_s": 18.195,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11040312,
+     "text": "The air conditioner uses 900 watts per hour. If he uses it for 8 hours a day, the air conditioner uses 900 * 8 = 7200 watts of energy per day. If he reduces the usage by 5 hours a day, the air conditioner will use 7200 - (7200 * 5/8) = 7200 - 4500 = 2700 watts of energy per day. Over 30 days, he will save 2700 * 30 = 81000 watts of electric energy.\nFinal answer: 81000",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 144,
+     "latency_s": 21.97,
+     "error": null,
+     "sample_index": 12,
+     "pred": "81000",
+     "correct": false
+    },
+    {
+     "seed": 11040313,
+     "text": "The AC uses 900 * 8 = 7200 kilowatt-hours of energy per day. If he uses it for 30 days, he will use 7200 * 30 = 216,000 kilowatt-hours. If he reduces the time by 5 hours per day, he will use 8 - 5 = 3 hours a day. So he will use 3 * 7200 = 21,600 kilowatt-hours of energy per day. In 30 days, he will use 21,600 * 30 = 648,000 kilowatt-hours of energy. Thus, he will save 216,000 - 648,000 = 432,000 kilowatt-hours.\nFinal answer: 432,000",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 201,
+     "latency_s": 25.139,
+     "error": null,
+     "sample_index": 13,
+     "pred": "432000",
+     "correct": false
+    },
+    {
+     "seed": 11040314,
+     "text": "First, we calculate the energy used by the AC in a day when it's not reduced: 900 watts * 8 hours = 7200 watt-hours. The reduction in hours means the AC saves 5 * 7200 watt-hours = 36000 watt-hours. To convert to kilowatt-hours, we divide by 1000: 36000 / 1000 = 36 kilowatt-hours. In 30 days, he will save 30 * 36 = 1080 kilowatt-hours.\nFinal answer: 1080",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 139,
+     "latency_s": 21.534,
+     "error": null,
+     "sample_index": 14,
+     "pred": "1080",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 24.337,
+   "samples": [
+    {
+     "seed": 11040315,
+     "text": "The AC uses 900 watts per hour, so 8 hours per day is 8 * 900 = 7200 watt-hours per day. If he reduces the use by 5 hours a day, he saves 5 * 900 = 4500 watt-hours per day. In one day, he saves 4500 / 1000 = 4.5 kilowatt-hours. Over 30 days, he saves 4.5 * 30 = 135 kilowatt-hours.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 129,
+     "latency_s": 20.031,
+     "error": null,
+     "sample_index": 15,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11040316,
+     "text": "When he reduces the air conditioner use by 5 hours a day, it uses 5 * 900 = 4500 watts of energy a day. The difference in energy use is 4500 - 900 = 3600 watts. In one day he saves 3600 / 1000 = 3.6 kilowatts of electric energy. In 30 days he saves 3.6 * 30 = 108 kilowatts of electric energy.\nFinal answer: 108",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 122,
+     "latency_s": 18.985,
+     "error": null,
+     "sample_index": 16,
+     "pred": "108",
+     "correct": false
+    },
+    {
+     "seed": 11040317,
+     "text": "The original AC usage is 900 watts * 8 hours = 7200 watt-hours per day. With a 5-hour reduction, the usage is 7200 - 5 * 900 = 7200 - 4500 = 2700 watt-hours per day. In 30 days, that's 2700 * 30 = 81000 watt-hours. Since 1000 watt-hours = 1 kilowatt-hour, 81000 watt-hours = 81 kilowatt-hours. The savings is 81 - 72 = 9 kilowatt-hours per day. In 30 days, he will save 9 * 30 = 270 kilowatt-hours.\nFinal answer: 270",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 184,
+     "latency_s": 24.334,
+     "error": null,
+     "sample_index": 17,
+     "pred": "270",
+     "correct": false
+    },
+    {
+     "seed": 11040318,
+     "text": "First, calculate the total energy usage per day: 900 watts * 8 hours = 7200 watt-hours. Then, calculate the daily energy usage reduction: 900 watts * 5 hours = 4500 watt-hours. Finally, multiply this by the number of days to find the total energy savings: 4500 watt-hours/day * 30 days = 135,000 watt-hours. Since 1 kilowatt-hour equals 1000 watt-hours, the total energy saved is 135,000 / 1000 = 135 kilowatt-hours.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 149,
+     "latency_s": 22.236,
+     "error": null,
+     "sample_index": 18,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11040319,
+     "text": "First, calculate the daily energy usage: 900 watts * 8 hours = 7200 watts. Then calculate the daily energy saving: 900 watts - 7200 watts / 8 hours = 720 watts per day. Finally, calculate the total energy savings over 30 days: 720 watts * 30 days = 21600 watts.\n\nFinal answer: 21600 watts",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 100,
+     "latency_s": 16.116,
+     "error": null,
+     "sample_index": 19,
+     "pred": "21600",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

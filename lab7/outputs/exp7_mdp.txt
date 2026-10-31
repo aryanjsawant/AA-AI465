@@ -1,0 +1,67 @@
+MDP Initialized: 11 states (9 non-terminal, 2 terminal).
+All transition probability distributions sum to 1.0: True
+
+============================== Value Iteration Converged Values & Policy ==============================
+Row 2: | 0.7229 | 0.8349 | 0.9424 |  +1.00 |    |  >  |  >  |  >  |  +1   |
+Row 1: | 0.6289 |  WALL  | 0.6412 |  -1.00 |    |  ^  |  WALL  |  ^  |  -1   |
+Row 0: | 0.5311 | 0.4489 | 0.5169 | 0.2838 |    |  ^  |  <  |  ^  |  <  |
+
+Sweeps to convergence: 25
+Total value updates:   225 (25 sweeps x 9 states)
+Start state V(0, 0):   0.5311
+
+============================== Policy Iteration Converged Values & Policy ==============================
+Row 2: | 0.7229 | 0.8349 | 0.9424 |  +1.00 |    |  >  |  >  |  >  |  +1   |
+Row 1: | 0.6289 |  WALL  | 0.6412 |  -1.00 |    |  ^  |  WALL  |  ^  |  -1   |
+Row 0: | 0.5311 | 0.4489 | 0.5169 | 0.2838 |    |  ^  |  <  |  ^  |  <  |
+
+Improvement rounds:        4
+Total evaluation sweeps:   185
+Total value updates:       1665
+Start state V(0, 0):       0.5311
+
+--- Verification with Algorithm 1 ---
+Policies agree across all states: True
+Maximum difference in state values: 1.75e-07 (< tolerance 1e-6)
+
+================================================================================
+EXERCISE 1A: STEP REWARD SWEEP (gamma = 0.95, p = 0.1)
+================================================================================
+R_step = -0.01 | V(0,0) = +0.6809 | Sweeps = 25
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'left', 'up', 'left']
+R_step = -0.04 | V(0,0) = +0.5311 | Sweeps = 25
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'left', 'up', 'left']
+R_step = -0.10 | V(0,0) = +0.2438 | Sweeps = 22
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'right', 'up', 'left']
+R_step = -0.50 | V(0,0) = -1.6599 | Sweeps = 21
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'right', 'up', 'up']
+R_step = -2.00 | V(0,0) = -8.0260 | Sweeps = 21
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'right'] | Row 0=['right', 'right', 'right', 'up']
+
+================================================================================
+EXERCISE 1B: DISCOUNT FACTOR SWEEP (R_step = -0.04, p = 0.1)
+================================================================================
+gamma  =  0.50 | V(0,0) = -0.0440 | Sweeps = 15
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'right', 'up', 'down']
+gamma  =  0.70 | V(0,0) = +0.0458 | Sweeps = 17
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'right', 'up', 'left']
+gamma  =  0.90 | V(0,0) = +0.3739 | Sweeps = 21
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'right', 'up', 'left']
+gamma  =  0.95 | V(0,0) = +0.5311 | Sweeps = 25
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'left', 'up', 'left']
+gamma  =  0.99 | V(0,0) = +0.6976 | Sweeps = 26
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'left', 'up', 'left']
+
+================================================================================
+EXERCISE 2: SLIP PROBABILITY SWEEP (R_step = -0.04, gamma = 0.95)
+================================================================================
+p = 0.00 | V(0,0) = +0.6661 | Sweeps =  6 | P(reach -1) =  0.0000
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'right', 'up', 'left']
+p = 0.05 | V(0,0) = +0.6134 | Sweeps = 17 | P(reach -1) =  0.0058
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'right', 'up', 'left']
+p = 0.10 | V(0,0) = +0.5311 | Sweeps = 25 | P(reach -1) =  0.0137
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'up'] | Row 0=['up', 'left', 'up', 'left']
+p = 0.20 | V(0,0) = +0.2902 | Sweeps = 83 | P(reach -1) =  0.0000
+  Policy: Row 2=['right', 'right', 'right'] | Row 1=['up', 'left'] | Row 0=['up', 'left', 'up', 'down']
+p = 0.30 | V(0,0) = +0.0291 | Sweeps = 74 | P(reach -1) =  0.0000
+  Policy: Row 2=['up', 'right', 'up'] | Row 1=['up', 'left'] | Row 0=['left', 'up', 'left', 'down']

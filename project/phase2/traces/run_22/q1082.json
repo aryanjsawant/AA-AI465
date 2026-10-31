@@ -1,0 +1,317 @@
+{
+ "idx": 1082,
+ "question": "James decided to walk to the store.  When he got halfway there he realized he forgot something at home and had to walk back.  If his home is 4 miles from the store and he walks 4 miles per hour how long did it take him to reach the store?",
+ "gold": "2",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:29:30",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "James decided to walk to the store.  When he got halfway there he realized he forgot something at home and had to walk back.  If his home is 4 miles from the store and he walks 4 miles per hour how long did it take him to reach the store?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 16.422,
+   "samples": [
+    {
+     "seed": 22108200,
+     "text": "He walked half the distance to the store, which is 4 / 2 = 2 miles. At 4 miles per hour, it took him 2 / 4 = 0.5 hours to walk that distance. The other half took the same amount of time, making it 0.5 + 0.5 = 1 hour.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 80,
+     "latency_s": 13.518,
+     "error": null,
+     "sample_index": 0,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22108201,
+     "text": "James walked halfway to the store, which is 4 miles / 2 = 2 miles. Since he walks 4 miles per hour, it takes him 2 miles / 4 miles per hour = 0.5 hours to walk halfway. Since he walks back the same way, it takes another 0.5 hours. Therefore, the total time is 0.5 hours + 0.5 hours = 1 hour.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 97,
+     "latency_s": 16.025,
+     "error": null,
+     "sample_index": 1,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22108202,
+     "text": "James walks 4 miles at a rate of 4 miles per hour, so it takes him 4 / 4 = 1 hour to walk half the distance to the store.\nSince the store is 4 miles away and he walked half of it, it takes him an additional 4 / 4 = 1 hour to walk to the store.\nSo, it took James 1 + 1 = 2 hours to reach the store.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 97,
+     "latency_s": 16.03,
+     "error": null,
+     "sample_index": 2,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 22108203,
+     "text": "He walked half the total distance of 4 miles each way, which is 4 / 2 = 2 miles. At 4 miles per hour, it took him 2 / 4 = 0.5 hours or 30 minutes to walk to the store.\nFinal answer: 30 minutes",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 65,
+     "latency_s": 10.727,
+     "error": null,
+     "sample_index": 3,
+     "pred": "30",
+     "correct": false
+    },
+    {
+     "seed": 22108204,
+     "text": "James walks halfway to the store, which is 4 miles / 2 = 2 miles. At 4 miles per hour, it takes 2 miles / 4 miles per hour = 0.5 hours to walk half way. Since he walks back the same way, it takes an additional 0.5 hours to walk back. Therefore, in total, it takes 0.5 hours + 0.5 hours = 1 hour to reach the store.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 104,
+     "latency_s": 16.419,
+     "error": null,
+     "sample_index": 4,
+     "pred": "1",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 12.661,
+   "samples": [
+    {
+     "seed": 22108205,
+     "text": "James walked halfway to the store, which is 4 miles / 2 = 2 miles. At a speed of 4 miles per hour, it takes him 2 miles / 4 miles per hour = 0.5 hours to walk the second half of the journey.\nThe total time is 0.5 hours + 0.5 hours = 1 hour.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 84,
+     "latency_s": 12.66,
+     "error": null,
+     "sample_index": 5,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22108206,
+     "text": "James walks half the distance from home to the store, which is 4 miles / 2 = 2 miles. Since he walks at a rate of 4 miles per hour, it takes him 2 miles / 4 miles per hour = 0.5 hours to walk to the store.\nFinal answer: 0.5 hours",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 70,
+     "latency_s": 11.652,
+     "error": null,
+     "sample_index": 6,
+     "pred": "0.5",
+     "correct": false
+    },
+    {
+     "seed": 22108207,
+     "text": "Since James walked halfway to the store, he walked 4 miles / 2 = 2 miles. He walked at a speed of 4 miles per hour, so it took him 2 miles / 4 miles per hour = 0.5 hours or 30 minutes to reach the store.\nFinal answer: 30 minutes",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 70,
+     "latency_s": 11.66,
+     "error": null,
+     "sample_index": 7,
+     "pred": "30",
+     "correct": false
+    },
+    {
+     "seed": 22108208,
+     "text": "James walks 4 miles per hour, so half the distance is 4 / 2 = 2 miles. Since he had to walk back 4 miles, the total distance is 2 + 4 = 6 miles. Since he walks at 4 miles per hour, it took him 6 / 4 = 1.5 hours to reach the store.",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 77,
+     "latency_s": 12.289,
+     "error": null,
+     "sample_index": 8,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22108209,
+     "text": "James walks 4 miles per hour. He walks halfway to the store which is 4 / 2 = 2 miles. Since he had to walk back, he walks 2 * 2 = 4 miles. It takes 4 / 4 = 1 hour for him to reach the store.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 70,
+     "latency_s": 11.653,
+     "error": null,
+     "sample_index": 9,
+     "pred": "1",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 13.313,
+   "samples": [
+    {
+     "seed": 22108210,
+     "text": "He walks half the distance, so 4 miles / 2 = 2 miles in one direction. It takes him 2 miles / 4 miles per hour = 0.5 hours.\nFinal answer: 0.5 hours",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 49,
+     "latency_s": 8.973,
+     "error": null,
+     "sample_index": 10,
+     "pred": "0.5",
+     "correct": false
+    },
+    {
+     "seed": 22108211,
+     "text": "James walks 4 miles per hour, so it takes him 4 miles / 4 miles per hour = 1 hour to reach the store.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 37,
+     "latency_s": 6.792,
+     "error": null,
+     "sample_index": 11,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22108212,
+     "text": "First, James walks half the distance to the store, which is 4 miles / 2 = 2 miles. Walking at 4 miles per hour, it takes him 2 miles / 4 miles per hour = 0.5 hours to walk half the distance. Since he has to walk back, the total time to reach the store is 0.5 hours + 0.5 hours = 1 hour.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 94,
+     "latency_s": 13.311,
+     "error": null,
+     "sample_index": 12,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22108213,
+     "text": "James walked half the distance to the store, which is 4 miles / 2 = 2 miles. At a speed of 4 miles per hour, it took him 2 miles / 4 miles per hour = 0.5 hours to walk back home. Therefore, the total time taken to reach the store is 0.5 hours + 0.5 hours = 1 hour.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 89,
+     "latency_s": 13.049,
+     "error": null,
+     "sample_index": 13,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22108214,
+     "text": "James walked half the distance, which is 4 miles / 2 = 2 miles. At a speed of 4 miles per hour, it takes him 2 miles / 4 miles per hour = 1 hour to walk half the distance.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 58,
+     "latency_s": 10.253,
+     "error": null,
+     "sample_index": 14,
+     "pred": "1",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 14.597,
+   "samples": [
+    {
+     "seed": 22108215,
+     "text": "James walked half the distance to the store which is 4 / 2 = 2 miles. It took him 2 / 4 = 0.5 hours to walk this distance. Since he had to walk back home, the total time is 0.5 * 2 = 1 hour.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 70,
+     "latency_s": 11.437,
+     "error": null,
+     "sample_index": 15,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22108216,
+     "text": "He walks half the distance to the store, which is 4 miles / 2 = 2 miles. At 4 miles per hour, it takes 2 miles / 4 miles per hour = 0.5 hours to walk to the store.\nFinal answer: 0.5 hours",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 61,
+     "latency_s": 10.152,
+     "error": null,
+     "sample_index": 16,
+     "pred": "0.5",
+     "correct": false
+    },
+    {
+     "seed": 22108217,
+     "text": "First, James walks halfway to the store, which is 4 miles / 2 = 2 miles. At a speed of 4 miles per hour, it takes him 2 miles / 4 miles per hour = 0.5 hours to walk the first half. Then, he walks back home, covering another 2 miles, at the same speed, which takes him another 0.5 hours. Therefore, the total time is 0.5 hours + 0.5 hours = 1 hour.\nFinal answer: 1 hour",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 113,
+     "latency_s": 14.595,
+     "error": null,
+     "sample_index": 17,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 22108218,
+     "text": "James walked half the distance to the store, which is 4 miles / 2 = 2 miles. At a walking speed of 4 miles per hour, it took him 2 miles / 4 miles per hour = 0.5 hours, which is 0.5 * 60 = 30 minutes to walk to the store.\nFinal answer: 30 mins",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 81,
+     "latency_s": 12.748,
+     "error": null,
+     "sample_index": 18,
+     "pred": "30",
+     "correct": false
+    },
+    {
+     "seed": 22108219,
+     "text": "He walked half the distance twice, totaling 4*2=8 miles. At 4 miles per hour, it took him 8/4=2 hours.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 414,
+     "completion_tokens": 40,
+     "latency_s": 6.393,
+     "error": null,
+     "sample_index": 19,
+     "pred": "2",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,317 @@
+{
+ "idx": 1074,
+ "question": "Teddy finished half of a 500 piece puzzle, and then started and finished another 500 piece puzzle within an hour.  How many puzzle pieces did Teddy place during that hour?",
+ "gold": "750",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:59:27",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Teddy finished half of a 500 piece puzzle, and then started and finished another 500 piece puzzle within an hour.  How many puzzle pieces did Teddy place during that hour?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 15.097,
+   "samples": [
+    {
+     "seed": 22107400,
+     "text": "Teddy finished half of a 500 piece puzzle, which is 500 / 2 = 250 puzzle pieces. Since he finished the second 500 piece puzzle within an hour, he placed 500 pieces in an hour. The total number of puzzle pieces Teddy placed during that hour is 250 + 500 = 750 puzzle pieces.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 93,
+     "latency_s": 15.096,
+     "error": null,
+     "sample_index": 0,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107401,
+     "text": "Teddy finished half of the first 500 piece puzzle, which means he placed 500 / 2 = 250 pieces. In the second puzzle, Teddy finished the whole 500 piece puzzle, which means he placed 500 pieces. So during that hour, Teddy placed 250 + 500 = 750 puzzle pieces.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 90,
+     "latency_s": 14.934,
+     "error": null,
+     "sample_index": 1,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107402,
+     "text": "Teddy finished half of a 500 piece puzzle, so he completed 500 / 2 = 250 pieces. Then he finished another 500 piece puzzle, so he completed 500 more pieces. In total, Teddy placed 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 84,
+     "latency_s": 14.396,
+     "error": null,
+     "sample_index": 2,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107403,
+     "text": "Teddy finished half of the first puzzle, which means he placed 500 / 2 = 250 puzzle pieces. Since he finished both puzzles within an hour, he placed 250 + 250 = 500 puzzle pieces during that hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 67,
+     "latency_s": 11.73,
+     "error": null,
+     "sample_index": 3,
+     "pred": "500",
+     "correct": false
+    },
+    {
+     "seed": 22107404,
+     "text": "Teddy finished half of the first puzzle, which means he placed 500 / 2 = 250 puzzle pieces. Since he finished the second puzzle within an hour, and it was also a 500 piece puzzle, he placed 500 puzzle pieces in total during that hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 72,
+     "latency_s": 12.635,
+     "error": null,
+     "sample_index": 4,
+     "pred": "500",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 14.16,
+   "samples": [
+    {
+     "seed": 22107405,
+     "text": "Teddy finished half of a 500 piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces in the first puzzle. He then started and finished another 500 piece puzzle in an hour, so he placed 500 puzzle pieces in the second puzzle. In total, Teddy placed 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 99,
+     "latency_s": 14.159,
+     "error": null,
+     "sample_index": 5,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107406,
+     "text": "Teddy finished half of a 500 piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces in half an hour. Since he finished the second puzzle in an hour, he placed 500 puzzle pieces in the second hour.\n\nSo, Teddy placed a total of 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 94,
+     "latency_s": 13.888,
+     "error": null,
+     "sample_index": 6,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107407,
+     "text": "Teddy finished half of the first puzzle, which is 500 / 2 = 250 pieces. He also finished half of the second puzzle, which is 500 / 2 = 250 pieces. Therefore, Teddy placed 250 + 250 = 500 puzzle pieces in one hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 82,
+     "latency_s": 12.587,
+     "error": null,
+     "sample_index": 7,
+     "pred": "500",
+     "correct": false
+    },
+    {
+     "seed": 22107408,
+     "text": "Teddy finished half of a 500 piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces. Since he finished both puzzles in an hour, he placed 250 + 250 = 500 puzzle pieces during that hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 71,
+     "latency_s": 10.973,
+     "error": null,
+     "sample_index": 8,
+     "pred": "500",
+     "correct": false
+    },
+    {
+     "seed": 22107409,
+     "text": "Teddy finished 500 pieces, half of the puzzle. To get the number of pieces finished in an hour, we need to calculate 500 / 2 = 250 pieces. The answer is 250 pieces.",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 53,
+     "latency_s": 8.771,
+     "error": null,
+     "sample_index": 9,
+     "pred": "250",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 13.966,
+   "samples": [
+    {
+     "seed": 22107410,
+     "text": "Teddy placed 500/2 = 250 puzzle pieces in the first puzzle. In total he placed 500 pieces over two puzzles, meaning in the hour he placed 500 - 250 = 250 pieces.\nFinal answer: 250",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 64,
+     "latency_s": 10.882,
+     "error": null,
+     "sample_index": 10,
+     "pred": "250",
+     "correct": false
+    },
+    {
+     "seed": 22107411,
+     "text": "Teddy finished half of a 500 piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces in the first puzzle. He then finished another 500 piece puzzle within an hour. Therefore, Teddy placed 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 82,
+     "latency_s": 13.1,
+     "error": null,
+     "sample_index": 11,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107412,
+     "text": "Teddy finished half of a 500-piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces during the hour. He also finished the second puzzle within the hour, adding another 500 pieces. So during that hour, Teddy placed a total of 250 + 500 = 750 puzzle pieces.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 88,
+     "latency_s": 13.746,
+     "error": null,
+     "sample_index": 12,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107413,
+     "text": "Teddy finished half of the first puzzle, which means he placed 500 / 2 = 250 puzzle pieces. Since he finished the second puzzle within an hour, he placed all 500 pieces. Therefore, during that hour, Teddy placed 250 + 500 = 750 puzzle pieces.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 80,
+     "latency_s": 12.854,
+     "error": null,
+     "sample_index": 13,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107414,
+     "text": "Teddy finished half of the first puzzle, which means he placed 500 / 2 = 250 puzzle pieces. He finished the second puzzle within an hour, placing 500 puzzle pieces in total. To find the total number of puzzle pieces he placed during that hour, we add the two totals: 250 + 500 = 750 puzzle pieces.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 92,
+     "latency_s": 13.963,
+     "error": null,
+     "sample_index": 14,
+     "pred": "750",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 14.744,
+   "samples": [
+    {
+     "seed": 22107415,
+     "text": "Teddy finished half of the 500 piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces. Within the hour, Teddy finished the other 500 piece puzzle, which means he placed 500 puzzle pieces. Therefore, Teddy placed 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 90,
+     "latency_s": 14.426,
+     "error": null,
+     "sample_index": 15,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107416,
+     "text": "Teddy finished half of the 500-piece puzzle, which is 500 / 2 = 250 pieces. The second 500-piece puzzle he finished within an hour, so he placed 500 pieces on that puzzle. In total, Teddy placed 250 + 500 = 750 puzzle pieces during the hour.",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 81,
+     "latency_s": 13.419,
+     "error": null,
+     "sample_index": 16,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22107417,
+     "text": "Teddy finished half of the first puzzle, which is 500 / 2 = 250 pieces. He then started a second puzzle, which completed it within an hour. Thus, Teddy placed 250 pieces from the first puzzle and 500 pieces from the second puzzle. In total, Teddy placed 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 96,
+     "latency_s": 14.742,
+     "error": null,
+     "sample_index": 17,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107418,
+     "text": "Teddy finished half of the first puzzle, which means he completed 500 / 2 = 250 pieces. He then finished the second puzzle entirely, totaling 500 pieces. Thus, Teddy placed a total of 250 + 500 = 750 puzzle pieces in one hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 77,
+     "latency_s": 12.714,
+     "error": null,
+     "sample_index": 18,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 22107419,
+     "text": "Teddy finished half of the first puzzle, which is 500 / 2 = 250 pieces. He also finished half of the second puzzle, which is 500 / 2 = 250 pieces. Therefore, Teddy placed 250 + 250 = 500 puzzle pieces during the hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 82,
+     "latency_s": 13.568,
+     "error": null,
+     "sample_index": 19,
+     "pred": "500",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

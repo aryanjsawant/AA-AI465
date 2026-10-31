@@ -1,0 +1,115 @@
+=== Direct prompt template ===
+Answer the question with only the final number. Do not
+show any working.
+
+Question: {question}
+Final Answer:
+
+=== Chain-of-thought prompt template ===
+Solve each question by writing your reasoning step by step,
+then state the result on its own line as shown.
+
+Example 1:
+Question: A basket has 14 mangoes. 5 are given away. How many are left?
+Reasoning: Start with 14 mangoes. Giving away 5 leaves 14 - 5 = 9.
+Final Answer: 9
+
+Example 2:
+Question: A car travels at 40 km/h for 3 hours. How far does it go?
+Reasoning: Distance = speed x time = 40 * 3 = 120.
+Final Answer: 120
+
+Example 3:
+Question: A pack has 4 rows of 6 eggs. 2 eggs break. How many whole eggs
+remain?
+Reasoning: Total eggs = 4 * 6 = 24. Removing the 2 broken eggs leaves
+24 - 2 = 22.
+Final Answer: 22
+
+Now solve this one the same way.
+Question: {question}
+Reasoning:
+
+=== Sample complete CoT trace (question q05, greedy decoding) ===
+Solve each question by writing your reasoning step by step,
+then state the result on its own line as shown.
+
+Example 1:
+Question: A basket has 14 mangoes. 5 are given away. How many are left?
+Reasoning: Start with 14 mangoes. Giving away 5 leaves 14 - 5 = 9.
+Final Answer: 9
+
+Example 2:
+Question: A car travels at 40 km/h for 3 hours. How far does it go?
+Reasoning: Distance = speed x time = 40 * 3 = 120.
+Final Answer: 120
+
+Example 3:
+Question: A pack has 4 rows of 6 eggs. 2 eggs break. How many whole eggs
+remain?
+Reasoning: Total eggs = 4 * 6 = 24. Removing the 2 broken eggs leaves
+24 - 2 = 22.
+Final Answer: 22
+
+Now solve this one the same way.
+Question: A store marks up a product that costs 80 rupees by 25% to set the selling price, then later applies a 25% discount to the selling price during a sale. What is the final sale price?
+Reasoning:
+Reasoning: A 25% increase followed by a 25% decrease cancels out, so the final price equals the original cost price of 80.
+Final Answer: 80
+
+=== Running configuration: direct (k=1, seed=42) ===
+  q01: gold=9  answer=9  [OK]
+  q02: gold=150  answer=150  [OK]
+  q03: gold=52  answer=52  [OK]
+  q04: gold=120  answer=120  [OK]
+  q05: gold=75  answer=80  [WRONG]
+  q06: gold=41  answer=41  [OK]
+  q07: gold=2600  answer=2800  [WRONG]
+  q08: gold=84  answer=84  [OK]
+  q09: gold=8  answer=9  [WRONG]
+  q10: gold=900  answer=900  [OK]
+  accuracy=0.70  (7/10)  calls=10  unparsable=0
+
+=== Running configuration: cot_greedy (k=1, seed=42) ===
+  q01: gold=9  answer=9  [OK]
+  q02: gold=150  answer=150  [OK]
+  q03: gold=52  answer=52  [OK]
+  q04: gold=120  answer=120  [OK]
+  q05: gold=75  answer=80  [WRONG]
+  q06: gold=41  answer=41  [OK]
+  q07: gold=2600  answer=2800  [WRONG]
+  q08: gold=84  answer=84  [OK]
+  q09: gold=8  answer=9  [WRONG]
+  q10: gold=900  answer=900  [OK]
+  accuracy=0.70  (7/10)  calls=10  unparsable=0
+
+=== Running configuration: cot_self_consistency (k=7, seed=42) ===
+  q01: gold=9  answer=9  [OK]
+        vote tally -> 9:6, 15:1
+  q02: gold=150  answer=150  [OK]
+        vote tally -> 150:6, 120:1
+  q03: gold=52  answer=52  [OK]
+        vote tally -> 52:6
+  q04: gold=120  answer=120  [OK]
+        vote tally -> 120:6
+  q05: gold=75  answer=80  [WRONG]
+        vote tally -> 80:4, 75:3
+  q06: gold=41  answer=41  [OK]
+        vote tally -> 41:5, 25:1
+  q07: gold=2600  answer=2600  [OK]
+        vote tally -> 2600:4, 2800:1
+  q08: gold=84  answer=84  [OK]
+        vote tally -> 84:5, 19:2
+  q09: gold=8  answer=8  [OK]
+        vote tally -> 8:6, 9:1
+  q10: gold=900  answer=900  [OK]
+        vote tally -> 900:5, 600:2
+  accuracy=0.90  (9/10)  calls=70  unparsable=5
+
+=== 3-way comparison ===
+Configuration           Accuracy    Calls     Unparsable  
+direct                  0.70        10        0           
+cot_greedy              0.70        10        0           
+cot_self_consistency    0.90        70        5           
+
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab5\outputs\exp5_cot_selfconsistency.txt]

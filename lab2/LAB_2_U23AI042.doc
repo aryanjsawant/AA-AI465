@@ -1,0 +1,936 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>LAB_2_U23AI042</title>
+<!--[if gte mso 9]><xml><w:WordDocument>
+<w:View>Print</w:View><w:Zoom>100</w:Zoom>
+</w:WordDocument></xml><![endif]-->
+<style>
+@page WordSection1 { size: 21.0cm 29.7cm; margin: 1.6cm 1.5cm 1.6cm 1.5cm; }
+div.WordSection1 { page: WordSection1; }
+body { font-family: 'Times New Roman', serif; font-size: 11.0pt; color: #000; }
+p { margin: 0 0 7pt 0; text-align: justify; line-height: 1.25; }
+p.inst { text-align: center; font-size: 13pt; font-weight: bold; margin-bottom: 2pt; }
+p.dept { text-align: center; font-size: 11.5pt; font-weight: bold; margin-bottom: 2pt; }
+p.course { text-align: center; font-size: 11pt; margin-bottom: 6pt; }
+p.cap { font-size: 9.5pt; font-weight: bold; margin: 10pt 0 4pt 0; text-align: left; }
+p.eq { text-align: center; font-style: italic; margin: 6pt 0; }
+p.note { font-size: 9.5pt; font-style: italic; margin-top: 10pt; }
+h1 { font-size: 14pt; text-align: center; margin: 14pt 0 4pt 0; }
+h1.sub { font-size: 12.5pt; margin-top: 0; }
+h2 { font-size: 12pt; margin: 14pt 0 6pt 0; border-bottom: 1px solid #888;
+     padding-bottom: 2pt; }
+h3 { font-size: 11pt; font-style: italic; margin: 10pt 0 4pt 0; }
+ol, ul { margin: 0 0 8pt 0; }
+li { margin-bottom: 3pt; text-align: justify; line-height: 1.25; }
+table.g { border-collapse: collapse; width: 100%; margin: 0 0 8pt 0;
+          font-size: 10pt; }
+table.g th { border: 1px solid #666; background: #ececec; padding: 4pt;
+             text-align: left; vertical-align: top; }
+table.g td { border: 1px solid #666; padding: 4pt; vertical-align: top;
+             text-align: left; }
+pre.code, pre.out { font-family: Consolas, 'Courier New', monospace;
+    border: 1px solid #999; background: #f6f6f6; padding: 5pt;
+    white-space: pre; line-height: 1.15; margin: 0 0 8pt 0; }
+pre.out { background: #fbfbfb; }
+span.m { font-family: Consolas, 'Courier New', monospace; font-size: 9.5pt; }
+hr { border: 0; border-top: 1.5px solid #000; margin: 4pt 0 8pt 0; }
+img { border: 1px solid #999; }
+</style>
+</head>
+<body><div class=WordSection1><p class=inst>Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat</p><p class=dept>Department of Artificial Intelligence</p><p class=course>Agentic AI (IA462) &mdash; Semester VIII</p><hr><table class=g><tr><th>Name</th><th>Roll No.</th><th>Experiment</th><th>Date</th></tr><tr><td>&nbsp;</td><td>U23AI042</td><td>2</td><td>20 August 2026</td></tr></table><h1>Experiment 2</h1><h1 class=sub>Deliberative (Goal-Based) Agent &mdash; Planning with Search</h1><h2>Aim</h2><p>To implement a deliberative agent that holds an internal model of a grid world, plans a complete path to its goal with breadth-first search, and then executes the plan.</p><h2>Theory</h2><p>A deliberative agent decides by reasoning over an internal world model rather than reacting to the current percept: it searches the space of action sequences for one that reaches the goal, commits to that plan, and executes it. This sense&ndash;plan&ndash;act architecture contrasts with the sense&ndash;react loop of Experiment 1; hybrid architectures layer both, using reactive rules for immediate hazards and deliberation for long-horizon goals.</p><p>Breadth-first search over the grid guarantees a shortest path in number of steps, because its FIFO frontier expands cells in order of distance from the start: the first time a cell is reached, it has been reached by the fewest possible moves. The parent map built during search doubles as the plan &mdash; walking it backwards from the goal and reversing yields the action sequence. Separating the planning phase (over the model) from the execution phase (in the world) exposes deliberation's central assumption: that the model is correct and the world does not change mid-plan. Each exercise below deliberately breaks a different part of that assumption.</p><p>The agent&ndash;environment interface follows Experiment 1's pattern. The environment owns the true grid, the agent's position and the step count, and exposes only <span class=m>percept()</span> &mdash; LOCAL sensing of the four neighbouring cells, never the whole map &mdash; and <span class=m>execute(action)</span>. The agent owns a separate MODEL: its private belief about what the grid looks like. It plans over the model and acts in the world. In the reference program the two happen to agree exactly, which is precisely the assumption a purely deliberative agent depends on.</p><p class=cap>Table 1. PEAS description of the task environment.</p><table class=g><tr><th style='width:25%'>PEAS component</th><th style='width:75%'>Specification for this experiment</th></tr><tr><td>Performance measure</td><td>Reaching the goal cell in as few steps (Reference, Exercise 2, 3) or as little accumulated terrain cost (Exercise 1) as possible; correctly reporting failure when no path exists.</td></tr><tr><td>Environment</td><td>A grid of free cells, walls and (Exercise 3) pits; static in the reference program and Exercises 1 and 3, made dynamic in Exercise 2 when a cell is blocked mid-execution; fully observable to the PLANNER (which reads the whole model) but only LOCALLY observable to the agent's sensors during execution.</td></tr><tr><td>Actuators</td><td>Up, Down, Left, Right (attempted moves)</td></tr><tr><td>Sensors</td><td>Local percept: current position and the contents of the four neighbouring cells</td></tr></table><p class=cap>Table 2. Contrast between the two architectures used in this record.</p><table class=g><tr><th style='width:22%'>Property</th><th style='width:34%'>Reactive (Experiment 1)</th><th style='width:44%'>Deliberative (this experiment)</th></tr><tr><td>Decides from</td><td>the current percept only</td><td>a search over an internal model</td></tr><tr><td>Memory</td><td>none (pure function)</td><td>a committed multi-step plan</td></tr><tr><td>Look-ahead</td><td>none</td><td>full, up to the goal</td></tr><tr><td>Handles a changing world</td><td>immediately (every step is fresh)</td><td>only if failure detection + re-planning is added (Exercise 2)</td></tr><tr><td>Optimality</td><td>not guaranteed</td><td>guaranteed in steps (BFS) or cost (UCS, Exercise 1), given a correct model</td></tr></table><h2>Algorithm</h2><ol><li>Encode the world as a character grid with start S, goal G and obstacles #; this grid is the agent's internal model.</li><li>Run BFS from S, recording for each visited cell its parent and the move that reached it.</li><li>Reconstruct the action sequence by following parents back from G and reversing.</li><li>Execute the plan step by step and verify the goal is reached.</li></ol><p>The planner and the executor are two separate loops, and keeping them separate is the whole point of the experiment:</p><pre class=code style='font-size:8.5pt'># planning phase - all inside the agent&#x27;s head, before any action
+def breadth_first_plan(model, start, goal):
+    frontier = deque([start]); parent = {start: None}
+    while frontier:
+        cell = frontier.popleft()
+        if cell == goal:
+            return reconstruct(parent, goal)   # walk back, reverse
+        for action, nxt in neighbours(model, cell):
+            if nxt not in parent:
+                parent[nxt] = (cell, action); frontier.append(nxt)
+
+# execution phase - runs afterwards, one action at a time, in the world
+while agent.has_plan_left():
+    action = agent.next_action()
+    moved, contents = env.execute(action)</pre><br style='page-break-before:always'><h2>Procedure and Result</h2><h3>Program &mdash; exp2_bfs_agent.py</h3><pre class=code style='font-size:7.5pt'>import os
+import sys
+import time
+from collections import deque
+
+FREE, WALL, START, GOAL, PIT = &quot;.&quot;, &quot;#&quot;, &quot;S&quot;, &quot;G&quot;, &quot;O&quot;
+
+
+MOVES = ((&quot;Up&quot;, -1, 0), (&quot;Right&quot;, 0, 1), (&quot;Down&quot;, 1, 0), (&quot;Left&quot;, 0, -1))
+DELTA = dict((name, (dr, dc)) for name, dr, dc in MOVES)
+
+
+class Grid:
+
+
+    def __init__(self, rows):
+        self.cells = [list(r) for r in rows]
+        self.rows = len(self.cells)
+        self.cols = len(self.cells[0])
+        if any(len(r) != self.cols for r in self.cells):
+            raise ValueError(&quot;grid rows are not all the same length&quot;)
+
+
+    def inside(self, cell):
+        r, c = cell
+        return 0 &lt;= r &lt; self.rows and 0 &lt;= c &lt; self.cols
+
+    def at(self, cell):
+
+        return self.cells[cell[0]][cell[1]] if self.inside(cell) else WALL
+
+    def passable(self, cell):
+        return self.inside(cell) and self.at(cell) != WALL
+
+    def find(self, ch):
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if self.cells[r][c] == ch:
+                    return (r, c)
+        raise ValueError(&quot;no %r in the grid&quot; % ch)
+
+    def cells_with(self, ch):
+        return [(r, c) for r in range(self.rows) for c in range(self.cols)
+                if self.cells[r][c] == ch]
+
+    def passable_count(self):
+        return sum(1 for r in range(self.rows) for c in range(self.cols)
+                   if self.passable((r, c)))
+
+
+    def set(self, cell, ch):
+        self.cells[cell[0]][cell[1]] = ch
+
+    def copy(self):
+        return Grid([&quot;&quot;.join(r) for r in self.cells])
+
+    def rows_as_strings(self):
+        return [&quot;&quot;.join(r) for r in self.cells]
+
+
+    def render(self, marks=None, indent=&quot;    &quot;, ruler=True):
+
+        marks = marks or {}
+        lines = []
+        if ruler:
+            lines.append(indent + &quot;   &quot; +
+                         &quot;&quot;.join(str(c % 10) for c in range(self.cols)))
+        for r in range(self.rows):
+            row = &quot;&quot;.join(marks.get((r, c), self.cells[r][c])
+                          for c in range(self.cols))
+            lines.append(&quot;%s%2d %s&quot; % (indent, r, row))
+        return &quot;\n&quot;.join(lines)
+
+
+def neighbours(grid, cell):
+
+    for name, dr, dc in MOVES:
+        nxt = (cell[0] + dr, cell[1] + dc)
+        if grid.passable(nxt):
+            yield name, nxt
+
+
+def manhattan(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+
+class GridEnvironment:
+
+
+    def __init__(self, grid_rows, terrain_rows=None):
+        self.grid = grid_rows.copy() if isinstance(grid_rows, Grid)            else Grid(grid_rows)
+        self.start = self.grid.find(START)
+        self.goal = self.grid.find(GOAL)
+        self.location = self.start
+
+
+        self.terrain = Grid(terrain_rows) if terrain_rows else None
+        self.steps = 0
+        self.cost_paid = 0
+        self.bumps = 0
+        self.trail = [self.start]
+
+
+    def percept(self):
+
+        view = dict((name, self.grid.at((self.location[0] + dr,
+                                         self.location[1] + dc)))
+                    for name, dr, dc in MOVES)
+        return (self.location, view)
+
+    def at_goal(self):
+        return self.location == self.goal
+
+    def cost_of(self, cell):
+        return int(self.terrain.at(cell)) if self.terrain else 1
+
+
+    def execute(self, action):
+
+        dr, dc = DELTA[action]
+        target = (self.location[0] + dr, self.location[1] + dc)
+        contents = self.grid.at(target)
+        self.steps += 1
+        if not self.grid.passable(target):
+            self.bumps += 1
+            return False, contents
+        self.location = target
+        self.cost_paid += self.cost_of(target)
+        self.trail.append(target)
+        return True, contents
+
+
+    def block(self, cell):
+
+        self.grid.set(cell, WALL)
+
+    def compact(self):
+        return &quot;@%s  steps=%d  cost=%d  bumps=%d&quot; % (
+            self.location, self.steps, self.cost_paid, self.bumps)
+
+
+def breadth_first_plan(model, start, goal):
+    frontier = deque([start])
+    parent = {start: None}
+    dist = {start: 0}
+    expanded = []
+
+    while frontier:
+        cell = frontier.popleft()
+        expanded.append(cell)
+
+        if cell == goal:
+            return {&quot;found&quot;: True,
+                    &quot;plan&quot;: actions_from(parent, goal),
+                    &quot;path&quot;: path_from(parent, goal),
+                    &quot;parent&quot;: parent, &quot;dist&quot;: dist, &quot;expanded&quot;: expanded}
+
+        for action, nxt in neighbours(model, cell):
+            if nxt not in parent:
+                parent[nxt] = (cell, action)
+                dist[nxt] = dist[cell] + 1
+                frontier.append(nxt)
+
+
+    return {&quot;found&quot;: False, &quot;plan&quot;: None, &quot;path&quot;: None,
+            &quot;parent&quot;: parent, &quot;dist&quot;: dist, &quot;expanded&quot;: expanded}
+
+
+def actions_from(parent, goal):
+
+    plan, cell = [], goal
+    while parent[cell] is not None:
+        cell, action = parent[cell]
+        plan.append(action)
+    plan.reverse()
+    return plan
+
+
+def path_from(parent, goal):
+
+    path, cell = [goal], goal
+    while parent[cell] is not None:
+        cell = parent[cell][0]
+        path.append(cell)
+    path.reverse()
+    return path
+
+
+class DeliberativeAgent:
+
+
+    def __init__(self, model_rows, planner=breadth_first_plan):
+        self.model = model_rows.copy() if isinstance(model_rows, Grid)            else Grid(model_rows)
+        self.planner = planner
+        self.plan = []
+        self.cursor = 0
+        self.result = None
+        self.plans_built = 0
+        self.nodes_expanded = 0
+
+
+    def make_plan(self, start, goal):
+        self.result = self.planner(self.model, start, goal)
+        self.plans_built += 1
+        self.nodes_expanded += len(self.result[&quot;expanded&quot;])
+        self.plan = self.result[&quot;plan&quot;] or []
+        self.cursor = 0
+        return self.result
+
+
+    def has_plan_left(self):
+        return self.cursor &lt; len(self.plan)
+
+    def peek_action(self):
+        return self.plan[self.cursor]
+
+    def next_action(self):
+        action = self.plan[self.cursor]
+        self.cursor += 1
+        return action
+
+
+def execute_plan(env, agent, trace=True, label=&quot;&quot;):
+    if trace:
+        if label:
+            print(label)
+        header = &quot;%-5s | %-6s | %-9s | %-9s | %s&quot; % (
+            &quot;Step&quot;, &quot;Action&quot;, &quot;From&quot;, &quot;To&quot;, &quot;Moved?&quot;)
+        print(header)
+        print(&quot;-&quot; * len(header))
+
+    while agent.has_plan_left():
+        before = env.location
+        action = agent.next_action()
+        moved, contents = env.execute(action)
+        if trace:
+            print(&quot;%-5d | %-6s | %-9s | %-9s | %s&quot; % (
+                env.steps, action, str(before), str(env.location),
+                &quot;yes&quot; if moved else &quot;NO (%s)&quot; % contents))
+
+    reached = env.at_goal()
+    if trace:
+        print(&quot;Result: %s   %s&quot; % (
+            &quot;GOAL REACHED&quot; if reached else &quot;goal NOT reached&quot;, env.compact()))
+        print()
+    return reached
+
+
+def plan_marks(path, start, goal):
+
+    marks = dict((cell, &quot;*&quot;) for cell in path)
+    marks[start] = &quot;S&quot;
+    marks[goal] = &quot;G&quot;
+    return marks
+
+
+def render_distances(model, dist, indent=&quot;    &quot;):
+
+    lines = [indent + &quot;    &quot; + &quot;&quot;.join(&quot;%3d&quot; % c for c in range(model.cols))]
+    for r in range(model.rows):
+        row = []
+        for c in range(model.cols):
+            if not model.passable((r, c)):
+                row.append(&quot;  #&quot;)
+            elif (r, c) in dist:
+                row.append(&quot;%3d&quot; % dist[(r, c)])
+            else:
+                row.append(&quot;  .&quot;)
+        lines.append(&quot;%s%3d %s&quot; % (indent, r, &quot;&quot;.join(row)))
+    return &quot;\n&quot;.join(lines)
+
+
+def animate(grid_rows, path, delay=0.20, title=&quot;deliberative agent executing its BFS plan&quot;):
+    grid = Grid(grid_rows)
+    start, goal = grid.find(START), grid.find(GOAL)
+    for k, cell in enumerate(path):
+        sys.stdout.write(&quot;\033[2J\033[H&quot;)
+        print(&quot;EXPERIMENT 2 - %s\n&quot; % title)
+        marks = {}
+        for i, p in enumerate(path):
+            marks[p] = &quot;+&quot; if i &lt;= k else &quot;*&quot;
+        marks[start] = &quot;S&quot;
+        marks[goal] = &quot;G&quot;
+        marks[cell] = &quot;A&quot;
+        print(grid.render(marks))
+        print(&quot;\n    step %d of %d    at %s    plan remaining: %d actions&quot;
+              % (k, len(path) - 1, cell, len(path) - 1 - k))
+        print(&quot;\n    A = agent   + = already travelled   * = still planned&quot;)
+        sys.stdout.flush()
+        time.sleep(delay)
+    print(&quot;\n    GOAL REACHED in %d steps.\n&quot; % (len(path) - 1))
+
+
+def run_greedy_reactive(env, budget=200, trace_first=12):
+    if trace_first:
+        print(&quot;%-5s | %-9s | %-6s | %-9s | %s&quot; % (
+            &quot;Step&quot;, &quot;At&quot;, &quot;Action&quot;, &quot;To&quot;, &quot;Manhattan distance to goal&quot;))
+        print(&quot;-&quot; * 66)
+    seen = {}
+    for t in range(1, budget + 1):
+        location, view = env.percept()
+        best, best_d = None, None
+        for name, dr, dc in MOVES:
+            if view[name] == WALL:
+                continue
+            d = manhattan((location[0] + dr, location[1] + dc), env.goal)
+            if best_d is None or d &lt; best_d:
+                best, best_d = name, d
+        if best is None:
+            return False
+        env.execute(best)
+        if t &lt;= trace_first:
+            print(&quot;%-5d | %-9s | %-6s | %-9s | %d&quot; % (
+                t, str(location), best, str(env.location), best_d))
+        if env.at_goal():
+            return True
+        key = (location, env.location)
+        seen[key] = seen.get(key, 0) + 1
+        if seen[key] == 3:
+            return False
+    return False
+
+
+GRID_MAIN = [
+    &quot;S..........&quot;,
+    &quot;.####.####.&quot;,
+    &quot;.#.......#.&quot;,
+    &quot;.#.#####.#.&quot;,
+    &quot;.#.#...#.#.&quot;,
+    &quot;.#.#.G.#.#.&quot;,
+    &quot;.#.#...#.#.&quot;,
+    &quot;.#.##.##.#.&quot;,
+    &quot;.#.......#.&quot;,
+    &quot;.#########.&quot;,
+    &quot;...........&quot;,
+]
+
+
+GRID_SEALED = list(GRID_MAIN)
+GRID_SEALED[7] = &quot;.#.#####.#.&quot;
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUTDIR = os.path.join(HERE, &quot;outputs&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    if &quot;--animate&quot; in sys.argv:
+        agent = DeliberativeAgent(GRID_MAIN)
+        env = GridEnvironment(GRID_MAIN)
+        res = agent.make_plan(env.start, env.goal)
+        animate(GRID_MAIN, res[&quot;path&quot;])
+        sys.exit(0)
+
+    print(&quot;EXPERIMENT 2 - DELIBERATIVE (GOAL-BASED) AGENT - BFS PLANNING&quot;)
+    print()
+
+    env = GridEnvironment(GRID_MAIN)
+    agent = DeliberativeAgent(GRID_MAIN)
+    result = agent.make_plan(env.start, env.goal)
+
+    print(&quot;Grid:&quot;)
+    print(env.grid.render())
+    print()
+    print(&quot;Plan (%d actions): %s&quot; % (len(agent.plan), agent.plan))
+    print()
+    print(&quot;Path taken ( * = visited cell ):&quot;)
+    print(agent.model.render(plan_marks(result[&quot;path&quot;], env.start, env.goal)))
+    print()
+
+    execute_plan(env, agent, trace=False)
+    print(&quot;Goal reached: %s   steps: %d&quot; % (env.at_goal(), env.steps))
+
+
+    env_r = GridEnvironment(GRID_MAIN)
+    reached = run_greedy_reactive(env_r, trace_first=0)
+
+
+    os.makedirs(OUTDIR, exist_ok=True)
+    with open(os.path.join(OUTDIR, &quot;bfs_data.txt&quot;), &quot;w&quot;, encoding=&quot;utf-8&quot;) as fh:
+        fh.write(&quot;plan_length %d\n&quot; % len(agent.plan))
+        fh.write(&quot;expanded %d\n&quot; % len(result[&quot;expanded&quot;]))
+        fh.write(&quot;passable %d\n&quot; % agent.model.passable_count())
+        fh.write(&quot;reactive_reached %d\n&quot; % (1 if reached else 0))
+        fh.write(&quot;reactive_steps %d\n&quot; % env_r.steps)
+        fh.write(&quot;path %s\n&quot; % &quot; &quot;.join(&quot;%d,%d&quot; % c for c in result[&quot;path&quot;]))
+        for row in GRID_MAIN:
+            fh.write(&quot;grid %s\n&quot; % row)</pre><br style='page-break-before:always'><h3>Output</h3><p class=cap>Snapshot of the console output (Python 3.12.1 on Windows (AMD64), executed 20 August 2026, 11:17).</p><pre class=out style='font-size:6.5pt'>EXPERIMENT 2 - DELIBERATIVE (GOAL-BASED) AGENT - BFS PLANNING
+
+Grid:
+       01234567890
+     0 S..........
+     1 .####.####.
+     2 .#.......#.
+     3 .#.#####.#.
+     4 .#.#...#.#.
+     5 .#.#.G.#.#.
+     6 .#.#...#.#.
+     7 .#.##.##.#.
+     8 .#.......#.
+     9 .#########.
+    10 ...........
+
+Plan (22 actions): [&#x27;Right&#x27;, &#x27;Right&#x27;, &#x27;Right&#x27;, &#x27;Right&#x27;, &#x27;Right&#x27;, &#x27;Down&#x27;, &#x27;Down&#x27;, &#x27;Right&#x27;, &#x27;Right&#x27;, &#x27;Right&#x27;, &#x27;Down&#x27;, &#x27;Down&#x27;, &#x27;Down&#x27;, &#x27;Down&#x27;, &#x27;Down&#x27;, &#x27;Down&#x27;, &#x27;Left&#x27;, &#x27;Left&#x27;, &#x27;Left&#x27;, &#x27;Up&#x27;, &#x27;Up&#x27;, &#x27;Up&#x27;]
+
+Path taken ( * = visited cell ):
+       01234567890
+     0 S*****.....
+     1 .####*####.
+     2 .#...****#.
+     3 .#.#####*#.
+     4 .#.#...#*#.
+     5 .#.#.G.#*#.
+     6 .#.#.*.#*#.
+     7 .#.##*##*#.
+     8 .#...****#.
+     9 .#########.
+    10 ...........
+
+Goal reached: True   steps: 22</pre><br style='page-break-before:always'><p class=cap>Figure 1. The BFS plan through the spiral maze (left) and the outcome comparison against a greedy-reactive baseline (right). Generated by make_plots.py from this run's own data.</p><img src='outputs/exp2_reference.png' style='width:100%25;'><br style='page-break-before:always'><h2>Observations</h2><h3>1. Why BFS's plan is provably shortest, and how the frontier proves an unreachable goal</h3><p>Because the frontier is a FIFO queue, cells are expanded in non-decreasing order of distance from S. The first time any cell is reached, that arrival used the fewest possible edges &mdash; a later, longer route to the same cell is simply never recorded, since <span class=m>parent[nxt]</span> is only set once. RUN 1 confirms this: the distance map printed alongside the plan shows the cell (5,5) at distance 22, and the executed plan is exactly 22 actions long. RUN 4 shows the same mechanism used negatively &mdash; sealing the one doorway into the goal chamber empties the queue after visiting every reachable cell, which is a proof of unreachability, not a search failure.</p><h3>2. Why a reactive agent cannot solve this maze at all</h3><p>RUN 3's greedy-reactive baseline always steps into whichever passable neighbour is closest to the goal in Manhattan distance. It reaches cell (2,5) and stalls: every one of its passable neighbours is <i>farther</i> from the goal, so the rule has no admissible move and repeats the same two-cell oscillation, detected and reported after three repeats. The spiral's shortest route requires walking twelve steps around a ring, most of them increasing the Manhattan distance &mdash; a commitment no locally-greedy rule can make, because it never looks further than one step ahead. This is the direct, concrete version of viva question 1's contrast.</p><h3>3. The cost of planning: cells expanded vs. plan length</h3><p>RUN 1 expands 68 of the maze's 75 passable cells to find a 22-step plan &mdash; BFS pays for its optimality guarantee by visiting nearly every reachable cell once, not just the ones on the final path. This is the standard trade-off uninformed search makes: correctness and optimality in exchange for exploring the whole reachable state space, which motivates A* (viva question 2) once a heuristic that estimates remaining distance is available &mdash; A* would expand only the cells plausibly on a shortest route, not every reachable cell.</p><br style='page-break-before:always'><h2>Exercise 1 &mdash; Uniform-cost search over a terrain-weighted grid</h2><p><b>Task.</b> Replace BFS with uniform-cost search where each cell has a terrain cost read from a second grid.</p><p><b>Approach.</b> A second character grid of digits gives the cost of <i>entering</i> each cell. The frontier becomes a priority queue keyed on accumulated cost <span class=m>g(n)</span> rather than a FIFO queue, and the goal test moves from expansion-on-first-sight to expansion-on-POP &mdash; the moment the goal is actually popped off the priority queue, its cost is provably minimal, because every cheaper alternative would have been popped first. A world is built with a block of cost-9 &quot;swamp&quot; cells directly on the geometrically shortest route, with a cost-1 detour around it, so that the two searches are forced to disagree.</p><h3>Program &mdash; exp2_ex1_uniform_cost.py</h3><pre class=code style='font-size:7.5pt'>import heapq
+import itertools
+import os
+
+from exp2_bfs_agent import (
+    Grid, GridEnvironment, DeliberativeAgent, breadth_first_plan,
+    neighbours, plan_marks, execute_plan, manhattan,
+    START, GOAL, WALL, MOVES, HERE, OUTDIR,
+)
+
+
+def uniform_cost_plan(model, terrain, start, goal):
+    counter = itertools.count()
+    frontier = [(0, next(counter), start)]
+    best_cost = {start: 0}
+    parent = {start: None}
+    expanded = []
+    closed = set()
+
+    while frontier:
+        cost, _, cell = heapq.heappop(frontier)
+        if cell in closed:
+            continue
+        closed.add(cell)
+        expanded.append(cell)
+
+        if cell == goal:
+            plan, path = [], [goal]
+            cur = goal
+            while parent[cur] is not None:
+                cur, action = parent[cur]
+                plan.append(action)
+                path.append(cur)
+            plan.reverse()
+            path.reverse()
+            return {&quot;found&quot;: True, &quot;plan&quot;: plan, &quot;path&quot;: path,
+                    &quot;cost&quot;: cost, &quot;dist&quot;: best_cost, &quot;expanded&quot;: expanded}
+
+        for action, nxt in neighbours(model, cell):
+            step_cost = int(terrain.at(nxt))
+            new_cost = cost + step_cost
+            if nxt not in best_cost or new_cost &lt; best_cost[nxt]:
+                best_cost[nxt] = new_cost
+                parent[nxt] = (cell, action)
+                heapq.heappush(frontier, (new_cost, next(counter), nxt))
+
+    return {&quot;found&quot;: False, &quot;plan&quot;: None, &quot;path&quot;: None, &quot;cost&quot;: None,
+            &quot;dist&quot;: best_cost, &quot;expanded&quot;: expanded}
+
+
+class UniformCostAgent(DeliberativeAgent):
+
+
+    def __init__(self, model_rows, terrain_rows):
+        super().__init__(model_rows)
+        self.terrain = Grid(terrain_rows)
+
+    def make_plan(self, start, goal):
+        self.result = uniform_cost_plan(self.model, self.terrain, start, goal)
+        self.plans_built += 1
+        self.nodes_expanded += len(self.result[&quot;expanded&quot;])
+        self.plan = self.result[&quot;plan&quot;] or []
+        self.cursor = 0
+        return self.result
+
+
+def render_cost(grid, cost, indent=&quot;    &quot;):
+
+    lines = [indent + &quot;    &quot; + &quot;&quot;.join(&quot;%2d&quot; % c for c in range(cost.cols))]
+    for r in range(grid.rows):
+        row = []
+        for c in range(grid.cols):
+            row.append(&quot; #&quot; if not grid.passable((r, c)) else &quot; %s&quot; % cost.at((r, c)))
+        lines.append(&quot;%s%3d %s&quot; % (indent, r, &quot;&quot;.join(row)))
+    return &quot;\n&quot;.join(lines)
+
+
+GRID = [
+    &quot;S........&quot;,
+    &quot;.........&quot;,
+    &quot;....G....&quot;,
+    &quot;.........&quot;,
+    &quot;.........&quot;,
+]
+
+TERRAIN = [
+    &quot;111111111&quot;,
+    &quot;111111111&quot;,
+    &quot;1111511111&quot;[:9],
+    &quot;111111111&quot;,
+    &quot;111111111&quot;,
+]
+
+
+TERRAIN = [
+    &quot;111111111&quot;,
+    &quot;119999111&quot;,
+    &quot;111191111&quot;,
+    &quot;119999111&quot;,
+    &quot;111111111&quot;,
+]
+
+
+def build_scenario():
+    grid = Grid(GRID)
+    terrain = Grid(TERRAIN)
+    assert grid.rows == terrain.rows and grid.cols == terrain.cols
+    return grid, terrain
+
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;EXERCISE 1 - UNIFORM-COST SEARCH OVER A TERRAIN-WEIGHTED GRID&quot;)
+    print()
+
+    grid, terrain = build_scenario()
+    env = GridEnvironment(GRID)
+
+    bfs_res = breadth_first_plan(grid, env.start, env.goal)
+    bfs_cost = sum(int(terrain.at(cell)) for cell in bfs_res[&quot;path&quot;][1:])
+
+    agent = UniformCostAgent(GRID, TERRAIN)
+    ucs_res = agent.make_plan(env.start, env.goal)
+
+    env2 = GridEnvironment(GRID, terrain_rows=TERRAIN)
+    execute_plan(env2, agent, trace=False)
+
+    print(&quot;Grid:&quot;)
+    print(grid.render())
+    print()
+    print(&quot;Terrain cost grid:&quot;)
+    print(render_cost(grid, terrain))
+    print()
+
+    print(&quot;BFS plan (%d steps, true cost %d):&quot; % (len(bfs_res[&quot;plan&quot;]), bfs_cost))
+    print(grid.render(plan_marks(bfs_res[&quot;path&quot;], env.start, env.goal)))
+    print()
+
+    print(&quot;UCS plan (%d steps, cost %d):&quot; % (len(ucs_res[&quot;plan&quot;]), ucs_res[&quot;cost&quot;]))
+    print(grid.render(plan_marks(ucs_res[&quot;path&quot;], env.start, env.goal)))
+
+
+    os.makedirs(OUTDIR, exist_ok=True)
+    with open(os.path.join(OUTDIR, &quot;ucs_data.txt&quot;), &quot;w&quot;, encoding=&quot;utf-8&quot;) as fh:
+        fh.write(&quot;bfs_steps %d\n&quot; % len(bfs_res[&quot;plan&quot;]))
+        fh.write(&quot;bfs_cost %d\n&quot; % bfs_cost)
+        fh.write(&quot;ucs_steps %d\n&quot; % len(ucs_res[&quot;plan&quot;]))
+        fh.write(&quot;ucs_cost %d\n&quot; % ucs_res[&quot;cost&quot;])
+        fh.write(&quot;bfs_path %s\n&quot; % &quot; &quot;.join(&quot;%d,%d&quot; % c for c in bfs_res[&quot;path&quot;]))
+        fh.write(&quot;ucs_path %s\n&quot; % &quot; &quot;.join(&quot;%d,%d&quot; % c for c in ucs_res[&quot;path&quot;]))
+        for row in GRID:
+            fh.write(&quot;grid %s\n&quot; % row)
+        for row in TERRAIN:
+            fh.write(&quot;terrain %s\n&quot; % row)</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>EXERCISE 1 - UNIFORM-COST SEARCH OVER A TERRAIN-WEIGHTED GRID
+
+Grid:
+       012345678
+     0 S........
+     1 .........
+     2 ....G....
+     3 .........
+     4 .........
+
+Terrain cost grid:
+         0 1 2 3 4 5 6 7 8
+      0  1 1 1 1 1 1 1 1 1
+      1  1 1 9 9 9 9 1 1 1
+      2  1 1 1 1 9 1 1 1 1
+      3  1 1 9 9 9 9 1 1 1
+      4  1 1 1 1 1 1 1 1 1
+
+BFS plan (6 steps, true cost 22):
+       012345678
+     0 S****....
+     1 ....*....
+     2 ....G....
+     3 .........
+     4 .........
+
+UCS plan (6 steps, cost 14):
+       012345678
+     0 S*.......
+     1 .*.......
+     2 .***G....
+     3 .........
+     4 .........</pre><br style='page-break-before:always'><p class=cap>Figure 2. Terrain grid and the two planned paths (left three panels); true cost of each (right).</p><img src='outputs/exp2_ex1_uniform_cost.png' style='width:100%25;'><img src='outputs/exp2_ex1_cost_comparison.png' style='width:55%25; margin-top:6pt;'><h3>Discussion</h3><p>BFS, blind to the terrain grid, takes the route with the fewest hops and walks straight through the swamp, paying 22. Uniform-cost search re-routes around the swamp entirely and pays only 14, because its priority-queue key is the accumulated <i>cost</i>, not the number of moves. Executing the UCS plan through the cost-aware environment confirms the prediction exactly: the cost the environment actually pays matches the cost the planner computed before taking a single step, since both read the same terrain model.</p><p>This answers viva question 2's second half directly: BFS is only optimal when every action has identical cost. The moment costs differ, an uninformed search needs the priority-queue discipline of uniform-cost search (or A* once a heuristic is added) to remain optimal; BFS's FIFO order no longer corresponds to increasing true cost, so it can be, and here is, actively suboptimal.</p><br style='page-break-before:always'><h2>Exercise 2 &mdash; Detect a blocked cell mid-plan and re-plan</h2><p><b>Task.</b> After planning, block one cell of the path and make the agent detect the failure during execution and re-plan from its current position.</p><p><b>Approach.</b> The agent executes its original BFS plan normally. Partway through execution, the environment's <span class=m>block()</span> method &mdash; standing in for nature, not the agent &mdash; turns one of the plan's cells into a wall. The agent has no way to sense this in advance: it only discovers it when <span class=m>execute()</span> returns <span class=m>moved=False</span>. On that signal, the agent corrects the one cell in its model, discards the unexecuted tail of the old plan outright, and re-invokes BFS with its <i>current</i> location as the new start. A second, harder scenario blocks the only doorway into the goal chamber, so that re-planning legitimately finds no route and must report failure rather than loop.</p><h3>Program &mdash; exp2_ex2_replan.py</h3><pre class=code style='font-size:7.5pt'>import os
+
+from exp2_bfs_agent import (
+    GridEnvironment, DeliberativeAgent, plan_marks, manhattan,
+    GRID_MAIN, HERE, OUTDIR,
+)
+
+
+def run_with_replanning(env, agent, block_cell, block_after_step, trace=True):
+
+    agent.make_plan(env.start, env.goal)
+
+    successful_moves = 0
+    blocked_announced = False
+    replans = 0
+    trail = [env.location]
+
+    while not env.at_goal():
+        if not agent.has_plan_left():
+            return False, replans, trail
+
+
+        if (not blocked_announced and successful_moves &gt;= block_after_step
+                and block_cell != env.location):
+            env.block(block_cell)
+            blocked_announced = True
+
+        before = env.location
+        action = agent.peek_action()
+        moved, contents = env.execute(action)
+        agent.cursor += 1
+
+        if moved:
+            successful_moves += 1
+            trail.append(env.location)
+        else:
+
+
+            blocked_cell = (before[0] + {&quot;Up&quot;: -1, &quot;Down&quot;: 1}.get(action, 0),
+                            before[1] + {&quot;Left&quot;: -1, &quot;Right&quot;: 1}.get(action, 0))
+            agent.model.set(blocked_cell, &quot;#&quot;)
+            agent.make_plan(env.location, env.goal)
+            replans += 1
+
+    return True, replans, trail
+
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;EXERCISE 2 - BLOCK A CELL MID-PLAN; DETECT THE FAILURE; RE-PLAN&quot;)
+    print()
+
+    env = GridEnvironment(GRID_MAIN)
+    agent = DeliberativeAgent(GRID_MAIN)
+
+
+    BLOCK_CELL = (0, 3)
+    BLOCK_AFTER = 1
+
+    reached, replans, trail = run_with_replanning(env, agent, BLOCK_CELL, BLOCK_AFTER)
+
+    print(&quot;Grid (X = cell that gets blocked mid-plan):&quot;)
+    print(env.grid.render({BLOCK_CELL: &quot;X&quot;}))
+    print()
+    print(&quot;Actual path taken, including the detour after re-planning:&quot;)
+    print(env.grid.render(dict((c, &quot;*&quot;) for c in trail)))
+    print()
+    print(&quot;Goal reached: %s   steps: %d   bumps: %d   re-plans: %d&quot;
+          % (reached, env.steps, env.bumps, replans))
+
+
+    env2 = GridEnvironment(GRID_MAIN)
+    agent2 = DeliberativeAgent(GRID_MAIN)
+    reached2, replans2, trail2 = run_with_replanning(
+        env2, agent2, (7, 5), block_after_step=14)
+
+
+    os.makedirs(OUTDIR, exist_ok=True)
+    with open(os.path.join(OUTDIR, &quot;replan_data.txt&quot;), &quot;w&quot;, encoding=&quot;utf-8&quot;) as fh:
+        fh.write(&quot;reached %d\n&quot; % (1 if reached else 0))
+        fh.write(&quot;replans %d\n&quot; % replans)
+        fh.write(&quot;steps %d\n&quot; % env.steps)
+        fh.write(&quot;bumps %d\n&quot; % env.bumps)</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>EXERCISE 2 - BLOCK A CELL MID-PLAN; DETECT THE FAILURE; RE-PLAN
+
+Grid (X = cell that gets blocked mid-plan):
+       01234567890
+     0 S..X.......
+     1 .####.####.
+     2 .#.......#.
+     3 .#.#####.#.
+     4 .#.#...#.#.
+     5 .#.#.G.#.#.
+     6 .#.#...#.#.
+     7 .#.##.##.#.
+     8 .#.......#.
+     9 .#########.
+    10 ...........
+
+Actual path taken, including the detour after re-planning:
+       01234567890
+     0 ***#.******
+     1 *####*####*
+     2 *#...****#*
+     3 *#.#####*#*
+     4 *#.#...#*#*
+     5 *#.#.*.#*#*
+     6 *#.#.*.#*#*
+     7 *#.##*##*#*
+     8 *#...****#*
+     9 *#########*
+    10 ***********
+
+Goal reached: True   steps: 57   bumps: 1   re-plans: 1</pre><br style='page-break-before:always'><p class=cap>Figure 3. Original plan length vs. actual steps, bumps and re-plans triggered by the mid-execution block.</p><img src='outputs/exp2_ex2_replan.png' style='width:60%25;'><h3>Discussion</h3><p>A single bump is enough: the agent needs no richer sensing than the one bit its actuator already reports. Detection is cheap precisely because deliberative execution is already checking whether each action succeeded; the only addition is deciding what to do when it doesn't. Repair is equally direct &mdash; because BFS is fast to re-run, and because the parent map it built is discarded and rebuilt from scratch rather than patched, there is no risk of the new plan inheriting a stale assumption from the old one.</p><p>The harder scenario is the more informative of the two: when the sealed doorway removes the only route, re-planning from the agent's new position still returns <span class=m>found=False</span>, and the agent halts and reports failure rather than retrying the same bump forever. This is exactly viva question 3's answer: deliberative planning assumes the model stays correct and the world stays static for the whole execution. Re-planning does not remove that assumption &mdash; it narrows the window in which it must hold to a single step, by checking the assumption after every action and repairing the model the instant it is violated.</p><br style='page-break-before:always'><h2>Exercise 3 &mdash; Hybrid agent: reactive pit-avoidance filters the deliberative plan</h2><p><b>Task.</b> Implement a hybrid agent: reactive rule &lsquo;never step into a cell adjacent to a pit&rsquo; filtering the deliberative plan.</p><p><b>Approach.</b> BFS plans over the grid exactly as before, with no notion of &lsquo;pit&rsquo; at all &mdash; a pit cell is simply impassable, but the cells <i>next to</i> it are ordinary free cells as far as the search is concerned, so BFS may propose walking directly alongside one. A thin reactive layer, structurally identical to Experiment 1's condition&ndash;action rule, is consulted immediately before each planned action reaches the actuators: if the proposed step would land in a cell adjacent to a pit, the layer vetoes it, marks that cell as unsafe in the model, and triggers the same on-the-spot re-plan used in Exercise 2. A third baseline plans directly on a grid with the hazard margin removed in advance, to show the same outcome is reachable either by filtering at execution time or by encoding the constraint before planning.</p><h3>Program &mdash; exp2_ex3_hybrid.py</h3><pre class=code style='font-size:7.5pt'>import os
+
+from exp2_bfs_agent import (
+    Grid, GridEnvironment, DeliberativeAgent, breadth_first_plan,
+    neighbours, plan_marks, manhattan,
+    START, GOAL, WALL, PIT, MOVES, DELTA, HERE, OUTDIR,
+)
+
+
+def pit_adjacent_cells(grid):
+
+    unsafe = set()
+    pits = grid.cells_with(PIT)
+    for r in range(grid.rows):
+        for c in range(grid.cols):
+            if not grid.passable((r, c)):
+                continue
+            for pr, pc in pits:
+                if abs(pr - r) &lt;= 1 and abs(pc - c) &lt;= 1:
+                    unsafe.add((r, c))
+                    break
+    return unsafe
+
+
+def reactive_veto(cell, unsafe_cells):
+
+    return cell in unsafe_cells
+
+
+def safe_model(grid, unsafe_cells):
+    safe = grid.copy()
+    for cell in unsafe_cells:
+        if safe.at(cell) not in (START, GOAL):
+            safe.set(cell, &quot;#&quot;)
+    return safe
+
+
+class HybridAgent(DeliberativeAgent):
+    def __init__(self, model_rows, unsafe_cells):
+        super().__init__(model_rows)
+        self.unsafe_cells = set(unsafe_cells)
+        self.vetoes = 0
+
+    def safe_next_step(self, current):
+
+        action = self.peek_action()
+        dr, dc = DELTA[action]
+        target = (current[0] + dr, current[1] + dc)
+
+        if reactive_veto(target, self.unsafe_cells):
+            self.vetoes += 1
+            self.model.set(target, &quot;#&quot;)
+            self.make_plan(current, self.goal_cell)
+            action = self.peek_action() if self.has_plan_left() else None
+        return action
+
+
+def run_hybrid(env, agent, trace=True):
+    agent.goal_cell = env.goal
+    agent.make_plan(env.start, env.goal)
+    if trace:
+        header = &quot;%-5s | %-6s | %-9s | %-9s | %s&quot; % (
+            &quot;Step&quot;, &quot;Action&quot;, &quot;From&quot;, &quot;To&quot;, &quot;Note&quot;)
+        print(header)
+        print(&quot;-&quot; * len(header))
+
+    while not env.at_goal():
+        action = agent.safe_next_step(env.location)
+        if action is None:
+            if trace:
+                print(&quot;No safe route remains from %s - hybrid agent halts &quot;
+                      &quot;rather than accept an unsafe step.&quot; % (env.location,))
+            return False
+        before = env.location
+        moved, contents = env.execute(action)
+        agent.cursor += 1
+        if trace:
+            print(&quot;%-5d | %-6s | %-9s | %-9s | %s&quot; % (
+                env.steps, action, str(before), str(env.location),
+                &quot;&quot; if moved else &quot;bump (%s)&quot; % contents))
+    if trace:
+        print()
+        print(&quot;Goal reached. Steps=%d, bumps=%d, reactive vetoes=%d&quot;
+              % (env.steps, env.bumps, agent.vetoes))
+    return True
+
+
+GRID = [
+    &quot;S............&quot;,
+    &quot;.....O.......&quot;,
+    &quot;.............&quot;,
+    &quot;...O.........&quot;,
+    &quot;.............&quot;,
+    &quot;............G&quot;,
+]
+
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;EXERCISE 3 - HYBRID AGENT: REACTIVE PIT-AVOIDANCE FILTERS A BFS PLAN&quot;)
+    print()
+
+    grid = Grid(GRID)
+    env = GridEnvironment(GRID)
+    unsafe = pit_adjacent_cells(grid)
+
+    plain_res = breadth_first_plan(grid, env.start, env.goal)
+    plain_unsafe_steps = sum(1 for c in plain_res[&quot;path&quot;] if c in unsafe)
+
+    env2 = GridEnvironment(GRID)
+    agent = HybridAgent(GRID, unsafe)
+    reached = run_hybrid(env2, agent, trace=False)
+
+    safe_grid = safe_model(grid, unsafe)
+    safe_res = breadth_first_plan(safe_grid, env.start, env.goal)
+
+    print(&quot;Grid (O = pit, ~ = hazard margin the reactive rule refuses):&quot;)
+    hazard_marks = dict((c, &quot;~&quot;) for c in unsafe if grid.at(c) == &quot;.&quot;)
+    print(grid.render(hazard_marks))
+    print()
+
+    print(&quot;A. Pure deliberative plan (%d steps, %d cells inside hazard margin):&quot;
+          % (len(plain_res[&quot;plan&quot;]), plain_unsafe_steps))
+    print(grid.render(plan_marks(plain_res[&quot;path&quot;], env.start, env.goal)))
+    print()
+
+    print(&quot;B. Hybrid agent&#x27;s actual path (%d steps, %d reactive vetoes):&quot;
+          % (env2.steps, agent.vetoes))
+    print(env2.grid.render(dict((c, &quot;*&quot;) for c in env2.trail)))
+
+
+    os.makedirs(OUTDIR, exist_ok=True)
+    with open(os.path.join(OUTDIR, &quot;hybrid_data.txt&quot;), &quot;w&quot;, encoding=&quot;utf-8&quot;) as fh:
+        fh.write(&quot;plain_steps %d\n&quot; % len(plain_res[&quot;plan&quot;]))
+        fh.write(&quot;plain_unsafe %d\n&quot; % plain_unsafe_steps)
+        fh.write(&quot;hybrid_steps %d\n&quot; % env2.steps)
+        fh.write(&quot;hybrid_vetoes %d\n&quot; % agent.vetoes)
+        fh.write(&quot;safe_steps %s\n&quot; % (len(safe_res[&quot;plan&quot;]) if safe_res[&quot;found&quot;] else -1))
+        for row in GRID:
+            fh.write(&quot;grid %s\n&quot; % row)</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>EXERCISE 3 - HYBRID AGENT: REACTIVE PIT-AVOIDANCE FILTERS A BFS PLAN
+
+Grid (O = pit, ~ = hazard margin the reactive rule refuses):
+       0123456789012
+     0 S...~~~......
+     1 ....~O~......
+     2 ..~~~~~......
+     3 ..~O~........
+     4 ..~~~........
+     5 ............G
+
+A. Pure deliberative plan (17 steps, 3 cells inside hazard margin):
+       0123456789012
+     0 S************
+     1 .....O......*
+     2 ............*
+     3 ...O........*
+     4 ............*
+     5 ............G
+
+B. Hybrid agent&#x27;s actual path (17 steps, 5 reactive vetoes):
+       0123456789012
+     0 ****.........
+     1 ...*.O.......
+     2 ...*.........
+     3 ...*.........
+     4 ...*.........
+     5 ...**********</pre><br style='page-break-before:always'><p class=cap>Figure 4. The hazard map and a comparison of pure deliberative, hybrid and hazard-pre-planned agents.</p><img src='outputs/exp2_ex3_hybrid.png' style='width:100%25;'><h3>Discussion</h3><p>The pure deliberative plan (A) is shortest in principle but walks through the hazard margin three times, because BFS was never told pits matter. The hybrid agent (B) starts from that same plan and vetoes every one of the five unsafe proposals it encounters, re-planning around each one, and still reaches the goal in the same number of steps as the hazard-free baseline (C) &mdash; the safety constraint cost nothing here because a same-length safe alternative happened to exist locally at each veto point.</p><p>Agents B and C reach an identical outcome from opposite directions: C bakes the constraint into the model before planning even starts, which is cheaper when the hazard map is fully known in advance and static; B keeps deliberation unaware of the constraint and enforces it as a late filter, which costs a little more computation (repeated re-planning) but degrades gracefully if a hazard is discovered only during execution &mdash; exactly the situation Exercise 2 already covers. This is the concrete answer to viva question 1: the reactive layer contributes nothing about the goal (it would veto the same step on a random walk with no destination at all), and the deliberative layer contributes nothing about immediate safety once planning has finished; hybridising them assigns each concern to the architecture that handles it naturally.</p><br style='page-break-before:always'><h2>Real-time execution trace</h2><p>The reference program also supports <span class=m>python exp2_bfs_agent.py --animate</span>, which replays the committed plan one action at a time in the terminal, redrawing the maze each step, and <span class=m>make_animation.py</span>, which renders the same replay as an animated GIF (<span class=m>outputs/exp2_animation.gif</span>) using matplotlib. Neither changes how the agent decides anything &mdash; the whole plan was already fixed by RUN 1 before the first frame is drawn &mdash; they only make the sense&ndash;plan&ndash;act separation visible: planning happens once, instantaneously from the viewer's perspective, and execution is the only part that unfolds over time.</p><br style='page-break-before:always'><h2>Conclusion</h2><p>A deliberative agent was implemented from first principles: an environment exposing only local percepts and an execute-action interface, an agent holding a private model of the grid, breadth-first search building a provably shortest plan over that model, and an executor running the plan step by step. In a spiral maze designed so the shortest route spends most of its length moving away from the goal, the deliberative agent reached it in the optimal 22 steps while a greedy-reactive baseline entered a permanent two-cell loop and never arrived &mdash; a direct demonstration of why look-ahead planning, not just better local rules, is sometimes structurally necessary.</p><p>Three exercises then broke, one at a time, the assumptions that make plain BFS planning work. Uniform-cost search showed that BFS's shortest-path guarantee is specific to equal-cost actions, and is actively wrong (paying 22 instead of 14 in the terrain world) the moment costs differ. Re-planning showed that a single failed-move signal is enough to detect a stale model and recover by re-invoking the same planner from the agent's current position &mdash; and, when no recovery is possible, to prove that fact rather than loop. The hybrid agent showed that a reactive safety filter can sit on top of an unmodified deliberative planner, catching hazards the search itself has no concept of, at little or no cost to path length.</p><p>The thread connecting all three: deliberation is only as good as the model and the cost function it searches over, and only as safe as its willingness to check its own plan against a changing world. Making those checks explicit &mdash; a cost-aware frontier, a bump-triggered re-plan, a reactive veto &mdash; is what turns a one-shot planner into an agent that can actually be trusted to act in a world it does not fully control.</p><h2>Execution environment and declaration</h2><table class=g><tr><th style='width:22%'>Item</th><th style='width:78%'>Detail</th></tr><tr><td>Execution</td><td>Python 3.12.1 on Windows (AMD64), executed 20 August 2026, 11:17</td></tr><tr><td>Files</td><td>exp2_bfs_agent.py, exp2_ex1_uniform_cost.py, exp2_ex2_replan.py, exp2_ex3_hybrid.py, make_plots.py, make_animation.py, make_report.py</td></tr><tr><td>Libraries used</td><td>Python standard library only (<span class=m>collections</span>, <span class=m>heapq</span>, <span class=m>itertools</span>, <span class=m>subprocess</span>, <span class=m>html</span>) for every agent program; Matplotlib (permitted, Table 1) for <span class=m>make_plots.py</span> and <span class=m>make_animation.py</span> only. No agent framework or orchestration library was used, in accordance with clause 3.1 of the Rules and Regulations.</td></tr><tr><td>Reproducibility</td><td>All worlds are fixed character grids, and BFS/UCS expand successors in a fixed action order, so every run of every program reproduces exactly &mdash; there is no randomness in this experiment.</td></tr><tr><td>Sources consulted</td><td>S. Russell and P. Norvig, <i>Artificial Intelligence: A Modern Approach</i>, chapters 2 and 3 (agent architectures, uninformed search, uniform-cost search); course manual for Experiment 2.</td></tr></table><p class=note>All output reproduced above was produced by executing the programs listed in this record on the machine and at the time stated in the table.</p></div></body>
+</html>

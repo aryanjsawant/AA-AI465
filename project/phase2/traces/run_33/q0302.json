@@ -1,0 +1,317 @@
+{
+ "idx": 302,
+ "question": "Annika brought $50 to the town fair. She spent half of it on food and snacks, and an additional $10 for rides. How much, in dollars, is left?",
+ "gold": "15",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:04:52",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Annika brought $50 to the town fair. She spent half of it on food and snacks, and an additional $10 for rides. How much, in dollars, is left?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 11.076,
+   "samples": [
+    {
+     "seed": 33030200,
+     "text": "Annika spent half of $50 on food and snacks, which is $50 / 2 = $25. After spending the food and snack money, she has $50 - $25 = $25 left. Adding the $10 for rides, she has $25 + $10 = $35 left.\nFinal answer: 35",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 79,
+     "latency_s": 11.074,
+     "error": null,
+     "sample_index": 0,
+     "pred": "35",
+     "correct": false
+    },
+    {
+     "seed": 33030201,
+     "text": "She spent half of $50 on food and snacks, which is $50 / 2 = $25. She also spent an additional $10 for rides. So in total, she spent $25 + $10 = $35. The amount left is $50 - $35 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 77,
+     "latency_s": 10.921,
+     "error": null,
+     "sample_index": 1,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030202,
+     "text": "Annika spent $50 / 2 = $25 on food and snacks. After spending on food and snacks and rides, she has $50 - $25 - $10 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 53,
+     "latency_s": 8.133,
+     "error": null,
+     "sample_index": 2,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030203,
+     "text": "Annika spent half of $50 on food and snacks, which is $50 / 2 = $25. She also spent an additional $10 for rides. So in total, she spent $25 + $10 = $35. The amount left is $50 - $35 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 78,
+     "latency_s": 11.017,
+     "error": null,
+     "sample_index": 3,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030204,
+     "text": "Annika spent $50 / 2 = $25 on food and snacks. She also spent $10 on rides. In total, she spent $25 + $10 = $35. There is $50 - $35 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 66,
+     "latency_s": 9.593,
+     "error": null,
+     "sample_index": 4,
+     "pred": "15",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 11.527,
+   "samples": [
+    {
+     "seed": 33030205,
+     "text": "Annika spent 50 / 2 = 25 dollars on food and snacks. She also spent 10 dollars on rides. In total, she spent 25 + 10 = 35 dollars. Thus, she has 50 - 35 = 15 dollars left.",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 66,
+     "latency_s": 10.342,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33030206,
+     "text": "Annika spent $50 / 2 = $25 on food and snacks. Annika has $50 - $25 - $10 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 45,
+     "latency_s": 6.787,
+     "error": null,
+     "sample_index": 6,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030207,
+     "text": "Annika spent 1/2 * $50 = $25 on food and snacks. After spending on food and snacks, she has $50 - $25 = $25 left. After spending an additional $10 on rides, she has $25 - $10 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 74,
+     "latency_s": 11.427,
+     "error": null,
+     "sample_index": 7,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030208,
+     "text": "Annika spent half of $50 on food and snacks, which is 50 / 2 = $25. She also spent $10 on rides. So, she spent 25 + 10 = $35 in total. Thus, $50 - $35 = $15 is left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 76,
+     "latency_s": 11.524,
+     "error": null,
+     "sample_index": 8,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030209,
+     "text": "Annika spent half of $50 on food and snacks, which is $25. She then added an additional $10 for rides. So, she spent a total of $25 + $10 = $35. Therefore, the amount left is $50 - $35 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 74,
+     "latency_s": 11.416,
+     "error": null,
+     "sample_index": 9,
+     "pred": "15",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 12.88,
+   "samples": [
+    {
+     "seed": 33030210,
+     "text": "Annika spent $50 / 2 = $25 on food and snacks. She also spent $10 on rides, making her total expenses $25 + $10 = $35. She has $50 - $35 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 65,
+     "latency_s": 10.53,
+     "error": null,
+     "sample_index": 10,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030211,
+     "text": "Annika spent half of $50 on food and snacks, which is 50 / 2 = $25. She also spent an additional $10 on rides. So in total, she spent 25 + 10 = $35. Therefore, Annika has 50 - 35 = $10 left.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 80,
+     "latency_s": 12.827,
+     "error": null,
+     "sample_index": 11,
+     "pred": "10",
+     "correct": false
+    },
+    {
+     "seed": 33030212,
+     "text": "Annika spent $50 / 2 = $25 on food and snacks. She also spent $10 for rides, so in total, she spent $25 + $10 = $35. After spending $35, she has $50 - $35 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 73,
+     "latency_s": 11.9,
+     "error": null,
+     "sample_index": 12,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030213,
+     "text": "Annika spent half of her $50 on food and snacks, which is $50 / 2 = $25. She also spent an additional $10 for rides. So in total, she spent $25 + $10 = $35. Therefore, the amount left is $50 - $35 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 81,
+     "latency_s": 12.876,
+     "error": null,
+     "sample_index": 13,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030214,
+     "text": "Annika spent half of $50 on food and snacks, which is $50 / 2 = $25. After buying food and snacks, she has $50 - $25 = $25 left. Then she spent $10 on rides, so she has $25 - $10 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 79,
+     "latency_s": 12.721,
+     "error": null,
+     "sample_index": 14,
+     "pred": "15",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 11.912,
+   "samples": [
+    {
+     "seed": 33030215,
+     "text": "Annika spent half of $50 on food and snacks, which is 50 / 2 = $25. She spent $25 + $10 on food, snacks and rides, so she had 50 - 25 - 10 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 69,
+     "latency_s": 10.434,
+     "error": null,
+     "sample_index": 15,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030216,
+     "text": "Annika spent half of her money on food and snacks, which is $50 / 2 = $25. After spending $25 on food and snacks, she has $50 - $25 = $25 left. Adding the $10 she spent on rides, she has $25 + $10 = $35 left.\nFinal answer: 35",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 82,
+     "latency_s": 11.909,
+     "error": null,
+     "sample_index": 16,
+     "pred": "35",
+     "correct": false
+    },
+    {
+     "seed": 33030217,
+     "text": "Annika spent half of her $50, which is $50 / 2 = $25 on food and snacks. She then spent an additional $10 for rides. So in total, she spent $25 + $10 = $35. The amount left is $50 - $35 = $15.\n\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 79,
+     "latency_s": 11.751,
+     "error": null,
+     "sample_index": 17,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030218,
+     "text": "Annika spent $50 / 2 = $25 on food and snacks. She also spent $10 on rides. So in total, she spent $25 + $10 = $35. Thus, she has $50 - $35 = $15 left.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 69,
+     "latency_s": 10.445,
+     "error": null,
+     "sample_index": 18,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 33030219,
+     "text": "Annika spent half of $50, which is 50 / 2 = $25 on food and snacks. After buying food and snacks, she has $50 - $25 = $25 left. Adding the $10 spent on rides, she has $25 + $10 = $35 remaining.\nFinal answer: 35",
+     "finish_reason": "stop",
+     "prompt_tokens": 396,
+     "completion_tokens": 78,
+     "latency_s": 11.655,
+     "error": null,
+     "sample_index": 19,
+     "pred": "35",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

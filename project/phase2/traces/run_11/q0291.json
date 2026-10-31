@@ -1,0 +1,317 @@
+{
+ "idx": 291,
+ "question": "4 adults and 8 children are to share 8 packets of chocolate bars. Each packet contains 5 chocolate bars. If each adult gets 6 chocolate bars and the rest are to be shared equally among the children, how many will each child get?",
+ "gold": "2",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:01:49",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "4 adults and 8 children are to share 8 packets of chocolate bars. Each packet contains 5 chocolate bars. If each adult gets 6 chocolate bars and the rest are to be shared equally among the children, how many will each child get?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 20.308,
+   "samples": [
+    {
+     "seed": 11029100,
+     "text": "There are 4 adults and 8 children, making a total of 12 people. Each packet contains 5 chocolate bars, so there are 8 packets * 5 = 40 chocolate bars in total. The adults get 6 chocolate bars each, so they contribute a total of 4 * 6 = 24 chocolate bars. This leaves 40 - 24 = 16 chocolate bars to be shared equally among the 8 children. Each child will get 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 119,
+     "latency_s": 20.307,
+     "error": null,
+     "sample_index": 0,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 11029101,
+     "text": "The total number of chocolate bars is 8 packets * 5 chocolate bars = 40 chocolate bars. The total number of chocolate bars per child is 8 children * 6 chocolate bars = 48 chocolate bars. Each child gets 48 / 8 = 6 chocolate bars.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 67,
+     "latency_s": 14.294,
+     "error": null,
+     "sample_index": 1,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11029102,
+     "text": "Each adult gets 6 chocolate bars, so 4 adults get 4 * 6 = 24 chocolate bars. There are 8 packets, and each packet contains 5 chocolate bars, so there are 8 * 5 = 40 chocolate bars total. After the adults get their share, there are 40 - 24 = 16 chocolate bars left to be shared among the 8 children. Each child gets 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 109,
+     "latency_s": 19.733,
+     "error": null,
+     "sample_index": 2,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 11029103,
+     "text": "Each adult gets 6 chocolate bars, so the total for adults is 4 * 6 = 24 chocolate bars. The total for the children is 8 * 5 = 40 chocolate bars. Therefore, the total for both groups is 40 + 24 = 64 chocolate bars. Sharing these equally among the 8 children, each child gets 64 / 8 = 8 chocolate bars.\nFinal answer: 8",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 96,
+     "latency_s": 18.088,
+     "error": null,
+     "sample_index": 3,
+     "pred": "8",
+     "correct": false
+    },
+    {
+     "seed": 11029104,
+     "text": "Each packet contains 5 chocolate bars, and 8 packets contain 5 * 8 = 40 chocolate bars. The 4 adults get 6 each, for a total of 4 * 6 = 24 chocolate bars. The children share the remaining 40 - 24 = 16 chocolate bars. This is shared among 8 children, so each child gets 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 99,
+     "latency_s": 18.518,
+     "error": null,
+     "sample_index": 4,
+     "pred": "2",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 15.008,
+   "samples": [
+    {
+     "seed": 11029105,
+     "text": "Each packet contains 5 chocolate bars. So, 8 packets contain 8 * 5 = 40 chocolate bars. 4 adults get 4 * 6 = 24 chocolate bars. The remaining 4 children get 40 - 24 = 16 chocolate bars. Each child gets 16 / 4 = 4 chocolate bars.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 83,
+     "latency_s": 13.067,
+     "error": null,
+     "sample_index": 5,
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "seed": 11029106,
+     "text": "Each adult gets 6 chocolate bars, so 4 adults get 4 * 6 = 24 chocolate bars. There are 8 children in total, so each child gets 24 / 8 = 3 chocolate bars.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 55,
+     "latency_s": 8.896,
+     "error": null,
+     "sample_index": 6,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 11029107,
+     "text": "Each packet contains 5 chocolate bars. There are 8 packets, so there are 5 * 8 = 40 chocolate bars in total. Each adult gets 6 chocolate bars, so 4 adults get 4 * 6 = 24 chocolate bars. This leaves 40 - 24 = 16 chocolate bars to be shared among the children. There are 8 children, so each child gets 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 106,
+     "latency_s": 15.006,
+     "error": null,
+     "sample_index": 7,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 11029108,
+     "text": "Each packet has 5 chocolate bars, so 8 packets have 8 * 5 = 40 chocolate bars in total. There are 4 adults, and each gets 6 bars, totaling 4 * 6 = 24 chocolate bars. The total is 40 - 24 = 16 chocolate bars left to be shared among 8 children. Each child will get 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 100,
+     "latency_s": 14.656,
+     "error": null,
+     "sample_index": 8,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 11029109,
+     "text": "Each adult gets 6 chocolate bars, so in total, they get 4 * 6 = 24 chocolate bars. That leaves 8 - 24 = -16 chocolate bars to be shared among the children. Since they don't have enough chocolate bars, each child gets 0 chocolate bars.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 70,
+     "latency_s": 10.982,
+     "error": null,
+     "sample_index": 9,
+     "pred": "0",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 20.715,
+   "samples": [
+    {
+     "seed": 11029110,
+     "text": "Each adult gets 6 chocolate bars, so the total for adults is 4 * 6 = 24 chocolate bars. The total for all 8 children is 8 * (5 - 6) = 8 * -1 = -8 chocolate bars. Each child will get -8 / 8 = -1 chocolate bars.\nFinal answer: each child will get -1 chocolate bars",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 82,
+     "latency_s": 12.159,
+     "error": null,
+     "sample_index": 10,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11029111,
+     "text": "Each adult gets 6 chocolate bars, so 4 adults get 4 * 6 = 24 chocolate bars. There are 8 children, so each child gets 24 / 8 = 3 chocolate bars. \nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 54,
+     "latency_s": 8.746,
+     "error": null,
+     "sample_index": 11,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 11029112,
+     "text": "First, calculate the total number of chocolate bars for adults: 4 adults * 6 bars each = 24 chocolate bars. Then, calculate the total number of chocolate bars for children: 8 children * 5 bars each = 40 chocolate bars. Since there are 8 packets, each packet contains 5 bars, so there are 8 * 5 = 40 chocolate bars in total. The total number of chocolate bars is 24 + 40 = 64. Since each adult gets 6 bars, the total number of bars for adults is 4 adults * 6 bars each = 24 bars. The remaining bars for children are 64 - 24 = 40 bars. Finally, since there are 8 children, each child will get 40 bars / 8 children = 5 bars each.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 186,
+     "latency_s": 20.713,
+     "error": null,
+     "sample_index": 12,
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "seed": 11029113,
+     "text": "Each adult gets 6 chocolate bars, so 4 adults get 4 * 6 = 24 chocolate bars. There are 8 packets of chocolate bars, each with 5 bars, totaling 8 * 5 = 40 chocolate bars. There are 24 chocolate bars left for the children. Dividing these equally among 8 children gives each child 24 / 8 = 3 chocolate bars.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 94,
+     "latency_s": 14.068,
+     "error": null,
+     "sample_index": 13,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 11029114,
+     "text": "Each adult gets 6 chocolate bars, so 4 adults get 4 * 6 = 24 chocolate bars. There are 8 packets and each packet contains 5 chocolate bars, so there are 8 * 5 = 40 chocolate bars in total. If we subtract the chocolate bars the adults have already, we get 40 - 24 = 16 chocolate bars left for the children. Since there are 8 children, each child gets 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 115,
+     "latency_s": 16.686,
+     "error": null,
+     "sample_index": 14,
+     "pred": "2",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 20.046,
+   "samples": [
+    {
+     "seed": 11029115,
+     "text": "Each packet of chocolate bars contains 5 chocolate bars, so 8 packets contain 8 * 5 = 40 chocolate bars. Each adult gets 6 chocolate bars, so 4 adults get 4 * 6 = 24 chocolate bars. There are 40 - 24 = 16 chocolate bars left to be shared among the 8 children. Each child gets 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 99,
+     "latency_s": 16.229,
+     "error": null,
+     "sample_index": 15,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 11029116,
+     "text": "Each packet has 5 chocolate bars. 8 packets have 8 * 5 = 40 chocolate bars. Each adult gets 6 chocolate bars, so 4 adults get 4 * 6 = 24 chocolate bars. That leaves 40 - 24 = 16 chocolate bars to be shared equally among the 8 children. Each child will get 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 96,
+     "latency_s": 15.628,
+     "error": null,
+     "sample_index": 16,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 11029117,
+     "text": "The total number of chocolate bars is 4 adults * 6 bars per adult + 8 children * 1 bar per child = 24 + 8 = 32 bars. The total number of packets is 8 packets, and each packet contains 5 bars, so the total number of bars is 8 * 5 = 40 bars. The bars left to be shared equally among the children is 32 - 40 = -8 bars. Since this is a negative number, it means they don't have enough bars and need to borrow from the adults. Each child would get 2 bars. Therefore, each child will get 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 146,
+     "latency_s": 20.044,
+     "error": null,
+     "sample_index": 17,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 11029118,
+     "text": "Each packet contains 5 chocolate bars, so 8 packets contain 8 * 5 = 40 chocolate bars. The 4 adults each get 6 chocolate bars, so 4 * 6 = 24 bars are taken by adults. That leaves 40 - 24 = 16 chocolate bars to be shared among the children. Since there are 8 children, each will get 16 / 8 = 2 chocolate bars.\nFinal answer: 2",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 102,
+     "latency_s": 16.628,
+     "error": null,
+     "sample_index": 18,
+     "pred": "2",
+     "correct": true
+    },
+    {
+     "seed": 11029119,
+     "text": "Each packet of chocolate bars has 5 chocolate bars. There are 4 adults, so in total, the adults get 4 * 6 = 24 chocolate bars. This leaves 8 - 24 = -16 chocolate bars to be shared. However, since the question implies there are more chocolate bars than the adults need, let's assume the adults are supposed to share 8 chocolate bars instead of 24.\n\nThere are 8 children, so if the chocolate bars are to be shared equally among them, each child would get 8 / 8 = 1 chocolate bar.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 408,
+     "completion_tokens": 129,
+     "latency_s": 19.128,
+     "error": null,
+     "sample_index": 19,
+     "pred": "1",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

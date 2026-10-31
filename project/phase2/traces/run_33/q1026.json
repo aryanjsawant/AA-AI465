@@ -1,0 +1,317 @@
+{
+ "idx": 1026,
+ "question": "One dwarf can mine 12 pounds of ore per day with his bare hands. He can mine twice as much with an iron pickaxe and 50% more with a steel pickaxe than with an iron pickaxe. How many pounds of ore can 40 dwarves with steel pickaxes mine in a month with 30 days?",
+ "gold": "43200",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:52:28",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "One dwarf can mine 12 pounds of ore per day with his bare hands. He can mine twice as much with an iron pickaxe and 50% more with a steel pickaxe than with an iron pickaxe. How many pounds of ore can 40 dwarves with steel pickaxes mine in a month with 30 days?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 105.64,
+   "samples": [
+    {
+     "seed": 33102600,
+     "text": "One dwarf can mine 12 * 2 = 24 pounds with an iron pickaxe. With a steel pickaxe, he can mine 24 * 1.5 = 36 pounds. 40 dwarves with steel pickaxes can mine 40 * 36 = 1440 pounds in a day. In a month with 30 days, they can mine 1440 * 30 = 43200 pounds of ore.\nFinal answer: 43200",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 115,
+     "latency_s": 101.474,
+     "error": null,
+     "sample_index": 0,
+     "pred": "43200",
+     "correct": true
+    },
+    {
+     "seed": 33102601,
+     "text": "First, we calculate how much ore a dwarf can mine with a steel pickaxe: 12 * 1.5 = 18 pounds. Then we multiply that by the number of dwarves: 18 * 40 = 720 pounds per day. Finally, we multiply that by the number of days in a month: 720 * 30 = 21600 pounds. \nFinal answer: 21600 pounds",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 101,
+     "latency_s": 98.082,
+     "error": null,
+     "sample_index": 1,
+     "pred": "21600",
+     "correct": false
+    },
+    {
+     "seed": 33102602,
+     "text": "One dwarf can mine 12 * 2 = 24 pounds with an iron pickaxe.\nWith a steel pickaxe, he can mine 24 * 1.5 = 36 pounds.\nOne dwarf can mine 36 pounds with a steel pickaxe.\n40 dwarves can mine 40 * 36 = 1440 pounds of ore.\nIn a month with 30 days, 40 dwarves can mine 1440 * 30 = 43,200 pounds of ore.\nFinal answer: 43,200",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 129,
+     "latency_s": 104.393,
+     "error": null,
+     "sample_index": 2,
+     "pred": "43200",
+     "correct": true
+    },
+    {
+     "seed": 33102603,
+     "text": "First, we calculate the amount of ore one dwarf can mine with a steel pickaxe: 12 * 1.5 = 18 pounds per day. Then, we find out how much 40 dwarves can mine per day: 40 * 18 = 720 pounds per day. In a month with 30 days, 40 dwarves would mine 720 * 30 = 21600 pounds of ore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 103,
+     "latency_s": 98.69,
+     "error": null,
+     "sample_index": 3,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102604,
+     "text": "With an iron pickaxe, a dwarf can mine 12 * 2 = 24 pounds of ore per day. With a steel pickaxe, he can mine 24 * 1.5 = 36 pounds of ore per day. So with a steel pickaxe, a dwarf can mine 36 pounds in a day. In a day, 40 dwarves can mine 40 * 36 = 1440 pounds. In a month, 40 dwarves can mine 1440 * 30 = 43200 pounds.\nFinal answer: 43200",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 137,
+     "latency_s": 105.635,
+     "error": null,
+     "sample_index": 4,
+     "pred": "43200",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 89.4,
+   "samples": [
+    {
+     "seed": 33102605,
+     "text": "One dwarf can mine 2 * 12 = 24 pounds of ore with an iron pickaxe. He can mine 24 + 0.5 * 24 = 36 pounds of ore with a steel pickaxe. 40 dwarves with steel pickaxes can mine 40 * 36 = 1440 pounds of ore in a day. 1440 pounds of ore in a day is 1440 * 30 = 43200 pounds of ore in a month.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 118,
+     "latency_s": 89.399,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102606,
+     "text": "Each dwarf with a steel pickaxe mines 12 * 1.5 = 18 pounds of ore per day. In one month 40 dwarves with steel pickaxes mine 40 * 18 * 30 = 21600 pounds of ore.\nFinal answer: 21600",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 71,
+     "latency_s": 18.85,
+     "error": null,
+     "sample_index": 6,
+     "pred": "21600",
+     "correct": false
+    },
+    {
+     "seed": 33102607,
+     "text": "First, find out how much an iron pickaxe can mine: 12 pounds * 2 = 24 pounds. Now, find out how much a steel pickaxe can mine: 24 pounds * 1.5 = 36 pounds. Since one dwarf can mine 36 pounds in a day with a steel pickaxe, in a month of 30 days, 40 dwarves can mine 40 * 36 = 1440 pounds of ore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 106,
+     "latency_s": 87.936,
+     "error": null,
+     "sample_index": 7,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102608,
+     "text": "The dwarf with a steel pickaxe mines 12 * 1.5 = 18 pounds of ore per day. So 40 dwarves mining with steel pickaxes would mine 40 * 18 = 720 pounds of ore per day. In a month with 30 days, they mine 720 * 30 = 21600 pounds of ore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 88,
+     "latency_s": 84.566,
+     "error": null,
+     "sample_index": 8,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102609,
+     "text": "With an iron pickaxe, a dwarf can mine 12 * 2 = 24 pounds per day. With a steel pickaxe, a dwarf can mine 24 * 1.5 = 36 pounds per day. So, 40 dwarves with steel pickaxes can mine 40 * 36 = 1440 pounds per day. In a month with 30 days, they can mine 1440 * 30 = 43200 pounds.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 111,
+     "latency_s": 88.808,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 30.67,
+   "samples": [
+    {
+     "seed": 33102610,
+     "text": "With an iron pickaxe, one dwarf can mine 12 * 2 = 24 pounds of ore per day. With a steel pickaxe, one dwarf can mine 24 * 1.5 = 36 pounds of ore per day. So, 40 dwarves can mine 40 * 36 = 1440 pounds of ore per day with steel pickaxes. Thus, in a month with 30 days, 40 dwarves can mine 1440 * 30 = 43200 pounds of ore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 125,
+     "latency_s": 30.668,
+     "error": null,
+     "sample_index": 10,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102611,
+     "text": "One dwarf can mine 12 * 2 = 24 pounds of ore with an iron pickaxe. With a steel pickaxe, one dwarf can mine 24 * 1.5 = 36 pounds of ore. 40 dwarves can mine 40 * 36 = 1440 pounds of ore in a day. In a month with 30 days, 40 dwarves can mine 1440 * 30 = 43200 pounds of ore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 113,
+     "latency_s": 29.792,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102612,
+     "text": "First, calculate the amount one dwarf can mine with a steel pickaxe: 12 * 1.5 = 18 pounds per day.\nThen, calculate how much 40 dwarves can mine with a steel pickaxe per day: 18 * 40 = 720 pounds per day.\nFinally, calculate the total amount of ore mined in a month: 720 * 30 = 21600 pounds.\n\nFinal answer: 21600 pounds",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 108,
+     "latency_s": 29.068,
+     "error": null,
+     "sample_index": 12,
+     "pred": "21600",
+     "correct": false
+    },
+    {
+     "seed": 33102613,
+     "text": "A dwarf can mine 12 * 2 = 24 pounds of ore with an iron pickaxe. A dwarf can mine 24 * 1.5 = 36 pounds of ore with a steel pickaxe. 40 dwarves with steel pickaxes can mine 36 * 40 = 1440 pounds of ore per day. In a month with 30 days they can mine 1440 * 30 = 43200 pounds of ore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 110,
+     "latency_s": 29.452,
+     "error": null,
+     "sample_index": 13,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102614,
+     "text": "First, we calculate the ore mined with an iron pickaxe: 12 * 2 = 24 pounds per day. Now, with a steel pickaxe, they mine 24 * 1.5 = 36 pounds per day. In a month with 30 days, with 40 dwarves, they mine 36 * 40 * 30 = 43,200 pounds of ore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 95,
+     "latency_s": 26.215,
+     "error": null,
+     "sample_index": 14,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 23.666,
+   "samples": [
+    {
+     "seed": 33102615,
+     "text": "The amount of ore one dwarf can mine with a steel pickaxe is 12 * 1.5 = 18 pounds per day. With 40 dwarves, they can mine 40 * 18 = 720 pounds per day. In a month, they can mine 720 * 30 = 21600 pounds of ore.\nFinal answer: 21600",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 92,
+     "latency_s": 20.994,
+     "error": null,
+     "sample_index": 15,
+     "pred": "21600",
+     "correct": false
+    },
+    {
+     "seed": 33102616,
+     "text": "A dwarf can mine 2 * 12 = 24 pounds of ore with an iron pickaxe. With a steel pickaxe, he can mine 24 * 1.5 = 36 pounds of ore. In a month, 40 dwarves can mine 40 * 36 = 1440 pounds of ore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 77,
+     "latency_s": 18.703,
+     "error": null,
+     "sample_index": 16,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102617,
+     "text": "With a steel pickaxe, a dwarf can mine 12 * 2 = 24 pounds per day. With a steel pickaxe, a dwarf can mine 24 * 1.5 = 36 pounds per day. 40 dwarves can mine 40 * 36 = 1440 pounds in one day. In a month with 30 days, the dwarves can mine 1440 * 30 = 43200 pounds.",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 108,
+     "latency_s": 23.323,
+     "error": null,
+     "sample_index": 17,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33102618,
+     "text": "A dwarf mines 2 * 12 = 24 pounds with an iron pickaxe. With a steel pickaxe, he mines 24 * 1.5 = 36 pounds. So, 40 dwarves with steel pickaxes can mine 40 * 36 = 1440 pounds in one day. In a month with 30 days, they can mine 1440 * 30 = 43200 pounds.\nFinal answer: 43200",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 113,
+     "latency_s": 23.663,
+     "error": null,
+     "sample_index": 18,
+     "pred": "43200",
+     "correct": true
+    },
+    {
+     "seed": 33102619,
+     "text": "One dwarf can mine 12 * 2 = 24 pounds with an iron pickaxe. With a steel pickaxe, he can mine 24 * 1.5 = 36 pounds. In a day, 40 dwarves can mine 40 * 36 = 1440 pounds. In a month, 40 dwarves can mine 1440 * 30 = 43200 pounds.\nFinal answer: 43200",
+     "finish_reason": "stop",
+     "prompt_tokens": 428,
+     "completion_tokens": 109,
+     "latency_s": 23.421,
+     "error": null,
+     "sample_index": 19,
+     "pred": "43200",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

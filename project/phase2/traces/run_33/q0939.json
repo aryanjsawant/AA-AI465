@@ -1,0 +1,317 @@
+{
+ "idx": 939,
+ "question": "Craig and his brother take turns spelling out the longest letter words they know and counting the number of the letters in those words. After ten rounds, Craig has spelled out 20 words with 15 letters each. If Craig's brother has spelled words with a total count of letters 50 more than Craig, calculate the total number of letters in the words they've spelled after the ten rounds.",
+ "gold": "650",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:37:17",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Craig and his brother take turns spelling out the longest letter words they know and counting the number of the letters in those words. After ten rounds, Craig has spelled out 20 words with 15 letters each. If Craig's brother has spelled words with a total count of letters 50 more than Craig, calculate the total number of letters in the words they've spelled after the ten rounds."
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 18.676,
+   "samples": [
+    {
+     "seed": 33093900,
+     "text": "Craig has spelled out 20 words, each with 15 letters, for a total of 20 * 15 = 300 letters. His brother spelled words with a total count of letters 50 more than Craig's, so his brother has spelled out 300 + 50 = 350 letters. Together, they've spelled out 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 103,
+     "latency_s": 18.675,
+     "error": null,
+     "sample_index": 0,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093901,
+     "text": "Craig has spelled out 20 words with 15 letters each, so Craig has spelled 20 * 15 = 300 letters total. Craig's brother has spelled words with a total count of letters 50 more than Craig, so Craig's brother has spelled 300 + 50 = 350 letters. Together, they have spelled 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 103,
+     "latency_s": 18.668,
+     "error": null,
+     "sample_index": 1,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093902,
+     "text": "Craig has spelled out 20 words with 15 letters each, so he has spelled out 20 * 15 = 300 letters. His brother has spelled words with a total count of letters 50 more than Craig, so his brother has spelled out 300 + 50 = 350 letters. Together, they have spelled out 300 + 350 = 650 letters.",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 96,
+     "latency_s": 17.962,
+     "error": null,
+     "sample_index": 2,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33093903,
+     "text": "Craig has spelled out 20 words with 15 letters each, which totals 20 * 15 = 300 letters. His brother has spelled out words with a total count of letters 50 more than Craig's, so the total is 300 + 50 = 350 letters.\nFinal answer: 350",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 78,
+     "latency_s": 15.334,
+     "error": null,
+     "sample_index": 3,
+     "pred": "350",
+     "correct": false
+    },
+    {
+     "seed": 33093904,
+     "text": "After ten rounds, Craig has spelled out 15 * 20 = 300 letters. His brother has spelled out 50 + 300 = 350 letters. Together they have spelled out 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 71,
+     "latency_s": 13.521,
+     "error": null,
+     "sample_index": 4,
+     "pred": "650",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 21.332,
+   "samples": [
+    {
+     "seed": 33093905,
+     "text": "Craig has spelled out 20 words with 15 letters each, which totals 20 * 15 = 300 letters. Craig's brother has spelled words with a total count of letters 50 more than Craig's, which means his brother has spelled out 300 + 50 = 350 letters. \n\nTogether, after 10 rounds, they have spelled out 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 110,
+     "latency_s": 21.071,
+     "error": null,
+     "sample_index": 5,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093906,
+     "text": "Craig has spelled out 20 words with 15 letters each, so he has spelled out 20 * 15 = 300 letters. His brother has spelled words with a total count of letters 50 more than Craig's, meaning his brother has spelled out 300 + 50 = 350 letters. Together, they have spelled out 300 + 350 = 650 letters.",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 97,
+     "latency_s": 18.161,
+     "error": null,
+     "sample_index": 6,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33093907,
+     "text": "Craig has spelled out 20 words with 15 letters each, so Craig has spelled out 20 * 15 = 300 letters. Craig's brother has spelled words with a total count of letters 50 more than Craig, so Craig's brother has spelled out 300 + 50 = 350 letters. Together, they have spelled out 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 105,
+     "latency_s": 20.05,
+     "error": null,
+     "sample_index": 7,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093908,
+     "text": "Craig has spelled out 20 words with 15 letters each, so he has spelled out 20 * 15 = 300 letters. His brother has spelled words with a total count of letters 50 more than Craig, so his brother has spelled out 300 + 50 = 350 letters. The total number of letters in the words they've spelled after the ten rounds is 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 113,
+     "latency_s": 21.33,
+     "error": null,
+     "sample_index": 8,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093909,
+     "text": "Craig has spelled out 20 words with 15 letters each, so Craig has spelled out a total of 20 * 15 = 300 letters. Craig's brother has spelled words with a total count of letters 50 more than Craig's, so his brother has spelled out 300 + 50 = 350 letters. Together, they have spelled out 300 + 350 = 650 letters after ten rounds.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 111,
+     "latency_s": 21.21,
+     "error": null,
+     "sample_index": 9,
+     "pred": "650",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 24.123,
+   "samples": [
+    {
+     "seed": 33093910,
+     "text": "Craig has spelled out 20 words with 15 letters each, so he has spelled out 20 * 15 = 300 letters. Craig's brother spelled words with 50 more letters than Craig, so he spelled out 300 + 50 = 350 letters. The total number of letters in the words they've spelled after the ten rounds is 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 107,
+     "latency_s": 22.985,
+     "error": null,
+     "sample_index": 10,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093911,
+     "text": "Craig has spelled out 20 words with 15 letters each, which totals 20 * 15 = 300 letters. Craig's brother has spelled words with a total count of letters 50 more than Craig's, which totals 300 + 50 = 350 letters. Together, they've spelled words with 300 + 350 = 650 letters after ten rounds.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 102,
+     "latency_s": 21.907,
+     "error": null,
+     "sample_index": 11,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093912,
+     "text": "Craig has spelled out 20 words with 15 letters each, so he has spelled a total of 20 * 15 = 300 letters. Craig's brother has spelled words with a total count of letters 50 more than Craig, so his brother has spelled a total of 300 + 50 = 350 letters. The total number of letters in the words they've spelled after the ten rounds is 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 118,
+     "latency_s": 24.12,
+     "error": null,
+     "sample_index": 12,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093913,
+     "text": "Craig has spelled out 20 words with 15 letters each, so he has spelled a total of 20 * 15 = 300 letters. Craig's brother has spelled words with a total count of letters 50 more than Craig's, which is 300 + 50 = 350 letters. The total number of letters in the words they've spelled after the ten rounds is 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 113,
+     "latency_s": 23.829,
+     "error": null,
+     "sample_index": 13,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093914,
+     "text": "Craig's brother has spelled out 20 words with 15 letters each, totaling 20 * 15 = 300 letters. Craig has spelled out words with a total count of letters 50 more than his brother, so that's 300 + 50 = 350 letters. Together they've spelled out 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 98,
+     "latency_s": 21.031,
+     "error": null,
+     "sample_index": 14,
+     "pred": "650",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 18.318,
+   "samples": [
+    {
+     "seed": 33093915,
+     "text": "Craig has spelled 20 words with 15 letters each, so Craig's words total 20 * 15 = 300 letters. Craig's brother has spelled words with 300 + 50 = 350 letters. Together, they have spelled 300 + 350 = 650 letters.",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 77,
+     "latency_s": 13.482,
+     "error": null,
+     "sample_index": 15,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33093916,
+     "text": "Craig has spelled 20 words with 15 letters each, so the total number of letters he has spelled is 20 * 15 = 300 letters. Craig's brother has spelled 50 more letters than Craig, so the total number of letters he has spelled is 300 + 50 = 350 letters. The total number of letters in the words they've spelled is 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 112,
+     "latency_s": 18.247,
+     "error": null,
+     "sample_index": 16,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093917,
+     "text": "Craig's brother spelled words with 15 + 50 = 65 letters. Craig's brother spelled 20 * 15 = 300 letters. The total number of letters in the words they've spelled is 300 + 20 * 15 = 450 letters.\nFinal answer: 450",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 76,
+     "latency_s": 13.31,
+     "error": null,
+     "sample_index": 17,
+     "pred": "450",
+     "correct": false
+    },
+    {
+     "seed": 33093918,
+     "text": "Craig has spelled 20 words with 15 letters each, so the total number of letters Craig has spelled is 20 * 15 = 300 letters. Craig's brother has spelled words with a total count of letters 50 more than Craig, meaning his brother has spelled 300 + 50 = 350 letters. The total number of letters in the words they've spelled is 300 + 350 = 650 letters.\nFinal answer: 650",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 113,
+     "latency_s": 18.314,
+     "error": null,
+     "sample_index": 18,
+     "pred": "650",
+     "correct": true
+    },
+    {
+     "seed": 33093919,
+     "text": "Craig has spelled out 20 words with 15 letters each, which totals 20 * 15 = 300 letters. His brother has spelled words with a total count of letters 50 more than Craig, which is 300 + 50 = 350 letters. Together, they have spelled 300 + 350 = 650 letters.",
+     "finish_reason": "stop",
+     "prompt_tokens": 438,
+     "completion_tokens": 88,
+     "latency_s": 15.622,
+     "error": null,
+     "sample_index": 19,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  }
+ ]
+}
