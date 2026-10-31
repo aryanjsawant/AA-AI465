@@ -1,0 +1,317 @@
+{
+ "idx": 1195,
+ "question": "Mr. Maxim works at The Best Cookeries Around restaurant. On a particular day, 50 people entered the restaurant in the morning to eat. At around 10:00, 40 more people entered the restaurant and ordered the same amount of food as the first people. After a while, twice the number of people who entered the restaurant at 10:00 came in and ordered lunch. By evening, an additional 3 times as many people as the number that came in first had entered the restaurant. Calculate the total number of people that entered the restaurant on that day.",
+ "gold": "320",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:46:48",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Mr. Maxim works at The Best Cookeries Around restaurant. On a particular day, 50 people entered the restaurant in the morning to eat. At around 10:00, 40 more people entered the restaurant and ordered the same amount of food as the first people. After a while, twice the number of people who entered the restaurant at 10:00 came in and ordered lunch. By evening, an additional 3 times as many people as the number that came in first had entered the restaurant. Calculate the total number of people that entered the restaurant on that day."
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 30.162,
+   "samples": [
+    {
+     "seed": 11119500,
+     "text": "The number of people that entered the restaurant in the morning was 50 people. At 10:00, 40 more people entered, so the total became 50 + 40 = 90 people. Twice the number of people who entered at 10:00 came in for lunch, which was 2 * 40 = 80 people. By evening, 3 times as many people as the first group had entered, which is 3 * 40 = 120 people. Adding these all together, the total number of people that entered the restaurant on that day is 90 + 80 + 120 = 290 people.\nFinal answer: 290",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 158,
+     "latency_s": 30.16,
+     "error": null,
+     "sample_index": 0,
+     "pred": "290",
+     "correct": false
+    },
+    {
+     "seed": 11119501,
+     "text": "In the morning, 50 people entered the restaurant. At around 10:00, 40 more people entered, totaling 50 + 40 = 90 people. Twice this number of 180 people came in later. By evening, 3 times as many people as the first group of 90 people entered, which totals 90 * 3 = 270 people. Therefore, the total number of people that entered the restaurant is 90 + 180 + 270 = 540 people.\nFinal answer: 540",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 130,
+     "latency_s": 27.712,
+     "error": null,
+     "sample_index": 1,
+     "pred": "540",
+     "correct": false
+    },
+    {
+     "seed": 11119502,
+     "text": "In the morning, there were 50 people. At 10:00, 40 more people entered, making 50 + 40 = 90 people. Twice that number, 2 * 40 = 80 people, came in later. In total by 10:00, there were 90 + 40 + 80 = 210 people. After evening, 3 * 80 = 240 people entered, bringing the total to 210 + 240 = 450 people.\nFinal answer: 450",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 135,
+     "latency_s": 28.356,
+     "error": null,
+     "sample_index": 2,
+     "pred": "450",
+     "correct": false
+    },
+    {
+     "seed": 11119503,
+     "text": "In the morning, 50 people entered. By 10:00, 40 more people entered, making it 50 + 40 = 90 people. At 10:00, twice the number, 80, entered and ordered lunch. After that, in the evening, 3 times as many, 240, entered the restaurant. The total number of people who entered the restaurant is 90 + 80 + 240 = 410 people.\nFinal answer: 410",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 120,
+     "latency_s": 25.839,
+     "error": null,
+     "sample_index": 3,
+     "pred": "410",
+     "correct": false
+    },
+    {
+     "seed": 11119504,
+     "text": "In the morning, 50 people entered. By 10:00, 40 more entered, making 50 + 40 = 90 people. Twice the number of people at 10:00 came in, which is 90 * 2 = 180 people. In the evening, 3 times as many people as the first group entered, which is 180 * 3 = 540 people. The total number of people who entered the restaurant that day is 50 + 40 + 180 + 540 = 810 people.\nFinal answer: 810",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 144,
+     "latency_s": 29.369,
+     "error": null,
+     "sample_index": 4,
+     "pred": "810",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 26.889,
+   "samples": [
+    {
+     "seed": 11119505,
+     "text": "In the morning, 50 people entered, and at around 10:00, 40 more came in, making it a total of 50 + 40 = 90 people. Twice that number, 90 * 2 = 180, came in later. By evening, 3 times that number, 3 * 180 = 540, entered the restaurant. Adding all these numbers together, the total number of people who entered the restaurant on that day is 50 + 40 + 180 + 540 = 810 people.\nFinal answer: 810",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 142,
+     "latency_s": 25.33,
+     "error": null,
+     "sample_index": 5,
+     "pred": "810",
+     "correct": false
+    },
+    {
+     "seed": 11119506,
+     "text": "In the morning, 50 people entered, then 40 more in the afternoon, for a total of 50 + 40 = 90 people. Twice the number of the first 40 people entered, which is 2 * 40 = 80 people. In the evening, 3 times the first 40 people entered, which is 3 * 40 = 120 people. Therefore, the total number of people that entered the restaurant on that day is 90 + 80 + 120 = 290 people.\nFinal answer: 290",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 134,
+     "latency_s": 23.779,
+     "error": null,
+     "sample_index": 6,
+     "pred": "290",
+     "correct": false
+    },
+    {
+     "seed": 11119507,
+     "text": "The morning order was 50 people. At 10:00, another 40 people joined, making a total of 50 + 40 = 90 people. At 10:00, 80 people ordered lunch (since twice the number from 10:00 equals 80). In the evening, 3 times the number from 10:00, which is 3 * 80 = 240 people, entered the restaurant. Adding these together, the total is 90 + 80 + 240 = 410 people.\nFinal answer: 410",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 142,
+     "latency_s": 25.341,
+     "error": null,
+     "sample_index": 7,
+     "pred": "410",
+     "correct": false
+    },
+    {
+     "seed": 11119508,
+     "text": "In the morning, 50 people entered the restaurant. At 10:00, 40 more people entered, so the total is 50 + 40 = 90 people. After that, twice the number of people who entered at 10:00, which is 80 people, came in and ordered lunch. So the total is 90 + 80 = 170 people. In the evening, 3 times the number of people who entered at 10:00, which is 240 people, came in and ordered dinner. So the total is 170 + 240 = 410 people.\nFinal answer: 410",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 156,
+     "latency_s": 26.887,
+     "error": null,
+     "sample_index": 8,
+     "pred": "410",
+     "correct": false
+    },
+    {
+     "seed": 11119509,
+     "text": "In the morning, 50 people entered. At 10:00, 40 more people joined them. This makes a total of 50 + 40 = 90 people. Twice the number of people who came in at 10:00 (2 * 40 = 80) then entered, resulting in 90 + 80 = 170 people in the restaurant. In the evening, 3 times the number of people who came in at 10:00 (3 * 40 = 120) entered, bringing the total to 170 + 120 = 290 people.\n\nFinal answer: 290",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 155,
+     "latency_s": 26.823,
+     "error": null,
+     "sample_index": 9,
+     "pred": "290",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 24.761,
+   "samples": [
+    {
+     "seed": 11119510,
+     "text": "In the morning, 50 people entered. At 10:00, 40 more people joined, making 50 + 40 = 90 people. Twice this number at 10:00 came in for lunch, which is 2 * 40 = 80 people. In the evening, 3 times as many people came in, making 3 * 80 = 240 people. The total number of people who entered the restaurant is 50 + 90 + 80 + 240 = 520 people.\nFinal answer: 520",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 136,
+     "latency_s": 22.358,
+     "error": null,
+     "sample_index": 10,
+     "pred": "520",
+     "correct": false
+    },
+    {
+     "seed": 11119511,
+     "text": "In the morning, 50 people entered the restaurant. At 10:00, 40 more people entered, making a total of 50 + 40 = 90 people. Twice this number, 2 * 90 = 180, entered in the evening. Thus, the total number of people that entered the restaurant on that day is 90 + 180 = 270 people.\nFinal answer: 270",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 103,
+     "latency_s": 17.86,
+     "error": null,
+     "sample_index": 11,
+     "pred": "270",
+     "correct": false
+    },
+    {
+     "seed": 11119512,
+     "text": "In the morning, 50 people entered. At 10:00, 40 more entered, making it 50 + 40 = 90 people. Twice the number of people that entered at 10:00 came in, so 2 * 40 = 80 people came in and ordered lunch. The additional people that entered in evening were 3 times the number that entered at 10:00, which is 3 * 40 = 120 people. Adding these numbers together, the total number of people that entered the restaurant is 50 + 40 + 80 + 120 = 290 people.\nFinal answer: 290",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 158,
+     "latency_s": 24.758,
+     "error": null,
+     "sample_index": 12,
+     "pred": "290",
+     "correct": false
+    },
+    {
+     "seed": 11119513,
+     "text": "In the morning, 50 people entered the restaurant. At around 10:00, 40 more people entered, making the total 50 + 40 = 90 people. Twice the number of people who entered at 10:00 came in, so that's 2 * 40 = 80 people. In the evening, 3 times as many people as the first group entered, which is 3 * 40 = 120 people. Adding all these together, the total number of people who entered the restaurant on that day is 50 + 90 + 80 + 120 = 340 people.\nFinal answer: 340",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 156,
+     "latency_s": 24.644,
+     "error": null,
+     "sample_index": 13,
+     "pred": "340",
+     "correct": false
+    },
+    {
+     "seed": 11119514,
+     "text": "The first group of people entered at 50 + 40 = 90. The second group entered and ordered the same amount as the first, so that was 90 more. The third group was twice the first group, so that was 90 * 2 = 180. The fourth group was 3 times the number that entered the restaurant first, so that was 90 * 3 = 270. The total was 50 + 40 + 180 + 270 = 540 people.",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 122,
+     "latency_s": 20.263,
+     "error": null,
+     "sample_index": 14,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 24.38,
+   "samples": [
+    {
+     "seed": 11119515,
+     "text": "In the morning, 50 people entered. At 10:00, 40 more people entered. That makes 50 + 40 = 90 people. Twice the 40 people entered at 10:00, for 2 * 40 = 80 people. By evening, 3 times the 40 people entered, for 3 * 40 = 120 people. In total, the restaurant had 90 + 40 + 80 + 120 = 330 people.\nFinal answer: 330",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 132,
+     "latency_s": 22.529,
+     "error": null,
+     "sample_index": 15,
+     "pred": "330",
+     "correct": false
+    },
+    {
+     "seed": 11119516,
+     "text": "In the morning, 50 people entered. At 10:00, 40 more people entered, totaling 50 + 40 = 90 people. Twice this amount, 2 * 90 = 180 people, came in later for lunch. In the evening, 3 * 90 = 270 people entered the restaurant. Adding these numbers together, the total number of people that entered the restaurant on that day is 50 + 40 + 180 + 270 = 540 people.\nFinal answer: 540",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 132,
+     "latency_s": 22.553,
+     "error": null,
+     "sample_index": 16,
+     "pred": "540",
+     "correct": false
+    },
+    {
+     "seed": 11119517,
+     "text": "In the morning, 50 people entered the restaurant. At 10:00, 40 more entered, making it 50 + 40 = 90 people. Twice this number, 90 * 2 = 180 people, came in after 10:00 for lunch. By evening, 3 times the number that came in first, 3 * 50 = 150 people, entered the restaurant. Adding all these together, the total number of people that entered the restaurant is 90 + 180 + 150 = 320 people.\nFinal answer: 320",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 143,
+     "latency_s": 24.204,
+     "error": null,
+     "sample_index": 17,
+     "pred": "320",
+     "correct": true
+    },
+    {
+     "seed": 11119518,
+     "text": "In the morning, 50 people entered. At 10:00, 40 more entered. So, 50 + 40 = 90 people entered then. Twice that number of people entered at 10:00, which is 2 * 40 = 80. By evening, 3 times the number of people who came in first had entered the restaurant, which is 3 * 50 = 150. Therefore, the total number of people who entered the restaurant on that day is 90 + 80 + 150 = 320 people.\nFinal answer: 320",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 143,
+     "latency_s": 24.209,
+     "error": null,
+     "sample_index": 18,
+     "pred": "320",
+     "correct": true
+    },
+    {
+     "seed": 11119519,
+     "text": "In the morning, 50 people entered. At around 10:00, 40 more entered, making it 50 + 40 = 90 people. Later, 80 people (twice the first amount) joined, bringing the total to 90 + 80 = 170 people. In the evening, 3 times as many as the first amount entered, which was 90, so 90 * 3 = 270 people. Adding all these together, 90 + 80 + 270 = 440 people entered the restaurant on that day.\nFinal answer: 440",
+     "finish_reason": "stop",
+     "prompt_tokens": 479,
+     "completion_tokens": 146,
+     "latency_s": 24.377,
+     "error": null,
+     "sample_index": 19,
+     "pred": "440",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

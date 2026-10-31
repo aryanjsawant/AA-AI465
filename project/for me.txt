@@ -1,0 +1,7 @@
+So the first paper is SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT
+REASONING IN LANGUAGE MODELS published in 2023
+this paper is basically just choose mupltiple reasoning paths using temperature > 0 then return most occuring ans
+second is ESCAPE SKY-HIGH COST: EARLY-STOPPING SELFCONSISTENCY FOR MULTI-STEP REASONING
+where u stop early if given samples(less) all give same answer
+
+the shit is that this paper was tested on big models not low weight open models(less acc)

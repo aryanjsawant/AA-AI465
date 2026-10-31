@@ -1,0 +1,27 @@
+{
+  "model": "qwen2.5-1.5b-instruct-q4_k_m",
+  "model_file": "models/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+  "model_source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+  "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+  "base_url": "http://127.0.0.1:8088/v1",
+  "request_timeout_s": 600,
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "top_k": 0,
+    "min_p": 0.0,
+    "repeat_penalty": 1.0,
+    "max_tokens": 256
+  },
+  "benchmark": "GSM8K test (1319 questions), fixed random subset",
+  "subset_size": 50,
+  "subset_seed": 465,
+  "run_seeds": [
+    11,
+    22,
+    33
+  ],
+  "window": 5,
+  "max_samples": 20,
+  "max_round_s": 180
+}

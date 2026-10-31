@@ -1,0 +1,317 @@
+{
+ "idx": 841,
+ "question": "Gabriel wants to buy a car for $10000 and a phone for $800. Gabriel has $5000 from working on weekends and his brother gave him $200 to help him. How much money does he still need?",
+ "gold": "5600",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:03:02",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Gabriel wants to buy a car for $10000 and a phone for $800. Gabriel has $5000 from working on weekends and his brother gave him $200 to help him. How much money does he still need?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 13.815,
+   "samples": [
+    {
+     "seed": 33084100,
+     "text": "Gabriel needs $10000 + $800 = $10800 for the car and phone. He has $5000 + $200 = $5200. Thus, he still needs $10800 - $5200 = $5600.",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 71,
+     "latency_s": 12.551,
+     "error": null,
+     "sample_index": 0,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33084101,
+     "text": "Gabriel has a total of 5000 + 200 = 5200. The car and phone cost 10000 + 800 = 10800. So, he still needs to pay 10800 - 5200 = 5600.",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 74,
+     "latency_s": 12.997,
+     "error": null,
+     "sample_index": 1,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33084102,
+     "text": "Gabriel has 5000 + 200 = 5200 dollars. To buy the car and phone, he needs 10000 + 800 = 10800 dollars. Thus, he still needs 10800 - 5200 = 5600 dollars.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 84,
+     "latency_s": 13.812,
+     "error": null,
+     "sample_index": 2,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084103,
+     "text": "Gabriel has a total of $5000 + $200 = $5200. The total cost is $10000 + $800 = $10800. So, he still needs $10800 - $5200 = $5600.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 79,
+     "latency_s": 13.54,
+     "error": null,
+     "sample_index": 3,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084104,
+     "text": "Gabriel has a total of 5000 + 200 = 5200. So he still needs 10000 + 800 - 5200 = 5800. Therefore, Gabriel still needs 5800.",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 63,
+     "latency_s": 11.092,
+     "error": null,
+     "sample_index": 4,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 14.475,
+   "samples": [
+    {
+     "seed": 33084105,
+     "text": "Gabriel has a total of 5000 + 200 = 5200 rupees. The total amount needed for the car and phone is 10000 + 800 = 10800 rupees. Gabriel still needs 10800 - 5200 = 5600 rupees. \nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 90,
+     "latency_s": 14.366,
+     "error": null,
+     "sample_index": 5,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084106,
+     "text": "Gabriel has $5000 + $200 = $5200 from working and his brother. The car and phone cost $10000 + $800 = $10800. Gabriel still needs $10800 - $5200 = $5600. \nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 81,
+     "latency_s": 13.405,
+     "error": null,
+     "sample_index": 6,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084107,
+     "text": "Gabriel needs 10000 + 800 = 10800 rupees. He has 5000 + 200 = 5200 rupees. Therefore, he still needs 10800 - 5200 = 5600 rupees.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 80,
+     "latency_s": 13.22,
+     "error": null,
+     "sample_index": 7,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084108,
+     "text": "Gabriel has a total of 5000 + 200 = 5200 rupees. The total cost is 10000 + 800 = 10800 rupees. He still needs 10800 - 5200 = 5600 rupees.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 83,
+     "latency_s": 13.694,
+     "error": null,
+     "sample_index": 8,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084109,
+     "text": "Gabriel has a total of 5000 + 200 = 5200 rupees. The total cost for the car and the phone is 10000 + 800 = 10800 rupees. Thus, Gabriel still needs 10800 - 5200 = 5600 rupees.  \nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 92,
+     "latency_s": 14.472,
+     "error": null,
+     "sample_index": 9,
+     "pred": "5600",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 14.581,
+   "samples": [
+    {
+     "seed": 33084110,
+     "text": "Gabriel has a total of $5000 + $200 = $5200. The total cost of the car and phone is $10000 + $800 = $10800. Gabriel still needs $10800 - $5200 = $5600.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 82,
+     "latency_s": 14.347,
+     "error": null,
+     "sample_index": 10,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084111,
+     "text": "Gabriel has $5000 + $200 = $5200. So, he still needs $10000 + $800 - $5200 = $5800.\nFinal answer: 5800",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 58,
+     "latency_s": 9.73,
+     "error": null,
+     "sample_index": 11,
+     "pred": "5800",
+     "correct": false
+    },
+    {
+     "seed": 33084112,
+     "text": "Gabriel has a total of $5000 + $200 = $5200. The total cost of the car and phone is $10000 + $800 = $10800. So, he still needs $10800 - $5200 = $5600.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 84,
+     "latency_s": 14.573,
+     "error": null,
+     "sample_index": 12,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084113,
+     "text": "Gabriel has a total of $5000 + $200 = $5200. The total cost of the car and the phone is $10000 + $800 = $10800. So he still needs $10800 - $5200 = $5600.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 84,
+     "latency_s": 14.578,
+     "error": null,
+     "sample_index": 13,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084114,
+     "text": "The total cost of the car and phone is 10000 + 800 = 10800. Gabriel has a total of 5000 + 200 = 5200. He still needs 10800 - 5200 = 5600.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 81,
+     "latency_s": 14.202,
+     "error": null,
+     "sample_index": 14,
+     "pred": "5600",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 12.611,
+   "samples": [
+    {
+     "seed": 33084115,
+     "text": "Gabriel needs $10000 + $800 = $10800. He has $5000 + $200 = $5200. So he still needs $10800 - $5200 = $5600.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 73,
+     "latency_s": 11.512,
+     "error": null,
+     "sample_index": 15,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084116,
+     "text": "Gabriel has a total of $5000 + $200 = $5200. The total cost of the car and phone is $10000 + $800 = $10800. So, he still needs $10800 - $5200 = $5600.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 84,
+     "latency_s": 12.61,
+     "error": null,
+     "sample_index": 16,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084117,
+     "text": "Gabriel's total expenses are $10000 + $800 = $10800. He has $5000 + $200 = $5200. He still needs $10800 - $5200 = $5600.\nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 75,
+     "latency_s": 11.807,
+     "error": null,
+     "sample_index": 17,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084118,
+     "text": "Gabriel has a total of $5000 + $200 = $5200. The total price of the car and phone is $10000 + $800 = $10800. Gabriel still needs $10800 - $5200 = $5600. \nFinal answer: 5600",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 83,
+     "latency_s": 12.551,
+     "error": null,
+     "sample_index": 18,
+     "pred": "5600",
+     "correct": true
+    },
+    {
+     "seed": 33084119,
+     "text": "Gabriel has $5000 + $200 = $5200. So he still needs $10000 + $800 - $5200 = $3800.\nFinal answer: 3800",
+     "finish_reason": "stop",
+     "prompt_tokens": 412,
+     "completion_tokens": 57,
+     "latency_s": 9.456,
+     "error": null,
+     "sample_index": 19,
+     "pred": "3800",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,69 @@
+Indexed 13 chunks from 4 documents (chunk_size=2 sentences, overlap=1 sentences).
+
+=== Query: What data structure does breadth-first search use for its frontier? ===
+  rank 1: [doc1_bfs.txt#0] score=0.338  "Breadth-first search explores a graph level by level, using a FIFO queue to hold the frontier of unvisited nodes. It guarantees the shortest path in terms of number of edges when every edge has the same cost."
+  rank 2: [doc2_ucs.txt#0] score=0.252  "Uniform-cost search generalises breadth-first search to graphs where edges carry different costs. It replaces the FIFO queue with a priority queue ordered by the accumulated path cost from the start node."
+  rank 3: [doc2_ucs.txt#2] score=0.234  "A node is only finalised when it is popped from the priority queue, at which point its cost is guaranteed to be minimal, because any cheaper path would have been popped earlier. Uniform-cost search reduces to breadth-first search exactly when every edge cost is equal to one."
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : A FIFO queue [doc1_bfs.txt#0].
+  UNGROUNDED answer : A queue (this is common textbook knowledge, no source).
+
+=== Query: How does uniform-cost search decide a node's cost is final? ===
+  rank 1: [doc2_ucs.txt#2] score=0.514  "A node is only finalised when it is popped from the priority queue, at which point its cost is guaranteed to be minimal, because any cheaper path would have been popped earlier. Uniform-cost search reduces to breadth-first search exactly when every edge cost is equal to one."
+  rank 2: [doc2_ucs.txt#0] score=0.456  "Uniform-cost search generalises breadth-first search to graphs where edges carry different costs. It replaces the FIFO queue with a priority queue ordered by the accumulated path cost from the start node."
+  rank 3: [doc2_ucs.txt#1] score=0.253  "It replaces the FIFO queue with a priority queue ordered by the accumulated path cost from the start node. A node is only finalised when it is popped from the priority queue, at which point its cost is guaranteed to be minimal, because any cheaper path would have been popped earlier."
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : A node's cost is final only when it is popped from the priority queue, since any cheaper path would already have been popped [doc2_ucs.txt#0].
+  UNGROUNDED answer : When it is dequeued from the priority queue (recalled from training data, no source).
+
+=== Query: What does the inverse document frequency part of TF-IDF do? ===
+  rank 1: [doc3_tfidf.txt#0] score=0.630  "TF-IDF stands for term frequency-inverse document frequency, a weighting scheme used to turn text into numeric vectors. Term frequency counts how often a word appears in a document, while inverse document frequency down-weights words that appear in many documents across the corpus, since common words carry little distinguishing information."
+  rank 2: [doc3_tfidf.txt#1] score=0.422  "Term frequency counts how often a word appears in a document, while inverse document frequency down-weights words that appear in many documents across the corpus, since common words carry little distinguishing information. Multiplying the two together gives high weight to words that are frequent in one document but rare across the whole corpus, which is exactly the signal that identifies what a document is about."
+  rank 3: [doc3_tfidf.txt#2] score=0.229  "Multiplying the two together gives high weight to words that are frequent in one document but rare across the whole corpus, which is exactly the signal that identifies what a document is about. Cosine similarity between two TF-IDF vectors measures the angle between them, ignoring vector length, which makes it a natural way to compare documents of different sizes."
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : It down-weights words that appear in many documents, since common words carry little distinguishing information [doc3_tfidf.txt#0].
+  UNGROUNDED answer : It penalises common words (recalled from training data, no source).
+
+=== Query: Why can a RAG system be updated without retraining the model? ===
+  rank 1: [doc4_rag.txt#3] score=0.347  "Those chunks are pasted into a prompt as evidence, along with an instruction to answer using only the supplied context, which lets the final answer cite the exact source chunk it came from. Because the corpus lives outside the model, it can be updated at any time without retraining, and answers can be checked against the retrieved text for accuracy."
+  rank 2: [doc4_rag.txt#0] score=0.177  "Retrieval-augmented generation combines a retrieval system with a language model so that answers are grounded in an external document store rather than the model's fixed training weights. A corpus is first split into overlapping chunks, and each chunk is embedded into a vector using a scheme such as TF-IDF or dense sentence embeddings."
+  rank 3: [doc1_bfs.txt#0] score=0.000  "Breadth-first search explores a graph level by level, using a FIFO queue to hold the frontier of unvisited nodes. It guarantees the shortest path in terms of number of edges when every edge has the same cost."
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : Because the corpus lives outside the model's weights, in an external document store that can be edited directly [doc4_rag.txt#3].
+  UNGROUNDED answer : Because you just edit the documents (recalled from training data, no source).
+
+=== Query: What is the time complexity of quicksort in the worst case? ===
+  rank 1: [doc1_bfs.txt#1] score=0.168  "It guarantees the shortest path in terms of number of edges when every edge has the same cost. The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible."
+  rank 2: [doc4_rag.txt#1] score=0.139  "A corpus is first split into overlapping chunks, and each chunk is embedded into a vector using a scheme such as TF-IDF or dense sentence embeddings. At query time, the question is embedded with the same scheme and compared against every chunk using a similarity measure, and the top-k most similar chunks are retrieved."
+  rank 3: [doc1_bfs.txt#2] score=0.134  "The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible. Breadth-first search expands every node at the current depth before moving to the next depth, which is why it never has to revise a shortest-path decision once it has been made."
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : The retrieved context does not contain an answer to this question.
+  UNGROUNDED answer : O(n^2) in the worst case (recalled from training data, no source; not grounded in this corpus).
+
+=== Query: Who invented the transformer architecture? ===
+  rank 1: [doc1_bfs.txt#0] score=0.000  "Breadth-first search explores a graph level by level, using a FIFO queue to hold the frontier of unvisited nodes. It guarantees the shortest path in terms of number of edges when every edge has the same cost."
+  rank 2: [doc1_bfs.txt#1] score=0.000  "It guarantees the shortest path in terms of number of edges when every edge has the same cost. The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible."
+  rank 3: [doc1_bfs.txt#2] score=0.000  "The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible. Breadth-first search expands every node at the current depth before moving to the next depth, which is why it never has to revise a shortest-path decision once it has been made."
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : The retrieved context does not contain an answer to this question.
+  UNGROUNDED answer : Researchers at Google introduced it in 'Attention Is All You Need' (recalled from training data, no source; not grounded in this corpus).
+
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab4\outputs\exp4_rag_pipeline.txt]

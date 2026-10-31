@@ -1,0 +1,23 @@
+=== Exercise 1: structured error handling ===
+
+--- Demo 1 ---
+Request : {"tool": "calculator", "arguments": {"expression": "sqrt(9)"}
+Result  : {"request": "{\"tool\": \"calculator\", \"arguments\": {\"expression\": \"sqrt(9)\"}", "error": {"type": "malformed_json", "message": "Expecting ',' delimiter: line 1 column 62 (char 61)"}}
+
+--- Demo 2 ---
+Request : {"tool": "weather_lookup", "arguments": {"city": "Surat"}}
+Result  : {"request": {"tool": "weather_lookup", "arguments": {"city": "Surat"}}, "error": {"type": "unknown_tool", "message": "'weather_lookup' is not registered"}}
+
+--- Demo 3 ---
+Request : {"tool": "calculator", "arguments": {"expr": "1 + 1"}}
+Result  : {"request": {"tool": "calculator", "arguments": {"expr": "1 + 1"}}, "error": {"type": "bad_arguments", "message": "unexpected=['expr'] missing=['expression']"}}
+
+--- Demo 4 ---
+Request : {"tool": "unit_convert", "arguments": {"value": 10, "frm": "km", "to": "kg"}}
+Result  : {"request": {"tool": "unit_convert", "arguments": {"value": 10, "frm": "km", "to": "kg"}}, "error": {"type": "tool_exception:ValueError", "message": "unsupported conversion: km -> kg"}}
+
+=== Exercise 2: csv_mean tool ===
+Using sample CSV at c:\Users\aryan\Documents\GitHub\AA-AI465\lab3\sample_temperatures.csv
+Schema  : {"name": "csv_mean", "description": "Read a CSV file and return the mean of a named column.", "arguments": {"path": {"type": "string", "description": "Path to the CSV file"}, "column": {"type": "string", "description": "Name of the numeric column to average"}}}
+Request : {"tool": "csv_mean", "arguments": {"path": "c:\\Users\\aryan\\Documents\\GitHub\\AA-AI465\\lab3\\sample_temperatures.csv", "column": "temperature"}}
+Result  : {"request": {"tool": "csv_mean", "arguments": {"path": "c:\\Users\\aryan\\Documents\\GitHub\\AA-AI465\\lab3\\sample_temperatures.csv", "column": "temperature"}}, "arguments": {"path": "c:\\Users\\aryan\\Documents\\GitHub\\AA-AI465\\lab3\\sample_temperatures.csv", "column": "temperature"}, "observation": 30.639999999999997}

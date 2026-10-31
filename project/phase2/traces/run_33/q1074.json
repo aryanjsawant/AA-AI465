@@ -1,0 +1,317 @@
+{
+ "idx": 1074,
+ "question": "Teddy finished half of a 500 piece puzzle, and then started and finished another 500 piece puzzle within an hour.  How many puzzle pieces did Teddy place during that hour?",
+ "gold": "750",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:00:25",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Teddy finished half of a 500 piece puzzle, and then started and finished another 500 piece puzzle within an hour.  How many puzzle pieces did Teddy place during that hour?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 14.598,
+   "samples": [
+    {
+     "seed": 33107400,
+     "text": "Teddy finished half of a 500 piece puzzle, which is 500 / 2 = 250 pieces. So, in total, he finished 250 + 500 = 750 pieces. \nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 61,
+     "latency_s": 10.824,
+     "error": null,
+     "sample_index": 0,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107401,
+     "text": "Teddy placed 500 / 2 = 250 puzzle pieces on the first puzzle. He placed 500 = 250 puzzle pieces on the second puzzle. Teddy placed a total of 250 + 250 = 500 puzzle pieces within the hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 73,
+     "latency_s": 12.737,
+     "error": null,
+     "sample_index": 1,
+     "pred": "500",
+     "correct": false
+    },
+    {
+     "seed": 33107402,
+     "text": "Teddy finished half of a 500 piece puzzle, which is 500 / 2 = 250 puzzle pieces. He finished the other half, also 250 puzzle pieces. So, Teddy placed a total of 250 + 250 = 500 puzzle pieces in an hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 79,
+     "latency_s": 13.746,
+     "error": null,
+     "sample_index": 2,
+     "pred": "500",
+     "correct": false
+    },
+    {
+     "seed": 33107403,
+     "text": "Teddy completed the first puzzle in half an hour, which means he placed 500 / 2 = 250 pieces of the first puzzle. The second puzzle is finished in an hour, so Teddy placed 500 pieces of the second puzzle. In total, during that hour Teddy placed 250 + 500 = 750 puzzle pieces.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 88,
+     "latency_s": 14.595,
+     "error": null,
+     "sample_index": 3,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107404,
+     "text": "Teddy finished half of the first 500-piece puzzle, which means he placed 500 / 2 = 250 pieces. For the second puzzle, he finished it completely, placing all 500 pieces. Thus, in total, Teddy placed 250 + 500 = 750 puzzle pieces during the hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 85,
+     "latency_s": 14.394,
+     "error": null,
+     "sample_index": 4,
+     "pred": "750",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 17.091,
+   "samples": [
+    {
+     "seed": 33107405,
+     "text": "Teddy finished half of the first puzzle, which is 500/2 = 250 pieces. He then finished the second puzzle, which is another 500 pieces. So in total, Teddy placed 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 74,
+     "latency_s": 14.041,
+     "error": null,
+     "sample_index": 5,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107406,
+     "text": "Teddy finished half of the 500 piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces. Then he finished the second 500 piece puzzle, which means he placed another 500 puzzle pieces. So, Teddy placed 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 88,
+     "latency_s": 16.5,
+     "error": null,
+     "sample_index": 6,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107407,
+     "text": "Teddy finished half of a 500 piece puzzle, which is 500 / 2 = 250 pieces. Teddy started a new puzzle and finished it within an hour, completing the entire 500 piece puzzle. So Teddy placed 500 puzzle pieces during that hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 72,
+     "latency_s": 13.574,
+     "error": null,
+     "sample_index": 7,
+     "pred": "500",
+     "correct": false
+    },
+    {
+     "seed": 33107408,
+     "text": "Teddy finished half of the first 500-piece puzzle, which means he completed 500 / 2 = 250 pieces. He also finished a 500-piece puzzle within the hour, which means he completed 500 pieces on that puzzle as well. So, during that hour, Teddy placed 250 + 500 = 750 puzzle pieces.\nFinal answer: 750 puzzle pieces",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 96,
+     "latency_s": 17.087,
+     "error": null,
+     "sample_index": 8,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107409,
+     "text": "Teddy finished 1/2 of a 500-piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces. He also finished the second 500-piece puzzle within an hour, adding another 500 pieces. Thus, Teddy placed 250 + 500 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 90,
+     "latency_s": 16.714,
+     "error": null,
+     "sample_index": 9,
+     "pred": "750",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 12.681,
+   "samples": [
+    {
+     "seed": 33107410,
+     "text": "Teddy finished 500 / 2 = 250 puzzle pieces in the first puzzle. Teddy finished 500 puzzle pieces in the second puzzle. Therefore Teddy placed 500 + 250 = 750 puzzle pieces during that hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 66,
+     "latency_s": 10.313,
+     "error": null,
+     "sample_index": 10,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107411,
+     "text": "Teddy finished half of a 500 piece puzzle, so he finished 500 / 2 = 250 puzzle pieces. He finished 250 puzzle pieces within an hour, so during that hour, Teddy placed 250 puzzle pieces.",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 58,
+     "latency_s": 9.328,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33107412,
+     "text": "Teddy finished half of the first 500 piece puzzle, which is 500 / 2 = 250 pieces. Teddy finished the second 500 piece puzzle entirely, which is 500 pieces. So, Teddy placed 250 + 500 = 750 puzzle pieces in one hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 82,
+     "latency_s": 12.353,
+     "error": null,
+     "sample_index": 12,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107413,
+     "text": "Teddy finished half of a 500-piece puzzle, which means he completed 500 / 2 = 250 pieces. Since he finished the second puzzle within an hour, the total number of puzzle pieces he placed during that hour is 250 + 500 = 750 pieces.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 77,
+     "latency_s": 11.892,
+     "error": null,
+     "sample_index": 13,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107414,
+     "text": "Teddy finished half of a 500 piece puzzle, which means he placed 500 / 2 = 250 puzzle pieces. Then he finished the second puzzle within an hour, so he placed 500 puzzle pieces on that puzzle as well. During the hour, Teddy placed 250 + 500 = 750 puzzle pieces.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 88,
+     "latency_s": 12.678,
+     "error": null,
+     "sample_index": 14,
+     "pred": "750",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 13.003,
+   "samples": [
+    {
+     "seed": 33107415,
+     "text": "Teddy finished half of the first puzzle, which means he placed 500 / 2 = 250 puzzle pieces. In an hour, he finished the second puzzle, meaning he placed 500 puzzle pieces in total. Therefore, Teddy placed 500 - 250 = 250 puzzle pieces during that hour.\nFinal answer: 250",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 82,
+     "latency_s": 12.822,
+     "error": null,
+     "sample_index": 15,
+     "pred": "250",
+     "correct": false
+    },
+    {
+     "seed": 33107416,
+     "text": "Teddy finished 500 / 2 = 250 puzzle pieces in the first half. Teddy finished another 500 pieces, which means he placed 500 + 250 = 750 puzzle pieces during the hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 63,
+     "latency_s": 10.59,
+     "error": null,
+     "sample_index": 16,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107417,
+     "text": "Teddy finished half of the first 500-piece puzzle, which means he completed 500 / 2 = 250 pieces. He then finished the second 500-piece puzzle, completing all 500 pieces. In total, Teddy placed 250 + 500 = 750 puzzle pieces during the hour.\nFinal answer: 750",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 85,
+     "latency_s": 13.001,
+     "error": null,
+     "sample_index": 17,
+     "pred": "750",
+     "correct": true
+    },
+    {
+     "seed": 33107418,
+     "text": "Teddy finished half of the first puzzle, which means he placed 500 / 2 = 250 puzzle pieces. Since he finished the second puzzle within an hour, he placed all 500 pieces in that hour.\nFinal answer: 500",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 58,
+     "latency_s": 9.355,
+     "error": null,
+     "sample_index": 18,
+     "pred": "500",
+     "correct": false
+    },
+    {
+     "seed": 33107419,
+     "text": "Teddy finished half of a 500 piece puzzle in 0.5 * 500 = 250 puzzle pieces. Teddy finished another 500 piece puzzle within an hour, so he placed 500 puzzle pieces during that hour.\nFinal answer: 500 puzzle pieces",
+     "finish_reason": "stop",
+     "prompt_tokens": 398,
+     "completion_tokens": 66,
+     "latency_s": 11.025,
+     "error": null,
+     "sample_index": 19,
+     "pred": "500",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

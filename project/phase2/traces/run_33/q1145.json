@@ -1,0 +1,317 @@
+{
+ "idx": 1145,
+ "question": "Faraday owns a flower shop. He sells a sunflower that costs $2 each and a bouquet of sunflower that costs $8. If Faraday earned $26 from the sunflower and $56 from the bouquet per day, and if each bouquet has 12 sunflowers, how many sunflowers was Faraday able to sell after 3 days?",
+ "gold": "291",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 17:46:06",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Faraday owns a flower shop. He sells a sunflower that costs $2 each and a bouquet of sunflower that costs $8. If Faraday earned $26 from the sunflower and $56 from the bouquet per day, and if each bouquet has 12 sunflowers, how many sunflowers was Faraday able to sell after 3 days?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 25.368,
+   "samples": [
+    {
+     "seed": 33114500,
+     "text": "First, we find out how many sunflowers were sold with each bouquet: 12 sunflowers/bouquet * $8/bouquet = $96. Faraday earned $56 from the bouquet per day, so in 3 days he earned $56 * 3 = $168. Now we add the earnings from the sunflowers: $26 + $168 = $194. \n\nTherefore, Faraday was able to sell 194 sunflowers after 3 days.\n\nFinal answer: 194",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 117,
+     "latency_s": 20.888,
+     "error": null,
+     "sample_index": 0,
+     "pred": "194",
+     "correct": false
+    },
+    {
+     "seed": 33114501,
+     "text": "Faraday sold 5 sunflowers per day from the sunflower, so in 3 days he sold 5 * 3 = 15 sunflowers. The bouquet has 12 sunflowers per bouquet, so in 3 days, he sold 12 * 3 = 36 sunflowers. Adding the sunflowers from the sunflowers and the bouquet gives 15 + 36 = 51 sunflowers.\nFinal answer: 51",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 98,
+     "latency_s": 17.817,
+     "error": null,
+     "sample_index": 1,
+     "pred": "51",
+     "correct": false
+    },
+    {
+     "seed": 33114502,
+     "text": "Each bouquet contains 12 sunflowers, and Faraday earned $56 from selling 1 bouquet, which means he sold 56 / 12 = 4.67 sunflowers per bouquet. Since he can't sell a fraction of a sunflower, we'll assume he sold 4 sunflowers per bouquet. Thus, he sold 4 sunflowers + 1 bouquet = 5 sunflowers per day. If he sold 5 sunflowers per day, then he sold 5 * 3 = 15 sunflowers over 3 days.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 124,
+     "latency_s": 21.594,
+     "error": null,
+     "sample_index": 2,
+     "pred": "15",
+     "correct": false
+    },
+    {
+     "seed": 33114503,
+     "text": "Faraday sold 26 / 2 = 13 sunflowers per day from the sunflower. He sold 56 / 8 = 7 bouquets per day from the bouquet. He sold 7 * 12 = 84 sunflowers per day from the bouquet. In 3 days, he sold 84 * 3 = 252 sunflowers.\nFinal answer: 252",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 90,
+     "latency_s": 16.748,
+     "error": null,
+     "sample_index": 3,
+     "pred": "252",
+     "correct": false
+    },
+    {
+     "seed": 33114504,
+     "text": "Faraday earns $26 from 2 sunflowers per day, meaning he sells 26 / 2 = 13 sunflowers per day. A bouquet costs $8 and includes 12 sunflowers, meaning each sunflower sells for 8 / 12 = $2 / 3. In total, Faraday sells 13 sunflowers per day, each costing $2, so he earns 13 * 2 = $26 per day from sunflowers.\n\nFaraday sells 56 / 2 = 28 bouquets per day. Each bouquet has 12 sunflowers, so he sells 28 * 12 = 336 sunflowers per day.\n\nAfter 3 days, Faraday sells 336 * 3 = 1008 sunflowers.\n\nFinal answer: 1008",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 182,
+     "latency_s": 25.363,
+     "error": null,
+     "sample_index": 4,
+     "pred": "1008",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 14.595,
+   "samples": [
+    {
+     "seed": 33114505,
+     "text": "Faraday earned $26 from 3 days of selling sunflowers, meaning he sold 26 / 2 = 13 sunflowers per day. Since each bouquet has 12 sunflowers, Faraday sold 13 * 3 = 39 sunflowers in 3 days.\nFinal answer: 39",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 70,
+     "latency_s": 13.541,
+     "error": null,
+     "sample_index": 5,
+     "pred": "39",
+     "correct": false
+    },
+    {
+     "seed": 33114506,
+     "text": "Faraday sold 56 / 8 = 7 bouquets in a day. So he sold 7 * 12 = 84 sunflowers in one day. In 3 days, he was able to sell 84 * 3 = 252 sunflowers.\nFinal answer: 252",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 69,
+     "latency_s": 13.376,
+     "error": null,
+     "sample_index": 6,
+     "pred": "252",
+     "correct": false
+    },
+    {
+     "seed": 33114507,
+     "text": "Faraday sold 56 / 8 = 7 bouquets per day. 12 * 7 = 84 sunflowers per day. 84 * 3 = 252 sunflowers after 3 days.\nFinal answer: 252",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 58,
+     "latency_s": 11.16,
+     "error": null,
+     "sample_index": 7,
+     "pred": "252",
+     "correct": false
+    },
+    {
+     "seed": 33114508,
+     "text": "Faraday sold 56 / 8 = 7 bouquets of sunflowers in one day because each bouquet cost $8. There are 12 sunflowers in each bouquet so Faraday sold 7 * 12 = 84 sunflowers in one day. He sold 84 * 3 = 252 sunflowers in 3 days.",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 78,
+     "latency_s": 14.343,
+     "error": null,
+     "sample_index": 8,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33114509,
+     "text": "Faraday earns $26 from selling sunflowers in a day. He sells 26 / 2 = 13 sunflowers in a day. He sells 12 * 13 = 156 sunflowers in a day. Over 3 days, he sells 3 * 156 = 468 sunflowers.\nFinal answer: 468",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 82,
+     "latency_s": 14.589,
+     "error": null,
+     "sample_index": 9,
+     "pred": "468",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 19.463,
+   "samples": [
+    {
+     "seed": 33114510,
+     "text": "Faraday sells 8 sunflowers for the bouquet per day. Since each bouquet has 12 sunflowers, Faraday sells 12 - 8 = 4 sunflowers per bouquet. He earns $56 for a bouquet, so he earns 56 / 4 = $14 per sunflower. Faraday sells 26 + 56 = 82 sunflowers per day. After 3 days, Faraday sold 82 * 3 = 246 sunflowers.\nFinal answer: 246",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 115,
+     "latency_s": 19.461,
+     "error": null,
+     "sample_index": 10,
+     "pred": "246",
+     "correct": false
+    },
+    {
+     "seed": 33114511,
+     "text": "Faraday sells 5 bouquets per day because 56 / 12 = 4.66, so he sells 4 bouquets because 4.66 - 1 = 3 bouquets. He sells 1 sunflower in each bouquet, so he sells 3 * 12 = 36 sunflowers per day. He sells 36 sunflowers per day, so he sells 36 * 3 = 108 sunflowers after 3 days.\nFinal answer: 108",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 113,
+     "latency_s": 19.318,
+     "error": null,
+     "sample_index": 11,
+     "pred": "108",
+     "correct": false
+    },
+    {
+     "seed": 33114512,
+     "text": "Faraday earns $8 per bouquet, which means he sells 56 / 8 = 7 bouquets per day. The cost per bouquet is $8, and each bouquet has 12 sunflowers, so he sells 7 * 12 = 84 sunflowers per day. If he sells 84 sunflowers per day for 3 days, that is 84 * 3 = 252 sunflowers.\nFinal answer: 252",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 101,
+     "latency_s": 17.564,
+     "error": null,
+     "sample_index": 12,
+     "pred": "252",
+     "correct": false
+    },
+    {
+     "seed": 33114513,
+     "text": "Faraday sold 56 / 8 = 7 bouquets in a day. So, he sold 7 * 12 = 84 sunflowers in a day. Thus, he sold 2 * 84 = 168 sunflowers in a day. After 3 days, he sold 168 * 3 = 504 sunflowers.\nFinal answer: 504",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 89,
+     "latency_s": 15.946,
+     "error": null,
+     "sample_index": 13,
+     "pred": "504",
+     "correct": false
+    },
+    {
+     "seed": 33114514,
+     "text": "Faraday earned $26 from the sunflower, which means he sold $26 / $2 = 13 sunflowers. The bouquet cost $8 per unit, and since each bouquet has 12 sunflowers, he sold $56 / $8 = 7 bouquets, meaning he sold 7 * 12 = 84 sunflowers per day. After 3 days, he sold 84 * 3 = 252 sunflowers.\nFinal answer: 252",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 108,
+     "latency_s": 18.707,
+     "error": null,
+     "sample_index": 14,
+     "pred": "252",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 18.413,
+   "samples": [
+    {
+     "seed": 33114515,
+     "text": "Faraday sold 26 / 2 = 13 sunflowers on each day. He sold 56 / 8 = 7 bouquets on each day. If each bouquet has 12 sunflowers, then he sold 7 * 12 = 84 sunflowers per day. In total, he sold 84 * 3 = 252 sunflowers after 3 days.\nFinal answer: 252",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 95,
+     "latency_s": 16.157,
+     "error": null,
+     "sample_index": 15,
+     "pred": "252",
+     "correct": false
+    },
+    {
+     "seed": 33114516,
+     "text": "Faraday earned $26 from the sunflowers, which means he sold 26 / 2 = 13 sunflowers per day. He earned $56 from the bouquets, which means he sold 56 / 8 = 7 bouquets per day. Since each bouquet has 12 sunflowers, he sold 7 * 12 = 84 sunflowers per day. Over 3 days, Faraday sold 84 * 3 = 252 sunflowers.\n\nFinal answer: 252",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 115,
+     "latency_s": 18.41,
+     "error": null,
+     "sample_index": 16,
+     "pred": "252",
+     "correct": false
+    },
+    {
+     "seed": 33114517,
+     "text": "Faraday sold 26 / 2 = 13 sunflowers from the sunflowers he sold each day. 56 / 8 = 7 bouquets were sold each day. 7 * 12 = 84 sunflowers were sold each day. 13 + 84 = 97 sunflowers were sold in 3 days.",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 78,
+     "latency_s": 13.711,
+     "error": null,
+     "sample_index": 17,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33114518,
+     "text": "First, we calculate the number of sunflowers in a bouquet: 12 sunflowers per bouquet. Then, we find out how many of these bouquets Faraday sold: 56 / 8 = 7 bouquets. Since each bouquet contains 12 sunflowers, the total number of sunflowers sold is 7 * 12 = 84 sunflowers. Finally, over 3 days, Faraday sells 84 * 3 = 252 sunflowers.\nFinal answer: 252",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 111,
+     "latency_s": 18.161,
+     "error": null,
+     "sample_index": 18,
+     "pred": "252",
+     "correct": false
+    },
+    {
+     "seed": 33114519,
+     "text": "Faraday earned $26 from the sunflowers and $56 from the bouquets. So in total, he earned 26 + 56 = $82. Each bouquet has 12 sunflowers, so in 3 days, he was able to sell 3 * 12 = 36 sunflowers.",
+     "finish_reason": "stop",
+     "prompt_tokens": 432,
+     "completion_tokens": 71,
+     "latency_s": 12.764,
+     "error": null,
+     "sample_index": 19,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

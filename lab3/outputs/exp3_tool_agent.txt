@@ -1,0 +1,67 @@
+=== Tool schemas presented to the model ===
+[
+  {
+    "name": "calculator",
+    "description": "Evaluate an arithmetic expression in a restricted namespace (sqrt, pow, pi are available).",
+    "arguments": {
+      "expression": {
+        "type": "string",
+        "description": "Arithmetic expression, e.g. 'sqrt(16) + 2'"
+      }
+    }
+  },
+  {
+    "name": "days_between",
+    "description": "Compute the whole number of days between two ISO dates.",
+    "arguments": {
+      "d1": {
+        "type": "string",
+        "description": "First date, YYYY-MM-DD"
+      },
+      "d2": {
+        "type": "string",
+        "description": "Second date, YYYY-MM-DD"
+      }
+    }
+  },
+  {
+    "name": "unit_convert",
+    "description": "Convert a numeric value between km/miles, kg/lb or degC/degF.",
+    "arguments": {
+      "value": {
+        "type": "number",
+        "description": "Value to convert"
+      },
+      "frm": {
+        "type": "string",
+        "description": "Source unit"
+      },
+      "to": {
+        "type": "string",
+        "description": "Target unit"
+      }
+    }
+  }
+]
+
+=== Scripted tool calls and observations ===
+
+--- Call 1 ---
+Request : {"tool": "calculator", "arguments": {"expression": "sqrt(144) + pow(2, 3)"}}
+Observation: {"tool": "calculator", "arguments": {"expression": "sqrt(144) + pow(2, 3)"}, "observation": 20.0}
+
+--- Call 2 ---
+Request : {"tool": "days_between", "arguments": {"d1": "2026-01-01", "d2": "2026-08-20"}}
+Observation: {"tool": "days_between", "arguments": {"d1": "2026-01-01", "d2": "2026-08-20"}, "observation": 231}
+
+--- Call 3 ---
+Request : {"tool": "unit_convert", "arguments": {"value": 100, "frm": "km", "to": "miles"}}
+Observation: {"tool": "unit_convert", "arguments": {"value": 100, "frm": "km", "to": "miles"}, "observation": 62.137100000000004}
+
+--- Call 4 ---
+Request : {"tool": "unit_convert", "arguments": {"value": 98.6, "frm": "f", "to": "c"}}
+Observation: {"tool": "unit_convert", "arguments": {"value": 98.6, "frm": "f", "to": "c"}, "observation": 37.0}
+
+--- Call 5 ---
+Request : {"tool": "calculator", "arguments": {"expression": "pi * pow(3, 2)"}}
+Observation: {"tool": "calculator", "arguments": {"expression": "pi * pow(3, 2)"}, "observation": 28.274333882308138}

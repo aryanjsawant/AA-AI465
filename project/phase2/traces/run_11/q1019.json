@@ -1,0 +1,317 @@
+{
+ "idx": 1019,
+ "question": "On a busy Saturday morning, a hotel was completely booked with 100 guests.  24 guests elected an early checkout and 15 elected for a late checkout.  In the afternoon twice as many people checked in as those who opted for a late checkout.  7 more people checked in after dinner was served.  How many guests does the hotel now have?",
+ "gold": "98",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:29:58",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "On a busy Saturday morning, a hotel was completely booked with 100 guests.  24 guests elected an early checkout and 15 elected for a late checkout.  In the afternoon twice as many people checked in as those who opted for a late checkout.  7 more people checked in after dinner was served.  How many guests does the hotel now have?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 26.24,
+   "samples": [
+    {
+     "seed": 11101900,
+     "text": "The number of guests who checked in on Saturday morning is the total number of guests minus those who checked out early and those who checked out late: 100 - 24 - 15 = 61 guests. In the afternoon, twice as many people checked in as those who opted for a late checkout: 2 * 15 = 30 people. The total number of guests after the afternoon is 61 + 30 = 91 guests. Finally, 7 more people checked in after dinner: 91 + 7 = 98 guests. \nFinal answer: 98",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 131,
+     "latency_s": 25.062,
+     "error": null,
+     "sample_index": 0,
+     "pred": "98",
+     "correct": true
+    },
+    {
+     "seed": 11101901,
+     "text": "On the first day, 100 - 24 - 15 = 61 people stayed in the hotel. During the afternoon, the number of people who checked in was 2 * 15 = 30. After dinner, 30 + 7 = 37 people checked in. So, the total is 61 + 37 = 98 guests.\nFinal answer: 98",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 92,
+     "latency_s": 18.227,
+     "error": null,
+     "sample_index": 1,
+     "pred": "98",
+     "correct": true
+    },
+    {
+     "seed": 11101902,
+     "text": "On Saturday morning, there were 100 guests. 24 guests checked out early, leaving 100 - 24 = 76 guests. 15 guests checked out late, so the 15 guests became 15 - 15 = 0 guests. Twice as many people checked in as those who opted for a late checkout, meaning 2 * 15 = 30 new guests checked in. With the 7 more people checked in after dinner, there are now 30 + 7 = 37 guests checked in. Adding those up, the hotel now has 37 + 76 = 113 guests.\nFinal answer: 113",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 151,
+     "latency_s": 26.238,
+     "error": null,
+     "sample_index": 2,
+     "pred": "113",
+     "correct": false
+    },
+    {
+     "seed": 11101903,
+     "text": "There were 100 - 24 - 15 = 61 guests remaining after some checked out. In the afternoon, twice as many checked in as those who opted for late checkout, which means 2 * 15 = 30 people checked in after that. So in the afternoon, there were 61 + 30 = 91 people checked in. In the evening, 7 more people checked in, making the total 91 + 7 = 98 people in the hotel.\nFinal answer: 98",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 118,
+     "latency_s": 22.955,
+     "error": null,
+     "sample_index": 3,
+     "pred": "98",
+     "correct": true
+    },
+    {
+     "seed": 11101904,
+     "text": "On Saturday morning, the hotel had 100 guests. 24 guests checked out early, leaving 100 - 24 = 76 guests. 15 guests checked out late, leaving 76 - 15 = 61 guests. In the afternoon, twice as many people checked in as those who opted for a late checkout, meaning 15 * 2 = 30 people checked in. The night shift served 7 people, bringing the total of people in the hotel to 61 + 30 + 7 = 98 guests.\nFinal answer: 98",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 132,
+     "latency_s": 25.274,
+     "error": null,
+     "sample_index": 4,
+     "pred": "98",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 20.594,
+   "samples": [
+    {
+     "seed": 11101905,
+     "text": "The early checkouts reduce the number of guests by 24, so 100 - 24 = 76 guests remain. The late checkouts reduce the number of guests by 15, so 76 - 15 = 61 guests remain. Twice as many people checked in as those who opted for a late checkout, which means 2 * 15 = 30 people checked in. 7 more people checked in after dinner, so 61 + 30 + 7 = 98 guests now check in at the hotel.\nFinal answer: 98",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 129,
+     "latency_s": 20.54,
+     "error": null,
+     "sample_index": 5,
+     "pred": "98",
+     "correct": true
+    },
+    {
+     "seed": 11101906,
+     "text": "On a busy Saturday morning, the hotel had 100 guests booked. At this time, 24 guests elected early checkout and 15 guests elected for late checkout, which means there were 100 - 24 - 15 = 61 guests remaining. In the afternoon, twice as many people checked in as those who opted for a late checkout, which means there were 61 * 2 = 122 guests. At this time, 7 more people checked in after dinner was served, which means there were 122 + 7 = 129 guests.",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 130,
+     "latency_s": 20.592,
+     "error": null,
+     "sample_index": 6,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11101907,
+     "text": "On Saturday, 100 - 24 - 15 = 61 people checked in. In the afternoon, 2 * 15 = 30 people checked in. 61 + 30 = 91 people in the hotel. 7 more people checked in after dinner was served, so 91 + 7 = 98 guests now at the hotel.\nFinal answer: 98",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 92,
+     "latency_s": 14.515,
+     "error": null,
+     "sample_index": 7,
+     "pred": "98",
+     "correct": true
+    },
+    {
+     "seed": 11101908,
+     "text": "On Saturday morning, 100 guests were booked.\n24 guests opted for early checkout, so 100 - 24 = 76 guests remained.\n15 guests opted for late checkout, so 76 - 15 = 61 guests remained.\nIn the afternoon, twice as many people checked in as those who opted for a late checkout, which is 2 * 15 = 30 people.\n7 more people checked in after dinner, so the total is 61 + 30 + 7 = 100 guests.\nFinal answer: 100",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 129,
+     "latency_s": 20.533,
+     "error": null,
+     "sample_index": 8,
+     "pred": "100",
+     "correct": false
+    },
+    {
+     "seed": 11101909,
+     "text": "The number of guests who checked in before dinner is 24 + 15 = 39. Afternoon, twice as many people checked in as those who opted for a late checkout, so 2 * 15 = 30 people checked in that day. In the evening, 39 + 7 = 46 people checked in. Adding them all up, the hotel now has 100 - 24 + 39 + 30 + 7 = 192 guests.\nFinal answer: 192",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 118,
+     "latency_s": 19.13,
+     "error": null,
+     "sample_index": 9,
+     "pred": "192",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 22.261,
+   "samples": [
+    {
+     "seed": 11101910,
+     "text": "The number of people who checked in after early checkout is 2 * 15 = 30 people. The total number of people who checked in is 30 + 15 = 45 people. The number of people who checked in after dinner is 45 + 7 = 52 people. The total number of guests the hotel now has is 100 - 45 + 52 = 107 people.\nFinal answer: 107",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 104,
+     "latency_s": 16.205,
+     "error": null,
+     "sample_index": 10,
+     "pred": "107",
+     "correct": false
+    },
+    {
+     "seed": 11101911,
+     "text": "The number of people who checked in early is 24. The number of people who checked in late is 15. The number of people who checked in afternoon is twice the number of people who checked in late, which is 2 * 15 = 30. The number of people who checked in after dinner is 7 more than the afternoon check-ins, which is 30 + 7 = 37. The total number of guests after all these changes is 100 - 24 + 15 + 30 + 37 = 190.\n\nFinal answer: 190",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 134,
+     "latency_s": 20.388,
+     "error": null,
+     "sample_index": 11,
+     "pred": "190",
+     "correct": false
+    },
+    {
+     "seed": 11101912,
+     "text": "The number of people who checked in on the afternoon is twice the number who opted for a late checkout, which is 2 * 15 = 30 people. The total number of guests checked in in the afternoon is 30 + 7 = 37 people. In total, the guests checked in on the afternoon and the evening to become 37 + 37 = 74 people. The final number of guests in the hotel is 100 - 74 = 26 people.\nFinal answer: 26",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 116,
+     "latency_s": 18.318,
+     "error": null,
+     "sample_index": 12,
+     "pred": "26",
+     "correct": false
+    },
+    {
+     "seed": 11101913,
+     "text": "There were 24 + 15 = 39 people who checked out.\nThat leaves 100 - 39 = 61 people who checked in on the first two days.\nThat means 2 * 15 = 30 more people checked in on the second two days.\nThat leaves 61 - 30 = 31 people remaining in the hotel.\nThat means 31 + 7 = 38 guests checked in after dinner.\nSo in total there are 61 + 38 = 99 guests remaining in the hotel.\nFinal answer: 99",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 130,
+     "latency_s": 20.04,
+     "error": null,
+     "sample_index": 13,
+     "pred": "99",
+     "correct": false
+    },
+    {
+     "seed": 11101914,
+     "text": "On the busy Saturday morning, there were 24 guests who chose to check out early, and 15 guests who chose to check out late. So, a total of 24 + 15 = 39 guests checked out.\n\nIn the afternoon, twice as many people checked in as those who opted for a late checkout. So, 2 * 15 = 30 people checked in after the late checkout.\n\nAfter dinner, 7 more people checked in. So, 30 + 7 = 37 people checked in after dinner.\n\nInitially, there were 100 guests. After the checkout and the people who checked in, the total number of guests is 100 - 39 + 37 = 98 guests.\n\nFinal answer: 98 guests",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 170,
+     "latency_s": 22.258,
+     "error": null,
+     "sample_index": 14,
+     "pred": "98",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 22.053,
+   "samples": [
+    {
+     "seed": 11101915,
+     "text": "On Saturday morning, the hotel had 100 guests. 24 guests checked out early and 15 checked out late. This leaves 100 - 24 - 15 = 61 guests still checked in.\n\nIn the afternoon, twice as many people checked in as those who opted for a late checkout. This means 2 * 15 = 30 people checked in after the late checkout option. Adding those, the total number of guests now is 61 + 30 = 91.\n\nAfter dinner, 7 more people checked in. This brings the total to 91 + 7 = 98 guests.\n\nFinal answer: 98",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 147,
+     "latency_s": 20.948,
+     "error": null,
+     "sample_index": 15,
+     "pred": "98",
+     "correct": true
+    },
+    {
+     "seed": 11101916,
+     "text": "On a busy Saturday morning, there are 100 guests, 24 guests elected an early checkout, and 15 guests elected for a late checkout. So, there are 100 - 24 - 15 = 61 guests left in the hotel.\n\nIn the afternoon, twice as many people checked in as those who opted for a late checkout. Since 15 guests elected for a late checkout, twice that amount is 2 * 15 = 30 guests.\n\nAfter the afternoon, there are 61 + 30 = 91 guests in the hotel.\n\nIn the evening, 7 more people checked in. So, the total number of guests now is 91 + 7 = 98 guests.\n\nFinal answer: 98 guests",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 168,
+     "latency_s": 22.051,
+     "error": null,
+     "sample_index": 16,
+     "pred": "98",
+     "correct": true
+    },
+    {
+     "seed": 11101917,
+     "text": "There are 100 - 24 - 15 = 61 people remaining after early checkouts. The number of people who checked in after the late checkout is 2 * 15 = 30. Thus, the number of people who checked in after dinner is 30 + 7 = 37. The total number of people in the hotel is now 61 + 37 = 98.\nFinal answer: 98",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 100,
+     "latency_s": 15.519,
+     "error": null,
+     "sample_index": 17,
+     "pred": "98",
+     "correct": true
+    },
+    {
+     "seed": 11101918,
+     "text": "The number of guests who checked in early is 24. The number of guests who checked in late is 15. The number of guests who checked in early and late is 15 * 2 = 30. The number of guests who checked in after dinner is 30 + 7 = 37. The total number of guests is 37 + 24 + 15 = 76. \n\nFinal answer: 76",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 99,
+     "latency_s": 15.328,
+     "error": null,
+     "sample_index": 18,
+     "pred": "76",
+     "correct": false
+    },
+    {
+     "seed": 11101919,
+     "text": "The number of guests who checked in after their early and late checkouts is 24 + 15 = 39. Twice as many people checked in in the afternoon as those who opted for a late checkout, which means 39 * 2 = 78 people checked in that day. 7 more people checked in after dinner, bringing the total to 78 + 7 = 85. Subtracting the 100 guests initially booked, the hotel now has 85 - 100 = 25 guests remaining.\nFinal answer: 25",
+     "finish_reason": "stop",
+     "prompt_tokens": 435,
+     "completion_tokens": 124,
+     "latency_s": 18.928,
+     "error": null,
+     "sample_index": 19,
+     "pred": "25",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

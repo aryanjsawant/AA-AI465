@@ -1,0 +1,317 @@
+{
+ "idx": 1194,
+ "question": "From her science class study, Brady learned that each whale in the sea has 40 gallons of blood. She also learned that a shark has three times as much blood as a whale. Calculate the number of gallons of blood that ten sharks swimming in the sea have.",
+ "gold": "1200",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 17:51:51",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "From her science class study, Brady learned that each whale in the sea has 40 gallons of blood. She also learned that a shark has three times as much blood as a whale. Calculate the number of gallons of blood that ten sharks swimming in the sea have."
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 9.294,
+   "samples": [
+    {
+     "seed": 33119400,
+     "text": "A whale has 40 gallons of blood, so a shark has 40 * 3 = 120 gallons of blood. Ten sharks have 120 * 10 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 59,
+     "latency_s": 8.891,
+     "error": null,
+     "sample_index": 0,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119401,
+     "text": "A whale has 40 gallons of blood. A shark has 3 * 40 = 120 gallons of blood. Ten sharks have 10 * 120 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 58,
+     "latency_s": 8.757,
+     "error": null,
+     "sample_index": 1,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119402,
+     "text": "Each whale has 40 gallons of blood. A shark has 3 * 40 = 120 gallons of blood. Ten sharks have 10 * 120 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 58,
+     "latency_s": 8.766,
+     "error": null,
+     "sample_index": 2,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119403,
+     "text": "A whale has 40 gallons of blood, so a shark has 40 * 3 = 120 gallons of blood. Ten sharks have 120 * 10 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 59,
+     "latency_s": 8.899,
+     "error": null,
+     "sample_index": 3,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119404,
+     "text": "A whale has 40 * 3 = 120 gallons of blood. A shark has 120 * 3 = 360 gallons of blood. Ten sharks have 10 * 360 = 3600 gallons of blood.\nFinal answer: 3600",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 67,
+     "latency_s": 9.29,
+     "error": null,
+     "sample_index": 4,
+     "pred": "3600",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 10.484,
+   "samples": [
+    {
+     "seed": 33119405,
+     "text": "The amount of blood in a shark is 3 * 40 = 120 gallons. Thus, ten sharks have 120 * 10 = 1200 gallons of blood in total.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 55,
+     "latency_s": 8.144,
+     "error": null,
+     "sample_index": 5,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119406,
+     "text": "A shark has 40 * 3 = 120 gallons of blood. So ten sharks have 120 * 10 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 49,
+     "latency_s": 7.434,
+     "error": null,
+     "sample_index": 6,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119407,
+     "text": "A shark has 40 * 3 = 120 gallons of blood. Thus, ten sharks have 120 * 10 = 1200 gallons of blood.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 42,
+     "latency_s": 6.245,
+     "error": null,
+     "sample_index": 7,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33119408,
+     "text": "A whale has 40 gallons of blood, so a shark has 3 * 40 = 120 gallons of blood. Therefore, 10 sharks have 10 * 120 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 63,
+     "latency_s": 8.951,
+     "error": null,
+     "sample_index": 8,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119409,
+     "text": "First, we calculate the amount of blood a shark has. A whale has 40 gallons of blood and a shark has three times as much, so a shark has 3 * 40 = 120 gallons of blood. A single shark has 120 gallons of blood, so ten sharks have 10 * 120 = 1200 gallons of blood.\nFinal answer: 1200 gallons",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 93,
+     "latency_s": 10.479,
+     "error": null,
+     "sample_index": 9,
+     "pred": "1200",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 9.133,
+   "samples": [
+    {
+     "seed": 33119410,
+     "text": "A whale has 40 gallons of blood. A shark has 3 * 40 = 120 gallons of blood. Ten sharks have 10 * 120 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 58,
+     "latency_s": 8.827,
+     "error": null,
+     "sample_index": 10,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119411,
+     "text": "If each whale has 40 gallons of blood, and a shark has three times as much blood, then a shark has 40 * 3 = 120 gallons of blood. Therefore, ten sharks have 120 * 10 = 1200 gallons of blood.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 64,
+     "latency_s": 9.13,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33119412,
+     "text": "A whale has 40 gallons of blood, so a shark has 40 * 3 = 120 gallons of blood. Ten sharks have 120 * 10 = 1200 gallons of blood.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 51,
+     "latency_s": 7.838,
+     "error": null,
+     "sample_index": 12,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33119413,
+     "text": "First, we calculate the amount of blood in one shark: 30 * 40 = 1200 gallons. Therefore, ten sharks have 10 * 1200 = 12000 gallons of blood.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 53,
+     "latency_s": 8.151,
+     "error": null,
+     "sample_index": 13,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33119414,
+     "text": "A whale has 40 gallons of blood. A shark has 3 * 40 = 120 gallons of blood. Ten sharks have 120 * 10 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 58,
+     "latency_s": 8.818,
+     "error": null,
+     "sample_index": 14,
+     "pred": "1200",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 11.798,
+   "samples": [
+    {
+     "seed": 33119415,
+     "text": "A whale has 40 gallons of blood. A shark has 40 * 3 = 120 gallons of blood. Thus, ten sharks have 120 * 10 = 1200 gallons of blood.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 52,
+     "latency_s": 7.791,
+     "error": null,
+     "sample_index": 15,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33119416,
+     "text": "First, we calculate the amount of blood in one shark, which is three times the amount of a whale, so a shark has 40 * 3 = 120 gallons of blood. Now, to find the total amount of blood in ten sharks, we multiply the amount of blood in one shark by ten, which is 120 * 10 = 1200 gallons.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 85,
+     "latency_s": 11.498,
+     "error": null,
+     "sample_index": 16,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33119417,
+     "text": "If each whale has 40 gallons of blood, then a shark has 40 * 3 = 120 gallons of blood. Since there are ten sharks, they have 120 * 10 = 1200 gallons of blood. The answer is 1200.",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 66,
+     "latency_s": 9.897,
+     "error": null,
+     "sample_index": 17,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119418,
+     "text": "A whale has 40 gallons of blood. A shark has 40 * 3 = 120 gallons of blood. Ten sharks have 120 * 10 = 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 58,
+     "latency_s": 8.803,
+     "error": null,
+     "sample_index": 18,
+     "pred": "1200",
+     "correct": true
+    },
+    {
+     "seed": 33119419,
+     "text": "First, find the blood of a shark, which is 3 times the amount of a whale: 3 * 40 = 120 gallons. Next, multiply the amount of blood of a shark by the number of sharks: 120 * 10 = 1200 gallons. Therefore, ten sharks in the sea have 1200 gallons of blood.\nFinal answer: 1200",
+     "finish_reason": "stop",
+     "prompt_tokens": 411,
+     "completion_tokens": 91,
+     "latency_s": 11.794,
+     "error": null,
+     "sample_index": 19,
+     "pred": "1200",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

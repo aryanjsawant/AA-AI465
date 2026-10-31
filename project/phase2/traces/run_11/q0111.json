@@ -1,0 +1,317 @@
+{
+ "idx": 111,
+ "question": "Julia’s boat sprang a leak while she was out on the lake. The boat was taking on two liters of water for every ten feet she rowed back towards shore. It took her sixteen seconds to row twenty feet. The shore was 64 seconds away. How much water had the boat taken on by the time Julia reached shore?",
+ "gold": "16",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:09:36",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Julia’s boat sprang a leak while she was out on the lake. The boat was taking on two liters of water for every ten feet she rowed back towards shore. It took her sixteen seconds to row twenty feet. The shore was 64 seconds away. How much water had the boat taken on by the time Julia reached shore?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 33.138,
+   "samples": [
+    {
+     "seed": 11011100,
+     "text": "First, we need to find Julia's rowing speed in feet per second. She rowed 20 feet in 16 seconds, so her speed is 20 / 16 = 1.25 feet per second. The boat takes 64 seconds to reach the shore, so it would take 64 / 1.25 = 512 / 10 = 51.2 liters of water to fill the boat. \n\nFinal answer: 51.2 liters",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 109,
+     "latency_s": 23.062,
+     "error": null,
+     "sample_index": 0,
+     "pred": "51.2",
+     "correct": false
+    },
+    {
+     "seed": 11011101,
+     "text": "Julia rows at a rate of 16 seconds / 20 feet = 0.8 feet per second. The boat takes 64 / 20 = 3.2 minutes to reach the shore. She rowed at a rate of 60 * 0.8 = 48 liters per minute. In 3.2 minutes, she rowed 3.2 * 48 = 153.6 liters. \n\nFinal answer: 153.6 liters.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 109,
+     "latency_s": 23.057,
+     "error": null,
+     "sample_index": 1,
+     "pred": "153.6",
+     "correct": false
+    },
+    {
+     "seed": 11011102,
+     "text": "Julia rows 20 feet in 16 seconds, which means she is rowing at a speed of 20/16 = 5/4 feet per second. Since she is rowing towards the shore, she is rowing back at a rate of 5/4 feet per second. By the time she reaches the shore, she will have rowed 64 + 20 = 84 feet. The boat takes on 2 liters of water for every ten feet rowed, so at 84 feet, the boat has taken on 84/10 * 2 = 16.8 liters of water.\nFinal answer: 16.8 liters",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 147,
+     "latency_s": 29.035,
+     "error": null,
+     "sample_index": 2,
+     "pred": "16.8",
+     "correct": false
+    },
+    {
+     "seed": 11011103,
+     "text": "The boat rowed 20 feet in 16 seconds, so it rows at a rate of 20 feet / 16 seconds = 5/2 feet/second. Julia needs to row 64 - 20 = 44 feet to reach the shore. This means that she is rowing for 44 feet / (5/2 feet/second) = 176/5 seconds. The boat is taking on 2 liters of water for every ten feet, so in 176/5 seconds it is taking on 176/5 * 2 = 352/5 liters of water. The boat takes on 352/5 = 70.4 liters of water.\nFinal answer: 70.4",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 167,
+     "latency_s": 31.193,
+     "error": null,
+     "sample_index": 3,
+     "pred": "70.4",
+     "correct": false
+    },
+    {
+     "seed": 11011104,
+     "text": "First, we need to calculate the speed of Julia's boat. Since she rowed 20 feet in 16 seconds, her speed is 20 feet / 16 seconds = 5/2 feet per second. \n\nNext, we need to determine how much water was taken on during her rowing. Since the boat takes on 2 liters of water for every 10 feet, we can calculate the amount of water taken on for 20 feet as (20 feet / 10 feet) * 2 liters = 4 liters.\n\nFinally, since the water was taken on while she was rowing back towards shore, and the shore is 64 seconds away, we can calculate the total amount of water taken on as (20 feet / 16 seconds) * 4 liters = 5 liters.\n\nTherefore, by the time Julia reached the shore, the boat had taken on 5 liters of water.\n\nFinal answer: 5 liters",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 202,
+     "latency_s": 33.132,
+     "error": null,
+     "sample_index": 4,
+     "pred": "5",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 21.309,
+   "samples": [
+    {
+     "seed": 11011105,
+     "text": "Julia rowed back 20 feet in 16 seconds, meaning she rowed at a rate of 20 / 16 = 5/4 feet per second. She rowed a total of 20 + 20 = 40 feet back towards shore. The boat takes on 2 liters of water for every 10 feet she rows back, so in 40 feet, the boat would take on 40 * 2 / 10 = 8 liters of water.\n\nThe boat took on 8 liters of water by the time Julia reached shore.\nFinal answer: 8 liters",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 132,
+     "latency_s": 19.844,
+     "error": null,
+     "sample_index": 5,
+     "pred": "8",
+     "correct": false
+    },
+    {
+     "seed": 11011106,
+     "text": "Julia rows 20 feet in 16 seconds, so her rowing speed is 20/16 = 5/4 feet per second. The boat takes 64 seconds to row 64 feet, so it had taken on 64/4 = 16 liters of water by the time it reached the shore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 74,
+     "latency_s": 12.816,
+     "error": null,
+     "sample_index": 6,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11011107,
+     "text": "Rowing back 20 feet takes 16 seconds, so she rows 10 feet per second. This means she rowed 20 * 10 = 200 feet back to shore. The boat took on 200 / 10 * 2 = 40 liters of water. To get to the shore, she rowed 64 - 20 = 44 feet more. So, the boat took on 44 / 10 * 2 = 8.8 liters of water. The boat took on a total of 40 + 8.8 = 48.8 liters of water by the time Julia reached the shore.\nFinal answer: 48.8 liters",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 158,
+     "latency_s": 21.306,
+     "error": null,
+     "sample_index": 7,
+     "pred": "48.8",
+     "correct": false
+    },
+    {
+     "seed": 11011108,
+     "text": "She rowed at a rate of 20 / 16 = 1.25 feet per second. She rowed 64 - 20 = 44 feet to reach the shore. She rowed 44 / 1.25 = 352 feet to reach the shore. She added 352 / 10 * 2 = 70.4 liters of water.\nFinal answer: 70.4",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 99,
+     "latency_s": 16.018,
+     "error": null,
+     "sample_index": 8,
+     "pred": "70.4",
+     "correct": false
+    },
+    {
+     "seed": 11011109,
+     "text": "Julia rows 20 feet in 16 seconds, so she rows at a rate of 20/16 = 5/4 feet per second. The boat is 64 feet away from the shore, so it would take her 64/5/4 = 64 * 4/5 = 51.2 seconds to reach the shore. Over those 51.2 seconds, the boat takes on 51.2 * 2 = 102.4 liters of water.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 113,
+     "latency_s": 18.1,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 24.963,
+   "samples": [
+    {
+     "seed": 11011110,
+     "text": "Julia rowed 20 feet at a rate of 16 seconds, meaning she rowed 20 / 16 = 1.25 feet per second. To row 64 feet, it took 64 / 1.25 = 51.2 seconds. It takes 10 feet for 2 liters, so 51.2 feet is 51.2 / 10 = 5.12 liters of water. This is the amount of water the boat has taken on by the time Julia reached shore.\nFinal answer: 5.12 liters",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 130,
+     "latency_s": 21.349,
+     "error": null,
+     "sample_index": 10,
+     "pred": "5.12",
+     "correct": false
+    },
+    {
+     "seed": 11011111,
+     "text": "Julia rows at a rate of 2 feet per second, so it took her 20 / 2 = 10 seconds to row 20 feet. In 16 seconds, she rows 16 / 10 = 1.6 feet. She has rowed 1.6 + 20 = 21.6 feet when she reaches shore. Thus, 21.6 * 64 = 1382.4 liters of water had leaked into the boat by the time Julia reached the shore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 117,
+     "latency_s": 19.878,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11011112,
+     "text": "Julia rows 20 feet in 16 seconds, so her rowing speed is 20 / 16 = 5/4 feet per second. She has to row 64 - 20 = 44 feet to reach the shore. At a speed of 5/4 feet per second, it takes her 44 / (5/4) = 176/5 = 35.2 seconds to row 44 feet. Since she takes 16 seconds to row 20 feet, it takes her 35.2 - 16 = 19.2 seconds to row 24 feet. Since her boat leaks at the rate of 2 liters for every 10 feet, she will have taken on 2 * 19.2 / 10 = 3.84 liters of water by the time she reaches the shore.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 194,
+     "latency_s": 24.961,
+     "error": null,
+     "sample_index": 12,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11011113,
+     "text": "Julia rowed 20 feet back, which took 16 seconds. The boat rowed 20 * 10 = 200 feet per minute. She rowed for 64 - 16 = 48 minutes. Julia rowed 200 * 48 = 9600 feet. Therefore, the boat took on 9600 / 10 = 960 liters of water.\nFinal answer: 960",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 105,
+     "latency_s": 18.228,
+     "error": null,
+     "sample_index": 13,
+     "pred": "960",
+     "correct": false
+    },
+    {
+     "seed": 11011114,
+     "text": "Julia's boat rowed back 20 feet in 16 seconds, so she rowed at a rate of 20 / 16 = 5/4 feet per second. The boat rowed 64 feet in 64 seconds, so in total, the boat took on 64 / (5/4) = 64 * (4/5) = 51.2 liters of water.\nFinal answer: 51.2",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 101,
+     "latency_s": 17.687,
+     "error": null,
+     "sample_index": 14,
+     "pred": "51.2",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 28.161,
+   "samples": [
+    {
+     "seed": 11011115,
+     "text": "Julia rowed at a speed of 20 feet per 16 seconds, which means she rows at a rate of 20/16 = 1.25 feet per second. Since the boat takes 64 seconds to reach the shore, it rowed 64 * 1.25 = 80 feet. The boat is taking on 2 liters of water for every 10 feet it rowed, which means it takes on 2/10 = 0.2 liters of water per foot. So, by the time Julia reaches the shore, the boat has taken on 80 * 0.2 = 16 liters of water.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 146,
+     "latency_s": 25.955,
+     "error": null,
+     "sample_index": 15,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11011116,
+     "text": "Julia rowed for 20 feet in 16 seconds. So, she was rowing at a rate of 20/16 = 5/4 feet per second. Since the boat takes on 2 liters of water for every 10 feet rowed, it takes on 5/4 * 2 = 2.5 liters of water per second. It takes 64 seconds to row 64 feet. Therefore, the boat takes on 64 * 2.5 = 160 liters of water.\nFinal answer: 160 liters",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 125,
+     "latency_s": 21.943,
+     "error": null,
+     "sample_index": 16,
+     "pred": "160",
+     "correct": false
+    },
+    {
+     "seed": 11011117,
+     "text": "First, we find the rate at which the boat is taking on water. This is 2 liters per 10 feet. So the rate is 2/10 = 0.2 liters per foot. Next, we calculate the distance Julia rowed in 16 seconds. The rate is 0.2 liters per foot, so she rowed 16 * 0.2 = 3.2 feet in 16 seconds. Since she rowed 20 feet, she took 20 / 0.2 = 100 feet to row back towards the shore. The distance to the shore is 64 feet, so she rowed 100 - 64 = 36 feet. Thus, the boat had taken on 36 * 0.2 = 7.2 liters of water.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 180,
+     "latency_s": 28.159,
+     "error": null,
+     "sample_index": 17,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11011118,
+     "text": "Julia rowed back 20 feet in 16 seconds, which means she rows at a rate of 20/16 = 5/4 feet per second. Back towards the shore, she rowed 64 - 20 = 44 feet. At this rate, 44 feet takes 44/(5/4) = 176/5 = 35.2 seconds. For every 10 feet she rowed, she took on 2 liters of water, which means in 35.2 seconds, she took on 35.2/10 * 2 = 7.04 liters of water.\nFinal answer: 7.04 liters",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 154,
+     "latency_s": 26.717,
+     "error": null,
+     "sample_index": 18,
+     "pred": "7.04",
+     "correct": false
+    },
+    {
+     "seed": 11011119,
+     "text": "Julia rows 20 feet in 16 seconds, so her rowing speed is 20 feet / 16 seconds = 1.25 feet per second. The boat takes 64 seconds to row 2 * 64 = 128 feet to the shore. Julia is rowing 1.25 feet per second, so it takes 128 feet / 1.25 feet per second = 102.4 seconds to row 128 feet. Julia rowed for 102.4 seconds and the boat took on 102.4 * 2 = 204.8 liters of water.",
+     "finish_reason": "stop",
+     "prompt_tokens": 427,
+     "completion_tokens": 146,
+     "latency_s": 25.969,
+     "error": null,
+     "sample_index": 19,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

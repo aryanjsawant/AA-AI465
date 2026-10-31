@@ -1,0 +1,317 @@
+{
+ "idx": 235,
+ "question": "John orders some pizzas to share with his friends.  There are 20 friends in total, and John wants to make sure each can have 4 slices.  Pizzas are only sold sliced into 8 portions.  How many Pizzas does John need to order?",
+ "gold": "10",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:51:34",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "John orders some pizzas to share with his friends.  There are 20 friends in total, and John wants to make sure each can have 4 slices.  Pizzas are only sold sliced into 8 portions.  How many Pizzas does John need to order?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 20.445,
+   "samples": [
+    {
+     "seed": 11023500,
+     "text": "Each friend needs 4 slices, and there are 20 friends, so in total, John needs 4 * 20 = 80 slices. Since each pizza is sliced into 8 portions, John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 64,
+     "latency_s": 17.977,
+     "error": null,
+     "sample_index": 0,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023501,
+     "text": "Each friend needs 4 slices, so in total, there are 20 * 4 = 80 slices needed. Since each pizza is sliced into 8 portions, John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 57,
+     "latency_s": 16.599,
+     "error": null,
+     "sample_index": 1,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023502,
+     "text": "Each friend needs 4 slices, so for 20 friends, the total number of slices needed is 20 * 4 = 80 slices. Each pizza is sliced into 8 portions, so the number of pizzas needed is 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 68,
+     "latency_s": 18.478,
+     "error": null,
+     "sample_index": 2,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023503,
+     "text": "John needs 20 friends * 4 slices = 80 slices. He needs 80 slices / 8 slices per pizza = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 41,
+     "latency_s": 13.965,
+     "error": null,
+     "sample_index": 3,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023504,
+     "text": "To find out how many slices are needed, we multiply the number of friends by the number of slices each friend should have: 20 * 4 = 80 slices.\nSince each pizza is sliced into 8 portions, we divide the total number of slices by the number of slices per pizza to find out how many pizzas are needed: 80 / 8 = 10 pizzas.\nFinal answer: 10 pizzas.",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 91,
+     "latency_s": 20.439,
+     "error": null,
+     "sample_index": 4,
+     "pred": "10",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 15.181,
+   "samples": [
+    {
+     "seed": 11023505,
+     "text": "The total number of slices needed is 20 * 4 = 80 slices. Each pizza contains 8 slices, so John needs to order 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 50,
+     "latency_s": 11.637,
+     "error": null,
+     "sample_index": 5,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023506,
+     "text": "Each person should have 4 slices, so in total, they need 20 * 4 = 80 slices. Each pizza is sliced into 8, so John needs 80 / 8 = 10 slices. Since John cannot order a fraction of a pizza, he must order 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 74,
+     "latency_s": 15.179,
+     "error": null,
+     "sample_index": 6,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023507,
+     "text": "There are 20 friends, and each friend wants 4 slices, so they need 20 * 4 = 80 slices in total. Each pizza is sliced into 8 portions, so John needs to order 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 65,
+     "latency_s": 14.51,
+     "error": null,
+     "sample_index": 7,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023508,
+     "text": "John needs 20 friends * 4 slices = 80 slices. Pizzas are 8 slices per pizza, so John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 47,
+     "latency_s": 10.966,
+     "error": null,
+     "sample_index": 8,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023509,
+     "text": "First, we calculate the total number of slices needed: 20 friends * 4 slices per friend = 80 slices.\nNext, we find out how many pizzas are needed: 80 slices / 8 slices per pizza = 10 pizzas.\nFinal answer: 10 pizzas",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 62,
+     "latency_s": 14.11,
+     "error": null,
+     "sample_index": 9,
+     "pred": "10",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 14.348,
+   "samples": [
+    {
+     "seed": 11023510,
+     "text": "If each of the 20 friends needs 4 slices, then in total there are 20 * 4 = 80 slices needed. Each pizza is sliced into 8 portions, so John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 62,
+     "latency_s": 13.482,
+     "error": null,
+     "sample_index": 10,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023511,
+     "text": "If there are 20 friends and each wants 4 slices, then in total there are 20 * 4 = 80 slices needed. Since the slices are sold in 8 portions per pizza, John needs 80 / 8 = 10 pizzas to order.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 67,
+     "latency_s": 14.207,
+     "error": null,
+     "sample_index": 11,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023512,
+     "text": "First, we calculate the total number of slices needed: 20 friends * 4 slices each = 80 slices. Since each pizza is sliced into 8 portions, John needs 80 / 8 = 10 pizzas.\nFinal answer: 10 pizzas",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 58,
+     "latency_s": 12.719,
+     "error": null,
+     "sample_index": 12,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023513,
+     "text": "Each person needs 4 slices, so 20 people need 20 * 4 = 80 slices in total. Each pizza is sliced into 8 portions, so John needs 80 / 8 = 10 pizzas. Therefore, John needs to order 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 69,
+     "latency_s": 14.344,
+     "error": null,
+     "sample_index": 13,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023514,
+     "text": "Each person needs 4 slices, so 20 friends need 20 * 4 = 80 slices. Since each pizza is sliced into 8 portions, John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 56,
+     "latency_s": 12.233,
+     "error": null,
+     "sample_index": 14,
+     "pred": "10",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 11.65,
+   "samples": [
+    {
+     "seed": 11023515,
+     "text": "Each friend needs 4 slices, so for 20 friends, there are 20 * 4 = 80 slices needed. Each pizza has 8 slices, so John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 58,
+     "latency_s": 11.22,
+     "error": null,
+     "sample_index": 15,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023516,
+     "text": "Each friend needs 4 slices, so 20 friends need 20 * 4 = 80 slices. Since a pizza is sliced into 8 portions, John needs to order 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 58,
+     "latency_s": 11.203,
+     "error": null,
+     "sample_index": 16,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023517,
+     "text": "If there are 20 friends and each wants 4 slices, then they need 20 * 4 = 80 slices in total. Since each pizza is sliced into 8 portions, John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 62,
+     "latency_s": 11.594,
+     "error": null,
+     "sample_index": 17,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023518,
+     "text": "Each friend needs 4 slices, and there are 20 friends, so they need 4 * 20 = 80 slices in total. Each pizza is sliced into 8 portions, so John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 63,
+     "latency_s": 11.646,
+     "error": null,
+     "sample_index": 18,
+     "pred": "10",
+     "correct": true
+    },
+    {
+     "seed": 11023519,
+     "text": "Each friend needs 4 slices, so 20 friends need 20 * 4 = 80 slices. Since each pizza is sliced into 8 portions, John needs 80 / 8 = 10 pizzas.\nFinal answer: 10",
+     "finish_reason": "stop",
+     "prompt_tokens": 413,
+     "completion_tokens": 56,
+     "latency_s": 10.94,
+     "error": null,
+     "sample_index": 19,
+     "pred": "10",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "idx": 803,
+ "question": "Kris is trying to earn a video game achievement for playing a total of 30 hours. If Kris plays for half an hour every day for 2 weeks then plays for 2 hours every day for a week, how many hours does she still need to play to earn the achievement?",
+ "gold": "9",
+ "run": "greedy",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.0,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:09:25",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Kris is trying to earn a video game achievement for playing a total of 30 hours. If Kris plays for half an hour every day for 2 weeks then plays for 2 hours every day for a week, how many hours does she still need to play to earn the achievement?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 7.772,
+   "samples": [
+    {
+     "seed": 0,
+     "text": "Kris plays for half an hour every day for 2 weeks, which is 2 * 16 = 32 hours. She also plays for 2 hours every day for a week, which is 1 * 7 = 7 hours. In total, she has played 32 + 7 = 39 hours. To earn the achievement, she needs to play 30 hours, so she still needs to play 30 - 39 = -9 hours. This means she has already exceeded the required hours by 9 hours.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 123,
+     "latency_s": 7.772,
+     "error": null,
+     "sample_index": 0,
+     "pred": "0",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

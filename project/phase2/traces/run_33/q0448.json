@@ -1,0 +1,317 @@
+{
+ "idx": 448,
+ "question": "A salesman bought a case of 48 sneakers for $576. He sold 17 of them for $20 at a flash sale on Monday, and the rest were sold to a department store for $25 each throughout the rest of the week. How much money, in dollars, was the salesman's profit?",
+ "gold": "539",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 17:35:19",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "A salesman bought a case of 48 sneakers for $576. He sold 17 of them for $20 at a flash sale on Monday, and the rest were sold to a department store for $25 each throughout the rest of the week. How much money, in dollars, was the salesman's profit?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 20.318,
+   "samples": [
+    {
+     "seed": 33044800,
+     "text": "The cost of sneakers per pair is $576 / 48 = $12. He sold 17 pairs at a loss of 17 * $20 = $340. The remaining 31 pairs were sold for $25 each, resulting in a profit of 31 * $25 = $775. The total profit is $775 - $340 = $435.\nFinal answer: 435",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 102,
+     "latency_s": 18.55,
+     "error": null,
+     "sample_index": 0,
+     "pred": "435",
+     "correct": false
+    },
+    {
+     "seed": 33044801,
+     "text": "The salesman sold 48 - 17 = 31 pairs of sneakers. For the flash sale, he sold 17 * $20 = $340. The profit from the sneakers is $576 - $340 = $236. The department store sold 31 * $25 = $775. The total profit is $775 + $236 = $1011.\nFinal answer: 1011",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 105,
+     "latency_s": 19.129,
+     "error": null,
+     "sample_index": 1,
+     "pred": "1011",
+     "correct": false
+    },
+    {
+     "seed": 33044802,
+     "text": "The cost of each sneaker is 576 / 48 = 12 dollars. The total sales from the flash sale were 17 * 20 = 340 dollars. The total sales to the department store were 48 - 17 = 31 * 25 = 775 dollars. The total sales were 340 + 775 = 1115 dollars. The salesman's profit was 1115 - 576 = 539 dollars.\nFinal answer: 539",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 124,
+     "latency_s": 20.316,
+     "error": null,
+     "sample_index": 2,
+     "pred": "539",
+     "correct": true
+    },
+    {
+     "seed": 33044803,
+     "text": "The cost of each of the 31 pairs is $576 / 48 = $12. The sale price of 17 pairs is 17 * $20 = $340. The sale price of 25 pairs is 25 * $25 = $625. The total sales is $340 + $625 = $965. The profit is $965 - $576 = $389.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 106,
+     "latency_s": 19.253,
+     "error": null,
+     "sample_index": 3,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33044804,
+     "text": "The salesman bought the case for $576 and sold 17 of them for $20, so he made a loss of $576 - ($20 * 17) = $28. He sold the remaining 31 sneakers at $25 each, making a profit of 31 * $25 = $775. Therefore, his total profit was $775 - $28 = $747.\nFinal answer: 747",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 105,
+     "latency_s": 19.133,
+     "error": null,
+     "sample_index": 4,
+     "pred": "747",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 23.905,
+   "samples": [
+    {
+     "seed": 33044805,
+     "text": "The cost per sneaker was 576 / 48 = 12 dollars. The 17 sneakers were sold for 17 * 20 = 340 dollars. The rest of the sneakers, 48 - 17 = 31 were sold for 31 * 25 = 775 dollars. The salesman's profit is 775 + 340 - 576 = 549 dollars.\nFinal answer: 549",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 110,
+     "latency_s": 19.806,
+     "error": null,
+     "sample_index": 5,
+     "pred": "549",
+     "correct": false
+    },
+    {
+     "seed": 33044806,
+     "text": "The salesman bought 48 sneakers for $576. So, the cost of one sneaker was $576 / 48 = $12. He sold 17 sneakers at $20, so he earned 17 * 20 = $340. The remaining 31 sneakers were sold at $25 each, so he earned 31 * 25 = $775. In total, the salesman earned $340 + $775 = $1115. The profit is $1115 - $576 = $539.\nFinal answer: 539",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 141,
+     "latency_s": 23.903,
+     "error": null,
+     "sample_index": 6,
+     "pred": "539",
+     "correct": true
+    },
+    {
+     "seed": 33044807,
+     "text": "The salesman bought 48 sneakers at $576, so the cost per sneaker was $576 / 48 = $12. He sold 17 sneakers at $20 each, so he made 17 * $20 = $340 from the flash sale. He had 48 - 17 = 31 sneakers left to sell. He sold the remaining sneakers at $25 each, making 31 * $25 = $775. His total profit was $775 - $340 = $435.\nFinal answer: 435",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 135,
+     "latency_s": 23.521,
+     "error": null,
+     "sample_index": 7,
+     "pred": "435",
+     "correct": false
+    },
+    {
+     "seed": 33044808,
+     "text": "The cost per shoe is $576 / 48 = $12. The loss is $20 - $12 = $8 per flash sale. The loss for the rest of the week is ($25 - $12) * (48 - 17) = $13 * 31 = $403. The total loss is $8 + $403 = $411. The profit is $576 - $411 = $165.\nFinal answer: 165",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 118,
+     "latency_s": 21.362,
+     "error": null,
+     "sample_index": 8,
+     "pred": "165",
+     "correct": false
+    },
+    {
+     "seed": 33044809,
+     "text": "The first 17 were sold for a total of 17 * $20 = $340. This leaves 48 - 17 = 31 left to sell at $25 each. This means they sold the remaining sneakers for 31 * $25 = $775. The salesman made a profit of $775 + $340 - $576 = $549.\nFinal answer: 549",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 101,
+     "latency_s": 17.834,
+     "error": null,
+     "sample_index": 9,
+     "pred": "549",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 19.745,
+   "samples": [
+    {
+     "seed": 33044810,
+     "text": "The salesman bought 48 sneakers for $576, so the cost per sneaker is $576 / 48 = $12. He sold 17 sneakers for $20 each, making a profit of $20 - $12 = $8 per sneaker. He sold the remaining 31 sneakers for $25 each, making a profit of $25 - $12 = $13 per sneaker. The total profit is 17 * $8 + 31 * $13 = $136 + $403 = $539.\nFinal answer: 539",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 138,
+     "latency_s": 19.744,
+     "error": null,
+     "sample_index": 10,
+     "pred": "539",
+     "correct": true
+    },
+    {
+     "seed": 33044811,
+     "text": "The cost of a case of sneakers was $576. The salesman sold 17 sneakers at $20 each, so he made 17 * $20 = $340 from the flash sale. He had 48 - 17 = 31 sneakers left to sell. He sold these for $25 each, making 31 * $25 = $775. His total profit is the sum of the profit from the flash sale and the profit from the regular sales, which is $775 + $340 = $1115.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 127,
+     "latency_s": 19.075,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33044812,
+     "text": "The 48 sneakers cost $576 / 48 = $12 each. He sold 17 * $20 = $340 on Monday. He had 48 - 17 = 31 sneakers left. He sold the 31 sneakers * $25 = $775. The total profit was $775 - $340 = $435.\nFinal answer: 435",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 97,
+     "latency_s": 16.087,
+     "error": null,
+     "sample_index": 12,
+     "pred": "435",
+     "correct": false
+    },
+    {
+     "seed": 33044813,
+     "text": "The salesman sold 48 - 17 = 31 pairs of shoes at $25 each. So, he made $25 * 31 = $775. His total profit is $775 - $576 = $199.\nFinal answer: 199",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 67,
+     "latency_s": 12.067,
+     "error": null,
+     "sample_index": 13,
+     "pred": "199",
+     "correct": false
+    },
+    {
+     "seed": 33044814,
+     "text": "He sold 48-17 = 31 sneakers at the regular price. The total revenue from the regular price sales is 31 * 25 = 775 dollars. He lost $20 * 17 = 340 dollars at the flash sale. In total, he made 775 - 340 = 435 dollars profit.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 84,
+     "latency_s": 14.297,
+     "error": null,
+     "sample_index": 14,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 24.117,
+   "samples": [
+    {
+     "seed": 33044815,
+     "text": "The flash sale sneakers brought in 17 * $20 = $340. The rest of the sneakers was $576 - $340 = $236. The department store sold the rest for $25 * 31 = $775. The salesman’s total profit was $775 - $236 = $539.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 82,
+     "latency_s": 15.557,
+     "error": null,
+     "sample_index": 15,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33044816,
+     "text": "The salesman bought 48 sneakers for $576, so the cost per sneaker is $576 / 48 = $12. He sold 17 sneakers at $20 each, earning 17 * 20 = $340. The remaining sneakers, which are 48 - 17 = 31, were sold at $25 each, earning 31 * 25 = $775. The total profit is $775 + $340 - $576 = $549.\nFinal answer: 549",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 131,
+     "latency_s": 24.116,
+     "error": null,
+     "sample_index": 16,
+     "pred": "549",
+     "correct": false
+    },
+    {
+     "seed": 33044817,
+     "text": "The salesman's profit from the sale of the flash sale sneakers is $20 - $25 = -$5. He sold 48 - 17 = 31 pairs of sneakers in the rest of the week. The profit from the flash sale was -$5 * 17 = -$85. The profit from the rest of the week is $25 * 31 = $775. The salesman's total profit is -$85 + $775 = $690.\nFinal answer: 690",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 115,
+     "latency_s": 22.153,
+     "error": null,
+     "sample_index": 17,
+     "pred": "690",
+     "correct": false
+    },
+    {
+     "seed": 33044818,
+     "text": "The cost per sneaker is $576 / 48 = $12. The 17 sneakers sold at $20 each is 17 * 20 = $340. The rest of the sneakers is 48 - 17 = 31. The total amount from selling these sneakers is 31 * 25 = $775. The total sales is 340 + 775 = $1115. The profit is 1115 - 576 = $539.\n\nFinal answer: 539",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 130,
+     "latency_s": 24.047,
+     "error": null,
+     "sample_index": 18,
+     "pred": "539",
+     "correct": true
+    },
+    {
+     "seed": 33044819,
+     "text": "The salesman bought 48 sneakers for $576, so each sneaker cost $576 / 48 = $12. He sold 17 sneakers for $20, so he made 17 * $20 = $340. The remaining 31 sneakers were sold for $25 each, so the department store bought 31 * $25 = $775. The total profit is $775 - $340 = $435.\nFinal answer: 435",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 117,
+     "latency_s": 22.469,
+     "error": null,
+     "sample_index": 19,
+     "pred": "435",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

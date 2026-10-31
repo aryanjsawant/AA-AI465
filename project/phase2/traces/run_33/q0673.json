@@ -1,0 +1,317 @@
+{
+ "idx": 673,
+ "question": "Janey has 3 more than twice the number of books that Sally has. If Janey has 21 books, how many does Sally have?",
+ "gold": "9",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:21:27",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Janey has 3 more than twice the number of books that Sally has. If Janey has 21 books, how many does Sally have?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 18.808,
+   "samples": [
+    {
+     "seed": 33067300,
+     "text": "Let \\( S \\) be the number of books Sally has. According to the problem, Janey has 3 more than twice the number of books Sally has, so we can write the equation as \\( 21 = 2S + 3 \\).\n\nTo find out how many books Sally has, we solve for \\( S \\):\n\n\\( 2S + 3 = 21 \\)\n\n\\( 2S = 21 - 3 \\)\n\n\\( 2S = 18 \\)\n\n\\( S = \\frac{18}{2} \\)\n\n\\( S = 9 \\)\n\nSally has 9 books.",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 133,
+     "latency_s": 18.807,
+     "error": null,
+     "sample_index": 0,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33067301,
+     "text": "Let's denote the number of books Sally has as S. According to the problem, Janey has 3 more than twice the number of books Sally has. So we can write the equation: 21 = 3 + (2 * S). Solving for S: 21 - 3 = 2 * S, 18 = 2 * S, S = 18 / 2 = 9. Sally has 9 books.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 101,
+     "latency_s": 16.568,
+     "error": null,
+     "sample_index": 1,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067302,
+     "text": "Let x be the number of books Sally has. Then, 21 = 3 + 2x. So, 2x = 21 - 3 = 18. Hence, x = 9.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 53,
+     "latency_s": 7.952,
+     "error": null,
+     "sample_index": 2,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067303,
+     "text": "Let's denote the number of books Sally has as S. According to the information, Janey has 3 more than twice the number of books that Sally has. This can be written as: 21 = 2S + 3. Solving for S gives us: 2S = 21 - 3 = 18, so S = 18 / 2 = 9 books.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 92,
+     "latency_s": 14.601,
+     "error": null,
+     "sample_index": 3,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067304,
+     "text": "Let's denote the number of books Sally has as \\( S \\). According to the problem, Janey has 3 more than twice the number of books Sally has, which can be written as:\n\\[ 21 = 2S + 3 \\]\n\nSolving for \\( S \\):\n\\[ 21 - 3 = 2S \\]\n\\[ 18 = 2S \\]\n\\[ S = \\frac{18}{2} \\]\n\\[ S = 9 \\]\n\nSo, Sally has 9 books.",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 112,
+     "latency_s": 17.729,
+     "error": null,
+     "sample_index": 4,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 16.62,
+   "samples": [
+    {
+     "seed": 33067305,
+     "text": "Let's denote the number of books Sally has as \\( S \\). According to the problem, Janey has 3 more than twice the number of books Sally has, which gives us the equation: \\( 2S + 3 = 21 \\). To find out how many books Sally has, we solve for \\( S \\):\n\n\\( 2S + 3 = 21 \\)\n\\( 2S = 18 \\)\n\\( S = 9 \\)\n\nSo, Sally has 9 books.",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 108,
+     "latency_s": 16.619,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33067306,
+     "text": "Let \\( x \\) be the number of books Sally has. According to the problem, Janey has 3 more than twice the number of books Sally has, so we can set up the equation: 21 = 2x + 3. Solving for \\( x \\), we get: 2x = 18. Dividing both sides by 2, we find that \\( x = 9 \\).\n\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 94,
+     "latency_s": 15.691,
+     "error": null,
+     "sample_index": 6,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067307,
+     "text": "Let \\( S \\) be the number of books Sally has. According to the problem, Janey has 3 more than twice the number of books Sally has. This can be written as:\n\n\\[ 21 = 2S + 3 \\]\n\nSolving for \\( S \\):\n\n\\[ 2S = 21 - 3 \\]\n\\[ 2S = 18 \\]\n\\[ S = 9 \\]\n\nSo, Sally has 9 books.",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 98,
+     "latency_s": 16.131,
+     "error": null,
+     "sample_index": 7,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33067308,
+     "text": "If Janey has 3 more than twice the number of books that Sally has, then Sally has (21 - 3) / 2 = 9 books.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 41,
+     "latency_s": 6.212,
+     "error": null,
+     "sample_index": 8,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067309,
+     "text": "Let \\( x \\) represent the number of books Sally has. According to the problem, Janey has 3 more than twice Sally's books, which can be expressed as: \\( 21 = 2x + 3 \\).\n\nSolving for \\( x \\):\n\\[ 2x = 21 - 3 \\]\n\\[ 2x = 18 \\]\n\\[ x = 9 \\]\n\nSo, Sally has 9 books.",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 95,
+     "latency_s": 15.821,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 15.994,
+   "samples": [
+    {
+     "seed": 33067310,
+     "text": "Let's say Sally has x books. Janey has 3 more than twice the number of books Sally has, so 21 = 2x + 3. Solving for x gives us 2x = 18, and dividing by 2 gives us x = 9.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 67,
+     "latency_s": 10.418,
+     "error": null,
+     "sample_index": 10,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067311,
+     "text": "Let's denote the number of books Sally has as S. Janey has 3 more than twice the number of books Sally has, so Janey's books can be expressed as 2S + 3. Since Janey has 21 books, we have the equation 2S + 3 = 21. Solving this equation, we subtract 3 from both sides to get 2S = 18, and then divide by 2 to find S = 9. Sally has 9 books.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 114,
+     "latency_s": 15.572,
+     "error": null,
+     "sample_index": 11,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067312,
+     "text": "Let \\( S \\) be the number of books Sally has. Janey has 3 more than twice Sally's books, which can be written as: \\( 21 = 2S + 3 \\).\n\nSubtract 3 from both sides to solve for \\( S \\):\n\\[ 21 - 3 = 2S \\]\n\\[ 18 = 2S \\]\n\nDivide both sides by 2 to find \\( S \\):\n\\[ S = \\frac{18}{2} \\]\n\\[ S = 9 \\]\n\nSally has 9 books.",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 122,
+     "latency_s": 15.992,
+     "error": null,
+     "sample_index": 12,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33067313,
+     "text": "If Janey has 3 more than twice the number of books Sally has, Sally has (21 - 3) / 2 = 9 books.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 39,
+     "latency_s": 5.731,
+     "error": null,
+     "sample_index": 13,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067314,
+     "text": "Let's say Sally has X books. Then Janey has 3 + 2X books. We know that Janey has 21 books, so we have the equation 2X = 21 - 3. Solving this, we find that 2X = 18, which means X = 9. Sally has 9 books.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 81,
+     "latency_s": 12.281,
+     "error": null,
+     "sample_index": 14,
+     "pred": "9",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 16.386,
+   "samples": [
+    {
+     "seed": 33067315,
+     "text": "Let \\( S \\) be the number of books Sally has. According to the problem, Janey has 3 more than twice the number of books that Sally has. We can write this as:\n\\[ 21 = 2S + 3 \\]\n\nSolving for \\( S \\):\n\\[ 2S = 21 - 3 \\]\n\\[ 2S = 18 \\]\n\\[ S = \\frac{18}{2} \\]\n\\[ S = 9 \\]\n\nSo, Sally has 9 books.\n\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 117,
+     "latency_s": 16.386,
+     "error": null,
+     "sample_index": 15,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067316,
+     "text": "Let x be the number of books Sally has. We have 21 = 3 + 2 * x. Subtracting 3 from both sides gives 18 = 2 * x. Dividing by 2 gives x = 9. Thus, Sally has 9 books.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 66,
+     "latency_s": 9.723,
+     "error": null,
+     "sample_index": 16,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067317,
+     "text": "Let's say Sally has \\( x \\) books. According to the problem, Janey has 3 more than twice Sally's books, so we can write the equation \\( 2x + 3 = 21 \\). Solving for \\( x \\), we subtract 3 from both sides to get \\( 2x = 18 \\), and then divide by 2 to find \\( x = 9 \\).\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 94,
+     "latency_s": 14.452,
+     "error": null,
+     "sample_index": 17,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067318,
+     "text": "Let's denote the number of books Sally has as S. According to the problem, Janey has 3 more than twice the number of books that Sally has, which can be written as: 21 = 3 + 2S. Solving this equation for S gives us: S = (21 - 3) / 2 = 18 / 2 = 9. So Sally has 9 books.\nFinal answer: 9",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 95,
+     "latency_s": 14.61,
+     "error": null,
+     "sample_index": 18,
+     "pred": "9",
+     "correct": true
+    },
+    {
+     "seed": 33067319,
+     "text": "Let the number of books Sally has be \\( S \\). According to the problem, Janey has 3 more than twice the number of books Sally has. We can write this as:\n\n\\[ 21 = 2S + 3 \\]\n\nSolving for \\( S \\):\n\n\\[ 2S = 21 - 3 \\]\n\\[ 2S = 18 \\]\n\\[ S = \\frac{18}{2} \\]\n\\[ S = 9 \\]\n\nSo Sally has 9 books.",
+     "finish_reason": "stop",
+     "prompt_tokens": 388,
+     "completion_tokens": 109,
+     "latency_s": 15.977,
+     "error": null,
+     "sample_index": 19,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

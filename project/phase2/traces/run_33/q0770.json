@@ -1,0 +1,317 @@
+{
+ "idx": 770,
+ "question": "A perfume company is trying to create new scents. They already have 4 vanilla scents and 8 fruity scents available and they need to decide which kind of scent to focus on. They decide to focus on whichever scent sells the most and monitor their number of sales as part of their research. By the end of the day, they sell 5 of each of the vanilla scents and 2 of each of the fruity scents available. How many more vanilla scents sold compared with the fruity scents?",
+ "gold": "4",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:27:33",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "A perfume company is trying to create new scents. They already have 4 vanilla scents and 8 fruity scents available and they need to decide which kind of scent to focus on. They decide to focus on whichever scent sells the most and monitor their number of sales as part of their research. By the end of the day, they sell 5 of each of the vanilla scents and 2 of each of the fruity scents available. How many more vanilla scents sold compared with the fruity scents?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 12.063,
+   "samples": [
+    {
+     "seed": 33077000,
+     "text": "The total number of vanilla scents sold is 5 * 4 = 20. The total number of fruity scents sold is 2 * 8 = 16. Vanilla scents sold are 20 and fruity scents sold are 16, meaning vanilla scents sold is 20 - 16 = 4 more. \nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 81,
+     "latency_s": 12.062,
+     "error": null,
+     "sample_index": 0,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077001,
+     "text": "The number of vanilla scents sold is 5. The number of fruity scents sold is 2. The difference is 5 - 2 = 3 more vanilla scents sold than fruity scents.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 49,
+     "latency_s": 8.181,
+     "error": null,
+     "sample_index": 1,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33077002,
+     "text": "They sell 5 vanilla scents, so the number of vanilla scents sold is 5 + 5 = 10. They sell 2 fruity scents, so the number of fruity scents sold is 2 + 2 = 4. The difference in sales between vanilla and fruity scents is 10 - 4 = 6.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 80,
+     "latency_s": 12.003,
+     "error": null,
+     "sample_index": 2,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 33077003,
+     "text": "The total number of vanilla scents sold is 5 * 4 = 20. The total number of fruity scents sold is 2 * 8 = 16. The difference in the number of vanilla scents sold compared to fruity scents is 20 - 16 = 4.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 71,
+     "latency_s": 11.183,
+     "error": null,
+     "sample_index": 3,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077004,
+     "text": "The number of vanilla scents sold is 5. The number of fruity scents sold is 2. The difference is 5 - 2 = 3 more vanilla scents sold compared with the fruity scents.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 51,
+     "latency_s": 8.433,
+     "error": null,
+     "sample_index": 4,
+     "pred": "3",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 10.465,
+   "samples": [
+    {
+     "seed": 33077005,
+     "text": "In total, the vanilla scents sold 5 * 4 = 20 vanilla scents. The fruity scents sold 2 * 8 = 16 fruity scents. Vanilla scents sold 20 - 16 = 4 more than fruity scents.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 65,
+     "latency_s": 9.746,
+     "error": null,
+     "sample_index": 5,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077006,
+     "text": "They sold 5 vanilla scents and 2 fruity scents. The difference is 5 - 2 = 3 more vanilla scents sold than fruity scents.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 41,
+     "latency_s": 6.61,
+     "error": null,
+     "sample_index": 6,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33077007,
+     "text": "Vanilla scents sold: 5 * 4 = 20 vanilla scents. Fruity scents sold: 2 * 8 = 16 fruity scents. Vanilla scents sold more than fruity scents by 20 - 16 = 4 vanilla scents.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 69,
+     "latency_s": 10.135,
+     "error": null,
+     "sample_index": 7,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077008,
+     "text": "Vanilla scents sold: 5 * 4 = 20 vanilla scents. Fruit scents sold: 2 * 8 = 16 fruit scents. Vanilla scents sold - fruit scents sold = 20 - 16 = 4 more vanilla scents sold compared with fruity scents sold.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 75,
+     "latency_s": 10.462,
+     "error": null,
+     "sample_index": 8,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077009,
+     "text": "They sold 5 vanilla scents in total, and 2 fruity scents. The difference is 5 - 2 = 3 more vanilla scents sold compared to fruity scents.",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 40,
+     "latency_s": 6.482,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 14.788,
+   "samples": [
+    {
+     "seed": 33077010,
+     "text": "They sold 5 vanilla scents and 2 fruity scents. This means they sold 5 - 2 = 3 more vanilla scents than fruity scents.\nFinal answer: 3",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 41,
+     "latency_s": 6.788,
+     "error": null,
+     "sample_index": 10,
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "seed": 33077011,
+     "text": "The vanilla scents sold is 5 * 4 = 20 vanilla scents. The fruity scents sold is 2 * 8 = 16 fruity scents. Vanilla scents sold is 20 - 16 = 4 more than the fruity scents.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 66,
+     "latency_s": 13.095,
+     "error": null,
+     "sample_index": 11,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077012,
+     "text": "The vanilla scents sold 5 each, so in total 5 * 4 = 20 vanilla scents. The fruity scents sold 2 each, so in total 2 * 8 = 16 fruity scents. Vanilla scents sold 20 and fruity scents sold 16, so vanilla scents sold 20 - 16 = 4 more than fruity scents.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 93,
+     "latency_s": 14.786,
+     "error": null,
+     "sample_index": 12,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077013,
+     "text": "The vanilla scents sold 5 * 4 = 20 vanilla scents. The fruity scents sold 2 * 8 = 16 fruity scents. Vanilla scents sold 20 - 16 = 4 more than fruity scents.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 62,
+     "latency_s": 12.537,
+     "error": null,
+     "sample_index": 13,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077014,
+     "text": "They sold 5 vanilla scents and 2 fruity scents. The difference is 5 - 2 = 3 more vanilla scents sold than fruity scents.",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 36,
+     "latency_s": 5.853,
+     "error": null,
+     "sample_index": 14,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 11.691,
+   "samples": [
+    {
+     "seed": 33077015,
+     "text": "The total number of vanilla scents sold is 4 * 5 = 20. The total number of fruity scents sold is 8 * 2 = 16. Vanilla scents sold is more than fruity scents sold by 20 - 16 = 4.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 67,
+     "latency_s": 11.69,
+     "error": null,
+     "sample_index": 15,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077016,
+     "text": "The vanilla scents sold 5 * 4 = 20. The fruity scents sold 2 * 8 = 16. Vanilla scents sold 20 - 16 = 4 more than fruity scents.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 56,
+     "latency_s": 10.581,
+     "error": null,
+     "sample_index": 16,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077017,
+     "text": "The vanilla scents sold is 5 * 4 = 20. The fruity scents sold is 2 * 8 = 16. The difference is 20 - 16 = 4.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 52,
+     "latency_s": 9.814,
+     "error": null,
+     "sample_index": 17,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077018,
+     "text": "The total vanilla scents sold is 5 * 4 = 20. The total fruity scents sold is 2 * 8 = 16. The difference between vanilla and fruity scents sold is 20 - 16 = 4.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 61,
+     "latency_s": 11.358,
+     "error": null,
+     "sample_index": 18,
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "seed": 33077019,
+     "text": "The vanilla scents sold 5 * 4 = 20 vanilla scents. The fruity scents sold 2 * 8 = 16 fruity scents. Vanilla scents sold more by 20 - 16 = 4 more.\nFinal answer: 4",
+     "finish_reason": "stop",
+     "prompt_tokens": 462,
+     "completion_tokens": 60,
+     "latency_s": 11.243,
+     "error": null,
+     "sample_index": 19,
+     "pred": "4",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

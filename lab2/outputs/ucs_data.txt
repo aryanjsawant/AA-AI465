@@ -1,0 +1,16 @@
+bfs_steps 6
+bfs_cost 22
+ucs_steps 6
+ucs_cost 14
+bfs_path 0,0 0,1 0,2 0,3 0,4 1,4 2,4
+ucs_path 0,0 0,1 1,1 2,1 2,2 2,3 2,4
+grid S........
+grid .........
+grid ....G....
+grid .........
+grid .........
+terrain 111111111
+terrain 119999111
+terrain 111191111
+terrain 119999111
+terrain 111111111

@@ -1,0 +1,317 @@
+{
+ "idx": 769,
+ "question": "Tanya is teaching at school. She earns $15 for every hour and an additional $5 per day if she teaches more than 3 classes. On Monday she teaches 4 classes for 5 hours, and on Wednesday 2 classes for 2 hours. How much did Tanya earn for these two days of teaching?",
+ "gold": "110",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:54:22",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Tanya is teaching at school. She earns $15 for every hour and an additional $5 per day if she teaches more than 3 classes. On Monday she teaches 4 classes for 5 hours, and on Wednesday 2 classes for 2 hours. How much did Tanya earn for these two days of teaching?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 40.885,
+   "samples": [
+    {
+     "seed": 11076900,
+     "text": "On Monday, Tanya earned 4 * $5 = $20 for the extra classes. On Monday, she earned 5 * $15 = $75 for the 5 hours of teaching. On Wednesday, Tanya earned 2 * $5 = $10 for the extra classes. On Wednesday, she earned 2 * $15 = $30 for the 2 hours of teaching. Altogether, she earned 75 + $20 + 30 = $125. \nFinal answer: 125",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 117,
+     "latency_s": 31.591,
+     "error": null,
+     "sample_index": 0,
+     "pred": "125",
+     "correct": false
+    },
+    {
+     "seed": 11076901,
+     "text": "On Monday, Tanya earns $15 * 5 = $75 for the 5 hours of teaching. She also earns an additional $5 for teaching more than 3 classes, which is 1 * $5 = $5. So, Monday's total is $75 + $5 = $80. On Wednesday, Tanya earns $15 * 2 = $30 for the 2 hours of teaching. Since she didn't teach more than 3 classes, she doesn't earn the additional $5. So, Wednesday's total is $30. For both days, Tanya earns $80 + $30 = $110. \nFinal answer: 110",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 150,
+     "latency_s": 37.67,
+     "error": null,
+     "sample_index": 1,
+     "pred": "110",
+     "correct": true
+    },
+    {
+     "seed": 11076902,
+     "text": "On Monday, Tanya earns $15/hour * 5 hours = $75. She also earns an additional $5/day for each class she teaches, so she earns $5/day * 4 classes = $20 for the 4 classes. Therefore, on Monday she earns $75 + $20 = $95. On Wednesday, Tanya earns $15/hour * 2 hours = $30 for the 2 hours. She also earns an additional $5/day for each class she teaches, so she earns $5/day * 2 classes = $10 for the 2 classes. Therefore, on Wednesday she earns $30 + $10 = $40. So in total, Tanya earns $95 + $40 = $135 for these two days of teaching.\nFinal answer: $135",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 183,
+     "latency_s": 40.882,
+     "error": null,
+     "sample_index": 2,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11076903,
+     "text": "On Monday, she earns $15/hour * 5 hours = $75. She also earns $5/day * 1 day = $5. So in total, she earns $75 + $5 = $80 on Monday. On Wednesday, she earns $15/hour * 2 hours = $30. She earns an additional $5/day * 1 day = $5. So in total, she earns $30 + $5 = $35 on Wednesday. The total amount she earns for these two days is $80 + $35 = $115.\n\nFinal answer: 115",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 136,
+     "latency_s": 35.519,
+     "error": null,
+     "sample_index": 3,
+     "pred": "115",
+     "correct": false
+    },
+    {
+     "seed": 11076904,
+     "text": "On Monday, she teaches for 5 hours and earns 5 * 15 = $75. She also teaches 4 classes and earns an additional $5 per class, so that's 4 * 5 = $20. In total, on Monday, she earns 75 + 20 = $95.\n\nOn Wednesday, she teaches for 2 hours and earns 2 * 15 = $30. She also teaches 2 classes and earns an additional $5 per class, so that's 2 * 5 = $10. In total, on Wednesday, she earns 30 + 10 = $40.\n\nIn total, for these two days, Tanya earns 95 + 40 = $135.\n\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 172,
+     "latency_s": 40.212,
+     "error": null,
+     "sample_index": 4,
+     "pred": "135",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 25.061,
+   "samples": [
+    {
+     "seed": 11076905,
+     "text": "On Monday, Tanya teaches 4 classes for 5 hours, which totals 4 * 5 = 20 hours. Since this is more than 3 classes, she earns an additional $5, bringing her total for Monday to $15 * 20 + $5 = $315. On Wednesday, she teaches 2 classes for 2 hours, which is 2 * 2 = 4 hours. Since this is not more than 3 classes, she earns only $15 per hour, so her total for Wednesday is $15 * 4 = $60. The total for these two days is $315 + $60 = $375.\nFinal answer: 375",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 155,
+     "latency_s": 25.06,
+     "error": null,
+     "sample_index": 5,
+     "pred": "375",
+     "correct": false
+    },
+    {
+     "seed": 11076906,
+     "text": "On Monday, Tanya earned 4 * 5 * 15 = $300. On Wednesday, Tanya earned 2 * 2 * 15 = $60. In total, Tanya earned 300 + 60 = $360.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 69,
+     "latency_s": 12.435,
+     "error": null,
+     "sample_index": 6,
+     "pred": "360",
+     "correct": false
+    },
+    {
+     "seed": 11076907,
+     "text": "On Monday, Tanya earns $15 per hour for 5 hours, which is 15 * 5 = $75. Since she taught more than 3 classes, she gets an additional $5, making her total for Monday $75 + $5 = $80. On Wednesday, she earns $15 per hour for 2 hours, which is 15 * 2 = $30. There is no additional payment for teaching more than 3 classes on Wednesday. So, her total for Wednesday is $30. Adding the totals from both days, Tanya earned $80 + $30 = $110 for the two days of teaching.\nFinal answer: 110",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 152,
+     "latency_s": 24.886,
+     "error": null,
+     "sample_index": 7,
+     "pred": "110",
+     "correct": true
+    },
+    {
+     "seed": 11076908,
+     "text": "On Monday, Tanya earned 4 * 5 * 15 = $300. On Wednesday, she earned 2 * 2 * 15 = $60. Her total earnings for the two days are 300 + 60 = $360.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 70,
+     "latency_s": 12.658,
+     "error": null,
+     "sample_index": 8,
+     "pred": "360",
+     "correct": false
+    },
+    {
+     "seed": 11076909,
+     "text": "On Monday, Tanya earns 4 classes * $5/class = $20. She teaches for 5 hours * $15/hour = $75. In total, on Monday, she earns $20 + $75 = $95. On Wednesday, she teaches 2 classes * $5/class = $10. She teaches for 2 hours * $15/hour = $30. In total, on Wednesday, she earns $10 + $30 = $40. In total, for these two days she earns $95 + $40 = $135.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 139,
+     "latency_s": 23.661,
+     "error": null,
+     "sample_index": 9,
+     "pred": "135",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 26.03,
+   "samples": [
+    {
+     "seed": 11076910,
+     "text": "On Monday, Tanya earns $15/hour * 5 hours + $5/day * 1 day = $75 + $5 = $80. On Wednesday, Tanya earns $15/hour * 2 hours = $30. For the two days, Tanya earns $80 + $30 = $110.\nFinal answer: 110",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 84,
+     "latency_s": 15.876,
+     "error": null,
+     "sample_index": 10,
+     "pred": "110",
+     "correct": true
+    },
+    {
+     "seed": 11076911,
+     "text": "On Monday, Tanya earns 5 * 15 = 75 dollars for 5 hours of teaching. On Wednesday, she earns 2 * 15 = 30 dollars for 2 hours of teaching. She also earns an additional 2 * 5 = 10 dollars for teaching more than 3 classes. Thus, Tanya earns 75 + 30 + 10 = 115 dollars for these two days.\nFinal answer: 115",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 105,
+     "latency_s": 20.407,
+     "error": null,
+     "sample_index": 11,
+     "pred": "115",
+     "correct": false
+    },
+    {
+     "seed": 11076912,
+     "text": "On Monday, she teaches 4 classes for 5 hours, so 4 * 5 = 20 hours in total. For the 5 hours, she earns $15 * 5 = $75. She also teaches more than 3 classes, so she earns an additional $5, bringing the total to $75 + $5 = $80.\n\nOn Wednesday, she teaches 2 classes for 2 hours, so 2 * 2 = 4 hours in total. For the 2 hours, she earns $15 * 2 = $30.\n\nIn total, for these two days, she earns $80 + $30 = $110.\n\nFinal answer: 110",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 154,
+     "latency_s": 26.028,
+     "error": null,
+     "sample_index": 12,
+     "pred": "110",
+     "correct": true
+    },
+    {
+     "seed": 11076913,
+     "text": "On Monday, Tanya earned $15/hour * 5 hours + $5/day * 1 day = $75 + $5 = $80. On Wednesday, she earned $15/hour * 2 hours + $5/day * 1 day = $30 + $5 = $35. For both days, she earned $80 + $35 = $115.\nFinal answer: 115",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 96,
+     "latency_s": 18.482,
+     "error": null,
+     "sample_index": 13,
+     "pred": "115",
+     "correct": false
+    },
+    {
+     "seed": 11076914,
+     "text": "On Monday, Tanya earns $15 per hour for 5 hours, which is 15 * 5 = $75. For teaching more than 3 classes, she earns an additional $5, so her total for Monday is 75 + 5 = $80. On Wednesday, she earns $15 per hour for 2 hours, which is 15 * 2 = $30. Since she taught 2 classes, she earns an additional $5, making her total for Wednesday 30 + 5 = $35. For the two days, Tanya earned 80 + 35 = $115.\nFinal answer: 115",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 148,
+     "latency_s": 25.678,
+     "error": null,
+     "sample_index": 14,
+     "pred": "115",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 16.805,
+   "samples": [
+    {
+     "seed": 11076915,
+     "text": "On Monday, Tanya earned $15 * 5 = $75. On Wednesday, she earned $15 * 2 = $30, plus $5 * 2 = $10 for teaching more than 3 classes. In total, Tanya earned $75 + $30 + $10 = $115 for the two days of teaching.\nFinal answer: 115",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 88,
+     "latency_s": 14.391,
+     "error": null,
+     "sample_index": 15,
+     "pred": "115",
+     "correct": false
+    },
+    {
+     "seed": 11076916,
+     "text": "On Monday, she earns 4 * 5 * 15 = $300. On Wednesday, she earns 2 * 2 * 15 = $60. In total, she earns 300 + 60 = $360.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 66,
+     "latency_s": 11.549,
+     "error": null,
+     "sample_index": 16,
+     "pred": "360",
+     "correct": false
+    },
+    {
+     "seed": 11076917,
+     "text": "On Monday, Tanya earns 5 hours * $15 per hour = $75. On Wednesday, Tanya teaches 2 classes, which is less than 3, so she earns 2 * $5 = $10. In total, she earns $75 + $10 = $85 for these two days.",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 72,
+     "latency_s": 12.62,
+     "error": null,
+     "sample_index": 17,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11076918,
+     "text": "For Monday, she taught for 5 hours, so she earned 5 * $15 = $75. She taught 4 classes, so she earned 4 * $5 = $20. For Tuesday, she taught for 2 hours, so she earned 2 * $15 = $30. On Wednesday, she taught 2 classes, so she earned 2 * $5 = $10. Adding all of her earnings for the two days, she earned $75 + $20 + $30 + $10 = $135.\nFinal answer: 135",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 130,
+     "latency_s": 16.802,
+     "error": null,
+     "sample_index": 18,
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "seed": 11076919,
+     "text": "On Monday, she earns 4 * $5 + 5 * $15 = $75. On Wednesday, she earns 2 * $5 + 2 * $15 = $40. In total, she earns $75 + $40 = $115.\nFinal answer: 115",
+     "finish_reason": "stop",
+     "prompt_tokens": 424,
+     "completion_tokens": 70,
+     "latency_s": 12.318,
+     "error": null,
+     "sample_index": 19,
+     "pred": "115",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

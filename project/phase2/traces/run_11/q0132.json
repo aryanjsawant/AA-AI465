@@ -1,0 +1,317 @@
+{
+ "idx": 132,
+ "question": "Pam and Fred went to a carnival. Pam rode the roller coaster 2 times while Fred rode it 4 times. After that, each of them decided to ride the luge 2 times. If each ride cost 6 tickets, how many tickets did they use that day?",
+ "gold": "60",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:27:41",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Pam and Fred went to a carnival. Pam rode the roller coaster 2 times while Fred rode it 4 times. After that, each of them decided to ride the luge 2 times. If each ride cost 6 tickets, how many tickets did they use that day?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 19.385,
+   "samples": [
+    {
+     "seed": 11013200,
+     "text": "Pam used 2 rides of the roller coaster which means she used 2 * 6 = 12 tickets. Fred used 4 rides of the roller coaster which means he used 4 * 6 = 24 tickets. Fred and Pam used 12 + 24 = 36 tickets that day.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 75,
+     "latency_s": 15.416,
+     "error": null,
+     "sample_index": 0,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11013201,
+     "text": "Pam used 2 * 6 = 12 tickets for the roller coaster. Fred used 4 * 6 = 24 tickets for the roller coaster. Fred used 2 * 6 = 12 tickets for the luge. The total number of tickets they used that day is 12 + 24 + 12 = 48 tickets.\nFinal answer: 48",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 86,
+     "latency_s": 17.422,
+     "error": null,
+     "sample_index": 1,
+     "pred": "48",
+     "correct": false
+    },
+    {
+     "seed": 11013202,
+     "text": "Pam used 2 * 6 = 12 tickets on the roller coaster. Fred used 4 * 6 = 24 tickets on the roller coaster. They used a total of 12 + 24 = 36 tickets. Each of them used 2 * 6 = 12 tickets on the luge. They used a total of 12 + 12 = 24 tickets on the luge. So, they used 36 + 24 = 60 tickets that day.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 120,
+     "latency_s": 19.382,
+     "error": null,
+     "sample_index": 2,
+     "pred": "60",
+     "correct": true
+    },
+    {
+     "seed": 11013203,
+     "text": "Pam rode the roller coaster 2 times and each ride cost 6 tickets, so she used 2 * 6 = 12 tickets. Fred rode the roller coaster 4 times and each ride cost 6 tickets, so he used 4 * 6 = 24 tickets. Each of them used 12 + 24 = 36 tickets that day.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 87,
+     "latency_s": 17.564,
+     "error": null,
+     "sample_index": 3,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11013204,
+     "text": "Pam used 2 * 6 = 12 tickets on the roller coaster. Fred used 4 * 6 = 24 tickets on the roller coaster. Each of them used 2 * 6 = 12 tickets on the luge. So in total, they used 12 + 24 + 12 = 54 tickets that day.\nFinal answer: 54",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 86,
+     "latency_s": 17.573,
+     "error": null,
+     "sample_index": 4,
+     "pred": "54",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 12.253,
+   "samples": [
+    {
+     "seed": 11013205,
+     "text": "Pam used 2 * 6 = 12 tickets on the roller coaster. Fred used 4 * 6 = 24 tickets on the roller coaster. They each used 2 * 6 = 12 tickets on the luge. In total, they used 12 + 24 + 12 + 12 = 60 tickets that day.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 88,
+     "latency_s": 12.248,
+     "error": null,
+     "sample_index": 5,
+     "pred": "60",
+     "correct": true
+    },
+    {
+     "seed": 11013206,
+     "text": "Pam used 2 * 6 = 12 tickets. Fred used 4 * 6 = 24 tickets. Together, they used 12 + 24 = 36 tickets.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 51,
+     "latency_s": 8.061,
+     "error": null,
+     "sample_index": 6,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11013207,
+     "text": "Pam used 2 * 6 = 12 tickets. Fred used 4 * 6 = 24 tickets. They used 12 + 24 = 36 tickets that day.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 51,
+     "latency_s": 8.055,
+     "error": null,
+     "sample_index": 7,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11013208,
+     "text": "Pam used 2 roller coaster tickets * 2 roller coasters = 4 roller coaster tickets. Fred used 4 roller coaster tickets * 2 roller coasters = 8 roller coaster tickets. Each of them used 2 luge tickets * 2 luges = 4 luge tickets. In total, they used 4 + 8 + 4 = 16 tickets.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 88,
+     "latency_s": 12.249,
+     "error": null,
+     "sample_index": 8,
+     "pred": "16",
+     "correct": false
+    },
+    {
+     "seed": 11013209,
+     "text": "Pam used 2 * 6 = 12 tickets on the roller coaster. Fred used 4 * 6 = 24 tickets on the roller coaster. Each of them used 2 * 6 = 12 tickets on the luge. Altogether, they used 12 + 24 = 36 tickets.",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 73,
+     "latency_s": 10.824,
+     "error": null,
+     "sample_index": 9,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 14.067,
+   "samples": [
+    {
+     "seed": 11013210,
+     "text": "Pam used 2 * 6 = 12 tickets. Fred used 4 * 6 = 24 tickets. They used 12 + 24 = 36 tickets that day.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 51,
+     "latency_s": 8.089,
+     "error": null,
+     "sample_index": 10,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11013211,
+     "text": "Pam used 2 * 6 = 12 tickets. Fred used 4 * 6 = 24 tickets. Together they used 12 + 24 = 36 tickets.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 50,
+     "latency_s": 7.913,
+     "error": null,
+     "sample_index": 11,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11013212,
+     "text": "Pam used 2 * 6 = 12 tickets on the roller coaster. Fred used 4 * 6 = 24 tickets on the roller coaster. They used 2 * 6 = 12 tickets each on the luge. In total, they used 12 + 24 = 36 tickets.",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 72,
+     "latency_s": 11.078,
+     "error": null,
+     "sample_index": 12,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11013213,
+     "text": "Pam used 2 * 6 = 12 tickets on the roller coaster. Fred used 4 * 6 = 24 tickets on the roller coaster. Each of them used 2 * 6 = 12 tickets on the luge. In total, they used 12 + 24 + 12 = 54 tickets that day.\nFinal answer: 54",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 85,
+     "latency_s": 12.212,
+     "error": null,
+     "sample_index": 13,
+     "pred": "54",
+     "correct": false
+    },
+    {
+     "seed": 11013214,
+     "text": "Pam used 2 * 6 = 12 tickets on the roller coaster. Fred used 4 * 6 = 24 tickets on the roller coaster. Together, they used 12 + 24 = 36 tickets on the roller coaster. Each of them used 2 * 6 = 12 tickets on the luge. In total they used 12 + 12 = 24 tickets on the luge. Altogether they used 36 + 24 = 60 tickets.\nFinal answer: 60",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 120,
+     "latency_s": 14.062,
+     "error": null,
+     "sample_index": 14,
+     "pred": "60",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 18.91,
+   "samples": [
+    {
+     "seed": 11013215,
+     "text": "Pam used 2 * 6 = 12 tickets. Fred used 4 * 6 = 24 tickets. They used a total of 12 + 24 = 36 tickets.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 52,
+     "latency_s": 8.412,
+     "error": null,
+     "sample_index": 15,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11013216,
+     "text": "Pam used 2 * 6 = 12 tickets on the roller coaster. Fred used 4 * 6 = 24 tickets on the roller coaster. Each of them used 2 * 6 = 12 tickets on the luge. They used 12 + 24 + 12 = 54 tickets that day.\nFinal answer: 54",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 82,
+     "latency_s": 16.649,
+     "error": null,
+     "sample_index": 16,
+     "pred": "54",
+     "correct": false
+    },
+    {
+     "seed": 11013217,
+     "text": "Pam used 2 roller coaster rides and Fred used 4 rides, so they used 2 + 4 = 6 rides in total. Each ride costs 6 tickets, so they used 6 * 6 = 36 tickets that day.\nFinal answer: 36",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 60,
+     "latency_s": 9.815,
+     "error": null,
+     "sample_index": 17,
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "seed": 11013218,
+     "text": "Pam used 2 roller coaster tickets and Fred used 4 roller coaster tickets, so together they used 6 tickets. Each of them then used 2 luge tickets, so 2 luge tickets for Pam and 2 luge tickets for Fred, for a total of 4 tickets. That means they used 6 + 4 = 10 tickets.",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 77,
+     "latency_s": 15.372,
+     "error": null,
+     "sample_index": 18,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11013219,
+     "text": "Pam used 2 roller coaster rides, which cost 2 * 6 = 12 tickets. Fred used 4 roller coaster rides, which cost 4 * 6 = 24 tickets. Together, they used 12 + 24 = 36 tickets. Each of them also used 2 luge rides, which cost 2 * 6 = 12 tickets. So together they used 36 + 12 = 48 tickets.\nFinal answer: 48",
+     "finish_reason": "stop",
+     "prompt_tokens": 415,
+     "completion_tokens": 108,
+     "latency_s": 18.905,
+     "error": null,
+     "sample_index": 19,
+     "pred": "48",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

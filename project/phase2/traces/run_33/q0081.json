@@ -1,0 +1,317 @@
+{
+ "idx": 81,
+ "question": "Charlie had 10 stickers. He bought 21 stickers from a store in the mall and got 23 stickers for his birthday. Then Charlie gave 9 of the stickers to his sister and used 28 to decorate a greeting card. How many stickers does Charlie have left?",
+ "gold": "17",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 17:30:22",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Charlie had 10 stickers. He bought 21 stickers from a store in the mall and got 23 stickers for his birthday. Then Charlie gave 9 of the stickers to his sister and used 28 to decorate a greeting card. How many stickers does Charlie have left?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 31.712,
+   "samples": [
+    {
+     "seed": 33008100,
+     "text": "Charlie originally had 10 stickers. After buying stickers in the mall, he had 10 + 21 = 31 stickers. After getting more stickers for his birthday, he had 31 + 23 = 54 stickers. After giving 9 stickers to his sister, he had 54 - 9 = 45 stickers. After using 28 stickers to decorate a greeting card, he had 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 111,
+     "latency_s": 31.027,
+     "error": null,
+     "sample_index": 0,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008101,
+     "text": "Charlie had 10 + 21 = 31 stickers after buying more from the store. Charlie then had 31 + 23 = 54 stickers after getting stickers for his birthday. Charlie gave 9 stickers to his sister, leaving him with 54 - 9 = 45 stickers. He then used 28 stickers for decoration, leaving him with 45 - 28 = 17 stickers.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 100,
+     "latency_s": 29.614,
+     "error": null,
+     "sample_index": 1,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008102,
+     "text": "Charlie initially had 10 stickers. He bought 21 more, making 10 + 21 = 31 stickers. Then he got 23 more, bringing the total to 31 + 23 = 54 stickers. After giving 9 to his sister, he had 54 - 9 = 45 stickers left. Using 28 stickers for a card, he had 45 - 28 = 17 stickers remaining.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 109,
+     "latency_s": 30.866,
+     "error": null,
+     "sample_index": 2,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008103,
+     "text": "Charlie had 10 stickers initially, then bought 21 more, so he had 10 + 21 = 31 stickers. He received 23 for his birthday, so he had 31 + 23 = 54 stickers. He gave 9 to his sister, leaving him with 54 - 9 = 45 stickers. He used 28 to decorate a greeting card, so he had 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 114,
+     "latency_s": 31.53,
+     "error": null,
+     "sample_index": 3,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008104,
+     "text": "Charlie started with 10 stickers. He bought 21 more, so he had 10 + 21 = 31 stickers. He then received 23 stickers for his birthday, making his total 31 + 23 = 54 stickers. He gave 9 stickers to his sister, leaving him with 54 - 9 = 45 stickers. He used 28 stickers to decorate a greeting card, so he has 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 118,
+     "latency_s": 31.703,
+     "error": null,
+     "sample_index": 4,
+     "pred": "17",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 21.997,
+   "samples": [
+    {
+     "seed": 33008105,
+     "text": "Charlie starts with 10 stickers. He buys 21 more, so he now has 10 + 21 = 31 stickers. He gets 23 more for his birthday, bringing his total to 31 + 23 = 54 stickers. He gives away 9, reducing his total to 54 - 9 = 45 stickers. He uses 28 to decorate a card, leaving him with 45 - 28 = 17 stickers.\n\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 114,
+     "latency_s": 21.871,
+     "error": null,
+     "sample_index": 5,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008106,
+     "text": "Charlie started with 10 stickers. He bought 21 more, so 10 + 21 = 31 stickers. Then he got 23 for his birthday, making 31 + 23 = 54 stickers. He gave 9 away, leaving 54 - 9 = 45 stickers. Finally, he used 28 to decorate a greeting card, so he has 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 109,
+     "latency_s": 21.263,
+     "error": null,
+     "sample_index": 6,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008107,
+     "text": "Charlie had 10 stickers initially. He bought 21 stickers and got 23 stickers for his birthday. That's 10 + 21 + 23 = 54 stickers. Then he gave 9 of the stickers to his sister and used 28 to decorate a greeting card. That's 54 - 9 - 28 = 27 stickers. So, Charlie has 27 stickers left.\nFinal answer: 27",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 100,
+     "latency_s": 19.411,
+     "error": null,
+     "sample_index": 7,
+     "pred": "27",
+     "correct": false
+    },
+    {
+     "seed": 33008108,
+     "text": "Charlie had 10 stickers initially, then bought 21 more, which totals 10 + 21 = 31 stickers. Adding the 23 birthday stickers gives 31 + 23 = 54 stickers. After giving 9 stickers to his sister, he has 54 - 9 = 45 stickers left. Using 28 stickers to decorate a greeting card leaves him with 45 - 28 = 17 stickers.\n\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 108,
+     "latency_s": 21.096,
+     "error": null,
+     "sample_index": 8,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008109,
+     "text": "Charlie had 10 stickers initially. He bought 21 more, so he had 10 + 21 = 31 stickers. He got 23 more for his birthday, so he had 31 + 23 = 54 stickers. He gave away 9 stickers, so he had 54 - 9 = 45 stickers left. He used 28 stickers to decorate a greeting card, so he had 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 116,
+     "latency_s": 21.993,
+     "error": null,
+     "sample_index": 9,
+     "pred": "17",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 35.371,
+   "samples": [
+    {
+     "seed": 33008110,
+     "text": "Charlie started with 10 stickers and bought 21, for a total of 10 + 21 = 31 stickers. Then he got 23 stickers for his birthday, so he had 31 + 23 = 54 stickers. He gave 9 to his sister, leaving him with 54 - 9 = 45 stickers. Then he used 28 stickers to decorate a card, so he had 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 116,
+     "latency_s": 34.952,
+     "error": null,
+     "sample_index": 10,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008111,
+     "text": "Charlie initially had 10 stickers. He bought 21 more, so now he has 10 + 21 = 31 stickers. Then he got 23 for his birthday, so he has 31 + 23 = 54 stickers. He gave away 9 stickers, so he has 54 - 9 = 45 stickers. He used 28 stickers to decorate a greeting card, so he has 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 116,
+     "latency_s": 34.957,
+     "error": null,
+     "sample_index": 11,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008112,
+     "text": "Charlie initially had 10 stickers. He bought 21 more, so he had 10 + 21 = 31 stickers. Then he received 23 stickers for his birthday, making his total 31 + 23 = 54 stickers. After giving 9 stickers to his sister, he had 54 - 9 = 45 stickers. Finally, after using 28 stickers to decorate a greeting card, he was left with 45 - 28 = 17 stickers.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 119,
+     "latency_s": 35.369,
+     "error": null,
+     "sample_index": 12,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008113,
+     "text": "Charlie started with 10 stickers. He bought 21 and got 23, so he had 10 + 21 + 23 = 54 stickers. He then gave 9 away and used 28, so he had 54 - 9 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 78,
+     "latency_s": 20.124,
+     "error": null,
+     "sample_index": 13,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008114,
+     "text": "Charlie had 10 stickers. He bought 21 stickers and got 23 stickers for his birthday, so he had 10 + 21 + 23 = 54 stickers. He gave 9 stickers to his sister and used 28 stickers to decorate a greeting card, which means he had 54 - 9 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 91,
+     "latency_s": 28.381,
+     "error": null,
+     "sample_index": 14,
+     "pred": "17",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 27.646,
+   "samples": [
+    {
+     "seed": 33008115,
+     "text": "Charlie originally had 10 stickers. After buying 21 stickers from the store, he had 10 + 21 = 31 stickers. After receiving 23 stickers for his birthday, he had 31 + 23 = 54 stickers. Then he gave away 9 stickers, so he had 54 - 9 = 45 stickers left. After using 28 stickers to decorate a greeting card, he had 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 117,
+     "latency_s": 27.501,
+     "error": null,
+     "sample_index": 15,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008116,
+     "text": "Charlie initially had 10 stickers. After buying 21 stickers, he had 10 + 21 = 31 stickers. He then received 23 stickers as a gift, so he had 31 + 23 = 54 stickers. After giving 9 stickers to his sister, he had 54 - 9 = 45 stickers. Finally, he used 28 stickers to decorate a greeting card, leaving him with 45 - 28 = 17 stickers.\n\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 117,
+     "latency_s": 27.495,
+     "error": null,
+     "sample_index": 16,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008117,
+     "text": "Charlie starts with 10 stickers. Adding the 21 stickers he bought, he has 10 + 21 = 31 stickers. Then he gets 23 more stickers for his birthday, so he has 31 + 23 = 54 stickers. Giving away 9 stickers to his sister leaves him with 54 - 9 = 45 stickers. Using 28 stickers to decorate a greeting card, he is left with 45 - 28 = 17 stickers.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 118,
+     "latency_s": 27.625,
+     "error": null,
+     "sample_index": 17,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008118,
+     "text": "Charlie had a total of 10 + 21 + 23 = 54 stickers. After giving 9 stickers to his sister, he has 54 - 9 = 45 stickers left. After using 28 stickers to decorate a greeting card, he has 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 81,
+     "latency_s": 21.887,
+     "error": null,
+     "sample_index": 18,
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "seed": 33008119,
+     "text": "Charlie had 10 stickers initially. He bought 21 more stickers, so he had 10 + 21 = 31 stickers. He got 23 stickers for his birthday, so he had 31 + 23 = 54 stickers. He gave 9 to his sister, so he had 54 - 9 = 45 stickers left. He used 28 stickers to decorate a greeting card, so he had 45 - 28 = 17 stickers left.\nFinal answer: 17",
+     "finish_reason": "stop",
+     "prompt_tokens": 416,
+     "completion_tokens": 118,
+     "latency_s": 27.616,
+     "error": null,
+     "sample_index": 19,
+     "pred": "17",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

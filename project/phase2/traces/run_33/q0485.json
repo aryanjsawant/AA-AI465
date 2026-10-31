@@ -1,0 +1,317 @@
+{
+ "idx": 485,
+ "question": "Jillian's handbag cost $20 less than 3 times as much as her shoes cost. If her shoes cost $80, how much did her bag cost?",
+ "gold": "220",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:15:29",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Jillian's handbag cost $20 less than 3 times as much as her shoes cost. If her shoes cost $80, how much did her bag cost?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 10.961,
+   "samples": [
+    {
+     "seed": 33048500,
+     "text": "Let x be the cost of Jillian's handbag. The cost of her shoes is $80. The cost of her handbag is 3 times her shoes minus $20, which gives us the equation: x = 3 * $80 - $20. Solving for x, we get x = $240.\nFinal answer: 240",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 80,
+     "latency_s": 10.959,
+     "error": null,
+     "sample_index": 0,
+     "pred": "240",
+     "correct": false
+    },
+    {
+     "seed": 33048501,
+     "text": "First, find the cost of the handbag based on the cost of the shoes, which is 3 times the cost of the shoes: 3 * $80 = $240. Then, subtract the $20 difference to find the cost of the handbag: $240 - $20 = $220.\nFinal answer: $220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 79,
+     "latency_s": 10.903,
+     "error": null,
+     "sample_index": 1,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048502,
+     "text": "Jillian's handbag cost 3 * $80 - $20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 30,
+     "latency_s": 5.016,
+     "error": null,
+     "sample_index": 2,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048503,
+     "text": "Her handbag cost 3 * $80 = $240. Less $20 is $240 - $20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 43,
+     "latency_s": 6.432,
+     "error": null,
+     "sample_index": 3,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048504,
+     "text": "Let's break it down: Jillian's shoes cost $80. So, three times the cost of her shoes would be 3 * $80 = $240. Now, her handbag cost $20 less than this, which means the handbag cost $240 - $20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 79,
+     "latency_s": 10.906,
+     "error": null,
+     "sample_index": 4,
+     "pred": "220",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 9.113,
+   "samples": [
+    {
+     "seed": 33048505,
+     "text": "The handbag costs 3 times the shoes' cost minus $20, which is (3 * $80) - $20 = $240.\nFinal answer: 240",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 43,
+     "latency_s": 6.672,
+     "error": null,
+     "sample_index": 5,
+     "pred": "240",
+     "correct": false
+    },
+    {
+     "seed": 33048506,
+     "text": "Her handbag cost 3 * $80 - $20 = $220.",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 21,
+     "latency_s": 3.17,
+     "error": null,
+     "sample_index": 6,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33048507,
+     "text": "First, calculate 3 times the cost of the shoes: 3 * $80 = $240. Then subtract the $20 difference: $240 - $20 = $220. Jillian's handbag cost $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 65,
+     "latency_s": 8.962,
+     "error": null,
+     "sample_index": 7,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048508,
+     "text": "First, find the cost of 3 times the cost of her shoes: 3 * $80 = $240. Then subtract the $20 difference: $240 - $20 = $220. Jillian's handbag cost $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 68,
+     "latency_s": 9.109,
+     "error": null,
+     "sample_index": 8,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048509,
+     "text": "The handbag costs 3 * $80 - $20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 28,
+     "latency_s": 4.38,
+     "error": null,
+     "sample_index": 9,
+     "pred": "220",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 9.987,
+   "samples": [
+    {
+     "seed": 33048510,
+     "text": "First, we find out how much her handbag costs: 3 * $80 = $240. Then, we subtract the difference from the handbag cost: $240 - $20 = $220.\nFinal answer: $220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 58,
+     "latency_s": 9.246,
+     "error": null,
+     "sample_index": 10,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048511,
+     "text": "If her shoes cost $80, then 3 times as much as her shoes cost is 3 * $80 = $240. Her handbag cost $20 less than this, so her handbag cost $240 - $20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 69,
+     "latency_s": 9.985,
+     "error": null,
+     "sample_index": 11,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048512,
+     "text": "The bag cost 3 times as much as her shoes, which is 3 * $80 = $240. The handbag cost $20 less, so the bag cost $240 - $20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 61,
+     "latency_s": 9.531,
+     "error": null,
+     "sample_index": 12,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048513,
+     "text": "If her shoes cost $80, then 3 times that is 3 * $80 = $240. So Jillian's handbag cost $240 - $20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 55,
+     "latency_s": 8.84,
+     "error": null,
+     "sample_index": 13,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048514,
+     "text": "Her handbag cost $80 * 3 - $20 = $220. \nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 29,
+     "latency_s": 4.415,
+     "error": null,
+     "sample_index": 14,
+     "pred": "220",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 9.5,
+   "samples": [
+    {
+     "seed": 33048515,
+     "text": "Her handbag cost 3 * 80 - 20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 28,
+     "latency_s": 4.378,
+     "error": null,
+     "sample_index": 15,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048516,
+     "text": "If her shoes cost $80, then 3 times as much as her shoes is 80 * 3 = $240. Jillian's handbag cost $20 less than that, which is 240 - 20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 67,
+     "latency_s": 9.393,
+     "error": null,
+     "sample_index": 16,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048517,
+     "text": "First, find the cost of 3 times as much as her shoes: 3 * $80 = $240. Then, subtract the $20 discount: $240 - $20 = $220. Jillian's handbag cost $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 69,
+     "latency_s": 9.496,
+     "error": null,
+     "sample_index": 17,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048518,
+     "text": "Jillian's handbag costs 3 * $80 - $20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 30,
+     "latency_s": 4.612,
+     "error": null,
+     "sample_index": 18,
+     "pred": "220",
+     "correct": true
+    },
+    {
+     "seed": 33048519,
+     "text": "If her shoes cost $80, then 3 times that would be 80 * 3 = $240. Her handbag cost $20 less than that, so it cost 240 - 20 = $220.\nFinal answer: 220",
+     "finish_reason": "stop",
+     "prompt_tokens": 393,
+     "completion_tokens": 63,
+     "latency_s": 9.059,
+     "error": null,
+     "sample_index": 19,
+     "pred": "220",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,317 @@
+{
+ "idx": 822,
+ "question": "John does 30 cycles of work a day.  Each cycle has 5 different tasks and each task pays $1.20.  How much does he make if he works a full 7 day week?",
+ "gold": "1260",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:42:52",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "John does 30 cycles of work a day.  Each cycle has 5 different tasks and each task pays $1.20.  How much does he make if he works a full 7 day week?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 19.416,
+   "samples": [
+    {
+     "seed": 11082200,
+     "text": "John does 30 cycles a day, so each day he makes 30 * 5 * $1.20 = $180. In a week, he works 7 days, so he makes 7 * $180 = $1260.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 68,
+     "latency_s": 13.608,
+     "error": null,
+     "sample_index": 0,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082201,
+     "text": "John makes $1.20 per task and there are 5 tasks per cycle, so he makes 1.2 * 5 = $6 per cycle. If he does 30 cycles a day, then he makes 30 * 6 = $180 per day. If he works 7 days a week, he makes 7 * 180 = $1260 per week.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 97,
+     "latency_s": 18.705,
+     "error": null,
+     "sample_index": 1,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082202,
+     "text": "John does 30 cycles a day, with each cycle having 5 tasks, making a total of 30 * 5 = 150 tasks per day. Each task pays $1.20, so he makes 150 * $1.20 = $180 per day. Working a full 7 day week, he makes 7 * $180 = $1260.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 99,
+     "latency_s": 18.936,
+     "error": null,
+     "sample_index": 2,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082203,
+     "text": "John does 30 cycles a day, each cycle has 5 tasks, and each task pays $1.20. So he makes 30 * 5 * $1.20 = $180 per day. In a week, he does 7 days, so he makes 7 * $180 = $1260 in a week.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 88,
+     "latency_s": 17.356,
+     "error": null,
+     "sample_index": 3,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082204,
+     "text": "Each cycle pays $1.20 per task, and there are 5 tasks per cycle, so each cycle pays 5 * $1.20 = $6.00. Since John does 30 cycles a day, he makes $6.00 * 30 = $180.00 per day. A 7 day week means John makes $180.00 * 7 = $1260.00.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 108,
+     "latency_s": 19.412,
+     "error": null,
+     "sample_index": 4,
+     "pred": "1260",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 15.546,
+   "samples": [
+    {
+     "seed": 11082205,
+     "text": "He works 30 cycles a day and each cycle has 5 tasks, so he has 30 * 5 = 150 tasks a day. Each task pays $1.20, so he makes 150 * $1.20 = $180 a day. If he works 7 days a week, he makes 180 * 7 = $1260 in a week.",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 93,
+     "latency_s": 15.161,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11082206,
+     "text": "John completes 30 cycles a day, with each cycle having 5 tasks, so he completes 30 * 5 = 150 tasks a day. Each task pays $1.20, so he makes 150 * $1.20 = $180 per day. In a week, working 7 days, he makes 7 * $180 = $1260.",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 91,
+     "latency_s": 14.907,
+     "error": null,
+     "sample_index": 6,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11082207,
+     "text": "In one cycle, John completes 5 tasks, each paying $1.20, so he earns 5 * $1.20 = $6 per cycle. In a full 7 day week, he completes 30 * 7 = 210 cycles. Therefore, he makes $6 * 210 = $1260 for a full 7 day week.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 92,
+     "latency_s": 15.057,
+     "error": null,
+     "sample_index": 7,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082208,
+     "text": "Each cycle pays $1.20 for each of the 5 tasks, so each cycle pays $1.20 * 5 = $6.00. So each day John makes $6.00. In a 7 day week, that would be $6 * 7 = $42.00.\nFinal answer: 42",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 76,
+     "latency_s": 13.065,
+     "error": null,
+     "sample_index": 8,
+     "pred": "42",
+     "correct": false
+    },
+    {
+     "seed": 11082209,
+     "text": "He completes 30 cycles a day, and each cycle has 5 tasks, so he completes 30 * 5 = 150 tasks a day. Each task pays $1.20, so he earns 150 * $1.20 = $180 each day. If he works a full 7 day week, he earns 7 * $180 = $1260.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 100,
+     "latency_s": 15.542,
+     "error": null,
+     "sample_index": 9,
+     "pred": "1260",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 15.465,
+   "samples": [
+    {
+     "seed": 11082210,
+     "text": "Each day he does 30 * 5 = 150 tasks. So he makes 150 * $1.20 = $180 a day. So he makes $180 * 7 = $1260 in a week.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 67,
+     "latency_s": 11.214,
+     "error": null,
+     "sample_index": 10,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082211,
+     "text": "John makes $1.20 * 5 = $6 from each cycle. He makes $6 * 30 = $180 from each day. He makes $180 * 7 = $1260 for the week.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 62,
+     "latency_s": 10.287,
+     "error": null,
+     "sample_index": 11,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082212,
+     "text": "The total number of tasks John completes in one cycle is 5 * 30 = 150 tasks. Each task pays $1.20, so he earns 150 * 1.20 = $180 per cycle. If he works a full week, he completes 150 * 7 = 1050 cycles. Therefore, he earns $180 * 1050 = $189,000 in a full week.\nFinal answer: 189000",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 117,
+     "latency_s": 15.463,
+     "error": null,
+     "sample_index": 12,
+     "pred": "189000",
+     "correct": false
+    },
+    {
+     "seed": 11082213,
+     "text": "For one cycle, John earns 5 * $1.20 = $6.00. For 30 cycles a day, he earns 30 * $6.00 = $180.00 per day. For a 7 day week, he earns 7 * $180.00 = $1260.00.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 89,
+     "latency_s": 13.878,
+     "error": null,
+     "sample_index": 13,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082214,
+     "text": "Each day he works 30 cycles * 5 tasks/cycle = 150 tasks. So he makes $1.20 * 150 tasks = $180. In a week he makes $180 * 7 days = $1,260.\nFinal answer: 1,260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 72,
+     "latency_s": 11.982,
+     "error": null,
+     "sample_index": 14,
+     "pred": "1260",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 17.382,
+   "samples": [
+    {
+     "seed": 11082215,
+     "text": "Each day John does 30 * 5 = 150 tasks. Each task pays $1.20 so each day he makes 150 * 1.20 = $180. In a week, John makes 7 * 180 = $1260.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 75,
+     "latency_s": 14.582,
+     "error": null,
+     "sample_index": 15,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082216,
+     "text": "John completes 30 cycles a day, which means he does 30 * 5 = 150 tasks a day. Each task pays $1.20, so he makes 150 * $1.20 = $180 per day. If he works a full 7 day week, he makes $180 * 7 = $1260.  \nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 94,
+     "latency_s": 16.889,
+     "error": null,
+     "sample_index": 16,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082217,
+     "text": "Each day John does 30 * 5 = 150 tasks. Each task pays $1.20, so he makes 150 * 1.2 = $180. If he works a full 7 day week, he makes 180 * 7 = $1260.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 79,
+     "latency_s": 15.218,
+     "error": null,
+     "sample_index": 17,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082218,
+     "text": "Each cycle he completes 30 * 5 = 150 tasks. Each task pays $1.20, so each cycle pays 150 * 1.2 = $180. John works 180 * 7 = $1260 in a week.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 73,
+     "latency_s": 14.171,
+     "error": null,
+     "sample_index": 18,
+     "pred": "1260",
+     "correct": true
+    },
+    {
+     "seed": 11082219,
+     "text": "John does 30 cycles a day, and each cycle has 5 tasks, so he does 30 * 5 = 150 tasks a day. Each task pays $1.20, so he makes 150 * $1.20 = $180 per day. If he works a full 7 day week, he makes 7 * $180 = $1260 in a week.\nFinal answer: 1260",
+     "finish_reason": "stop",
+     "prompt_tokens": 402,
+     "completion_tokens": 103,
+     "latency_s": 17.378,
+     "error": null,
+     "sample_index": 19,
+     "pred": "1260",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

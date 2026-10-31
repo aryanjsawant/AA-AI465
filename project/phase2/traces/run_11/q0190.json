@@ -1,0 +1,317 @@
+{
+ "idx": 190,
+ "question": "John collects peaches for 3 hours.  He can collect 2 peaches a minute.  How many peaches does he collect?",
+ "gold": "360",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 19:24:36",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "John collects peaches for 3 hours.  He can collect 2 peaches a minute.  How many peaches does he collect?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 11.158,
+   "samples": [
+    {
+     "seed": 11019000,
+     "text": "John collects peaches for 3 hours, which is 3 * 60 = 180 minutes. He can collect 2 peaches a minute, so he collects 2 * 180 = 360 peaches in 3 hours.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 64,
+     "latency_s": 11.157,
+     "error": null,
+     "sample_index": 0,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019001,
+     "text": "He collects 2 * 60 = 120 peaches per hour. So, in 3 hours he collects 120 * 3 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 49,
+     "latency_s": 9.91,
+     "error": null,
+     "sample_index": 1,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019002,
+     "text": "John collects peaches for 3 hours, which is 3 * 60 = 180 minutes. He can collect 2 peaches a minute, so he collects 180 * 2 = 360 peaches.",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 53,
+     "latency_s": 10.272,
+     "error": null,
+     "sample_index": 2,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11019003,
+     "text": "John collects peaches for 3 * 60 = 180 minutes. This means he collects 180 * 2 = 360 peaches. \nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 46,
+     "latency_s": 9.539,
+     "error": null,
+     "sample_index": 3,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019004,
+     "text": "He collects 2 * 60 = 120 peaches per hour. So in 3 hours he collects 120 * 3 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 48,
+     "latency_s": 9.779,
+     "error": null,
+     "sample_index": 4,
+     "pred": "360",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 9.244,
+   "samples": [
+    {
+     "seed": 11019005,
+     "text": "He can collect 120 peaches because 3 * 40 = 120.",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 23,
+     "latency_s": 3.639,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11019006,
+     "text": "He collects 2 * 60 = 120 peaches per hour. So he collects 120 * 3 = 360 peaches in 3 hours.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 48,
+     "latency_s": 8.002,
+     "error": null,
+     "sample_index": 6,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019007,
+     "text": "John collects peaches for 3 hours, which is 3 * 60 = 180 minutes. He can collect 2 peaches a minute, so he collects 180 * 2 = 360 peaches.",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 53,
+     "latency_s": 8.779,
+     "error": null,
+     "sample_index": 7,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11019008,
+     "text": "John collects peaches for 3 hours, which is 3 * 60 = 180 minutes. He can collect 2 peaches a minute, so he collects 180 * 2 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 60,
+     "latency_s": 9.242,
+     "error": null,
+     "sample_index": 8,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019009,
+     "text": "In 3 hours, there are 3 * 60 = 180 minutes. So in 3 hours, he collects 180 * 2 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 51,
+     "latency_s": 8.469,
+     "error": null,
+     "sample_index": 9,
+     "pred": "360",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 9.141,
+   "samples": [
+    {
+     "seed": 11019010,
+     "text": "John collects peaches for 3 hours, which is 3 * 60 = 180 minutes. He can collect 2 peaches a minute, so in 180 minutes he can collect 2 * 180 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 67,
+     "latency_s": 9.14,
+     "error": null,
+     "sample_index": 10,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019011,
+     "text": "In 3 hours, there are 3 * 60 = 180 minutes. John collects 180 * 2 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 45,
+     "latency_s": 7.896,
+     "error": null,
+     "sample_index": 11,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019012,
+     "text": "In 3 hours, there are 3 * 60 = 180 minutes. He collects 180 * 2 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 45,
+     "latency_s": 7.887,
+     "error": null,
+     "sample_index": 12,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019013,
+     "text": "He can collect 2 * 60 = 120 peaches a minute. Thus, he collects 120 * 3 = 360 peaches.",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 39,
+     "latency_s": 6.855,
+     "error": null,
+     "sample_index": 13,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11019014,
+     "text": "He collects 2 * 60 = 120 peaches per hour. In 3 hours he collects 120 * 3 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 47,
+     "latency_s": 8.102,
+     "error": null,
+     "sample_index": 14,
+     "pred": "360",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 7.726,
+   "samples": [
+    {
+     "seed": 11019015,
+     "text": "He collects 2 * 60 = 120 peaches per hour. So he collects 120 * 3 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 44,
+     "latency_s": 6.778,
+     "error": null,
+     "sample_index": 15,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019016,
+     "text": "John can collect 120 peaches because 60 * 2 = 120.",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 23,
+     "latency_s": 3.488,
+     "error": null,
+     "sample_index": 16,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11019017,
+     "text": "John collects peaches for 3 hours, which is 3 * 60 = 180 minutes. In 180 minutes, John collects 180 * 2 = 360 peaches.\nFinal answer: 360",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 56,
+     "latency_s": 7.724,
+     "error": null,
+     "sample_index": 17,
+     "pred": "360",
+     "correct": true
+    },
+    {
+     "seed": 11019018,
+     "text": "He collects 2 * 60 = 120 peaches in a minute. So, he collects 120 * 3 = 360 peaches. Therefore, he collects 360 peaches.",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 50,
+     "latency_s": 7.363,
+     "error": null,
+     "sample_index": 18,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11019019,
+     "text": "He collects 120 peaches because 3 * 40 = 120.",
+     "finish_reason": "stop",
+     "prompt_tokens": 386,
+     "completion_tokens": 22,
+     "latency_s": 3.318,
+     "error": null,
+     "sample_index": 19,
+     "pred": null,
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

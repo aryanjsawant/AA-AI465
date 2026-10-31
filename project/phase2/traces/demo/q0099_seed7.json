@@ -1,0 +1,165 @@
+{
+ "idx": 99,
+ "question": "Mary is an avid gardener. Yesterday, she received 18 new potted plants from her favorite plant nursery. She already has 2 potted plants on each of the 40 window ledges of her large country home. Feeling generous, she has decided that she will give 1 potted plant from each ledge to friends and family tomorrow. How many potted plants will Mary remain with?",
+ "gold": "58",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Mary is an avid gardener. Yesterday, she received 18 new potted plants from her favorite plant nursery. She already has 2 potted plants on each of the 40 window ledges of her large country home. Feeling generous, she has decided that she will give 1 potted plant from each ledge to friends and family tomorrow. How many potted plants will Mary remain with?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 28.943,
+   "samples": [
+    {
+     "seed": 7009900,
+     "text": "Mary has 2 * 40 = 80 potted plants she already has. She will give away 40 plants, leaving 18 - 40 = -22. Since she can't have negative plants, she will actually have 0 potted plants remaining.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 66,
+     "latency_s": 15.68,
+     "error": null,
+     "pred": "0"
+    },
+    {
+     "seed": 7009901,
+     "text": "Mary currently has 40 * 2 = 80 potted plants. She will give away 40 * 1 = 40 plants. She will be left with 80 - 40 = 40 potted plants.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 60,
+     "latency_s": 18.267,
+     "error": null,
+     "pred": "40"
+    },
+    {
+     "seed": 7009902,
+     "text": "Mary originally had 2 * 40 = 80 potted plants. She plans to give away 40 potted plants. After giving away these, Mary will remain with 80 - 40 = 40 potted plants.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 60,
+     "latency_s": 13.869,
+     "error": null,
+     "pred": "40"
+    },
+    {
+     "seed": 7009903,
+     "text": "Mary already has 2 pots on each of the 40 window ledges, so she has 2 * 40 = 80 pots. She adds 18 new pots to her collection, making a total of 80 + 18 = 98 pots. She gives away 1 pot from each of the 40 window ledges, so she gives away 40 pots in total. After giving away the pots, Mary will have 98 - 40 = 58 pots remaining. \nFinal answer: 58",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 119,
+     "latency_s": 28.937,
+     "error": null,
+     "pred": "58"
+    },
+    {
+     "seed": 7009904,
+     "text": "Mary has 40 * 2 = 80 potted plants initially. She plans to give away 40 * 1 = 40 plants. Thus, Mary will be left with 80 - 40 = 40 plants.\n\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 61,
+     "latency_s": 20.315,
+     "error": null,
+     "pred": "40"
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 42.666,
+   "samples": [
+    {
+     "seed": 7009905,
+     "text": "Mary initially has 40 * 2 = 80 potted plants. She will give away 40 potted plants because she will give 1 to each of the 40 ledges. 80 - 40 = 40 plants remain.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 64,
+     "latency_s": 41.887,
+     "error": null,
+     "pred": "40"
+    },
+    {
+     "seed": 7009906,
+     "text": "Mary already has 40 * 2 = 80 potted plants. Tomorrow, she will give away 40 * 1 = 40 potted plants. So, Mary will remain with 80 - 40 = 40 potted plants.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 65,
+     "latency_s": 42.665,
+     "error": null,
+     "pred": "40"
+    },
+    {
+     "seed": 7009907,
+     "text": "Mary currently has 40 * 2 = 80 potted plants. She will give away 40 * 1 = 40 potted plants. After giving away plants, Mary will have 80 - 40 = 40 potted plants left.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 66,
+     "latency_s": 38.948,
+     "error": null,
+     "pred": "40"
+    },
+    {
+     "seed": 7009908,
+     "text": "First, calculate the total number of potted plants Mary currently has: 40 * 2 = 80 plants. Then, subtract the number of plants she will give away: 80 - 40 = 40 plants. Mary will remain with 40 potted plants.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 69,
+     "latency_s": 34.373,
+     "error": null,
+     "pred": "40"
+    },
+    {
+     "seed": 7009909,
+     "text": "Mary initially has 40 * 2 = 80 potted plants. Tomorrow, she will give away 40 * 1 = 40 potted plants. After giving away these plants, Mary will remain with 80 - 40 = 40 potted plants.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 439,
+     "completion_tokens": 69,
+     "latency_s": 37.713,
+     "error": null,
+     "pred": "40"
+    }
+   ]
+  }
+ ],
+ "esc_answer": "40",
+ "stopped_early": true,
+ "created": "2026-10-14 15:33:26"
+}

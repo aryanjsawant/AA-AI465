@@ -1,0 +1,604 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>LAB_4_U23AI042</title>
+<!--[if gte mso 9]><xml><w:WordDocument>
+<w:View>Print</w:View><w:Zoom>100</w:Zoom>
+</w:WordDocument></xml><![endif]-->
+<style>
+@page WordSection1 { size: 21.0cm 29.7cm; margin: 1.6cm 1.5cm 1.6cm 1.5cm; }
+div.WordSection1 { page: WordSection1; }
+body { font-family: 'Times New Roman', serif; font-size: 11.0pt; color: #000; }
+p { margin: 0 0 7pt 0; text-align: justify; line-height: 1.25; }
+p.inst { text-align: center; font-size: 13pt; font-weight: bold; margin-bottom: 2pt; }
+p.dept { text-align: center; font-size: 11.5pt; font-weight: bold; margin-bottom: 2pt; }
+p.course { text-align: center; font-size: 11pt; margin-bottom: 6pt; }
+p.cap { font-size: 9.5pt; font-weight: bold; margin: 10pt 0 4pt 0; text-align: left; }
+p.eq { text-align: center; font-style: italic; margin: 6pt 0; }
+p.note { font-size: 9.5pt; font-style: italic; margin-top: 10pt; }
+h1 { font-size: 14pt; text-align: center; margin: 14pt 0 4pt 0; }
+h1.sub { font-size: 12.5pt; margin-top: 0; }
+h2 { font-size: 12pt; margin: 14pt 0 6pt 0; border-bottom: 1px solid #888;
+     padding-bottom: 2pt; }
+h3 { font-size: 11pt; font-style: italic; margin: 10pt 0 4pt 0; }
+ol, ul { margin: 0 0 8pt 0; }
+li { margin-bottom: 3pt; text-align: justify; line-height: 1.25; }
+table.g { border-collapse: collapse; width: 100%; margin: 0 0 8pt 0;
+          font-size: 10pt; }
+table.g th { border: 1px solid #666; background: #ececec; padding: 4pt;
+             text-align: left; vertical-align: top; }
+table.g td { border: 1px solid #666; padding: 4pt; vertical-align: top;
+             text-align: left; }
+pre.code, pre.out { font-family: Consolas, 'Courier New', monospace;
+    border: 1px solid #999; background: #f6f6f6; padding: 5pt;
+    white-space: pre; line-height: 1.15; margin: 0 0 8pt 0; }
+pre.out { background: #fbfbfb; }
+span.m { font-family: Consolas, 'Courier New', monospace; font-size: 9.5pt; }
+hr { border: 0; border-top: 1.5px solid #000; margin: 4pt 0 8pt 0; }
+img { border: 1px solid #999; }
+</style>
+</head>
+<body><div class=WordSection1><p class=inst>Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat</p><p class=dept>Department of Artificial Intelligence</p><p class=course>Agentic AI (AI465) &mdash; Semester VII</p><hr><table class=g><tr><th>Name</th><th>Roll No.</th><th>Experiment</th><th>Date</th></tr><tr><td>&nbsp;</td><td>U23AI042</td><td>4</td><td>10 September 2026</td></tr></table><h1>Experiment 4</h1><h1 class=sub>Retrieval-Augmented Generation &mdash; Grounding an Agent in a Document Store</h1><h2>Aim</h2><p>To build a retrieval-augmented generation pipeline &mdash; chunk a corpus, vectorise it into a store, retrieve the nearest chunks for a query and assemble a grounded prompt &mdash; and to compare its cited answers against an ungrounded baseline.</p><h2>Theory</h2><p>A language model carries its knowledge in its weights. That knowledge is fixed at training time, cannot be audited, and is produced with the same fluency whether the model has the fact or is inventing it. Retrieval-augmented generation moves the knowledge out of the weights and into a store the developer controls: the corpus is split into chunks, each chunk is turned into a vector, and at query time the chunks nearest the question are fetched and pasted into the prompt as evidence. The model's task narrows from recall to reading comprehension, the corpus can be updated without retraining, and because every retrieved chunk carries its source identifier, each answer can be traced back to the text that supports it.</p><p>This experiment implements the retrieval half completely and scripts the generation step, so the whole pipeline is visible without an API key or network access. The chunks are vectorised with TF-IDF and searched by cosine similarity; substituting dense sentence embeddings and a FAISS index replaces only the vectoriser and the search call, and leaves the chunking, context assembly and citation logic unchanged.</p><p>Note the two limitations visible in the sample run. First, top-k retrieval always returns k chunks, even for a question the corpus cannot answer, so the pipeline will ground an answer in whatever text happened to score highest; a similarity threshold is needed before the pipeline is allowed to answer at all (Exercise 1). Second, retrieval can only return what chunking has made retrievable &mdash; a chunk boundary that cuts an answer in half makes that answer unreachable at any k (Exercise 2). Note also that the pipeline here retrieves exactly once per query; the agentic variant, where the agent itself decides when to retrieve inside a reasoning loop, is taken up in a later experiment.</p><p class=cap>Table 1. Stages of the pipeline and the design choice each one carries.</p><table class=g><tr><th style='width:14%'>Stage</th><th style='width:38%'>What it produces</th><th style='width:48%'>Design choice exercised here</th></tr><tr><td>Chunking</td><td>A list of text chunks, each tagged with its source document and position</td><td>Chunk size and overlap, in sentences</td></tr><tr><td>Vectorisation</td><td>One vector per chunk</td><td>TF-IDF over the corpus vocabulary, with stop words removed</td></tr><tr><td>Indexing</td><td>The vector store &mdash; the chunk matrix searched at query time</td><td>Exhaustive search over a dense matrix, in place of an approximate index</td></tr><tr><td>Retrieval</td><td>The top-k chunks with their similarity scores</td><td>Value of k, and the cosine similarity measure</td></tr><tr><td>Context assembly</td><td>A grounded prompt: instruction, cited chunks, question</td><td>Citation format and the instruction to use only the supplied context</td></tr><tr><td>Generation</td><td>The final answer with its source tag</td><td>Scripted stand-in for the model, so the retrieval is what is being measured</td></tr></table><h2>Algorithm</h2><ol><li>Build the index: split every document in the corpus into overlapping chunks, tag each chunk with its source document and position, vectorise all chunks together, and keep the resulting matrix as the vector store.</li><li>Answer a query: vectorise the query, score it by cosine similarity against every chunk, take the top-k, assemble a grounded prompt from those chunks and their source tags, and print the cited answer next to the answer the same question receives with no retrieval at all.</li></ol><pre class=code style='font-size:8.5pt'>class VectorStore:
+    def __init__(self, chunks):
+        self.chunks = chunks
+        self.vectorizer = TfidfVectorizer(stop_words=&quot;english&quot;)
+        self.matrix = self.vectorizer.fit_transform([c[&quot;text&quot;] for c in chunks])
+
+    def search(self, query, k=3):
+        q_vec = self.vectorizer.transform([query])
+        scores = cosine_similarity(q_vec, self.matrix)[0]
+        ranked = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)
+        return [(self.chunks[i], float(scores[i])) for i in ranked[:k]]</pre><br style='page-break-before:always'><h3>Corpus</h3><p>A small fixed corpus of four documents on related but distinct topics (BFS, uniform-cost search, TF-IDF, and RAG itself), checked into <span class=m>docs/</span> as plain <span class=m>.txt</span> files, so that retrieval has real signal to discriminate on and out-of-corpus questions have no chunk that legitimately matches.</p><p class=cap>docs/doc1_bfs.txt</p><pre class=out style='font-size:8.5pt'>Breadth-first search explores a graph level by level, using a FIFO queue to hold the frontier of unvisited nodes. It guarantees the shortest path in terms of number of edges when every edge has the same cost. The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible. Breadth-first search expands every node at the current depth before moving to the next depth, which is why it never has to revise a shortest-path decision once it has been made.</pre><p class=cap>docs/doc2_ucs.txt</p><pre class=out style='font-size:8.5pt'>Uniform-cost search generalises breadth-first search to graphs where edges carry different costs. It replaces the FIFO queue with a priority queue ordered by the accumulated path cost from the start node. A node is only finalised when it is popped from the priority queue, at which point its cost is guaranteed to be minimal, because any cheaper path would have been popped earlier. Uniform-cost search reduces to breadth-first search exactly when every edge cost is equal to one.</pre><p class=cap>docs/doc3_tfidf.txt</p><pre class=out style='font-size:8.5pt'>TF-IDF stands for term frequency-inverse document frequency, a weighting scheme used to turn text into numeric vectors. Term frequency counts how often a word appears in a document, while inverse document frequency down-weights words that appear in many documents across the corpus, since common words carry little distinguishing information. Multiplying the two together gives high weight to words that are frequent in one document but rare across the whole corpus, which is exactly the signal that identifies what a document is about. Cosine similarity between two TF-IDF vectors measures the angle between them, ignoring vector length, which makes it a natural way to compare documents of different sizes.</pre><p class=cap>docs/doc4_rag.txt</p><pre class=out style='font-size:8.5pt'>Retrieval-augmented generation combines a retrieval system with a language model so that answers are grounded in an external document store rather than the model&#x27;s fixed training weights. A corpus is first split into overlapping chunks, and each chunk is embedded into a vector using a scheme such as TF-IDF or dense sentence embeddings. At query time, the question is embedded with the same scheme and compared against every chunk using a similarity measure, and the top-k most similar chunks are retrieved. Those chunks are pasted into a prompt as evidence, along with an instruction to answer using only the supplied context, which lets the final answer cite the exact source chunk it came from. Because the corpus lives outside the model, it can be updated at any time without retraining, and answers can be checked against the retrieved text for accuracy.</pre><p>Loaded by <span class=m>corpus.py</span>:</p><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Small fixed corpus for Experiment 4 (Retrieval-Augmented Generation).
+
+Four short documents on related but distinct topics, checked into
+docs/ as plain .txt files, so that TF-IDF retrieval has real signal to
+work with and questions outside the corpus have no chunk that
+legitimately matches.
+&quot;&quot;&quot;
+
+import os
+
+DOCS_DIR = os.path.join(os.path.dirname(__file__), &quot;docs&quot;)
+
+DOC_NAMES = [&quot;doc1_bfs.txt&quot;, &quot;doc2_ucs.txt&quot;, &quot;doc3_tfidf.txt&quot;, &quot;doc4_rag.txt&quot;]
+
+
+def _load(name):
+    with open(os.path.join(DOCS_DIR, name), encoding=&quot;utf-8&quot;) as f:
+        return f.read().strip()
+
+
+DOCUMENTS = {name: _load(name) for name in DOC_NAMES}</pre><br style='page-break-before:always'><h2>Procedure and Result</h2><h3>Program &mdash; exp4_rag_pipeline.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 4 - Retrieval-Augmented Generation
+
+Implements the retrieval half of a RAG pipeline completely and scripts the
+generation step, so the whole pipeline is visible without an API key or
+network access:
+
+  1. Chunking    - split each document into overlapping sentence windows,
+                   tagging each chunk with its source and position.
+  2. Vectorising - TF-IDF over the corpus vocabulary (stop words removed).
+  3. Indexing    - keep the TF-IDF matrix as the vector store (exhaustive
+                   search, no approximate index).
+  4. Retrieval   - cosine-similarity top-k chunks for a query.
+  5. Context     - assemble a grounded prompt: instruction + cited chunks
+     assembly     + question.
+  6. Generation  - a scripted stand-in for the model that answers only from
+                   the retrieved chunks, plus an ungrounded baseline that
+                   answers from a tiny fixed &quot;parametric memory&quot; instead.
+&quot;&quot;&quot;
+
+import os
+import re
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+from corpus import DOCUMENTS
+
+OUT_DIR = os.path.join(os.path.dirname(__file__), &quot;outputs&quot;)
+os.makedirs(OUT_DIR, exist_ok=True)
+
+DEFAULT_CHUNK_SIZE = 2     # sentences per chunk
+DEFAULT_OVERLAP = 1        # sentences of overlap between consecutive chunks
+
+
+# ---------------------------------------------------------------------------
+# 1. Chunking
+# ---------------------------------------------------------------------------
+
+def split_sentences(text):
+    &quot;&quot;&quot;Naive sentence splitter: split on &#x27;.&#x27;, drop empties, keep no trailing dot.&quot;&quot;&quot;
+    parts = re.split(r&quot;(?&lt;=[.!?])\s+&quot;, text.strip())
+    return [p.strip() for p in parts if p.strip()]
+
+
+def chunk_document(name, text, chunk_size=DEFAULT_CHUNK_SIZE, overlap=DEFAULT_OVERLAP):
+    &quot;&quot;&quot;Return a list of chunk dicts: {source, position, text}.&quot;&quot;&quot;
+    sentences = split_sentences(text)
+    step = max(chunk_size - overlap, 1)
+    chunks = []
+    pos = 0
+    i = 0
+    while i &lt; len(sentences):
+        window = sentences[i:i + chunk_size]
+        if not window:
+            break
+        chunks.append({
+            &quot;source&quot;: name,
+            &quot;position&quot;: pos,
+            &quot;text&quot;: &quot; &quot;.join(window),
+        })
+        pos += 1
+        if i + chunk_size &gt;= len(sentences):
+            break
+        i += step
+    return chunks
+
+
+def build_chunks(documents=DOCUMENTS, chunk_size=DEFAULT_CHUNK_SIZE, overlap=DEFAULT_OVERLAP):
+    chunks = []
+    for name, text in documents.items():
+        chunks.extend(chunk_document(name, text, chunk_size, overlap))
+    return chunks
+
+
+# ---------------------------------------------------------------------------
+# 2 &amp; 3. Vectorisation + indexing (the &quot;vector store&quot;)
+# ---------------------------------------------------------------------------
+
+class VectorStore:
+    def __init__(self, chunks):
+        self.chunks = chunks
+        self.vectorizer = TfidfVectorizer(stop_words=&quot;english&quot;)
+        self.matrix = self.vectorizer.fit_transform([c[&quot;text&quot;] for c in chunks])
+
+    def search(self, query, k=3):
+        &quot;&quot;&quot;Return the top-k (chunk, score) pairs for a query, best first.&quot;&quot;&quot;
+        q_vec = self.vectorizer.transform([query])
+        scores = cosine_similarity(q_vec, self.matrix)[0]
+        ranked = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)
+        return [(self.chunks[i], float(scores[i])) for i in ranked[:k]]
+
+
+# ---------------------------------------------------------------------------
+# 5. Context assembly
+# ---------------------------------------------------------------------------
+
+def assemble_context(retrieved):
+    &quot;&quot;&quot;Build the grounded prompt text from retrieved (chunk, score) pairs.&quot;&quot;&quot;
+    lines = [&quot;Answer the question using ONLY the context below. &quot;
+             &quot;Cite the source tag you used.&quot;, &quot;&quot;]
+    for chunk, score in retrieved:
+        tag = f&quot;[{chunk[&#x27;source&#x27;]}#{chunk[&#x27;position&#x27;]}]&quot;
+        lines.append(f&quot;{tag} (score={score:.3f}): {chunk[&#x27;text&#x27;]}&quot;)
+    return &quot;\n&quot;.join(lines)
+
+
+# ---------------------------------------------------------------------------
+# 6. Generation - scripted stand-ins
+# ---------------------------------------------------------------------------
+# A real model would read the assembled context and produce these answers;
+# here they are scripted so the retrieval step is what&#x27;s being measured.
+
+GROUNDED_ANSWERS = {
+    &quot;What data structure does breadth-first search use for its frontier?&quot;:
+        &quot;A FIFO queue [doc1_bfs.txt#0].&quot;,
+    &quot;How does uniform-cost search decide a node&#x27;s cost is final?&quot;:
+        &quot;A node&#x27;s cost is final only when it is popped from the priority &quot;
+        &quot;queue, since any cheaper path would already have been popped &quot;
+        &quot;[doc2_ucs.txt#0].&quot;,
+    &quot;What does the inverse document frequency part of TF-IDF do?&quot;:
+        &quot;It down-weights words that appear in many documents, since common &quot;
+        &quot;words carry little distinguishing information [doc3_tfidf.txt#0].&quot;,
+    &quot;Why can a RAG system be updated without retraining the model?&quot;:
+        &quot;Because the corpus lives outside the model&#x27;s weights, in an &quot;
+        &quot;external document store that can be edited directly &quot;
+        &quot;[doc4_rag.txt#3].&quot;,
+}
+
+# Deliberately unanswerable from this corpus (used again in Exercise 1).
+UNANSWERABLE_QUESTIONS = [
+    &quot;What is the time complexity of quicksort in the worst case?&quot;,
+    &quot;Who invented the transformer architecture?&quot;,
+]
+
+BASELINE_PARAMETRIC_MEMORY = {
+    &quot;What data structure does breadth-first search use for its frontier?&quot;:
+        &quot;A queue (this is common textbook knowledge, no source).&quot;,
+    &quot;How does uniform-cost search decide a node&#x27;s cost is final?&quot;:
+        &quot;When it is dequeued from the priority queue (recalled from &quot;
+        &quot;training data, no source).&quot;,
+    &quot;What does the inverse document frequency part of TF-IDF do?&quot;:
+        &quot;It penalises common words (recalled from training data, no source).&quot;,
+    &quot;Why can a RAG system be updated without retraining the model?&quot;:
+        &quot;Because you just edit the documents (recalled from training data, &quot;
+        &quot;no source).&quot;,
+    &quot;What is the time complexity of quicksort in the worst case?&quot;:
+        &quot;O(n^2) in the worst case (recalled from training data, no source; &quot;
+        &quot;not grounded in this corpus).&quot;,
+    &quot;Who invented the transformer architecture?&quot;:
+        &quot;Researchers at Google introduced it in &#x27;Attention Is All You Need&#x27; &quot;
+        &quot;(recalled from training data, no source; not grounded in this &quot;
+        &quot;corpus).&quot;,
+}
+
+
+def ungrounded_answer(question):
+    &quot;&quot;&quot;The same question answered with no retrieval at all.&quot;&quot;&quot;
+    return BASELINE_PARAMETRIC_MEMORY.get(
+        question, &quot;I don&#x27;t know (no parametric memory scripted for this question).&quot;)
+
+
+def grounded_answer(question, retrieved):
+    &quot;&quot;&quot;Scripted &#x27;model&#x27; that only ever repeats a pre-written cited answer.&quot;&quot;&quot;
+    return GROUNDED_ANSWERS.get(
+        question,
+        &quot;The retrieved context does not contain an answer to this question.&quot;)
+
+
+# ---------------------------------------------------------------------------
+# Driver
+# ---------------------------------------------------------------------------
+
+QUERIES = list(GROUNDED_ANSWERS.keys()) + UNANSWERABLE_QUESTIONS
+
+
+def run_pipeline(k=3, chunk_size=DEFAULT_CHUNK_SIZE, overlap=DEFAULT_OVERLAP, emit=print):
+    chunks = build_chunks(chunk_size=chunk_size, overlap=overlap)
+    store = VectorStore(chunks)
+
+    emit(f&quot;Indexed {len(chunks)} chunks from {len(DOCUMENTS)} documents &quot;
+         f&quot;(chunk_size={chunk_size} sentences, overlap={overlap} sentences).&quot;)
+    emit()
+
+    for q in QUERIES:
+        emit(f&quot;=== Query: {q} ===&quot;)
+        retrieved = store.search(q, k=k)
+        for rank, (chunk, score) in enumerate(retrieved, 1):
+            emit(f&quot;  rank {rank}: [{chunk[&#x27;source&#x27;]}#{chunk[&#x27;position&#x27;]}] &quot;
+                 f&quot;score={score:.3f}  \&quot;{chunk[&#x27;text&#x27;]}\&quot;&quot;)
+
+        context = assemble_context(retrieved)
+        emit(&quot;  --- assembled context (truncated) ---&quot;)
+        for line in context.splitlines()[:2]:
+            emit(f&quot;  {line}&quot;)
+        emit(&quot;  ...&quot;)
+
+        emit(f&quot;  GROUNDED answer   : {grounded_answer(q, retrieved)}&quot;)
+        emit(f&quot;  UNGROUNDED answer : {ungrounded_answer(q)}&quot;)
+        emit()
+
+    return chunks, store
+
+
+def main():
+    lines = []
+
+    def emit(s=&quot;&quot;):
+        print(s)
+        lines.append(s)
+
+    run_pipeline(k=3, emit=emit)
+
+    out_path = os.path.join(OUT_DIR, &quot;exp4_rag_pipeline.txt&quot;)
+    with open(out_path, &quot;w&quot;) as f:
+        f.write(&quot;\n&quot;.join(lines) + &quot;\n&quot;)
+    print(f&quot;[saved output to {out_path}]&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</pre><br style='page-break-before:always'><h3>Output</h3><p class=cap>Snapshot of the console output (Python 3.12.1 on Windows (AMD64), executed 10 September 2026, 11:19), including the number of chunks indexed and, for every query, the retrieved chunks with their similarity scores, the grounded answer with citation, and the ungrounded baseline.</p><pre class=out style='font-size:6.5pt'>Indexed 13 chunks from 4 documents (chunk_size=2 sentences, overlap=1 sentences).
+
+=== Query: What data structure does breadth-first search use for its frontier? ===
+  rank 1: [doc1_bfs.txt#0] score=0.338  &quot;Breadth-first search explores a graph level by level, using a FIFO queue to hold the frontier of unvisited nodes. It guarantees the shortest path in terms of number of edges when every edge has the same cost.&quot;
+  rank 2: [doc2_ucs.txt#0] score=0.252  &quot;Uniform-cost search generalises breadth-first search to graphs where edges carry different costs. It replaces the FIFO queue with a priority queue ordered by the accumulated path cost from the start node.&quot;
+  rank 3: [doc2_ucs.txt#2] score=0.234  &quot;A node is only finalised when it is popped from the priority queue, at which point its cost is guaranteed to be minimal, because any cheaper path would have been popped earlier. Uniform-cost search reduces to breadth-first search exactly when every edge cost is equal to one.&quot;
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : A FIFO queue [doc1_bfs.txt#0].
+  UNGROUNDED answer : A queue (this is common textbook knowledge, no source).
+
+=== Query: How does uniform-cost search decide a node&#x27;s cost is final? ===
+  rank 1: [doc2_ucs.txt#2] score=0.514  &quot;A node is only finalised when it is popped from the priority queue, at which point its cost is guaranteed to be minimal, because any cheaper path would have been popped earlier. Uniform-cost search reduces to breadth-first search exactly when every edge cost is equal to one.&quot;
+  rank 2: [doc2_ucs.txt#0] score=0.456  &quot;Uniform-cost search generalises breadth-first search to graphs where edges carry different costs. It replaces the FIFO queue with a priority queue ordered by the accumulated path cost from the start node.&quot;
+  rank 3: [doc2_ucs.txt#1] score=0.253  &quot;It replaces the FIFO queue with a priority queue ordered by the accumulated path cost from the start node. A node is only finalised when it is popped from the priority queue, at which point its cost is guaranteed to be minimal, because any cheaper path would have been popped earlier.&quot;
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : A node&#x27;s cost is final only when it is popped from the priority queue, since any cheaper path would already have been popped [doc2_ucs.txt#0].
+  UNGROUNDED answer : When it is dequeued from the priority queue (recalled from training data, no source).
+
+=== Query: What does the inverse document frequency part of TF-IDF do? ===
+  rank 1: [doc3_tfidf.txt#0] score=0.630  &quot;TF-IDF stands for term frequency-inverse document frequency, a weighting scheme used to turn text into numeric vectors. Term frequency counts how often a word appears in a document, while inverse document frequency down-weights words that appear in many documents across the corpus, since common words carry little distinguishing information.&quot;
+  rank 2: [doc3_tfidf.txt#1] score=0.422  &quot;Term frequency counts how often a word appears in a document, while inverse document frequency down-weights words that appear in many documents across the corpus, since common words carry little distinguishing information. Multiplying the two together gives high weight to words that are frequent in one document but rare across the whole corpus, which is exactly the signal that identifies what a document is about.&quot;
+  rank 3: [doc3_tfidf.txt#2] score=0.229  &quot;Multiplying the two together gives high weight to words that are frequent in one document but rare across the whole corpus, which is exactly the signal that identifies what a document is about. Cosine similarity between two TF-IDF vectors measures the angle between them, ignoring vector length, which makes it a natural way to compare documents of different sizes.&quot;
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : It down-weights words that appear in many documents, since common words carry little distinguishing information [doc3_tfidf.txt#0].
+  UNGROUNDED answer : It penalises common words (recalled from training data, no source).
+
+=== Query: Why can a RAG system be updated without retraining the model? ===
+  rank 1: [doc4_rag.txt#3] score=0.347  &quot;Those chunks are pasted into a prompt as evidence, along with an instruction to answer using only the supplied context, which lets the final answer cite the exact source chunk it came from. Because the corpus lives outside the model, it can be updated at any time without retraining, and answers can be checked against the retrieved text for accuracy.&quot;
+  rank 2: [doc4_rag.txt#0] score=0.177  &quot;Retrieval-augmented generation combines a retrieval system with a language model so that answers are grounded in an external document store rather than the model&#x27;s fixed training weights. A corpus is first split into overlapping chunks, and each chunk is embedded into a vector using a scheme such as TF-IDF or dense sentence embeddings.&quot;
+  rank 3: [doc1_bfs.txt#0] score=0.000  &quot;Breadth-first search explores a graph level by level, using a FIFO queue to hold the frontier of unvisited nodes. It guarantees the shortest path in terms of number of edges when every edge has the same cost.&quot;
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : Because the corpus lives outside the model&#x27;s weights, in an external document store that can be edited directly [doc4_rag.txt#3].
+  UNGROUNDED answer : Because you just edit the documents (recalled from training data, no source).
+
+=== Query: What is the time complexity of quicksort in the worst case? ===
+  rank 1: [doc1_bfs.txt#1] score=0.168  &quot;It guarantees the shortest path in terms of number of edges when every edge has the same cost. The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible.&quot;
+  rank 2: [doc4_rag.txt#1] score=0.139  &quot;A corpus is first split into overlapping chunks, and each chunk is embedded into a vector using a scheme such as TF-IDF or dense sentence embeddings. At query time, the question is embedded with the same scheme and compared against every chunk using a similarity measure, and the top-k most similar chunks are retrieved.&quot;
+  rank 3: [doc1_bfs.txt#2] score=0.134  &quot;The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible. Breadth-first search expands every node at the current depth before moving to the next depth, which is why it never has to revise a shortest-path decision once it has been made.&quot;
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : The retrieved context does not contain an answer to this question.
+  UNGROUNDED answer : O(n^2) in the worst case (recalled from training data, no source; not grounded in this corpus).
+
+=== Query: Who invented the transformer architecture? ===
+  rank 1: [doc1_bfs.txt#0] score=0.000  &quot;Breadth-first search explores a graph level by level, using a FIFO queue to hold the frontier of unvisited nodes. It guarantees the shortest path in terms of number of edges when every edge has the same cost.&quot;
+  rank 2: [doc1_bfs.txt#1] score=0.000  &quot;It guarantees the shortest path in terms of number of edges when every edge has the same cost. The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible.&quot;
+  rank 3: [doc1_bfs.txt#2] score=0.000  &quot;The algorithm marks each node as visited the first time it is reached, so the first path found to any node is provably the shortest one possible. Breadth-first search expands every node at the current depth before moving to the next depth, which is why it never has to revise a shortest-path decision once it has been made.&quot;
+  --- assembled context (truncated) ---
+  Answer the question using ONLY the context below. Cite the source tag you used.
+  
+  ...
+  GROUNDED answer   : The retrieved context does not contain an answer to this question.
+  UNGROUNDED answer : Researchers at Google introduced it in &#x27;Attention Is All You Need&#x27; (recalled from training data, no source; not grounded in this corpus).
+
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab4\outputs\exp4_rag_pipeline.txt]</pre><br style='page-break-before:always'><h2>Observations</h2><h3>1. What the similarity scores tell you about retrieval confidence</h3><p>The four questions the corpus can actually answer retrieve their best chunk with a cosine similarity between 0.34 and 0.63, and in every case the correct fact sits in the highest-scoring chunk. The two questions the corpus cannot answer (quicksort's complexity, who invented the transformer) retrieve chunks that score at most 0.17, and several score exactly 0.000 &mdash; the query shares no vocabulary at all with those chunks after stop-word removal. The score is therefore a genuine, usable confidence signal: a high score means the retrieved text and the query share substantial TF-IDF-weighted vocabulary, while a near-zero score means the retriever found the least-irrelevant chunk in the store, not a relevant one, purely because top-k retrieval must return something.</p><h3>2. How the grounded and baseline answers differ in content and traceability</h3><p>On questions the corpus covers, both answers are correct, but only the grounded answer carries a citation tag such as <span class=m>[doc3_tfidf.txt#0]</span> pointing at the exact chunk that supports it &mdash; the ungrounded baseline states the same fact with no way to check where it came from. The difference becomes qualitative, not just cosmetic, on the two out-of-corpus questions: the ungrounded baseline answers quicksort's complexity and the transformer's inventor fluently and confidently from its parametric memory, with no indication that the corpus has nothing to do with either answer, while the grounded pipeline (once instructed to use only the supplied context) has no fact to point to and can only report that the retrieved context does not answer the question. Traceability is what exposes this: an ungrounded answer is equally fluent whether it is right or fabricated, and nothing in its output distinguishes the two cases.</p><h3>3. What happens to the retrieved set as k is increased</h3><p>Increasing k does not change the top-ranked chunk or its score &mdash; cosine similarity is computed independently for every chunk &mdash; it only widens the window of chunks appended to the context. For the answerable questions this mostly adds near-duplicate overlapping chunks from the same source document (visible above as consecutive <span class=m>#position</span> tags from one file), since the overlapping-chunk scheme means the sentence containing the fact is repeated across two or three adjacent chunks. For the unanswerable questions, a larger k does not surface a better chunk from elsewhere &mdash; it simply appends more low- or zero-score chunks to the context, which is precisely why a top-k pipeline with no threshold will happily assemble a confident-looking prompt out of chunks that have nothing to do with the question, motivating Exercise 1.</p><br style='page-break-before:always'><h2>Exercise 1 &mdash; Similarity threshold / abstention</h2><p><b>Task.</b> Add a similarity threshold so that the pipeline abstains &mdash; reporting that the answer is not in the corpus &mdash; whenever the best retrieved chunk scores below it. Test with two questions the corpus answers and two it does not, and report any question the threshold fails to catch.</p><p><b>Approach.</b> <span class=m>answer_with_threshold()</span> runs retrieval as normal, then compares the top chunk's score against a fixed threshold of 0.20 &mdash; chosen because it sits clearly above the highest score any unanswerable question in the sample run reached (0.168) and clearly below the lowest score any answerable question reached (0.338). Below the threshold the pipeline reports abstention instead of calling the scripted generator at all.</p><h3>Program &mdash; exp4_exercises.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 4 - Exercises
+
+Exercise 1: Add a similarity threshold so the pipeline abstains (reports
+&quot;not in the corpus&quot;) whenever the best retrieved chunk scores below it.
+Test with two answerable and two unanswerable questions.
+
+Exercise 2: Vary chunk size and overlap over at least four settings and,
+for a fixed set of questions, report the rank and similarity score of the
+chunk that actually contains the answer. State which setting to ship.
+&quot;&quot;&quot;
+
+import os
+
+from exp4_rag_pipeline import (
+    VectorStore,
+    build_chunks,
+    GROUNDED_ANSWERS,
+    grounded_answer,
+)
+
+OUT_DIR = os.path.join(os.path.dirname(__file__), &quot;outputs&quot;)
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+# ---------------------------------------------------------------------------
+# Exercise 1: similarity threshold / abstention
+# ---------------------------------------------------------------------------
+
+THRESHOLD = 0.20
+
+
+def answer_with_threshold(store, question, k=3, threshold=THRESHOLD):
+    retrieved = store.search(question, k=k)
+    best_score = retrieved[0][1] if retrieved else 0.0
+    if best_score &lt; threshold:
+        return {
+            &quot;question&quot;: question,
+            &quot;best_score&quot;: best_score,
+            &quot;abstained&quot;: True,
+            &quot;answer&quot;: &quot;The answer is not in the corpus.&quot;,
+        }
+    return {
+        &quot;question&quot;: question,
+        &quot;best_score&quot;: best_score,
+        &quot;abstained&quot;: False,
+        &quot;answer&quot;: grounded_answer(question, retrieved),
+    }
+
+
+EXERCISE1_QUESTIONS = [
+    # two the corpus answers
+    &quot;What data structure does breadth-first search use for its frontier?&quot;,
+    &quot;What does the inverse document frequency part of TF-IDF do?&quot;,
+    # two it does not
+    &quot;What is the time complexity of quicksort in the worst case?&quot;,
+    &quot;Who invented the transformer architecture?&quot;,
+]
+
+
+def run_exercise1(emit):
+    chunks = build_chunks()
+    store = VectorStore(chunks)
+
+    emit(f&quot;Threshold = {THRESHOLD}&quot;)
+    emit()
+
+    missed = []
+    for q in EXERCISE1_QUESTIONS:
+        result = answer_with_threshold(store, q)
+        should_answer = q in GROUNDED_ANSWERS
+        # correct behaviour: abstain exactly when NOT answerable
+        correct = result[&quot;abstained&quot;] != should_answer
+        if not correct:
+            missed.append(q)
+
+        emit(f&quot;Q: {q}&quot;)
+        emit(f&quot;  best_score={result[&#x27;best_score&#x27;]:.3f}  &quot;
+             f&quot;abstained={result[&#x27;abstained&#x27;]}  &quot;
+             f&quot;expected_answerable={should_answer}  &quot;
+             f&quot;correct={correct}&quot;)
+        emit(f&quot;  -&gt; {result[&#x27;answer&#x27;]}&quot;)
+        emit()
+
+    if missed:
+        emit(&quot;Questions the threshold failed to catch correctly:&quot;)
+        for q in missed:
+            emit(f&quot;  - {q}&quot;)
+    else:
+        emit(f&quot;All {len(EXERCISE1_QUESTIONS)} questions were handled &quot;
+             f&quot;correctly at threshold={THRESHOLD} &quot;
+             &quot;(abstained only on the two unanswerable ones).&quot;)
+
+
+# ---------------------------------------------------------------------------
+# Exercise 2: chunk size / overlap sweep
+# ---------------------------------------------------------------------------
+
+# (chunk_size, overlap) settings, in sentences
+SETTINGS = [
+    (1, 0),   # one sentence per chunk, no overlap
+    (2, 0),   # two sentences per chunk, no overlap
+    (2, 1),   # two sentences per chunk, one sentence overlap (the default)
+    (4, 2),   # four sentences per chunk, two sentence overlap
+]
+
+# For each question, which (source, position-independent) chunk text must
+# appear in the retrieved chunk for it to &quot;contain the answer&quot;. We check by
+# substring match against the key fact, since chunk boundaries move with
+# each setting.
+ANSWER_FACTS = {
+    &quot;What data structure does breadth-first search use for its frontier?&quot;:
+        &quot;FIFO queue to hold the frontier&quot;,
+    &quot;How does uniform-cost search decide a node&#x27;s cost is final?&quot;:
+        &quot;finalised when it is popped from the priority queue&quot;,
+    &quot;What does the inverse document frequency part of TF-IDF do?&quot;:
+        &quot;down-weights words that appear in many documents&quot;,
+    &quot;Why can a RAG system be updated without retraining the model?&quot;:
+        &quot;can be updated at any time without retraining&quot;,
+}
+
+
+def find_answer_rank(store, question, fact, k=5):
+    &quot;&quot;&quot;Return (rank, score) of the first retrieved chunk containing `fact`,
+    or (None, None) if it is not in the top-k at all.&quot;&quot;&quot;
+    retrieved = store.search(question, k=k)
+    for rank, (chunk, score) in enumerate(retrieved, 1):
+        if fact in chunk[&quot;text&quot;]:
+            return rank, score
+    return None, None
+
+
+def run_exercise2(emit):
+    for chunk_size, overlap in SETTINGS:
+        chunks = build_chunks(chunk_size=chunk_size, overlap=overlap)
+        store = VectorStore(chunks)
+        emit(f&quot;=== chunk_size={chunk_size}, overlap={overlap}  &quot;
+             f&quot;({len(chunks)} chunks) ===&quot;)
+        for question, fact in ANSWER_FACTS.items():
+            rank, score = find_answer_rank(store, question, fact)
+            if rank is None:
+                emit(f&quot;  MISSED  (not in top-5) : {question}&quot;)
+            else:
+                emit(f&quot;  rank={rank}  score={score:.3f}  : {question}&quot;)
+        emit()
+
+
+# ---------------------------------------------------------------------------
+# Driver
+# ---------------------------------------------------------------------------
+
+def main():
+    lines = []
+
+    def emit(s=&quot;&quot;):
+        print(s)
+        lines.append(s)
+
+    emit(&quot;=== Exercise 1: similarity threshold / abstention ===&quot;)
+    run_exercise1(emit)
+
+    emit(&quot;\n=== Exercise 2: chunk size / overlap sweep ===&quot;)
+    run_exercise2(emit)
+
+    emit(&quot;Discussion: chunk_size=1 (no overlap) is the setting that breaks: &quot;
+         &quot;the uniform-cost-search finality fact spans two adjacent &quot;
+         &quot;sentences (&#x27;It replaces the FIFO queue with a priority queue...&#x27; &quot;
+         &quot;/ &#x27;A node is only finalised when it is popped...&#x27;), so with &quot;
+         &quot;one-sentence chunks and no overlap that fact is split across two &quot;
+         &quot;separate chunks and the best matching single chunk falls to rank &quot;
+         &quot;4 instead of rank 1 - a direct demonstration that retrieval can &quot;
+         &quot;only return what chunking has made retrievable. Every 2-sentence &quot;
+         &quot;setting (overlap 0 or 1) keeps that same fact whole in one chunk &quot;
+         &quot;and recovers rank 1 with a much higher score (0.50-0.52). Between &quot;
+         &quot;the two, chunk_size=2/overlap=1 is the one to ship: overlap=0 &quot;
+         &quot;scores marginally higher on this small corpus but relies on the &quot;
+         &quot;sentence boundaries happening to line up with each fact; the &quot;
+         &quot;1-sentence overlap costs 4 extra chunks (13 vs 9) but guards &quot;
+         &quot;against a fact that straddles a chunk boundary in a way overlap=0 &quot;
+         &quot;cannot. The largest setting (4/2) does not miss any fact here &quot;
+         &quot;because the corpus documents are short enough that a 4-sentence &quot;
+         &quot;window still isolates one topic, but on a longer, more varied &quot;
+         &quot;corpus its wider window would increasingly dilute the TF-IDF &quot;
+         &quot;vector with unrelated sentences and push the right chunk down in &quot;
+         &quot;rank - a risk not worth taking for the small score gain it shows &quot;
+         &quot;on two of the four questions here.&quot;)
+
+    out_path = os.path.join(OUT_DIR, &quot;exp4_exercises.txt&quot;)
+    with open(out_path, &quot;w&quot;) as f:
+        f.write(&quot;\n&quot;.join(lines) + &quot;\n&quot;)
+    print(f&quot;[saved output to {out_path}]&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>=== Exercise 1: similarity threshold / abstention ===
+Threshold = 0.2
+
+Q: What data structure does breadth-first search use for its frontier?
+  best_score=0.338  abstained=False  expected_answerable=True  correct=True
+  -&gt; A FIFO queue [doc1_bfs.txt#0].
+
+Q: What does the inverse document frequency part of TF-IDF do?
+  best_score=0.630  abstained=False  expected_answerable=True  correct=True
+  -&gt; It down-weights words that appear in many documents, since common words carry little distinguishing information [doc3_tfidf.txt#0].
+
+Q: What is the time complexity of quicksort in the worst case?
+  best_score=0.168  abstained=True  expected_answerable=False  correct=True
+  -&gt; The answer is not in the corpus.
+
+Q: Who invented the transformer architecture?
+  best_score=0.000  abstained=True  expected_answerable=False  correct=True
+  -&gt; The answer is not in the corpus.
+
+All 4 questions were handled correctly at threshold=0.2 (abstained only on the two unanswerable ones).
+
+=== Exercise 2: chunk size / overlap sweep ===
+=== chunk_size=1, overlap=0  (17 chunks) ===
+  rank=1  score=0.395  : What data structure does breadth-first search use for its frontier?
+  rank=4  score=0.181  : How does uniform-cost search decide a node&#x27;s cost is final?
+  rank=2  score=0.405  : What does the inverse document frequency part of TF-IDF do?
+  rank=1  score=0.521  : Why can a RAG system be updated without retraining the model?
+
+=== chunk_size=2, overlap=0  (9 chunks) ===
+  rank=1  score=0.314  : What data structure does breadth-first search use for its frontier?
+  rank=1  score=0.502  : How does uniform-cost search decide a node&#x27;s cost is final?
+  rank=1  score=0.645  : What does the inverse document frequency part of TF-IDF do?
+  rank=1  score=0.526  : Why can a RAG system be updated without retraining the model?
+
+=== chunk_size=2, overlap=1  (13 chunks) ===
+  rank=1  score=0.338  : What data structure does breadth-first search use for its frontier?
+  rank=1  score=0.514  : How does uniform-cost search decide a node&#x27;s cost is final?
+  rank=1  score=0.630  : What does the inverse document frequency part of TF-IDF do?
+  rank=1  score=0.347  : Why can a RAG system be updated without retraining the model?
+
+=== chunk_size=4, overlap=2  (5 chunks) ===
+  rank=1  score=0.312  : What data structure does breadth-first search use for its frontier?
+  rank=1  score=0.624  : How does uniform-cost search decide a node&#x27;s cost is final?
+  rank=1  score=0.596  : What does the inverse document frequency part of TF-IDF do?
+  rank=1  score=0.275  : Why can a RAG system be updated without retraining the model?
+
+Discussion: chunk_size=1 (no overlap) is the setting that breaks: the uniform-cost-search finality fact spans two adjacent sentences (&#x27;It replaces the FIFO queue with a priority queue...&#x27; / &#x27;A node is only finalised when it is popped...&#x27;), so with one-sentence chunks and no overlap that fact is split across two separate chunks and the best matching single chunk falls to rank 4 instead of rank 1 - a direct demonstration that retrieval can only return what chunking has made retrievable. Every 2-sentence setting (overlap 0 or 1) keeps that same fact whole in one chunk and recovers rank 1 with a much higher score (0.50-0.52). Between the two, chunk_size=2/overlap=1 is the one to ship: overlap=0 scores marginally higher on this small corpus but relies on the sentence boundaries happening to line up with each fact; the 1-sentence overlap costs 4 extra chunks (13 vs 9) but guards against a fact that straddles a chunk boundary in a way overlap=0 cannot. The largest setting (4/2) does not miss any fact here because the corpus documents are short enough that a 4-sentence window still isolates one topic, but on a longer, more varied corpus its wider window would increasingly dilute the TF-IDF vector with unrelated sentences and push the right chunk down in rank - a risk not worth taking for the small score gain it shows on two of the four questions here.
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab4\outputs\exp4_exercises.txt]</pre><h3>Discussion</h3><p>At threshold=0.20 all four test questions are handled correctly: both answerable questions score well above the threshold and are answered normally, and both unanswerable questions score below it (0.168 and 0.000) and are correctly abstained on. No question in this test set is missed. The margin is comfortable rather than razor-thin, but it is corpus-specific: a larger or more topically overlapping corpus could push an unanswerable question's best score above 0.20 by accident (a near-miss topic sharing vocabulary with the query), which is why a shipped system would tune this threshold against a held-out set of known-answerable and known-unanswerable questions rather than fixing it by inspection of one sample run.</p><br style='page-break-before:always'><h2>Exercise 2 &mdash; Chunk size and overlap sweep</h2><p><b>Task.</b> Vary the chunk size and overlap over at least four settings, and for a fixed set of questions report the rank and similarity score of the chunk that actually contains the answer. State which setting you would ship and why.</p><p><b>Approach.</b> Four (chunk_size, overlap) settings in sentences were tried: (1, 0), (2, 0), (2, 1) &mdash; the shipped default &mdash; and (4, 2). For each of four fixed questions, the rank and score of the first retrieved chunk whose text contains the key supporting fact was recorded (searched over the top-5, since a coarser chunking changes how many chunks exist at all).</p><p>See the &ldquo;Exercise 2&rdquo; section of the output above for the full sweep. The chunk_size=1/overlap=0 setting is the one that breaks: the uniform-cost-search finality fact is worded across two adjacent sentences in the corpus, so with single-sentence chunks and no overlap that fact is split across two separate chunks and the best matching chunk falls to rank 4 instead of rank 1 &mdash; a direct, concrete demonstration that retrieval can only return what chunking has made retrievable. Every 2-sentence setting keeps that fact whole in one chunk and recovers rank 1 with a substantially higher score.</p><h3>Setting to ship</h3><p><b>chunk_size=2, overlap=1</b> is the setting to ship. chunk_size=2/overlap=0 scores marginally higher on this small corpus, but it relies on the sentence boundaries happening to align with each fact; a one-sentence overlap costs only a modest increase in chunk count (13 vs. 9 chunks here) and directly guards against the same failure mode that broke the 1-sentence setting, should a future fact in the corpus straddle a 2-sentence boundary instead. The largest setting (4, 2) does not miss any fact in this small corpus because each document is short enough that a 4-sentence window still isolates one topic, but its wider window would increasingly dilute the TF-IDF vector with unrelated sentences on a longer, more varied corpus, which is a risk not worth taking for the small score gain it shows on two of the four questions here.</p><br style='page-break-before:always'><h2>Conclusion</h2><p>A retrieval-augmented generation pipeline was implemented end to end: sentence-based chunking with configurable size and overlap, TF-IDF vectorisation with an exhaustive cosine-similarity search acting as the vector store, top-k retrieval, grounded-prompt assembly with source citations, and a scripted generation step that answers only from retrieved evidence, compared side by side against an ungrounded baseline drawing on a fixed parametric memory. The central result was visible in the similarity scores themselves: answerable questions retrieved supporting chunks scoring 0.34&ndash;0.63, while unanswerable questions retrieved chunks scoring at most 0.17, giving retrieval confidence a concrete, usable number rather than a qualitative impression.</p><p>The two exercises then closed the pipeline's two structural gaps. Exercise 1 added a similarity threshold so the pipeline can refuse to answer when the best retrieved chunk is not actually relevant, rather than confidently grounding an answer in whatever chunk happened to score highest; a threshold of 0.20 correctly separated all four test questions with no misses. Exercise 2 swept chunk size and overlap and showed the second gap directly: with single-sentence chunks and no overlap, a fact worded across two adjacent sentences became split across two chunks and dropped from rank 1 to rank 4, while every setting using two-sentence chunks kept the fact whole and recovered top rank &mdash; concrete evidence that chunking, not just the similarity measure, bounds what a RAG pipeline can ever retrieve.</p><h2>Execution environment and declaration</h2><table class=g><tr><th style='width:22%'>Item</th><th style='width:78%'>Detail</th></tr><tr><td>Execution</td><td>Python 3.12.1 on Windows (AMD64), executed 10 September 2026, 11:19</td></tr><tr><td>Files</td><td>docs/doc1_bfs.txt, docs/doc2_ucs.txt, docs/doc3_tfidf.txt, docs/doc4_rag.txt, corpus.py, exp4_rag_pipeline.py, exp4_exercises.py, make_report.py</td></tr><tr><td>Libraries used</td><td>scikit-learn (<span class=m>TfidfVectorizer</span>, <span class=m>cosine_similarity</span>) for vectorisation and similarity scoring; Python standard library (<span class=m>re</span>) for sentence splitting. No agent framework, orchestration library, or external API/network access was used, in accordance with clause 3.1 of the Rules and Regulations.</td></tr><tr><td>Reproducibility</td><td>The corpus, queries, chunk settings and threshold are all fixed, and TF-IDF/cosine similarity are deterministic, so every run of every program reproduces exactly.</td></tr><tr><td>Sources consulted</td><td>Course manual for Experiment 4 (retrieval-augmented generation pipeline, TF-IDF, cosine similarity, chunking trade-offs).</td></tr></table><p class=note>All output reproduced above was produced by executing the programs listed in this record on the machine and at the time stated in the table.</p></div></body>
+</html>

@@ -1,0 +1,317 @@
+{
+ "idx": 948,
+ "question": "Cayley markets various newspapers to get a commission on each copy sold. He gets a 10% commission on each copy of the New York Times and an 8% commission on each of the Wall Street Journal. How much commission will he earn in total from the sales of 6 copies of the New York Times and 10 copies of Wall Street Journal if each costs $5 and $15 respectively?",
+ "gold": "15",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:58:54",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Cayley markets various newspapers to get a commission on each copy sold. He gets a 10% commission on each copy of the New York Times and an 8% commission on each of the Wall Street Journal. How much commission will he earn in total from the sales of 6 copies of the New York Times and 10 copies of Wall Street Journal if each costs $5 and $15 respectively?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 24.129,
+   "samples": [
+    {
+     "seed": 22094800,
+     "text": "The total earnings from 6 copies of the New York Times is 6 * 5 = $30. The total earnings from 10 copies of the Wall Street Journal is 10 * 15 = $150. The commission Cayley earns is 30 + 150 = $180.\nFinal answer: 180",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 78,
+     "latency_s": 17.277,
+     "error": null,
+     "sample_index": 0,
+     "pred": "180",
+     "correct": false
+    },
+    {
+     "seed": 22094801,
+     "text": "For the New York Times, the commission is 6 * $5 * 10% = $30. For the Wall Street Journal, the commission is 10 * $15 * 8% = $12. The total commission is $30 + $12 = $42.",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 66,
+     "latency_s": 14.941,
+     "error": null,
+     "sample_index": 1,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22094802,
+     "text": "For the New York Times, Cayley gets a 10% commission on each copy sold. So for 6 copies, his commission is 6 * $5 * 0.10 = $3. For the Wall Street Journal, he gets an 8% commission on each copy sold. So for 10 copies, his commission is 10 * $15 * 0.08 = $12. In total, Cayley earns $3 + $12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 114,
+     "latency_s": 22.697,
+     "error": null,
+     "sample_index": 2,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094803,
+     "text": "The commission for the New York Times is 6 * $5 * 10% = $3. The commission for the Wall Street Journal is 10 * $15 * 8% = $12. The total commission is $3 + $12 = $15.",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 62,
+     "latency_s": 13.919,
+     "error": null,
+     "sample_index": 3,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22094804,
+     "text": "Cayley earns $5 * 0.10 = $0.5 commission from each copy of the New York Times. So, for 6 copies of the New York Times, Cayley earns 6 * 0.5 = $3 commission. He earns $15 * 0.08 = $1.2 commission from each copy of the Wall Street Journal. Thus, for 10 copies of the Wall Street Journal, Cayley earns 10 * 1.2 = $12 commission. Cayley earns a total commission of 3 + 12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 135,
+     "latency_s": 24.125,
+     "error": null,
+     "sample_index": 4,
+     "pred": "15",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 18.815,
+   "samples": [
+    {
+     "seed": 22094805,
+     "text": "For the New York Times, Cayley earns 10% of $5, which is 0.10 * 5 = $0.5. For the Wall Street Journal, he earns 8% of $15, which is 0.08 * 15 = $1.2. So, the total commission he earns is 0.5 + 1.2 = $1.7.",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 90,
+     "latency_s": 17.042,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22094806,
+     "text": "The commission on each New York Times is 0.1 * 5 = $0.5. So for 6 copies, he earns 6 * 0.5 = $3. The commission on each Wall Street Journal is 0.08 * 15 = $1.2. So for 10 copies, he earns 10 * 1.2 = $12. The total commission is 3 + 12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 107,
+     "latency_s": 18.813,
+     "error": null,
+     "sample_index": 6,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094807,
+     "text": "The commission on the New York Times is 0.1 * 6 * 5 = $3. The commission on the Wall Street Journal is 0.08 * 10 * 15 = $12. The total commission is 3 + 12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 70,
+     "latency_s": 13.799,
+     "error": null,
+     "sample_index": 7,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094808,
+     "text": "The commission from each New York Times is 0.10 * $5 = $0.5. The commission from each Wall Street Journal is 0.08 * $15 = $1.2. He earns a total of $0.5 + $1.2 = $1.7 per newspaper. So for 6 New York Times and 10 Wall Street Journal, he earns $1.7 * (6 + 10) = $25.9.",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 104,
+     "latency_s": 18.639,
+     "error": null,
+     "sample_index": 8,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22094809,
+     "text": "The commission on the New York Times is 6 * $5 * 10 / 100 = $3. The commission on the Wall Street Journal is 10 * $15 * 8 / 100 = $12. The total commission is $3 + $12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 76,
+     "latency_s": 14.948,
+     "error": null,
+     "sample_index": 9,
+     "pred": "15",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 17.434,
+   "samples": [
+    {
+     "seed": 22094810,
+     "text": "For the New York Times, Cayley earns 6 * 5 * 10 / 100 = $3. For the Wall Street Journal, he earns 10 * 15 * 8 / 100 = $12. In total, he earns $3 + $12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 78,
+     "latency_s": 13.861,
+     "error": null,
+     "sample_index": 10,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094811,
+     "text": "For the New York Times, Cayley earns 10% of $5 = $0.5 for each copy sold. So for 6 copies, he earns 6 * $0.5 = $3. For the Wall Street Journal, he earns 8% of $15 = $1.2 for each copy sold. So for 10 copies, he earns 10 * $1.2 = $12. In total, he earns $3 + $12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 115,
+     "latency_s": 17.37,
+     "error": null,
+     "sample_index": 11,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094812,
+     "text": "The commission for each New York Times is 5 * 0.10 = $0.50. For 6 New York Times, the commission is 6 * 0.50 = $3. The commission for each Wall Street Journal is 15 * 0.08 = $1.20. For 10 Wall Street Journal, the commission is 10 * 1.20 = $12. The total commission is 3 + 12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 116,
+     "latency_s": 17.432,
+     "error": null,
+     "sample_index": 12,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094813,
+     "text": "The New York Times earns him 0.10 * $5 * 6 = $3. The Wall Street Journal earns him 0.08 * $15 * 10 = $12. The total commission Cayley earns is $3 + $12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 70,
+     "latency_s": 12.566,
+     "error": null,
+     "sample_index": 13,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094814,
+     "text": "For the New York Times, he gets 6 * $5 * 10% = $3 commission. For the Wall Street Journal, he gets 10 * $15 * 8% = $12 commission. Total, he earns $3 + $12 = $15 in commission.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 72,
+     "latency_s": 13.046,
+     "error": null,
+     "sample_index": 14,
+     "pred": "15",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 20.456,
+   "samples": [
+    {
+     "seed": 22094815,
+     "text": "For the New York Times, Cayley earns 6 * $5 * 10% = $3 as commission. For the Wall Street Journal, he earns 10 * $15 * 8% = $12 as commission. In total, he earns $3 + $12 = $15 as commission.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 76,
+     "latency_s": 12.953,
+     "error": null,
+     "sample_index": 15,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094816,
+     "text": "Cayley earns 0.10 * $5 = $0.5 on each New York Times. So he earns 0.10 * $5 * 6 = $3 on the New York Times. Cayley earns 0.08 * $15 = $1.2 on each Wall Street Journal. So he earns 0.08 * $15 * 10 = $12 on the Wall Street Journal. He earns a total of $3 + $12 = $15.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 118,
+     "latency_s": 19.89,
+     "error": null,
+     "sample_index": 16,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094817,
+     "text": "Cayley earns $5 * 10% = $0.50 for each copy of the New York Times sold. For 6 copies he earns 6 * $0.50 = $3.00. He earns $15 * 8% = $1.20 for each copy of the Wall Street Journal sold. For 10 copies he earns 10 * $1.20 = $12.00. His total commission is $3.00 + $12.00 = $15.00.\nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 128,
+     "latency_s": 20.454,
+     "error": null,
+     "sample_index": 17,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094818,
+     "text": "Cayley earns $5 * 0.1 = $0.5 in commission for the New York Times. For the Wall Street Journal, he earns $15 * 0.08 = $1.2 in commission. So the total commission for the New York Times is 6 * $0.5 = $3. The total commission for the Wall Street Journal is 10 * $1.2 = $12. The total commission Cayley earns is $3 + $12 = $15. \nFinal answer: 15",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 118,
+     "latency_s": 19.898,
+     "error": null,
+     "sample_index": 18,
+     "pred": "15",
+     "correct": true
+    },
+    {
+     "seed": 22094819,
+     "text": "For 6 copies of the New York Times, Cayley earns 6 * $5 * 10% = $30 in commission. For 10 copies of the Wall Street Journal, he earns 10 * $15 * 8% = $120 in commission. In total, Cayley earns $30 + $120 = $150 in commission.\nFinal answer: 150",
+     "finish_reason": "stop",
+     "prompt_tokens": 442,
+     "completion_tokens": 92,
+     "latency_s": 16.015,
+     "error": null,
+     "sample_index": 19,
+     "pred": "150",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,317 @@
+{
+ "idx": 1027,
+ "question": "A store offers sandwiches in 3 different package sizes: the first package with 2 sandwiches for $3, the second with 4 sandwiches for $6, and a third with 8 sandwiches, but the price is not indicated. Knowing that the prices are proportional, how much will the package with 8 sandwiches cost?",
+ "gold": "12",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:16:19",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "A store offers sandwiches in 3 different package sizes: the first package with 2 sandwiches for $3, the second with 4 sandwiches for $6, and a third with 8 sandwiches, but the price is not indicated. Knowing that the prices are proportional, how much will the package with 8 sandwiches cost?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 19.217,
+   "samples": [
+    {
+     "seed": 11102700,
+     "text": "Let the cost of the third package be \\( x \\). Since the prices are proportional, we can set up the equation: \\( \\frac{3}{2} = \\frac{6}{4} = \\frac{x}{8} \\). Solving for \\( x \\), we find \\( x = 8 \\times \\frac{6}{4} = 12 \\). Therefore, the package with 8 sandwiches will cost 12 dollars.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 101,
+     "latency_s": 18.778,
+     "error": null,
+     "sample_index": 0,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102701,
+     "text": "The first package costs 3/2 = 1.5 times the cost of the second package. So the second package costs 6 * 2 = $12. If the third package is 8 times as expensive as the second, then it will cost 12 * 8 = $96.\nFinal answer: 96",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 72,
+     "latency_s": 15.884,
+     "error": null,
+     "sample_index": 1,
+     "pred": "96",
+     "correct": false
+    },
+    {
+     "seed": 11102702,
+     "text": "The price of 8 sandwiches is 8/4 = 2 times the price of 4 sandwiches. Since 4 sandwiches cost $6, the price of 8 sandwiches is $6 * 2 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 54,
+     "latency_s": 12.229,
+     "error": null,
+     "sample_index": 2,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102703,
+     "text": "Since the prices are proportional, we can use the first two package sizes to find the cost of the third. The first package costs $3 for 2 sandwiches, so each sandwich costs $3 / 2 = $1.50. The second package costs $6 for 4 sandwiches, so each sandwich costs $6 / 4 = $1.50. Since the third package has 8 sandwiches, the cost is 8 * $1.50 = $12.\nFinal answer: $12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 108,
+     "latency_s": 19.214,
+     "error": null,
+     "sample_index": 3,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102704,
+     "text": "The price for the first package with 2 sandwiches is $3. For the second package with 4 sandwiches, the price is $6. The cost per sandwich is $6 / 4 = $1.5. Therefore, the cost for 8 sandwiches is $1.5 * 8 = $12. \n\nFinal answer: $12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 74,
+     "latency_s": 16.169,
+     "error": null,
+     "sample_index": 4,
+     "pred": "12",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 16.106,
+   "samples": [
+    {
+     "seed": 11102705,
+     "text": "First, find the price per sandwich in the first package: 3/2 = $1.50 per sandwich. The second package's price per sandwich is 6/4 = $1.50 per sandwich. Since the prices are proportional, the third package with 8 sandwiches will cost 8 * 1.5 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 80,
+     "latency_s": 13.554,
+     "error": null,
+     "sample_index": 5,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102706,
+     "text": "The price per sandwich is the same across all packages. For the first package, it's $3 / 2 = $1.50 per sandwich. For the second package, it's $6 / 4 = $1.50 per sandwich. For the third package, knowing the price per sandwich is $1.50, the cost for 8 sandwiches is 8 * $1.50 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 97,
+     "latency_s": 15.832,
+     "error": null,
+     "sample_index": 6,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102707,
+     "text": "Since the first package with 2 sandwiches costs $3 and the second package with 4 sandwiches costs $6, the cost per sandwich is $6 / 4 = $1.50. The third package with 8 sandwiches would then cost 8 * $1.50 = $12.\nFinal answer: $12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 70,
+     "latency_s": 12.345,
+     "error": null,
+     "sample_index": 7,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102708,
+     "text": "If the first package with 2 sandwiches costs $3, the second package with 4 sandwiches would cost $6 (since it doubles the number of sandwiches). This means the price per sandwich is $6 / 4 = $1.5. Therefore, the package with 8 sandwiches, which is 4 times the size, would cost 8 * $1.5 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 88,
+     "latency_s": 14.828,
+     "error": null,
+     "sample_index": 8,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102709,
+     "text": "The first package of 2 sandwiches costs $3, so the price per sandwich is $3 / 2 = $1.50. The second package with 4 sandwiches costs $6, which means the price per sandwich is $6 / 4 = $1.50. Since the price per sandwich is consistent, the third package with 8 sandwiches will cost 8 * $1.50 = $12.00.\nFinal answer: $12.00",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 102,
+     "latency_s": 16.103,
+     "error": null,
+     "sample_index": 9,
+     "pred": "12",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 14.701,
+   "samples": [
+    {
+     "seed": 11102710,
+     "text": "The price for 8 sandwiches is 8/4 * 6 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 26,
+     "latency_s": 4.279,
+     "error": null,
+     "sample_index": 10,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102711,
+     "text": "The second package with 4 sandwiches costs $6, which is 2 * $3. The third package with 8 sandwiches is 4 * $3 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 44,
+     "latency_s": 6.438,
+     "error": null,
+     "sample_index": 11,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102712,
+     "text": "First, we determine the price per sandwich. The first package with 2 sandwiches costs $3, so the price per sandwich is $3 / 2 = $1.50. The second package with 4 sandwiches costs $6, so the price for 4 sandwiches is $6, which is exactly twice the price of 2 sandwiches, indicating the price is consistent with the previous calculation. The third package with 8 sandwiches, at an unspecified price, can be calculated as $1.50 * 8 = $12.\nFinal answer: $12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 118,
+     "latency_s": 14.699,
+     "error": null,
+     "sample_index": 12,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102713,
+     "text": "The ratio of sandwiches to cost is 2:3 for the first package, 4:6 = 1:1.5 for the second package, and for the third package, we need to find the price per sandwich. The price per sandwich for the first package is $3 / 2 = $1.5, for the second package is $6 / 4 = $1.5, and the cost per sandwich for the third package is $8 / 8 = $1.\nFinal answer: $1",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 108,
+     "latency_s": 14.109,
+     "error": null,
+     "sample_index": 13,
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "seed": 11102714,
+     "text": "The cost of 8 sandwiches is calculated by first finding the cost per sandwich, which is $6 / 4 = $1.50 per sandwich. The total cost for 8 sandwiches is 8 * $1.50 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 60,
+     "latency_s": 8.736,
+     "error": null,
+     "sample_index": 14,
+     "pred": "12",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 14.736,
+   "samples": [
+    {
+     "seed": 11102715,
+     "text": "Since the prices are proportional, the cost per sandwich is consistent across the different packages. For the first package, the cost per sandwich is $3 / 2 = $1.5. For the second package, it's $6 / 4 = $1.5 per sandwich. Since the third package has 8 sandwiches, the total cost will be 8 * $1.5 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 91,
+     "latency_s": 14.067,
+     "error": null,
+     "sample_index": 15,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102716,
+     "text": "Since the first package has 2 sandwiches for $3, the second package with 4 sandwiches would cost 3 * 2 = $6. The third package with 8 sandwiches would cost 6 * 2 = $12. So, the package with 8 sandwiches would cost 12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 70,
+     "latency_s": 11.572,
+     "error": null,
+     "sample_index": 16,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102717,
+     "text": "The price per sandwich is $3 / 2 = $1.5 for the first package, $6 / 4 = $1.5 for the second package, and $0 / 8 = $0 for the third package, but since the prices are proportional, the price for the third package should be $1.5 * 8 = $12.\nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 83,
+     "latency_s": 13.215,
+     "error": null,
+     "sample_index": 17,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102718,
+     "text": "The first package with 2 sandwiches costs $3, so the price per sandwich is $3 / 2 = $1.5 per sandwich. The second package with 4 sandwiches costs $6, which is 4 * $1.5 = $6. This matches the given price, confirming the price per sandwich is $1.5. For the third package with 8 sandwiches, the cost would be 8 * $1.5 = $12.\nFinal answer: $12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 103,
+     "latency_s": 14.732,
+     "error": null,
+     "sample_index": 18,
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "seed": 11102719,
+     "text": "The ratio of the number of sandwiches to the cost is 2:3, 4:6, and 8:? Since the second package is 2 times the first, the third package should be 2 times the second, making 8 sandwiches cost 2 * 6 = 12. \nFinal answer: 12",
+     "finish_reason": "stop",
+     "prompt_tokens": 422,
+     "completion_tokens": 71,
+     "latency_s": 11.71,
+     "error": null,
+     "sample_index": 19,
+     "pred": "12",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}

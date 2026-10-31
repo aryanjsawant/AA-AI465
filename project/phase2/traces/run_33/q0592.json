@@ -1,0 +1,317 @@
+{
+ "idx": 592,
+ "question": "Marilyn wants to buy a pair of boots online. On Amazon.com, the boots cost $16 and shipping costs $4. On eBay, those same pair of shoes are only $13, but shipping costs twice as much as it does on Amazon. How much more expensive do the boots work out to be on eBay?",
+ "gold": "1",
+ "run": "run_33",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:56:13",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Marilyn wants to buy a pair of boots online. On Amazon.com, the boots cost $16 and shipping costs $4. On eBay, those same pair of shoes are only $13, but shipping costs twice as much as it does on Amazon. How much more expensive do the boots work out to be on eBay?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 13.446,
+   "samples": [
+    {
+     "seed": 33059200,
+     "text": "The total cost on Amazon is $16 + $4 = $20. The shipping cost on eBay is 2 * $4 = $8. The total cost on eBay is $13 + $8 = $21. eBay is $21 - $20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 70,
+     "latency_s": 11.68,
+     "error": null,
+     "sample_index": 0,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059201,
+     "text": "The shipping cost on Amazon is $4. On eBay, it costs 2 * $4 = $8. The total cost on eBay is $13 + $8 = $21. The boots are $16 on Amazon and $21 on eBay, so eBay is $21 - $16 = $5 more expensive.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 77,
+     "latency_s": 12.712,
+     "error": null,
+     "sample_index": 1,
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "seed": 33059202,
+     "text": "The shipping cost on eBay is 2 * 4 = $8. The total cost for eBay is $13 + $8 = $21. The boots are $21 for eBay, and $16 for Amazon, so eBay is 21 - 16 = $5 more expensive.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 70,
+     "latency_s": 11.686,
+     "error": null,
+     "sample_index": 2,
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "seed": 33059203,
+     "text": "On Amazon, the total cost is $16 + $4 = $20. On eBay, the cost of the boots is $13 and the shipping is $4 * 2 = $8. So the total cost on eBay is $13 + $8 = $21.\n\nThe boots are $21 on eBay and $20 on Amazon, so eBay is $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 90,
+     "latency_s": 13.443,
+     "error": null,
+     "sample_index": 3,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059204,
+     "text": "The shipping cost on eBay is 2 * 4 = $8. The total cost of the boots and shipping on eBay is 13 + 8 = $21. The boots and shipping on Amazon are 16 + 4 = $20. Thus eBay is 21 - 20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 77,
+     "latency_s": 12.716,
+     "error": null,
+     "sample_index": 4,
+     "pred": "1",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 14.517,
+   "samples": [
+    {
+     "seed": 33059205,
+     "text": "The cost of shipping on Amazon is $4. On eBay, it costs twice as much, so it's 2 * $4 = $8. The total cost on Amazon is $16 + $4 = $20. On eBay, the total cost is $13 + $8 = $21. eBay costs $21 and Amazon costs $20, so eBay is $1 more expensive.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 87,
+     "latency_s": 14.454,
+     "error": null,
+     "sample_index": 5,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33059206,
+     "text": "The shipping on Amazon is $4. On eBay, it costs 2 * 4 = $8. The total cost on eBay is 13 + 8 = $21. So the boots are 21 - 16 = $5 more expensive on eBay.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 64,
+     "latency_s": 11.048,
+     "error": null,
+     "sample_index": 6,
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "seed": 33059207,
+     "text": "At Amazon, shipping costs $4. eBay's shipping costs 2 * $4 = $8. eBay's total cost for shipping is $13 + $8 = $21. So eBay is $21 - $16 = $5 more expensive.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 56,
+     "latency_s": 9.565,
+     "error": null,
+     "sample_index": 7,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33059208,
+     "text": "The shipping cost on eBay is 2 * $4 = $8. The total cost on eBay is $13 + $8 = $21. The boots cost $16 + $4 = $20 on Amazon. The boots cost $21 on eBay and $20 on Amazon, so eBay makes the boots $21 - $20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 87,
+     "latency_s": 14.457,
+     "error": null,
+     "sample_index": 8,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059209,
+     "text": "The shipping cost on eBay is 2 * $4 = $8. The total cost for the shoes on eBay is $13 + $8 = $21. The boots on Amazon cost $16 + $4 = $20. The boots are $21 on eBay and $20 on Amazon, so eBay is $21 - $20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 88,
+     "latency_s": 14.512,
+     "error": null,
+     "sample_index": 9,
+     "pred": "1",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 17.246,
+   "samples": [
+    {
+     "seed": 33059210,
+     "text": "The total cost on Amazon includes the boots and shipping, which is $16 + $4 = $20. On eBay, the boots cost $13, but shipping is twice as much as it is on Amazon, which means it's $4 * 2 = $8. So, the total cost on eBay is $13 + $8 = $21. The boots are $21 on eBay and $20 on Amazon, so eBay makes them $21 - $20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 116,
+     "latency_s": 17.245,
+     "error": null,
+     "sample_index": 10,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059211,
+     "text": "The shipping cost on Amazon is $4. On eBay, the shipping cost is $4 * 2 = $8. The total cost on Amazon is $16 + $4 = $20. The total cost on eBay is $13 + $8 = $21. The boots are $21 on eBay and $20 on Amazon, so eBay is $21 - $20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 96,
+     "latency_s": 16.007,
+     "error": null,
+     "sample_index": 11,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059212,
+     "text": "The total cost on Amazon is $16 + $4 = $20. On eBay, the shipping cost is 2 * $4 = $8. The total cost on eBay is $13 + $8 = $21. The boots cost $21 on eBay and $20 on Amazon, so eBay is $21 - $20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 87,
+     "latency_s": 14.688,
+     "error": null,
+     "sample_index": 12,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059213,
+     "text": "The shipping on Amazon costs $4. The shipping on eBay is 2 * $4 = $8. The total price on eBay is $13 + $8 = $21. The total price on Amazon is $16 + $4 = $20. The difference is $21 - $20 = $1.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 76,
+     "latency_s": 12.642,
+     "error": null,
+     "sample_index": 13,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059214,
+     "text": "First, calculate the total cost on Amazon, which includes the boots and shipping: $16 + $4 = $20. Then, calculate the shipping cost on eBay: $4 * 2 = $8. Finally, add the shipping cost to the boots' price on eBay: $13 + $8 = $21.\n\nThe boots are $21 on eBay, which is $2 more expensive than $20 on Amazon.\n\nFinal answer: $2",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 98,
+     "latency_s": 16.241,
+     "error": null,
+     "sample_index": 14,
+     "pred": "2",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 17.44,
+   "samples": [
+    {
+     "seed": 33059215,
+     "text": "The shipping on eBay is 2 * $4 = $8. The total price on eBay is $13 + $8 = $21. The total price on Amazon is $16 + $4 = $20. The shoes are $21 on eBay and $20 on Amazon. So eBay is $21 - $20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 85,
+     "latency_s": 16.287,
+     "error": null,
+     "sample_index": 15,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059216,
+     "text": "The total cost on Amazon is $16 + $4 = $20. The shipping cost on eBay is 2 * $4 = $8. The total cost on eBay is $13 + $8 = $21. The boots cost $21 to buy and ship on eBay and $20 on Amazon. Therefore, eBay is $1 more expensive for the boots.",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 81,
+     "latency_s": 15.753,
+     "error": null,
+     "sample_index": 16,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 33059217,
+     "text": "The shipping cost on Amazon is $4. On eBay, it's twice that amount, so eBay's shipping is 2 * $4 = $8. eBay's total cost is $13 (for the boots) + $8 (for shipping) = $21. Amazon's total cost is $16 (for the boots) + $4 (for shipping) = $20. eBay is $21 - $20 = $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 103,
+     "latency_s": 17.437,
+     "error": null,
+     "sample_index": 17,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059218,
+     "text": "At Amazon, the total cost is $16 + $4 = $20. On eBay, the cost is $13 + ($4 * 2) = $13 + $8 = $21. Thus, the boots cost $21 at eBay and $20 at Amazon, making eBay $1 more expensive.\nFinal answer: 1",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 76,
+     "latency_s": 14.897,
+     "error": null,
+     "sample_index": 18,
+     "pred": "1",
+     "correct": true
+    },
+    {
+     "seed": 33059219,
+     "text": "The shipping cost on eBay is 4 * 2 = $8. So, the total cost on eBay is 13 + 8 = $21. The boots on eBay cost 21 - 16 = $5 more than the same boots on Amazon.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 425,
+     "completion_tokens": 63,
+     "latency_s": 12.992,
+     "error": null,
+     "sample_index": 19,
+     "pred": "5",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,317 @@
+{
+ "idx": 883,
+ "question": "Elaina is holding the final concert in her tour. To celebrate her final concert, she makes the concert twice as long as her usual concerts. At the end of the concert, she also performs a 15-minute encore. If the runtime of this final concert is 65 minutes then how long, in minutes, do her usual concerts run for?",
+ "gold": "25",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:06:22",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Elaina is holding the final concert in her tour. To celebrate her final concert, she makes the concert twice as long as her usual concerts. At the end of the concert, she also performs a 15-minute encore. If the runtime of this final concert is 65 minutes then how long, in minutes, do her usual concerts run for?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 24.469,
+   "samples": [
+    {
+     "seed": 11088300,
+     "text": "Let \\( x \\) be the length of Elaina's usual concert in minutes. According to the problem, the final concert is 65 minutes long, which is twice her usual concert length plus an encore of 15 minutes. So, we can set up the equation: \\( 2x + 15 = 65 \\). Solving for \\( x \\):\n\n\\[ 2x = 65 - 15 \\]\n\\[ 2x = 50 \\]\n\\[ x = 25 \\]\n\nSo, her usual concerts run for 25 minutes.\nFinal answer: 25",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 129,
+     "latency_s": 22.85,
+     "error": null,
+     "sample_index": 0,
+     "pred": "25",
+     "correct": true
+    },
+    {
+     "seed": 11088301,
+     "text": "Let \\( x \\) be the length of Elaina's usual concert in minutes. According to the problem, her final concert is twice as long as her usual concert, which is 65 minutes. Therefore, the equation for the final concert's duration is:\n\n\\[ 2x = 65 \\]\n\nTo find the usual concert length, we solve for \\( x \\):\n\n\\[ x = \\frac{65}{2} = 32.5 \\]\n\nSo, her usual concert runs for 32.5 minutes.\n\nFinal answer: 32.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 119,
+     "latency_s": 21.82,
+     "error": null,
+     "sample_index": 1,
+     "pred": "32.5",
+     "correct": false
+    },
+    {
+     "seed": 11088302,
+     "text": "Let's call the length of her usual concert x minutes. According to the problem, the final concert is twice as long as her usual concert, so it is 2x minutes. We know that the final concert is 65 minutes long, so we can write the equation 2x = 65. Solving for x gives us x = 65 / 2 = 32.5 minutes.\nFinal answer: 32.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 95,
+     "latency_s": 17.828,
+     "error": null,
+     "sample_index": 2,
+     "pred": "32.5",
+     "correct": false
+    },
+    {
+     "seed": 11088303,
+     "text": "Let \\( x \\) be the length of her usual concert in minutes. The final concert is 65 minutes long, which is 2 times her usual concert length plus an encore of 15 minutes. Thus, the equation is \\( 65 = 2x + 15 \\).\n\nSolving for \\( x \\):\n\n\\( 65 - 15 = 2x \\)\n\\( 50 = 2x \\)\n\\( x = 25 \\) minutes.\n\nSo, her usual concerts run for 25 minutes.",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 116,
+     "latency_s": 21.572,
+     "error": null,
+     "sample_index": 3,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11088304,
+     "text": "Let \\( x \\) be the length of Elaina's usual concert. According to the problem, the final concert is twice as long as her usual concerts, and the encore adds an additional 15 minutes. This means the total runtime of the final concert is \\( 2x + 15 \\).\n\nGiven that the final concert is 65 minutes long, we can set up the equation:\n\\[ 2x + 15 = 65 \\]\n\nNow, solve for \\( x \\):\n\\[ 2x = 65 - 15 \\]\n\\[ 2x = 50 \\]\n\\[ x = 25 \\]\n\nSo, Elaina's usual concerts run for 25 minutes.\n\nFinal answer: 25",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 157,
+     "latency_s": 24.461,
+     "error": null,
+     "sample_index": 4,
+     "pred": "25",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 20.91,
+   "samples": [
+    {
+     "seed": 11088305,
+     "text": "Let \\( x \\) be the length of Elaina's usual concert in minutes. According to the problem, the final concert is twice the length of her usual concert, so the equation is:\n\\[ 2x = 65 + 15 \\]\n\nSimplifying the right side:\n\\[ 2x = 80 \\]\n\nNow, to find the value of \\( x \\), divide both sides by 2:\n\\[ x = 40 \\]\n\nSo, Elaina's usual concert runs for 40 minutes.\nFinal answer: 40",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 117,
+     "latency_s": 17.399,
+     "error": null,
+     "sample_index": 5,
+     "pred": "40",
+     "correct": false
+    },
+    {
+     "seed": 11088306,
+     "text": "If the final concert's runtime is twice her usual concert length, then her usual concert is 65 / 2 = 32.5 minutes.\nFinal answer: 32.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 41,
+     "latency_s": 6.446,
+     "error": null,
+     "sample_index": 6,
+     "pred": "32.5",
+     "correct": false
+    },
+    {
+     "seed": 11088307,
+     "text": "Let's denote the length of her usual concert as \\( x \\) minutes. According to the problem, the final concert runs twice as long as her usual concerts plus an encore. We know the final concert is 65 minutes long and the encore is 15 minutes. Therefore, we can set up the following equation:\n\n\\[ 2x + 15 = 65 \\]\n\nNow, let's solve for \\( x \\):\n\nSubtract 15 from both sides:\n\n\\[ 2x = 50 \\]\n\nDivide both sides by 2:\n\n\\[ x = 25 \\]\n\nSo, her usual concerts run for 25 minutes.",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 138,
+     "latency_s": 19.21,
+     "error": null,
+     "sample_index": 7,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11088308,
+     "text": "If the final concert is twice as long as her usual concerts, and it's 65 minutes long, then her usual concerts run for 65 / 2 = 32.5 minutes.\nFinal answer: 32.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 51,
+     "latency_s": 8.273,
+     "error": null,
+     "sample_index": 8,
+     "pred": "32.5",
+     "correct": false
+    },
+    {
+     "seed": 11088309,
+     "text": "Let's denote the usual concert length by \\( x \\) minutes. According to the problem, the final concert is twice as long as her usual concert, so it is \\( 2x \\) minutes. We also know that the final concert includes an encore that adds 15 minutes to the concert length, making the total length 65 minutes. Therefore, we can set up the equation \\( 2x + 15 = 65 \\). Solving for \\( x \\), we get \\( 2x = 65 - 15 \\), which simplifies to \\( 2x = 50 \\). Dividing both sides by 2, we find \\( x = 25 \\) minutes. Thus, her usual concerts run for 25 minutes.\nFinal answer: 25",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 170,
+     "latency_s": 20.906,
+     "error": null,
+     "sample_index": 9,
+     "pred": "25",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 16.56,
+   "samples": [
+    {
+     "seed": 11088310,
+     "text": "The usual concert is 65 - 15 = 50 minutes long.\nFinal answer: 50",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 25,
+     "latency_s": 3.744,
+     "error": null,
+     "sample_index": 10,
+     "pred": "50",
+     "correct": false
+    },
+    {
+     "seed": 11088311,
+     "text": "If the final concert is twice as long as her usual concerts, then her usual concerts would run for 65 / 2 = 32.5 minutes.\nFinal answer: 32.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 43,
+     "latency_s": 6.796,
+     "error": null,
+     "sample_index": 11,
+     "pred": "32.5",
+     "correct": false
+    },
+    {
+     "seed": 11088312,
+     "text": "Let's denote the usual runtime of Elaina's concerts as \\( x \\) minutes. According to the problem, the final concert is twice as long as her usual concerts plus 15 minutes for the encore. So, we have the equation:\n\n\\[ 2x + 15 = 65 \\]\n\nTo find \\( x \\), we first subtract 15 from both sides of the equation:\n\n\\[ 2x = 50 \\]\n\nNext, we divide both sides by 2:\n\n\\[ x = 25 \\]\n\nSo, her usual concerts run for 25 minutes.\n\nFinal answer: 25",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 130,
+     "latency_s": 15.825,
+     "error": null,
+     "sample_index": 12,
+     "pred": "25",
+     "correct": true
+    },
+    {
+     "seed": 11088313,
+     "text": "Let's denote the usual concert length as \\( x \\) minutes. According to the problem, the final concert is twice as long as the usual concerts, so the final concert's length is \\( 2x \\) minutes. We are also told that the final concert is 65 minutes long. So, we can set up the equation \\( 2x = 65 \\).\n\nTo find \\( x \\), we solve for \\( x \\) by dividing both sides of the equation by 2:\n\n\\( x = \\frac{65}{2} \\)\n\n\\( x = 32.5 \\)\n\nSo, Elaina's usual concert runs for 32.5 minutes.",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 143,
+     "latency_s": 16.555,
+     "error": null,
+     "sample_index": 13,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11088314,
+     "text": "If the final concert is twice as long as her usual concerts, her usual concerts would be 65 / 2 = 32.5 minutes long.\nFinal answer: 32.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 42,
+     "latency_s": 6.654,
+     "error": null,
+     "sample_index": 14,
+     "pred": "32.5",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 20.286,
+   "samples": [
+    {
+     "seed": 11088315,
+     "text": "Let's denote the usual concert length as \\( x \\) minutes. The final concert is 65 minutes long, which is twice the usual concert length plus 15 minutes for the encore. This gives us the equation: \\( 2x + 15 = 65 \\).\n\nTo find \\( x \\), we subtract 15 from both sides of the equation: \\( 2x = 50 \\), then divide by 2 to get: \\( x = 25 \\).\n\nSo, her usual concerts run for 25 minutes.",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 117,
+     "latency_s": 18.266,
+     "error": null,
+     "sample_index": 15,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11088316,
+     "text": "Let's denote the usual concert length by \\( x \\) minutes. According to the problem, the final concert is twice the usual length plus an encore of 15 minutes. This gives us the equation:\n\n\\[ 2x + 15 = 65 \\]\n\nNow, we solve for \\( x \\):\n\n\\[ 2x = 65 - 15 \\]\n\\[ 2x = 50 \\]\n\\[ x = 25 \\]\n\nSo, her usual concert runs for 25 minutes.",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 110,
+     "latency_s": 17.26,
+     "error": null,
+     "sample_index": 16,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11088317,
+     "text": "Let's denote the usual concert length as \\( x \\) minutes. The final concert is twice as long as her usual concerts, so the final concert is \\( 2x \\) minutes. Including the encore, the total length is \\( 65 + 15 = 80 \\) minutes. Thus, we have the equation \\( 2x + 15 = 80 \\). Solving for \\( x \\):\n\n\\[ 2x = 80 - 15 \\]\n\\[ 2x = 65 \\]\n\\[ x = \\frac{65}{2} = 32.5 \\]\n\nSo, her usual concert runs for 32.5 minutes.\nFinal answer: 32.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 156,
+     "latency_s": 20.282,
+     "error": null,
+     "sample_index": 17,
+     "pred": "32.5",
+     "correct": false
+    },
+    {
+     "seed": 11088318,
+     "text": "Let \\( x \\) be the length of Elaina's usual concert in minutes. According to the problem, the final concert is 65 minutes long, which is twice the usual length plus an encore of 15 minutes. Thus, we have:\n\n\\[ 65 = 2x + 15 \\]\n\nSubtracting 15 from both sides:\n\n\\[ 50 = 2x \\]\n\nDividing both sides by 2:\n\n\\[ x = 25 \\]\n\nSo, Elaina's usual concerts run for 25 minutes.",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 117,
+     "latency_s": 18.258,
+     "error": null,
+     "sample_index": 18,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 11088319,
+     "text": "Let's denote the usual concert length as \\( x \\) minutes. According to the problem, the final concert is twice as long as her usual concerts, and it is 65 minutes long. So, we can write the equation: \\( 2x = 65 \\). Solving for \\( x \\), we get \\( x = \\frac{65}{2} = 32.5 \\) minutes.\nFinal answer: 32.5",
+     "finish_reason": "stop",
+     "prompt_tokens": 429,
+     "completion_tokens": 97,
+     "latency_s": 14.938,
+     "error": null,
+     "sample_index": 19,
+     "pred": "32.5",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

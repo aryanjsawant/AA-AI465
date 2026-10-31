@@ -1,0 +1,33 @@
+EXPERIMENT 2 - DELIBERATIVE (GOAL-BASED) AGENT - BFS PLANNING
+
+Grid:
+       01234567890
+     0 S..........
+     1 .####.####.
+     2 .#.......#.
+     3 .#.#####.#.
+     4 .#.#...#.#.
+     5 .#.#.G.#.#.
+     6 .#.#...#.#.
+     7 .#.##.##.#.
+     8 .#.......#.
+     9 .#########.
+    10 ...........
+
+Plan (22 actions): ['Right', 'Right', 'Right', 'Right', 'Right', 'Down', 'Down', 'Right', 'Right', 'Right', 'Down', 'Down', 'Down', 'Down', 'Down', 'Down', 'Left', 'Left', 'Left', 'Up', 'Up', 'Up']
+
+Path taken ( * = visited cell ):
+       01234567890
+     0 S*****.....
+     1 .####*####.
+     2 .#...****#.
+     3 .#.#####*#.
+     4 .#.#...#*#.
+     5 .#.#.G.#*#.
+     6 .#.#.*.#*#.
+     7 .#.##*##*#.
+     8 .#...****#.
+     9 .#########.
+    10 ...........
+
+Goal reached: True   steps: 22

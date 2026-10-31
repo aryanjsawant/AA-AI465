@@ -1,0 +1,165 @@
+{
+ "idx": 88,
+ "question": "Marilyn's first record sold 10 times as many copies as Harald's. If they sold 88,000 copies combined, how many copies did Harald sell?",
+ "gold": "8000",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Marilyn's first record sold 10 times as many copies as Harald's. If they sold 88,000 copies combined, how many copies did Harald sell?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 24.21,
+   "samples": [
+    {
+     "seed": 7008800,
+     "text": "Let's say Harald sold H copies. Marilyn sold 10H copies. Together they sold 10H + H = 88,000 copies. This is 11H = 88,000. So, 11H = 88,000. Dividing both sides by 11 gives H = 8,000. Harald sold 8,000 copies.\nFinal answer: 8,000",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 105,
+     "latency_s": 20.896,
+     "error": null,
+     "pred": "8000"
+    },
+    {
+     "seed": 7008801,
+     "text": "Let x be the number of copies that Harald sold. Marilyn sold 10 * x copies. Together they sold 10x + x = 88,000 copies. Thus 11x = 88,000, and x = 80,000. Harald sold 80,000 copies.\nFinal answer: 80000",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 87,
+     "latency_s": 17.272,
+     "error": null,
+     "pred": "80000"
+    },
+    {
+     "seed": 7008802,
+     "text": "Let's denote the number of copies Harald sold as H. Marilyn sold 10 times more copies than Harald, so she sold 10H copies. Together, they sold 10H + H = 88,000 copies. Combining like terms, we get 11H = 88,000. Solving for H, we find that H = 80,000. Harald sold 80,000 copies.\nFinal answer: 80,000",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 115,
+     "latency_s": 24.207,
+     "error": null,
+     "pred": "80000"
+    },
+    {
+     "seed": 7008803,
+     "text": "Let \\( H \\) be the number of copies Harald sold. Marilyn sold \\( 10H \\) copies. Together they sold \\( 10H + H = 88,000 \\) copies. This simplifies to \\( 11H = 88,000 \\). Solving for \\( H \\), we get \\( H = 8,000 \\). Harald sold 8,000 copies.\nFinal answer: 8000",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 106,
+     "latency_s": 21.998,
+     "error": null,
+     "pred": "8000"
+    },
+    {
+     "seed": 7008804,
+     "text": "If Harald sold 1/10 times as many as Marilyn, he sold 88,000 / 10 = 8,800 copies.",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 38,
+     "latency_s": 7.751,
+     "error": null,
+     "pred": "8800"
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 38.139,
+   "samples": [
+    {
+     "seed": 7008805,
+     "text": "Let \\( H \\) be the number of copies Harald sold. Since Marilyn sold 10 times as many copies as Harald, we have \\( M = 10H \\). The total number of copies sold is 88,000, so \\( M + H = 88,000 \\). Substituting \\( M \\) with \\( 10H \\), we get \\( 10H + H = 88,000 \\), which simplifies to \\( 11H = 88,000 \\). Solving for \\( H \\), we find \\( H = \\frac{88,000}{11} = 8,000 \\).\nFinal answer: 8,000",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 166,
+     "latency_s": 38.138,
+     "error": null,
+     "pred": "8000"
+    },
+    {
+     "seed": 7008806,
+     "text": "Let H be the number of copies Harald sold. Marilyn sold 10 times more, so Marilyn sold 10H copies. Together they sold 88,000 copies, so H + 10H = 88,000. Combine like terms: 11H = 88,000. Divide both sides by 11: H = 8,000. Harald sold 8,000 copies.\nFinal answer: 8000",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 110,
+     "latency_s": 27.009,
+     "error": null,
+     "pred": "8000"
+    },
+    {
+     "seed": 7008807,
+     "text": "If Marilyn sold 10 times as many copies as Harald, Harald sold 88,000 / (10 + 1) = 8000 copies.\nFinal answer: 8000",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 49,
+     "latency_s": 30.205,
+     "error": null,
+     "pred": "8000"
+    },
+    {
+     "seed": 7008808,
+     "text": "Let's say Harald sold x copies. Then Marilyn sold 10 * x copies. Together they sold x + 10 * x = 11 * x copies. We know that 11 * x = 88,000. So x = 8,000. Harald sold 8,000 copies.\nFinal answer: 8,000",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 85,
+     "latency_s": 25.603,
+     "error": null,
+     "pred": "8000"
+    },
+    {
+     "seed": 7008809,
+     "text": "Let \\( H \\) be the number of copies Harald sold. Marilyn sold \\( 10H \\) copies, which amounts to 88,000 copies combined with Harald's sales.\n\nThus, we have \\( 10H + H = 88,000 \\).\n\nCombining like terms, we get \\( 11H = 88,000 \\).\n\nSolving for \\( H \\), we find \\( H = \\frac{88,000}{11} = 8,000 \\).\n\nSo, Harald sold 8,000 copies.",
+     "finish_reason": "stop",
+     "prompt_tokens": 397,
+     "completion_tokens": 134,
+     "latency_s": 36.042,
+     "error": null,
+     "pred": "8000"
+    }
+   ]
+  }
+ ],
+ "esc_answer": "8000",
+ "stopped_early": true,
+ "created": "2026-10-14 15:33:00"
+}

@@ -1,0 +1,317 @@
+{
+ "idx": 1052,
+ "question": "Romeo boards a train with 120 people. At the first stop, 20 more people board the train. At the second stop, 50 people descended from the train while twice that number boarded the train. If 80 more people descended at the third station, calculate the total number of people on the train at the final stop.",
+ "gold": "110",
+ "run": "run_22",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:21:23",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Romeo boards a train with 120 people. At the first stop, 20 more people board the train. At the second stop, 50 people descended from the train while twice that number boarded the train. If 80 more people descended at the third station, calculate the total number of people on the train at the final stop."
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 18.962,
+   "samples": [
+    {
+     "seed": 22105200,
+     "text": "First stop: 120 + 20 = 140 people.\nSecond stop: 140 - 50 + 2 * 50 = 140 - 50 + 100 = 240 people.\nThird stop: 240 - 80 = 160 people.\n\nAt the final stop, there are 160 people on the train.",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 92,
+     "latency_s": 14.321,
+     "error": null,
+     "sample_index": 0,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22105201,
+     "text": "At the first stop, there are 120 + 20 = 140 people on the train. At the second stop, 50 people disembarked and 50 x 2 = 100 boarded, making the total 140 - 50 + 100 = 290 people. At the third stop, 80 people disembarked, leaving 290 - 80 = 210 people on the train.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 112,
+     "latency_s": 17.81,
+     "error": null,
+     "sample_index": 1,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105202,
+     "text": "At the first stop, 120 + 20 = 140 people are on the train. At the second stop, 50 - 50 = 0 people boarded the train and 50 * 2 = 100 people descended. Now there are 140 - 100 = 40 people on the train. At the third stop, 80 people descended, leaving 40 - 80 = -40 people on the train. Since this is not possible, the train must be empty.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 125,
+     "latency_s": 18.958,
+     "error": null,
+     "sample_index": 2,
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "seed": 22105203,
+     "text": "At the first stop, 20 more people board, so 120 + 20 = 140 people are on the train. At the second stop, 50 people leave and twice that number, 100, board, so 140 - 50 + 100 = 290 people are on the train. At the third stop, 80 more people leave, so 290 - 80 = 210 people are on the train.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 119,
+     "latency_s": 18.62,
+     "error": null,
+     "sample_index": 3,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105204,
+     "text": "At the first stop, the train has 120 + 20 = 140 people. At the second stop, 50 people left and 50 * 2 = 100 people boarded, so there are 140 - 50 + 100 = 290 people. At the third stop, 80 people left, so the number of people on the train is 290 - 80 = 210.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 113,
+     "latency_s": 17.957,
+     "error": null,
+     "sample_index": 4,
+     "pred": "210",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 19.588,
+   "samples": [
+    {
+     "seed": 22105205,
+     "text": "At the first stop, 120 + 20 = 140 people are on the train. At the second stop, 50 people disembarked and 50 * 2 = 100 people boarded the train. 140 - 50 + 100 = 290 people are on the train. At the third stop, 80 people disembarked, leaving 290 - 80 = 210 people on the train.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 115,
+     "latency_s": 18.761,
+     "error": null,
+     "sample_index": 5,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105206,
+     "text": "At the first stop, the number of people on the train becomes 120 + 20 = 140. At the second stop, the number of people on the train decreases by 50 and increases by 2 * 50 = 100, resulting in a total of 140 - 50 + 100 = 290. At the third stop, 80 people descend, leaving 290 - 80 = 210 people on the train.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 121,
+     "latency_s": 19.478,
+     "error": null,
+     "sample_index": 6,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105207,
+     "text": "At the first stop, 20 more people board, making the total 120 + 20 = 140 people. At the second stop, 50 people leave while 2 * 50 = 100 people board, so the total becomes 140 - 50 + 100 = 290 people. At the third stop, 80 people leave, leaving 290 - 80 = 210 people on the train.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 117,
+     "latency_s": 18.986,
+     "error": null,
+     "sample_index": 7,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105208,
+     "text": "At the first stop, the train has 120 + 20 = 140 people. At the second stop, 50 people left and 50 * 2 = 100 people boarded. The train has 140 - 50 + 100 = 290 people. At the third stop, 80 people left the train. Thus, the train has 290 - 80 = 210 people on the train at the final stop.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 119,
+     "latency_s": 19.272,
+     "error": null,
+     "sample_index": 8,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105209,
+     "text": "First, add the people who boarded the train: 120 + 20 = 140 people. Next, subtract the people who boarded: 140 - 50 = 90 people. Then, add the people who boarded again: 90 + (2 * 50) = 190 people. Finally, subtract the people who descended: 190 - 80 = 110 people. The total number of people on the train at the final stop is 110.\nFinal answer: 110",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 123,
+     "latency_s": 19.583,
+     "error": null,
+     "sample_index": 9,
+     "pred": "110",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 18.812,
+   "samples": [
+    {
+     "seed": 22105210,
+     "text": "At the first stop, there are 120 + 20 = 140 people. At the second stop, 50 people left and 2 * 50 = 100 people boarded, so 140 - 50 + 100 = 200 people. At the third stop, 80 people left, so there are 200 - 80 = 120 people remaining.\nFinal answer: 120",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 106,
+     "latency_s": 16.456,
+     "error": null,
+     "sample_index": 10,
+     "pred": "120",
+     "correct": false
+    },
+    {
+     "seed": 22105211,
+     "text": "At the first stop, there are 120 + 20 = 140 people on the train. At the second stop, 50 people left and 2 * 50 = 100 boarded. This makes the total 140 - 50 + 100 = 240 people on the train. At the third stop, 80 people left, making the final number of people on the train 240 - 80 = 160.",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 111,
+     "latency_s": 17.504,
+     "error": null,
+     "sample_index": 11,
+     "pred": null,
+     "correct": false
+    },
+    {
+     "seed": 22105212,
+     "text": "At the first stop, 20 more people board, so the total is 120 + 20 = 140 people. At the second stop, 50 people descend, and twice that number, which is 100, board, so the total is 140 - 50 + 100 = 290 people. At the third stop, 80 people descend, so the total is 290 - 80 = 210 people.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 118,
+     "latency_s": 18.668,
+     "error": null,
+     "sample_index": 12,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105213,
+     "text": "At the first stop, 20 more people board, so the total is 120 + 20 = 140 people. At the second stop, 50 people disembarked and 50 * 2 = 100 people boarded. The total is 140 - 50 + 100 = 290 people. At the third stop, 80 more people disembarked, so the total is 290 - 80 = 210 people.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 120,
+     "latency_s": 18.807,
+     "error": null,
+     "sample_index": 13,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105214,
+     "text": "At the first stop, the train has 120 + 20 = 140 people. At the second stop, 50 people leave and 2 * 50 = 100 people enter. So, 140 - 50 + 100 = 290 people remain on the train. At the third stop, 80 people leave. 290 - 80 = 210 people remain on the train at the final stop.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 116,
+     "latency_s": 18.412,
+     "error": null,
+     "sample_index": 14,
+     "pred": "210",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 19.271,
+   "samples": [
+    {
+     "seed": 22105215,
+     "text": "At the first stop, there are 120 + 20 = 140 people on the train. At the second stop, 50 people left and 2 * 50 = 100 people boarded, so there are 140 - 50 + 100 = 290 people on the train. At the third stop, 80 people left, so there are 290 - 80 = 210 people on the train.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 116,
+     "latency_s": 17.948,
+     "error": null,
+     "sample_index": 15,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105216,
+     "text": "At the first stop, the train has 120 + 20 = 140 people. At the second stop, 50 people left and 2 * 50 = 100 people boarded, so there are 140 - 50 + 100 = 290 people. At the third stop, 80 more people boarded, making the total 290 + 80 = 370 people.\nFinal answer: 370",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 109,
+     "latency_s": 17.091,
+     "error": null,
+     "sample_index": 16,
+     "pred": "370",
+     "correct": false
+    },
+    {
+     "seed": 22105217,
+     "text": "At the first stop, 120 + 20 = 140 people are on the train. At the second stop, 50 people left the train and 50 * 2 = 100 people boarded, making the total 140 - 50 + 100 = 290 people. At the third stop, 80 people left the train, so the final number on the train is 290 - 80 = 210 people.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 118,
+     "latency_s": 18.166,
+     "error": null,
+     "sample_index": 17,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105218,
+     "text": "At the first stop, the train had 120 + 20 = 140 people. At the second stop, 50 people left and 2 * 50 = 100 boarded, so 140 - 50 + 100 = 290 people were on the train. At the third stop, 80 people left, so 290 - 80 = 210 people were on the train at the final stop.\nFinal answer: 210",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 115,
+     "latency_s": 17.8,
+     "error": null,
+     "sample_index": 18,
+     "pred": "210",
+     "correct": false
+    },
+    {
+     "seed": 22105219,
+     "text": "At the first stop, there are now 120 + 20 = 140 people on the train. At the second stop, 50 people leave the train and 50 * 2 = 100 people board the train, for a total of 50 - 100 = 0 people on the train. At the third stop, 80 people leave the train, for a total of 0 - 80 = -80 people. Since a negative number of people doesn't make sense in this context, it means that there were no people on the train at the final stop.\nFinal answer: 0",
+     "finish_reason": "stop",
+     "prompt_tokens": 431,
+     "completion_tokens": 139,
+     "latency_s": 19.266,
+     "error": null,
+     "sample_index": 19,
+     "pred": "0",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

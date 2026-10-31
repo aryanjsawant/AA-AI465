@@ -1,0 +1,317 @@
+{
+ "idx": 272,
+ "question": "A mother goes shopping. She buys cocoa at $4.20, laundry at $9.45 and a package of pasta at $1.35. She pays $20. How much change does the cashier give back?",
+ "gold": "5",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:05:05",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "A mother goes shopping. She buys cocoa at $4.20, laundry at $9.45 and a package of pasta at $1.35. She pays $20. How much change does the cashier give back?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 14.117,
+   "samples": [
+    {
+     "seed": 11027200,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $15. 20 - 15 = $5 is the change given back.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 51,
+     "latency_s": 11.367,
+     "error": null,
+     "sample_index": 0,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027201,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14. 20. The change the cashier gives back is $20 - $14. 20 = $5. 80.\nFinal answer: 5. 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 69,
+     "latency_s": 13.66,
+     "error": null,
+     "sample_index": 1,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027202,
+     "text": "The total cost of the items is 4.20 + 9.45 + 1.35 = 15.00. The change the cashier gives back is 20 - 15 = 5.00.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 59,
+     "latency_s": 12.508,
+     "error": null,
+     "sample_index": 2,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027203,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14.00. If she pays $20 and the total cost is $14.00, the change is $20 - $14.00 = $6.00.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 76,
+     "latency_s": 14.114,
+     "error": null,
+     "sample_index": 3,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11027204,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $15. Therefore, the change the cashier gives is $20 - $15 = $5.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 54,
+     "latency_s": 11.783,
+     "error": null,
+     "sample_index": 4,
+     "pred": "5",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 9.78,
+   "samples": [
+    {
+     "seed": 11027205,
+     "text": "The total cost of the items is 4.20 + 9.45 + 1.35 = 15 dollars. The change the cashier gives is 20 - 15 = 5 dollars.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 54,
+     "latency_s": 8.855,
+     "error": null,
+     "sample_index": 5,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027206,
+     "text": "The total cost of the items is 4.20 + 9.45 + 1.35 = 15 dollars. She pays with $20, so the change is 20 - 15 = 5 dollars.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 59,
+     "latency_s": 9.41,
+     "error": null,
+     "sample_index": 6,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027207,
+     "text": "The total cost is $4.20 + $9.45 + $1.35 = $14.  The change is $20 - $14 = $6.\nFinal answer: $6",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 47,
+     "latency_s": 7.967,
+     "error": null,
+     "sample_index": 7,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11027208,
+     "text": "The total cost is 4.20 + 9.45 + 1.35 = 15.00. The change is 20 - 15 = 5.00.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 52,
+     "latency_s": 8.574,
+     "error": null,
+     "sample_index": 8,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027209,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14. 20. The change given back is $20 - $14. 20 = $5.80.\nFinal answer: 5. 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 66,
+     "latency_s": 9.776,
+     "error": null,
+     "sample_index": 9,
+     "pred": "5",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 11.148,
+   "samples": [
+    {
+     "seed": 11027210,
+     "text": "The total cost is $4.20 + $9.45 + $1.35 = $14. 20. She pays $20, so the change is $20 - $14. 20 = $5. 80.\nFinal answer: 5. 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 69,
+     "latency_s": 10.986,
+     "error": null,
+     "sample_index": 10,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027211,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14.  The amount of change she gets is $20 - $14 = $6.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 54,
+     "latency_s": 8.927,
+     "error": null,
+     "sample_index": 11,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11027212,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14.00. She pays with $20.00, so the change is $20.00 - $14.00 = $6.00.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 72,
+     "latency_s": 11.146,
+     "error": null,
+     "sample_index": 12,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11027213,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14. 20. The change the cashier gives back is $20 - $14. 20 = $5.80.\nFinal answer: 5. 80",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 68,
+     "latency_s": 10.9,
+     "error": null,
+     "sample_index": 13,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027214,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14. 20. She pays $20 and gets $20 - $14 = $6 in change.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 59,
+     "latency_s": 9.575,
+     "error": null,
+     "sample_index": 14,
+     "pred": "6",
+     "correct": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 11.279,
+   "samples": [
+    {
+     "seed": 11027215,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14. 70. She pays $20, so her change is $20 - $14. 70 = $5. 30.\nFinal answer: 5. 30",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 72,
+     "latency_s": 11.278,
+     "error": null,
+     "sample_index": 15,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027216,
+     "text": "The total cost of the items is 4.20 + 9.45 + 1.35 = 15.00. If she pays with $20, then her change is 20 - 15 = 5.00.\nFinal answer: 5",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 64,
+     "latency_s": 10.793,
+     "error": null,
+     "sample_index": 16,
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "seed": 11027217,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14.  The change the cashier gives back is $20 - $14 = $6. \nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 55,
+     "latency_s": 9.196,
+     "error": null,
+     "sample_index": 17,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11027218,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14.00. The change given back is $20.00 - $14.00 = $6.00.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 63,
+     "latency_s": 10.632,
+     "error": null,
+     "sample_index": 18,
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "seed": 11027219,
+     "text": "The total cost of the items is $4.20 + $9.45 + $1.35 = $14.00. She paid $20, so her change is $20 - $14.00 = $6.00.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 406,
+     "completion_tokens": 65,
+     "latency_s": 10.908,
+     "error": null,
+     "sample_index": 19,
+     "pred": "6",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

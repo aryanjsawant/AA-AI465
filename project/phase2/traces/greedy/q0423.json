@@ -1,0 +1,71 @@
+{
+ "idx": 423,
+ "question": "Cole wanted to buy new jeans for a dance contest. At the store, he couldn't decide between tattered jeans and jogger jeans. Since the jeans were on sale, he decided to buy them both. The tattered jeans cost $28 while the jogger jeans cost $6 less than the tattered jeans. He saved a total of $6. If he saved 1/3 of the total savings from the jogger jeans and the rest from the tattered jeans, how much more do jogger jeans originally cost than the tattered jeans?",
+ "gold": "8",
+ "run": "greedy",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.0,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 18:35:50",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Cole wanted to buy new jeans for a dance contest. At the store, he couldn't decide between tattered jeans and jogger jeans. Since the jeans were on sale, he decided to buy them both. The tattered jeans cost $28 while the jogger jeans cost $6 less than the tattered jeans. He saved a total of $6. If he saved 1/3 of the total savings from the jogger jeans and the rest from the tattered jeans, how much more do jogger jeans originally cost than the tattered jeans?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 11.269,
+   "samples": [
+    {
+     "seed": 0,
+     "text": "The cost of the jogger jeans is $28 - $6 = $22. Cole saved $6 / 2 = $3 from the jogger jeans. The total savings from the tattered jeans is $6 - $3 = $3. The original cost of the jogger jeans is $22 + $3 = $25. The original cost of the tattered jeans is $28 + $3 = $31. The difference in cost between the jogger jeans and the tattered jeans is $31 - $25 = $6.\nFinal answer: 6",
+     "finish_reason": "stop",
+     "prompt_tokens": 470,
+     "completion_tokens": 125,
+     "latency_s": 11.268,
+     "error": null,
+     "sample_index": 0,
+     "pred": "6",
+     "correct": false
+    }
+   ]
+  }
+ ]
+}

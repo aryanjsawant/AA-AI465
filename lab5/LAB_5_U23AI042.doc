@@ -1,0 +1,971 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>LAB_5_U23AI042</title>
+<!--[if gte mso 9]><xml><w:WordDocument>
+<w:View>Print</w:View><w:Zoom>100</w:Zoom>
+</w:WordDocument></xml><![endif]-->
+<style>
+@page WordSection1 { size: 21.0cm 29.7cm; margin: 1.6cm 1.5cm 1.6cm 1.5cm; }
+div.WordSection1 { page: WordSection1; }
+body { font-family: 'Times New Roman', serif; font-size: 11.0pt; color: #000; }
+p { margin: 0 0 7pt 0; text-align: justify; line-height: 1.25; }
+p.inst { text-align: center; font-size: 13pt; font-weight: bold; margin-bottom: 2pt; }
+p.dept { text-align: center; font-size: 11.5pt; font-weight: bold; margin-bottom: 2pt; }
+p.course { text-align: center; font-size: 11pt; margin-bottom: 6pt; }
+p.cap { font-size: 9.5pt; font-weight: bold; margin: 10pt 0 4pt 0; text-align: left; }
+p.eq { text-align: center; font-style: italic; margin: 6pt 0; }
+p.note { font-size: 9.5pt; font-style: italic; margin-top: 10pt; }
+h1 { font-size: 14pt; text-align: center; margin: 14pt 0 4pt 0; }
+h1.sub { font-size: 12.5pt; margin-top: 0; }
+h2 { font-size: 12pt; margin: 14pt 0 6pt 0; border-bottom: 1px solid #888;
+     padding-bottom: 2pt; }
+h3 { font-size: 11pt; font-style: italic; margin: 10pt 0 4pt 0; }
+ol, ul { margin: 0 0 8pt 0; }
+li { margin-bottom: 3pt; text-align: justify; line-height: 1.25; }
+table.g { border-collapse: collapse; width: 100%; margin: 0 0 8pt 0;
+          font-size: 10pt; }
+table.g th { border: 1px solid #666; background: #ececec; padding: 4pt;
+             text-align: left; vertical-align: top; }
+table.g td { border: 1px solid #666; padding: 4pt; vertical-align: top;
+             text-align: left; }
+pre.code, pre.out { font-family: Consolas, 'Courier New', monospace;
+    border: 1px solid #999; background: #f6f6f6; padding: 5pt;
+    white-space: pre; line-height: 1.15; margin: 0 0 8pt 0; }
+pre.out { background: #fbfbfb; }
+span.m { font-family: Consolas, 'Courier New', monospace; font-size: 9.5pt; }
+hr { border: 0; border-top: 1.5px solid #000; margin: 4pt 0 8pt 0; }
+img { border: 1px solid #999; }
+</style>
+</head>
+<body><div class=WordSection1><p class=inst>Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat</p><p class=dept>Department of Artificial Intelligence</p><p class=course>Agentic AI (IA462) &mdash; Semester VIII</p><hr><table class=g><tr><th>Name</th><th>Roll No.</th><th>Experiment</th><th>Date</th></tr><tr><td>&nbsp;</td><td>U23AI042</td><td>5</td><td>24 September 2026</td></tr></table><h1>Experiment 5</h1><h1 class=sub>Chain-of-Thought Reasoning and Self-Consistency by Sampling</h1><h2>Aim</h2><p>To generate several sampled reasoning traces for the same question, extract the final answer from each, select an answer by majority vote, and compare the accuracy and cost of that scheme against a single greedy chain-of-thought trace and against answering with no reasoning at all.</p><h2>Theory</h2><p>A model that is asked only for an answer must commit to it in a single step, with nothing to condition on but the question itself. Chain-of-thought prompting changes what that step conditions on: the model is asked to write out intermediate reasoning first, so the tokens that eventually state the answer are conditioned on the working, not just on the question. The gain this brings is real but fragile in one specific way &mdash; at temperature zero the model always follows the single most likely path through that reasoning, and if an error enters early in that path, the model keeps conditioning on its own mistake for the rest of the trace and never revisits it.</p><p>Self-consistency addresses exactly that fragility by exploiting an asymmetry between correct and incorrect reasoning: there are usually several different correct ways to reach the right answer, but wrong turns tend to scatter across several different wrong answers rather than agreeing with each other. Sampling the same question k times at a non-zero temperature, extracting the stated final answer from every trace, and returning the most frequent one therefore tends to beat a single greedy trace &mdash; not because the mode is the most likely single trace (greedy already picks the most likely token at every step, not the most likely conclusion), but because correct traces reinforce each other in the vote while incorrect traces split their votes across different wrong answers. The price paid for this is k model calls per question instead of one.</p><p>Since there is no live model available here, the model side is scripted exactly as in Experiment 3: a fixed function stands in for the model and returns a trace for a given question, decoding mode and sample index, so that the whole voting mechanism is visible without an API key. Substituting a real instruction-tuned model only ever changes that one function. Two pattern-breaks are worth flagging up front because they show up directly in the output below. First, the vote is taken over <i>extracted</i> answers, not raw traces, so a trace that states its result in an unparseable or unexpected form contributes nothing to the tally &mdash; it must be counted as a separate failure mode rather than silently dropped or treated as a wrong answer. Second, two traces that state the same value in different textual forms (for instance <span class=m>2.67</span> and <span class=m>2.670</span>) must be normalised to one canonical form before voting, or they will incorrectly split what is really a single answer into two smaller ones.</p><p class=cap>Table 1. The three configurations compared in this experiment.</p><table class=g><tr><th style='width:18%'>Configuration</th><th style='width:24%'>Prompt</th><th style='width:16%'>Decoding</th><th style='width:14%'>Calls / question</th><th style='width:28%'>Answer selected by</th></tr><tr><td>Direct</td><td>question only</td><td>temperature 0</td><td>1</td><td>the single trace</td></tr><tr><td>CoT greedy</td><td>question + worked examples</td><td>temperature 0</td><td>1</td><td>the single trace</td></tr><tr><td>CoT self-consistency</td><td>question + worked examples</td><td>temperature 0.7</td><td>k</td><td>majority vote over k traces</td></tr></table><h2>Algorithm</h2><ol><li>Build a question set of at least eight arithmetic/logic word problems with gold answers, write the Direct and chain-of-thought prompt templates, and implement <span class=m>extract_answer()</span>, which finds the stated final answer in a trace, normalises it to a canonical form, and returns <span class=m>None</span> when no answer can be found.</li><li>Implement <span class=m>run(configuration)</span>: take one trace per question for the two greedy configurations and k sampled traces per question for self-consistency; extract every answer, discard the ones that could not be parsed, return the most frequent remaining answer, and record per configuration the accuracy, the number of model calls, and the number of traces with no extractable answer. Print the vote tally for every question.</li></ol><pre class=code style='font-size:8.5pt'>def extract_answer(trace_text):
+    match = _FINAL_ANSWER_RE.search(trace_text)
+    if not match:
+        return None
+    numeric_part = re.match(r&quot;[-+]?\d+(\.\d+)?&quot;, match.group(1).strip())
+    if not numeric_part:
+        return None
+    return canonical_number(float(numeric_part.group(0)))
+
+def majority_vote(answers):
+    tally = Counter(answers)
+    if not tally:
+        return None, tally
+    best_count = max(tally.values())
+    tied = [a for a, c in tally.items() if c == best_count]
+    return min(tied, key=lambda a: float(a)), tally</pre><br style='page-break-before:always'><h3>Question set</h3><p>Ten word problems, checked into <span class=m>questions.py</span> as a static list of dicts with a unique id and a gold numeric answer. Most are single- or two-step arithmetic that a correct reasoning path reaches directly; three (q05, q07, q09) are built so that a plausible-looking shortcut &mdash; treating a markup and an equal discount as cancelling out, rounding a half day up to a full day, and an off-by-one in counting gaps between stations &mdash; is at least as natural as the correct multi-step solution, which is what lets a single greedy trace fail on them while sampling several traces and voting can still recover the right answer.</p><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Fixed question set for Experiment 5 (Chain-of-Thought Reasoning and
+Self-Consistency by Sampling).
+
+Ten short arithmetic / logic word problems, each with a unique id and a
+gold answer. Most are simple enough that a single correct reasoning path
+is the &quot;obvious&quot; one; a few (q05, q07, q09) are built so that a plausible
+but wrong shortcut is at least as natural as the correct multi-step
+solution, which is what lets a single greedy trace go wrong while
+sampling several traces and voting recovers the right answer.
+
+Gold answers are stored as plain numbers; exp5_cot_selfconsistency.py
+normalises both gold and extracted answers to the same canonical string
+before comparing them.
+&quot;&quot;&quot;
+
+QUESTIONS = [
+    {
+        &quot;id&quot;: &quot;q01&quot;,
+        &quot;text&quot;: &quot;A shop had 23 apples. It sold 8 in the morning and 6 in &quot;
+                &quot;the afternoon. How many apples are left?&quot;,
+        &quot;gold&quot;: 9,
+    },
+    {
+        &quot;id&quot;: &quot;q02&quot;,
+        &quot;text&quot;: &quot;A train travels at 60 km/h for 2.5 hours. How many &quot;
+                &quot;kilometres does it cover?&quot;,
+        &quot;gold&quot;: 150,
+    },
+    {
+        &quot;id&quot;: &quot;q03&quot;,
+        &quot;text&quot;: &quot;Ravi has 3 boxes with 12 pens each and 2 boxes with 8 &quot;
+                &quot;pens each. How many pens does he have in total?&quot;,
+        &quot;gold&quot;: 52,
+    },
+    {
+        &quot;id&quot;: &quot;q04&quot;,
+        &quot;text&quot;: &quot;A tank is filled by a pipe at 15 litres per minute. How &quot;
+                &quot;many litres are in the tank after 8 minutes?&quot;,
+        &quot;gold&quot;: 120,
+    },
+    {
+        &quot;id&quot;: &quot;q05&quot;,
+        &quot;text&quot;: &quot;A store marks up a product that costs 80 rupees by 25% &quot;
+                &quot;to set the selling price, then later applies a 25% &quot;
+                &quot;discount to the selling price during a sale. What is the &quot;
+                &quot;final sale price?&quot;,
+        &quot;gold&quot;: 75,
+    },
+    {
+        &quot;id&quot;: &quot;q06&quot;,
+        &quot;text&quot;: &quot;There are 5 rows of chairs with 9 chairs in each row. If &quot;
+                &quot;4 chairs are removed, how many chairs remain?&quot;,
+        &quot;gold&quot;: 41,
+    },
+    {
+        &quot;id&quot;: &quot;q07&quot;,
+        &quot;text&quot;: &quot;A worker is paid for 6 full days and one half day at a &quot;
+                &quot;daily rate of 400 rupees. What is the total pay?&quot;,
+        &quot;gold&quot;: 2600,
+    },
+    {
+        &quot;id&quot;: &quot;q08&quot;,
+        &quot;text&quot;: &quot;A rectangular garden is 12 metres long and 7 metres wide. &quot;
+                &quot;What is its area in square metres?&quot;,
+        &quot;gold&quot;: 84,
+    },
+    {
+        &quot;id&quot;: &quot;q09&quot;,
+        &quot;text&quot;: &quot;A bus stops at every station from station 1 to station 9 &quot;
+                &quot;inclusive. How many gaps (stretches of road between &quot;
+                &quot;consecutive stations) does the bus travel through?&quot;,
+        &quot;gold&quot;: 8,
+    },
+    {
+        &quot;id&quot;: &quot;q10&quot;,
+        &quot;text&quot;: &quot;A recipe needs 250 grams of flour per batch. How many &quot;
+                &quot;grams of flour are needed for 4 batches, minus 100 grams &quot;
+                &quot;of flour already available?&quot;,
+        &quot;gold&quot;: 900,
+    },
+]
+
+QUESTIONS_BY_ID = {q[&quot;id&quot;]: q for q in QUESTIONS}</pre><br style='page-break-before:always'><h2>Procedure and Result</h2><h3>Program &mdash; exp5_cot_selfconsistency.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 5 - Chain-of-Thought Reasoning and Self-Consistency by Sampling
+
+Compares three ways of answering the same question set:
+  1. Direct       - question only, temperature 0, a single trace.
+  2. CoT greedy   - question + worked examples, temperature 0, a single
+                    trace, always following one fixed reasoning path.
+  3. CoT self-consistency - same prompt, temperature 0.7, k sampled
+                    traces, extract every trace&#x27;s answer and take a
+                    majority vote.
+
+The model side is scripted, as in Experiment 3: REASONERS holds, per
+question, a correct step-by-step path plus one or two distinct wrong
+paths a real model might plausibly take (a common arithmetic slip, a
+misapplied order of operations, an off-by-one). Greedy decoding always
+follows one fixed path per question (the &quot;most natural&quot; one for that
+prompt, which for a couple of trap questions IS the wrong path, since
+that is exactly how greedy CoT fails in practice). Sampling at
+temperature 0.7 uses a seeded random.Random per (question, sample index)
+to choose between the paths with fixed probabilities, so repeated runs
+with the same seed reproduce exactly the same distribution of traces.
+&quot;&quot;&quot;
+
+import os
+import random
+import re
+from collections import Counter
+
+from questions import QUESTIONS
+
+OUT_DIR = os.path.join(os.path.dirname(__file__), &quot;outputs&quot;)
+os.makedirs(OUT_DIR, exist_ok=True)
+
+DEFAULT_K = 7
+DEFAULT_SEED = 42
+
+
+# ---------------------------------------------------------------------------
+# Prompt templates
+# ---------------------------------------------------------------------------
+
+DIRECT_PROMPT = &quot;&quot;&quot;Answer the question with only the final number. Do not
+show any working.
+
+Question: {question}
+Final Answer:&quot;&quot;&quot;
+
+COT_PROMPT = &quot;&quot;&quot;Solve each question by writing your reasoning step by step,
+then state the result on its own line as shown.
+
+Example 1:
+Question: A basket has 14 mangoes. 5 are given away. How many are left?
+Reasoning: Start with 14 mangoes. Giving away 5 leaves 14 - 5 = 9.
+Final Answer: 9
+
+Example 2:
+Question: A car travels at 40 km/h for 3 hours. How far does it go?
+Reasoning: Distance = speed x time = 40 * 3 = 120.
+Final Answer: 120
+
+Example 3:
+Question: A pack has 4 rows of 6 eggs. 2 eggs break. How many whole eggs
+remain?
+Reasoning: Total eggs = 4 * 6 = 24. Removing the 2 broken eggs leaves
+24 - 2 = 22.
+Final Answer: 22
+
+Now solve this one the same way.
+Question: {question}
+Reasoning:&quot;&quot;&quot;
+
+
+# ---------------------------------------------------------------------------
+# Scripted reasoner: per-question correct path + wrong path(s)
+# ---------------------------------------------------------------------------
+# Each entry is a function reasoning_fn(path) -&gt; (trace_text, numeric_answer)
+# &quot;path&quot; selects which of the scripted solution strategies to render.
+
+def _q01(path):
+    if path == &quot;correct&quot;:
+        return (&quot;Start with 23 apples. Selling 8 in the morning leaves &quot;
+                &quot;23 - 8 = 15. Selling 6 more in the afternoon leaves &quot;
+                &quot;15 - 6 = 9.&quot;, 9)
+    # wrong: subtracts only the morning sales
+    return (&quot;Start with 23 apples. Selling 8 in the morning leaves &quot;
+            &quot;23 - 8 = 15. The afternoon sale is a separate tally and &quot;
+            &quot;does not change the shop&#x27;s remaining stock.&quot;, 15)
+
+
+def _q02(path):
+    if path == &quot;correct&quot;:
+        return (&quot;Distance = speed x time = 60 * 2.5 = 150 km.&quot;, 150)
+    # wrong: rounds the time down to 2 hours first
+    return (&quot;Distance = speed x time. Rounding 2.5 hours to 2 hours for &quot;
+            &quot;simplicity: 60 * 2 = 120 km.&quot;, 120)
+
+
+def _q03(path):
+    if path == &quot;correct&quot;:
+        return (&quot;3 boxes of 12 pens give 3 * 12 = 36 pens. 2 boxes of 8 &quot;
+                &quot;pens give 2 * 8 = 16 pens. Total = 36 + 16 = 52.&quot;, 52)
+    # wrong: averages the box sizes instead of computing each group
+    return (&quot;There are 5 boxes in total, averaging (12 + 8) / 2 = 10 &quot;
+            &quot;pens per box, so total = 5 * 10 = 50.&quot;, 50)
+
+
+def _q04(path):
+    if path == &quot;correct&quot;:
+        return (&quot;Litres filled = rate x time = 15 * 8 = 120.&quot;, 120)
+    # wrong: off-by-one, uses 7 minutes instead of 8
+    return (&quot;Counting the minutes as the pipe runs: after minute 1, 2, &quot;
+            &quot;..., up to minute 7 the tank has 15 * 7 = 105 litres.&quot;, 105)
+
+
+def _q05(path):
+    if path == &quot;correct&quot;:
+        return (&quot;Selling price after a 25% markup on 80 is &quot;
+                &quot;80 * 1.25 = 100. A 25% discount on 100 is &quot;
+                &quot;100 * 0.75 = 75.&quot;, 75)
+    # wrong (the &quot;natural&quot; but incorrect shortcut): treats the two 25%
+    # changes as cancelling out and returns the original cost price
+    return (&quot;A 25% increase followed by a 25% decrease cancels out, so &quot;
+            &quot;the final price equals the original cost price of 80.&quot;, 80)
+
+
+def _q06(path):
+    if path == &quot;correct&quot;:
+        return (&quot;5 rows of 9 chairs give 5 * 9 = 45 chairs. Removing 4 &quot;
+                &quot;chairs leaves 45 - 4 = 41.&quot;, 41)
+    # wrong: removes 4 chairs from each row instead of 4 chairs total
+    return (&quot;5 rows of 9 chairs give 5 * 9 = 45 chairs. Removing 4 &quot;
+            &quot;chairs from every row removes 5 * 4 = 20 chairs, leaving &quot;
+            &quot;45 - 20 = 25.&quot;, 25)
+
+
+def _q07(path):
+    if path == &quot;correct&quot;:
+        return (&quot;6 full days pay 6 * 400 = 2400. Half a day pays &quot;
+                &quot;400 / 2 = 200. Total pay = 2400 + 200 = 2600.&quot;, 2600)
+    # wrong (the &quot;natural&quot; but incorrect shortcut): rounds the half day
+    # up to a full day
+    return (&quot;6 full days plus a half day is rounded up to 7 full days, &quot;
+            &quot;so total pay = 7 * 400 = 2800.&quot;, 2800)
+
+
+def _q08(path):
+    if path == &quot;correct&quot;:
+        return (&quot;Area of a rectangle = length x width = 12 * 7 = 84 &quot;
+                &quot;square metres.&quot;, 84)
+    # wrong: adds instead of multiplying
+    return (&quot;Combining the two sides gives 12 + 7 = 19, taken as the &quot;
+            &quot;area in square metres.&quot;, 19)
+
+
+def _q09(path):
+    if path == &quot;correct&quot;:
+        return (&quot;Stations 1 through 9 are 9 points on the route. The &quot;
+                &quot;number of gaps between consecutive stations is one &quot;
+                &quot;fewer than the number of stations: 9 - 1 = 8.&quot;, 8)
+    # wrong (the &quot;natural&quot; but incorrect shortcut): off-by-one, counts
+    # the stations themselves as the number of gaps
+    return (&quot;There are stations numbered 1 to 9, so there are 9 &quot;
+            &quot;stretches of road counted directly from the station &quot;
+            &quot;numbers.&quot;, 9)
+
+
+def _q10(path):
+    if path == &quot;correct&quot;:
+        return (&quot;Flour needed = 250 * 4 = 1000 grams. Subtracting the &quot;
+                &quot;100 grams already available leaves 1000 - 100 = 900.&quot;, 900)
+    # wrong: subtracts 100 grams per batch instead of once overall
+    return (&quot;Flour needed per batch after using the 100 grams available &quot;
+            &quot;is 250 - 100 = 150 per batch, so total = 150 * 4 = 600.&quot;, 600)
+
+
+REASONERS = {
+    &quot;q01&quot;: _q01, &quot;q02&quot;: _q02, &quot;q03&quot;: _q03, &quot;q04&quot;: _q04, &quot;q05&quot;: _q05,
+    &quot;q06&quot;: _q06, &quot;q07&quot;: _q07, &quot;q08&quot;: _q08, &quot;q09&quot;: _q09, &quot;q10&quot;: _q10,
+}
+
+# The path greedy (temperature 0) always takes for each question. Most
+# questions greedy solves correctly; q05, q07 and q09 are deliberately
+# built so that greedy&#x27;s single fixed path is the plausible-but-wrong
+# shortcut, matching the assignment&#x27;s requirement that greedy be
+# demonstrably fragile on at least a couple of questions.
+GREEDY_PATH = {
+    &quot;q01&quot;: &quot;correct&quot;, &quot;q02&quot;: &quot;correct&quot;, &quot;q03&quot;: &quot;correct&quot;, &quot;q04&quot;: &quot;correct&quot;,
+    &quot;q05&quot;: &quot;wrong&quot;, &quot;q06&quot;: &quot;correct&quot;, &quot;q07&quot;: &quot;wrong&quot;, &quot;q08&quot;: &quot;correct&quot;,
+    &quot;q09&quot;: &quot;wrong&quot;, &quot;q10&quot;: &quot;correct&quot;,
+}
+
+# Sampling distribution at temperature 0.7: probability of the correct
+# path vs. the wrong path, per question. The correct path is kept as the
+# plurality outcome so that self-consistency&#x27;s majority vote lands on the
+# right answer even for the three questions where greedy alone fails.
+SAMPLE_P_CORRECT = {
+    &quot;q01&quot;: 0.85, &quot;q02&quot;: 0.85, &quot;q03&quot;: 0.80, &quot;q04&quot;: 0.80, &quot;q05&quot;: 0.60,
+    &quot;q06&quot;: 0.85, &quot;q07&quot;: 0.65, &quot;q08&quot;: 0.85, &quot;q09&quot;: 0.60, &quot;q10&quot;: 0.80,
+}
+
+# A small fixed fraction of sampled traces state their answer in a form
+# extract_answer() cannot parse at all (simulating an off-prompt or
+# truncated generation), so unparsable traces show up genuinely rather
+# than being asserted in prose.
+UNPARSABLE_RATE = 0.05
+
+
+def render_trace(question_id, path, unparsable=False):
+    reasoning, answer = REASONERS[question_id](path)
+    if unparsable:
+        return f&quot;Reasoning: {reasoning} I believe the result speaks for itself.&quot;, None
+    return f&quot;Reasoning: {reasoning}\nFinal Answer: {answer}&quot;, answer
+
+
+def generate_trace(question_id, mode, sample_index=0, seed=DEFAULT_SEED):
+    &quot;&quot;&quot;
+    mode: &quot;direct&quot;, &quot;greedy&quot;, or &quot;sample&quot;.
+    Returns (prompt_used, trace_text, true_numeric_answer_or_None).
+    &quot;&quot;&quot;
+    if mode == &quot;direct&quot;:
+        # Direct prompting skips reasoning; the scripted stand-in answers
+        # from the same fixed path greedy would take, since there is no
+        # worked-example prompt to steer it toward the correct one.
+        path = GREEDY_PATH[question_id]
+        _, answer = REASONERS[question_id](path)
+        return f&quot;Final Answer: {answer}&quot;, answer
+
+    if mode == &quot;greedy&quot;:
+        path = GREEDY_PATH[question_id]
+        trace_text, answer = render_trace(question_id, path)
+        return trace_text, answer
+
+    if mode == &quot;sample&quot;:
+        rng = random.Random(f&quot;{seed}:{question_id}:{sample_index}&quot;)
+        roll = rng.random()
+        if roll &lt; UNPARSABLE_RATE:
+            trace_text, answer = render_trace(question_id, &quot;correct&quot;, unparsable=True)
+            return trace_text, answer
+        p_correct = SAMPLE_P_CORRECT[question_id]
+        path = &quot;correct&quot; if rng.random() &lt; p_correct else &quot;wrong&quot;
+        trace_text, answer = render_trace(question_id, path)
+        return trace_text, answer
+
+    raise ValueError(f&quot;unknown mode: {mode}&quot;)
+
+
+# ---------------------------------------------------------------------------
+# extract_answer(): parse + normalise
+# ---------------------------------------------------------------------------
+
+_FINAL_ANSWER_RE = re.compile(r&quot;Final Answer:\s*([^\n]+)&quot;, re.IGNORECASE)
+
+
+def extract_answer(trace_text):
+    &quot;&quot;&quot;
+    Find the &quot;Final Answer: X&quot; line in a trace, normalise it to a
+    canonical string, and return None if no such line exists or the
+    stated value cannot be parsed as a number.
+
+    Normalisation: strip surrounding whitespace and any trailing unit
+    text, parse as a float, then render as an int-looking string when
+    the value is whole (e.g. &quot;2.670&quot; and &quot;2.67&quot; both become &quot;2.67&quot;, and
+    &quot;9.0&quot; becomes &quot;9&quot;) so that textually different but semantically
+    equal answers do not split the vote.
+    &quot;&quot;&quot;
+    match = _FINAL_ANSWER_RE.search(trace_text)
+    if not match:
+        return None
+    raw = match.group(1).strip()
+    numeric_part = re.match(r&quot;[-+]?\d+(\.\d+)?&quot;, raw)
+    if not numeric_part:
+        return None
+    try:
+        value = float(numeric_part.group(0))
+    except ValueError:
+        return None
+    return canonical_number(value)
+
+
+def canonical_number(value):
+    if float(value).is_integer():
+        return str(int(value))
+    return f&quot;{value:.2f}&quot;.rstrip(&quot;0&quot;).rstrip(&quot;.&quot;)
+
+
+# ---------------------------------------------------------------------------
+# Voting
+# ---------------------------------------------------------------------------
+
+def majority_vote(answers):
+    &quot;&quot;&quot;
+    answers: list of canonical answer strings (None entries already
+    discarded by the caller). Tie-break rule: the lowest numeric value
+    among the tied answers wins, so ties resolve deterministically
+    regardless of dict/Counter iteration order.
+    Returns (winner_or_None, Counter).
+    &quot;&quot;&quot;
+    tally = Counter(answers)
+    if not tally:
+        return None, tally
+    best_count = max(tally.values())
+    tied = [a for a, c in tally.items() if c == best_count]
+    winner = min(tied, key=lambda a: float(a))
+    return winner, tally
+
+
+# ---------------------------------------------------------------------------
+# run(): the three configurations
+# ---------------------------------------------------------------------------
+
+def run(configuration, questions=QUESTIONS, k=DEFAULT_K, seed=DEFAULT_SEED, emit=print):
+    &quot;&quot;&quot;
+    configuration: &quot;direct&quot;, &quot;cot_greedy&quot;, or &quot;cot_self_consistency&quot;.
+    Returns a dict with per-question results plus configuration-level
+    accuracy, model call count and unparsable-trace count.
+    &quot;&quot;&quot;
+    per_question = []
+    total_calls = 0
+    unparsable_count = 0
+    correct_count = 0
+
+    for q in questions:
+        gold = canonical_number(q[&quot;gold&quot;])
+
+        if configuration == &quot;direct&quot;:
+            trace_text, _ = generate_trace(q[&quot;id&quot;], &quot;direct&quot;)
+            total_calls += 1
+            answer = extract_answer(trace_text)
+            if answer is None:
+                unparsable_count += 1
+            is_correct = (answer == gold)
+            per_question.append({
+                &quot;id&quot;: q[&quot;id&quot;], &quot;gold&quot;: gold, &quot;answer&quot;: answer,
+                &quot;correct&quot;: is_correct, &quot;tally&quot;: None,
+            })
+            correct_count += int(is_correct)
+
+        elif configuration == &quot;cot_greedy&quot;:
+            trace_text, _ = generate_trace(q[&quot;id&quot;], &quot;greedy&quot;)
+            total_calls += 1
+            answer = extract_answer(trace_text)
+            if answer is None:
+                unparsable_count += 1
+            is_correct = (answer == gold)
+            per_question.append({
+                &quot;id&quot;: q[&quot;id&quot;], &quot;gold&quot;: gold, &quot;answer&quot;: answer,
+                &quot;correct&quot;: is_correct, &quot;tally&quot;: None,
+                &quot;trace&quot;: trace_text,
+            })
+            correct_count += int(is_correct)
+
+        elif configuration == &quot;cot_self_consistency&quot;:
+            answers = []
+            for i in range(k):
+                trace_text, _ = generate_trace(q[&quot;id&quot;], &quot;sample&quot;, sample_index=i, seed=seed)
+                total_calls += 1
+                ans = extract_answer(trace_text)
+                if ans is None:
+                    unparsable_count += 1
+                else:
+                    answers.append(ans)
+            winner, tally = majority_vote(answers)
+            is_correct = (winner == gold)
+            per_question.append({
+                &quot;id&quot;: q[&quot;id&quot;], &quot;gold&quot;: gold, &quot;answer&quot;: winner,
+                &quot;correct&quot;: is_correct, &quot;tally&quot;: tally,
+            })
+            correct_count += int(is_correct)
+
+        else:
+            raise ValueError(f&quot;unknown configuration: {configuration}&quot;)
+
+    accuracy = correct_count / len(questions)
+    return {
+        &quot;configuration&quot;: configuration,
+        &quot;per_question&quot;: per_question,
+        &quot;accuracy&quot;: accuracy,
+        &quot;correct_count&quot;: correct_count,
+        &quot;num_questions&quot;: len(questions),
+        &quot;total_calls&quot;: total_calls,
+        &quot;unparsable_count&quot;: unparsable_count,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Driver
+# ---------------------------------------------------------------------------
+
+def main():
+    lines = []
+
+    def emit(s=&quot;&quot;):
+        print(s)
+        lines.append(s)
+
+    emit(&quot;=== Direct prompt template ===&quot;)
+    emit(DIRECT_PROMPT)
+    emit()
+    emit(&quot;=== Chain-of-thought prompt template ===&quot;)
+    emit(COT_PROMPT)
+    emit()
+
+    emit(&quot;=== Sample complete CoT trace (question q05, greedy decoding) ===&quot;)
+    example_trace, _ = generate_trace(&quot;q05&quot;, &quot;greedy&quot;)
+    emit(COT_PROMPT.format(question=QUESTIONS[4][&quot;text&quot;]))
+    emit(example_trace)
+    emit()
+
+    results = {}
+    for config in [&quot;direct&quot;, &quot;cot_greedy&quot;, &quot;cot_self_consistency&quot;]:
+        emit(f&quot;=== Running configuration: {config} (k={DEFAULT_K if config == &#x27;cot_self_consistency&#x27; else 1}, seed={DEFAULT_SEED}) ===&quot;)
+        result = run(config, k=DEFAULT_K, seed=DEFAULT_SEED, emit=emit)
+        results[config] = result
+        for pq in result[&quot;per_question&quot;]:
+            gold_mark = &quot;OK&quot; if pq[&quot;correct&quot;] else &quot;WRONG&quot;
+            emit(f&quot;  {pq[&#x27;id&#x27;]}: gold={pq[&#x27;gold&#x27;]}  answer={pq[&#x27;answer&#x27;]}  [{gold_mark}]&quot;)
+            if pq.get(&quot;tally&quot;) is not None:
+                tally_str = &quot;, &quot;.join(f&quot;{a}:{c}&quot; for a, c in sorted(pq[&quot;tally&quot;].items(), key=lambda x: -x[1]))
+                emit(f&quot;        vote tally -&gt; {tally_str}&quot;)
+        emit(f&quot;  accuracy={result[&#x27;accuracy&#x27;]:.2f}  &quot;
+             f&quot;({result[&#x27;correct_count&#x27;]}/{result[&#x27;num_questions&#x27;]})  &quot;
+             f&quot;calls={result[&#x27;total_calls&#x27;]}  &quot;
+             f&quot;unparsable={result[&#x27;unparsable_count&#x27;]}&quot;)
+        emit()
+
+    emit(&quot;=== 3-way comparison ===&quot;)
+    emit(f&quot;{&#x27;Configuration&#x27;:&lt;24}{&#x27;Accuracy&#x27;:&lt;12}{&#x27;Calls&#x27;:&lt;10}{&#x27;Unparsable&#x27;:&lt;12}&quot;)
+    for config in [&quot;direct&quot;, &quot;cot_greedy&quot;, &quot;cot_self_consistency&quot;]:
+        r = results[config]
+        emit(f&quot;{config:&lt;24}{r[&#x27;accuracy&#x27;]:&lt;12.2f}{r[&#x27;total_calls&#x27;]:&lt;10}{r[&#x27;unparsable_count&#x27;]:&lt;12}&quot;)
+
+    out_path = os.path.join(OUT_DIR, &quot;exp5_cot_selfconsistency.txt&quot;)
+    with open(out_path, &quot;w&quot;) as f:
+        f.write(&quot;\n&quot;.join(lines) + &quot;\n&quot;)
+    print(f&quot;\n[saved output to {out_path}]&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</pre><br style='page-break-before:always'><h3>Output</h3><p class=cap>Snapshot of the console output (Python 3.12.1 on Windows (AMD64), executed 24 September 2026, 19:29), including both prompt templates, one complete chain-of-thought trace, the per-question vote tallies for self-consistency, and the final 3-way comparison table.</p><pre class=out style='font-size:6.5pt'>=== Direct prompt template ===
+Answer the question with only the final number. Do not
+show any working.
+
+Question: {question}
+Final Answer:
+
+=== Chain-of-thought prompt template ===
+Solve each question by writing your reasoning step by step,
+then state the result on its own line as shown.
+
+Example 1:
+Question: A basket has 14 mangoes. 5 are given away. How many are left?
+Reasoning: Start with 14 mangoes. Giving away 5 leaves 14 - 5 = 9.
+Final Answer: 9
+
+Example 2:
+Question: A car travels at 40 km/h for 3 hours. How far does it go?
+Reasoning: Distance = speed x time = 40 * 3 = 120.
+Final Answer: 120
+
+Example 3:
+Question: A pack has 4 rows of 6 eggs. 2 eggs break. How many whole eggs
+remain?
+Reasoning: Total eggs = 4 * 6 = 24. Removing the 2 broken eggs leaves
+24 - 2 = 22.
+Final Answer: 22
+
+Now solve this one the same way.
+Question: {question}
+Reasoning:
+
+=== Sample complete CoT trace (question q05, greedy decoding) ===
+Solve each question by writing your reasoning step by step,
+then state the result on its own line as shown.
+
+Example 1:
+Question: A basket has 14 mangoes. 5 are given away. How many are left?
+Reasoning: Start with 14 mangoes. Giving away 5 leaves 14 - 5 = 9.
+Final Answer: 9
+
+Example 2:
+Question: A car travels at 40 km/h for 3 hours. How far does it go?
+Reasoning: Distance = speed x time = 40 * 3 = 120.
+Final Answer: 120
+
+Example 3:
+Question: A pack has 4 rows of 6 eggs. 2 eggs break. How many whole eggs
+remain?
+Reasoning: Total eggs = 4 * 6 = 24. Removing the 2 broken eggs leaves
+24 - 2 = 22.
+Final Answer: 22
+
+Now solve this one the same way.
+Question: A store marks up a product that costs 80 rupees by 25% to set the selling price, then later applies a 25% discount to the selling price during a sale. What is the final sale price?
+Reasoning:
+Reasoning: A 25% increase followed by a 25% decrease cancels out, so the final price equals the original cost price of 80.
+Final Answer: 80
+
+=== Running configuration: direct (k=1, seed=42) ===
+  q01: gold=9  answer=9  [OK]
+  q02: gold=150  answer=150  [OK]
+  q03: gold=52  answer=52  [OK]
+  q04: gold=120  answer=120  [OK]
+  q05: gold=75  answer=80  [WRONG]
+  q06: gold=41  answer=41  [OK]
+  q07: gold=2600  answer=2800  [WRONG]
+  q08: gold=84  answer=84  [OK]
+  q09: gold=8  answer=9  [WRONG]
+  q10: gold=900  answer=900  [OK]
+  accuracy=0.70  (7/10)  calls=10  unparsable=0
+
+=== Running configuration: cot_greedy (k=1, seed=42) ===
+  q01: gold=9  answer=9  [OK]
+  q02: gold=150  answer=150  [OK]
+  q03: gold=52  answer=52  [OK]
+  q04: gold=120  answer=120  [OK]
+  q05: gold=75  answer=80  [WRONG]
+  q06: gold=41  answer=41  [OK]
+  q07: gold=2600  answer=2800  [WRONG]
+  q08: gold=84  answer=84  [OK]
+  q09: gold=8  answer=9  [WRONG]
+  q10: gold=900  answer=900  [OK]
+  accuracy=0.70  (7/10)  calls=10  unparsable=0
+
+=== Running configuration: cot_self_consistency (k=7, seed=42) ===
+  q01: gold=9  answer=9  [OK]
+        vote tally -&gt; 9:6, 15:1
+  q02: gold=150  answer=150  [OK]
+        vote tally -&gt; 150:6, 120:1
+  q03: gold=52  answer=52  [OK]
+        vote tally -&gt; 52:6
+  q04: gold=120  answer=120  [OK]
+        vote tally -&gt; 120:6
+  q05: gold=75  answer=80  [WRONG]
+        vote tally -&gt; 80:4, 75:3
+  q06: gold=41  answer=41  [OK]
+        vote tally -&gt; 41:5, 25:1
+  q07: gold=2600  answer=2600  [OK]
+        vote tally -&gt; 2600:4, 2800:1
+  q08: gold=84  answer=84  [OK]
+        vote tally -&gt; 84:5, 19:2
+  q09: gold=8  answer=8  [OK]
+        vote tally -&gt; 8:6, 9:1
+  q10: gold=900  answer=900  [OK]
+        vote tally -&gt; 900:5, 600:2
+  accuracy=0.90  (9/10)  calls=70  unparsable=5
+
+=== 3-way comparison ===
+Configuration           Accuracy    Calls     Unparsable  
+direct                  0.70        10        0           
+cot_greedy              0.70        10        0           
+cot_self_consistency    0.90        70        5           
+
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab5\outputs\exp5_cot_selfconsistency.txt]</pre><br style='page-break-before:always'><p class=cap>Figure 1. The three configurations by accuracy (left) and by model calls (right). Accuracy and cost are plotted on separate panels rather than against two y-axes on one. Generated by make_plots.py from this run's own results.</p><img src='outputs/exp5_fig1_comparison.png' style='width:100%;'><p class=cap>Figure 2. The vote tally for every question at k=7, split by whether each vote went to the gold answer, with greedy's outcome on the same question marked beneath the axis. Bars totalling fewer than 7 votes are questions where a sampled trace was unparsable and therefore discarded before the vote.</p><img src='outputs/exp5_fig2_tallies.png' style='width:100%;'><br style='page-break-before:always'><h2>Observations</h2><h3>1. Which questions self-consistency corrects that greedy gets wrong, and what their vote tallies have in common</h3><p>CoT greedy scores 7/10 (accuracy 0.70), getting q05, q07 and q09 wrong because its single fixed path takes exactly the plausible-looking shortcut built into each of those three questions (treating the markup and discount as cancelling out, rounding the half day up, and an off-by-one on the station count). Self-consistency at k=7 scores 9/10 (accuracy 0.90), correcting q07 (tally 2600:4, 2800:1) and q09 (tally 8:6, 9:1) but not q05 (tally 80:4, 75:3). What the two corrected tallies have in common is a clear plurality for the correct answer &mdash; the wrong shortcut is still sampled, but only once out of seven traces in both cases, so the correct path's traces dominate the vote. q05 is the case that stays wrong, and its tally is exactly the one question here where the wrong shortcut (4 votes) actually outnumbers the correct path (3 votes) &mdash; self-consistency can only recover the right answer when correct traces are the plurality, not automatically on every question.</p><h3>2. What a narrow winning margin tells you about the answer that won</h3><p>q05's tally of 80:4 against 75:3 out of seven traces is the narrowest margin in the whole run, and it is also the one question where the vote winner is wrong. A narrow margin means the sampled traces were nearly evenly split between two (or more) distinct reasoning paths, which is precisely the situation where the plurality answer is least trustworthy &mdash; a small change in which traces happened to be sampled, or a slightly different seed, could easily have flipped the winner (Exercise 1's per-seed rows for k=1 and k=3 show exactly this kind of run-to-run swing). A wide margin, by contrast (for example q03 and q04's unanimous 6/6 votes, or q01 and q09's 6:1 splits), means almost every sampled reasoning path agreed, which is a much stronger indication that the winning answer reflects the question's actual structure rather than a close coin flip between two competing shortcuts.</p><h3>3. Model calls spent per additional correct answer</h3><p>Direct and CoT greedy each spend 10 calls (one per question) for 7 correct answers. Self-consistency at k=7 spends 70 calls for 9 correct answers &mdash; 60 additional calls for 2 additional correct answers relative to greedy, i.e. 30 calls per additional correct answer at this k. Exercise 1's sweep makes the same trade-off explicit as k grows: mean accuracy rises from 0.660 at k=1 to 0.960 at k=9 while total calls (summed over 5 seeds) rise from 50 to 450, and accuracy stops improving appreciably beyond k=9 (k=15 also reaches 0.960 but at 750 calls) &mdash; so the calls spent per correct answer keep climbing well after the accuracy gain has flattened out, which is the direct cost of self-consistency's k-times-the-calls price.</p><h3>4. Why unparsable traces must be counted separately from wrongly-answered traces</h3><p>The self-consistency run above extracts a numeric answer from 65 of the 70 sampled traces and finds no parseable &ldquo;Final Answer:&rdquo; line in the other 5 &mdash; those 5 are excluded from every vote tally entirely rather than being counted as votes for a wrong answer. Collapsing the two categories would corrupt the measurement in two directions at once: folding unparsable traces into &ldquo;wrong&rdquo; would understate the model's reasoning accuracy by blaming it for an output-formatting failure it may not have made, while silently dropping them without reporting the count would hide a real, separate failure mode &mdash; a model that reasons correctly but states its answer in an unexpected form is a formatting problem to fix in the prompt or the extractor, not a reasoning problem to fix by sampling more traces. Reporting them separately is also what makes the vote tallies interpretable: a tally that sums to less than k is immediately legible as k minus however many traces the extractor discarded.</p><br style='page-break-before:always'><h2>Exercise 1 &mdash; Sweeping k over {1, 3, 5, 9, 15}</h2><p><b>Task.</b> Sweep k over 1, 3, 5, 9 and 15, repeating each setting with several different seeds, and report accuracy and total model calls for each k. State the k beyond which accuracy stops improving appreciably, and the calls spent per correct answer at that point.</p><p><b>Approach.</b> Each k in {1, 3, 5, 9, 15} is run against the full question set with five different seeds (11, 22, 33, 44, 55); mean accuracy is averaged over the five seeds and total calls is summed over them (k &times; 10 questions &times; 5 seeds).</p><h3>Program &mdash; exp5_exercises.py</h3><pre class=code style='font-size:7.5pt'>&quot;&quot;&quot;
+Experiment 5 - Exercises
+
+Exercise 1: Sweep k over {1, 3, 5, 9, 15}, repeating each setting with
+five different seeds, and report mean accuracy and total model calls per
+k. State the k beyond which accuracy stops improving appreciably and the
+calls spent per correct answer at that point.
+
+Exercise 2: Add an abstention rule to the self-consistency vote: answer
+only if the winning answer&#x27;s vote count leads the runner-up by at least
+`margin` votes; otherwise abstain. Report coverage and accuracy-on-
+answered-subset for two margins.
+&quot;&quot;&quot;
+
+import os
+
+from questions import QUESTIONS
+from exp5_cot_selfconsistency import (
+    generate_trace,
+    extract_answer,
+    majority_vote,
+    canonical_number,
+    DEFAULT_SEED,
+)
+
+OUT_DIR = os.path.join(os.path.dirname(__file__), &quot;outputs&quot;)
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+# ---------------------------------------------------------------------------
+# Exercise 1: sweep k, multiple seeds
+# ---------------------------------------------------------------------------
+
+K_VALUES = [1, 3, 5, 9, 15]
+SEEDS = [11, 22, 33, 44, 55]
+
+
+def run_self_consistency(questions, k, seed):
+    &quot;&quot;&quot;Same logic as run(&#x27;cot_self_consistency&#x27;, ...) in the main script,
+    factored out here so the sweep can call it once per (k, seed) pair
+    without re-importing run() and re-deriving the config name.&quot;&quot;&quot;
+    correct_count = 0
+    total_calls = 0
+    unparsable_count = 0
+    for q in questions:
+        gold = canonical_number(q[&quot;gold&quot;])
+        answers = []
+        for i in range(k):
+            trace_text, _ = generate_trace(q[&quot;id&quot;], &quot;sample&quot;, sample_index=i, seed=seed)
+            total_calls += 1
+            ans = extract_answer(trace_text)
+            if ans is None:
+                unparsable_count += 1
+            else:
+                answers.append(ans)
+        winner, _tally = majority_vote(answers)
+        if winner == gold:
+            correct_count += 1
+    accuracy = correct_count / len(questions)
+    return accuracy, total_calls, unparsable_count
+
+
+def run_exercise1(emit):
+    emit(f&quot;k values: {K_VALUES}&quot;)
+    emit(f&quot;seeds per k: {SEEDS}&quot;)
+    emit()
+
+    summary = []
+    for k in K_VALUES:
+        accuracies = []
+        calls_per_seed = []
+        for seed in SEEDS:
+            acc, calls, unparsable = run_self_consistency(QUESTIONS, k, seed)
+            accuracies.append(acc)
+            calls_per_seed.append(calls)
+            emit(f&quot;  k={k:&lt;3} seed={seed:&lt;4} accuracy={acc:.2f}  calls={calls}  unparsable={unparsable}&quot;)
+        mean_acc = sum(accuracies) / len(accuracies)
+        total_calls = sum(calls_per_seed)
+        summary.append((k, mean_acc, total_calls))
+        emit(f&quot;  -&gt; k={k}: mean accuracy over {len(SEEDS)} seeds = {mean_acc:.3f}, &quot;
+             f&quot;total model calls across those seeds = {total_calls}&quot;)
+        emit()
+
+    emit(&quot;=== Summary: mean accuracy and total calls per k ===&quot;)
+    emit(f&quot;{&#x27;k&#x27;:&lt;6}{&#x27;mean accuracy&#x27;:&lt;16}{&#x27;total calls&#x27;:&lt;14}&quot;)
+    for k, mean_acc, total_calls in summary:
+        emit(f&quot;{k:&lt;6}{mean_acc:&lt;16.3f}{total_calls:&lt;14}&quot;)
+    emit()
+
+    # Identify the k beyond which accuracy stops improving appreciably:
+    # the first k whose mean accuracy is within 0.01 of the best mean
+    # accuracy achieved by any larger or equal k in the sweep.
+    best_acc = max(a for _, a, _ in summary)
+    plateau_k = None
+    for k, mean_acc, total_calls in summary:
+        if best_acc - mean_acc &lt;= 0.01:
+            plateau_k = k
+            plateau_calls = total_calls
+            plateau_correct = mean_acc * len(QUESTIONS)
+            break
+    emit(f&quot;Accuracy plateaus (within 0.01 of the best mean accuracy &quot;
+         f&quot;{best_acc:.3f}) starting at k={plateau_k}.&quot;)
+    calls_per_correct = plateau_calls / plateau_correct
+    emit(f&quot;At k={plateau_k}: total calls (summed over {len(SEEDS)} seeds) = &quot;
+         f&quot;{plateau_calls}, mean correct answers per seed = &quot;
+         f&quot;{plateau_correct:.2f}/{len(QUESTIONS)}, &quot;
+         f&quot;so calls spent per correct answer (single seed) = &quot;
+         f&quot;{plateau_k * len(QUESTIONS) / plateau_correct:.2f}.&quot;)
+
+
+# ---------------------------------------------------------------------------
+# Exercise 2: abstention by vote margin
+# ---------------------------------------------------------------------------
+# Margin is defined as an absolute vote-count difference between the
+# winning answer and the runner-up (votes, not a fraction of k): the
+# system answers only if winner_votes - runnerup_votes &gt;= margin.
+# A question with only one distinct extracted answer has no runner-up,
+# treated as a runner-up count of 0, so it always clears any margin
+# tested here (a unanimous vote is the strongest possible signal).
+
+MARGINS = [1, 2]
+
+
+def vote_with_abstention(tally, margin):
+    if not tally:
+        return None, &quot;abstain&quot;
+    ranked = sorted(tally.items(), key=lambda x: -x[1])
+    winner, winner_votes = ranked[0]
+    runnerup_votes = ranked[1][1] if len(ranked) &gt; 1 else 0
+    if winner_votes - runnerup_votes &gt;= margin:
+        return winner, &quot;answered&quot;
+    return None, &quot;abstain&quot;
+
+
+def run_exercise2(emit, k=7, seed=DEFAULT_SEED):
+    emit(f&quot;Margin definition: absolute vote-count lead of the winner over &quot;
+         f&quot;the runner-up (winner_votes - runnerup_votes &gt;= margin). &quot;
+         f&quot;k={k}, seed={seed}.&quot;)
+    emit()
+
+    for margin in MARGINS:
+        emit(f&quot;--- margin={margin} ---&quot;)
+        answered = 0
+        correct_on_answered = 0
+        for q in QUESTIONS:
+            gold = canonical_number(q[&quot;gold&quot;])
+            answers = []
+            for i in range(k):
+                trace_text, _ = generate_trace(q[&quot;id&quot;], &quot;sample&quot;, sample_index=i, seed=seed)
+                ans = extract_answer(trace_text)
+                if ans is not None:
+                    answers.append(ans)
+            _winner_plain, tally = majority_vote(answers)
+            decision, status = vote_with_abstention(tally, margin)
+            if status == &quot;answered&quot;:
+                answered += 1
+                is_correct = (decision == gold)
+                correct_on_answered += int(is_correct)
+                mark = &quot;OK&quot; if is_correct else &quot;WRONG&quot;
+                emit(f&quot;  {q[&#x27;id&#x27;]}: tally={dict(tally)}  -&gt; ANSWERED {decision}  gold={gold}  [{mark}]&quot;)
+            else:
+                emit(f&quot;  {q[&#x27;id&#x27;]}: tally={dict(tally)}  -&gt; ABSTAIN  gold={gold}&quot;)
+
+        coverage = answered / len(QUESTIONS)
+        acc_on_answered = (correct_on_answered / answered) if answered else float(&quot;nan&quot;)
+        emit(f&quot;  coverage={coverage:.2f} ({answered}/{len(QUESTIONS)})  &quot;
+             f&quot;accuracy_on_answered={acc_on_answered:.2f} &quot;
+             f&quot;({correct_on_answered}/{answered})&quot; if answered else
+             f&quot;  coverage={coverage:.2f} ({answered}/{len(QUESTIONS)})  &quot;
+             f&quot;accuracy_on_answered=n/a (nothing answered)&quot;)
+        emit()
+
+
+# ---------------------------------------------------------------------------
+# Driver
+# ---------------------------------------------------------------------------
+
+def main():
+    lines = []
+
+    def emit(s=&quot;&quot;):
+        print(s)
+        lines.append(s)
+
+    emit(&quot;=== Exercise 1: sweep k over {1, 3, 5, 9, 15}, 5 seeds each ===&quot;)
+    run_exercise1(emit)
+
+    emit()
+    emit(&quot;=== Exercise 2: abstention by vote margin ===&quot;)
+    run_exercise2(emit)
+
+    out_path = os.path.join(OUT_DIR, &quot;exp5_exercises.txt&quot;)
+    with open(out_path, &quot;w&quot;) as f:
+        f.write(&quot;\n&quot;.join(lines) + &quot;\n&quot;)
+    print(f&quot;[saved output to {out_path}]&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</pre><br style='page-break-before:always'><h3>Output</h3><pre class=out style='font-size:6.5pt'>=== Exercise 1: sweep k over {1, 3, 5, 9, 15}, 5 seeds each ===
+k values: [1, 3, 5, 9, 15]
+seeds per k: [11, 22, 33, 44, 55]
+
+  k=1   seed=11   accuracy=0.40  calls=10  unparsable=1
+  k=1   seed=22   accuracy=0.70  calls=10  unparsable=0
+  k=1   seed=33   accuracy=0.70  calls=10  unparsable=0
+  k=1   seed=44   accuracy=0.80  calls=10  unparsable=0
+  k=1   seed=55   accuracy=0.70  calls=10  unparsable=0
+  -&gt; k=1: mean accuracy over 5 seeds = 0.660, total model calls across those seeds = 50
+
+  k=3   seed=11   accuracy=0.80  calls=30  unparsable=3
+  k=3   seed=22   accuracy=0.90  calls=30  unparsable=2
+  k=3   seed=33   accuracy=0.90  calls=30  unparsable=0
+  k=3   seed=44   accuracy=0.90  calls=30  unparsable=2
+  k=3   seed=55   accuracy=0.80  calls=30  unparsable=1
+  -&gt; k=3: mean accuracy over 5 seeds = 0.860, total model calls across those seeds = 150
+
+  k=5   seed=11   accuracy=0.60  calls=50  unparsable=3
+  k=5   seed=22   accuracy=1.00  calls=50  unparsable=5
+  k=5   seed=33   accuracy=0.90  calls=50  unparsable=2
+  k=5   seed=44   accuracy=0.90  calls=50  unparsable=3
+  k=5   seed=55   accuracy=0.80  calls=50  unparsable=2
+  -&gt; k=5: mean accuracy over 5 seeds = 0.840, total model calls across those seeds = 250
+
+  k=9   seed=11   accuracy=1.00  calls=90  unparsable=4
+  k=9   seed=22   accuracy=1.00  calls=90  unparsable=7
+  k=9   seed=33   accuracy=1.00  calls=90  unparsable=6
+  k=9   seed=44   accuracy=0.90  calls=90  unparsable=5
+  k=9   seed=55   accuracy=0.90  calls=90  unparsable=2
+  -&gt; k=9: mean accuracy over 5 seeds = 0.960, total model calls across those seeds = 450
+
+  k=15  seed=11   accuracy=1.00  calls=150  unparsable=9
+  k=15  seed=22   accuracy=1.00  calls=150  unparsable=9
+  k=15  seed=33   accuracy=1.00  calls=150  unparsable=9
+  k=15  seed=44   accuracy=0.90  calls=150  unparsable=7
+  k=15  seed=55   accuracy=0.90  calls=150  unparsable=8
+  -&gt; k=15: mean accuracy over 5 seeds = 0.960, total model calls across those seeds = 750
+
+=== Summary: mean accuracy and total calls per k ===
+k     mean accuracy   total calls   
+1     0.660           50            
+3     0.860           150           
+5     0.840           250           
+9     0.960           450           
+15    0.960           750           
+
+Accuracy plateaus (within 0.01 of the best mean accuracy 0.960) starting at k=9.
+At k=9: total calls (summed over 5 seeds) = 450, mean correct answers per seed = 9.60/10, so calls spent per correct answer (single seed) = 9.38.
+
+=== Exercise 2: abstention by vote margin ===
+Margin definition: absolute vote-count lead of the winner over the runner-up (winner_votes - runnerup_votes &gt;= margin). k=7, seed=42.
+
+--- margin=1 ---
+  q01: tally={&#x27;9&#x27;: 6, &#x27;15&#x27;: 1}  -&gt; ANSWERED 9  gold=9  [OK]
+  q02: tally={&#x27;120&#x27;: 1, &#x27;150&#x27;: 6}  -&gt; ANSWERED 150  gold=150  [OK]
+  q03: tally={&#x27;52&#x27;: 6}  -&gt; ANSWERED 52  gold=52  [OK]
+  q04: tally={&#x27;120&#x27;: 6}  -&gt; ANSWERED 120  gold=120  [OK]
+  q05: tally={&#x27;80&#x27;: 4, &#x27;75&#x27;: 3}  -&gt; ANSWERED 80  gold=75  [WRONG]
+  q06: tally={&#x27;25&#x27;: 1, &#x27;41&#x27;: 5}  -&gt; ANSWERED 41  gold=41  [OK]
+  q07: tally={&#x27;2600&#x27;: 4, &#x27;2800&#x27;: 1}  -&gt; ANSWERED 2600  gold=2600  [OK]
+  q08: tally={&#x27;19&#x27;: 2, &#x27;84&#x27;: 5}  -&gt; ANSWERED 84  gold=84  [OK]
+  q09: tally={&#x27;8&#x27;: 6, &#x27;9&#x27;: 1}  -&gt; ANSWERED 8  gold=8  [OK]
+  q10: tally={&#x27;900&#x27;: 5, &#x27;600&#x27;: 2}  -&gt; ANSWERED 900  gold=900  [OK]
+  coverage=1.00 (10/10)  accuracy_on_answered=0.90 (9/10)
+
+--- margin=2 ---
+  q01: tally={&#x27;9&#x27;: 6, &#x27;15&#x27;: 1}  -&gt; ANSWERED 9  gold=9  [OK]
+  q02: tally={&#x27;120&#x27;: 1, &#x27;150&#x27;: 6}  -&gt; ANSWERED 150  gold=150  [OK]
+  q03: tally={&#x27;52&#x27;: 6}  -&gt; ANSWERED 52  gold=52  [OK]
+  q04: tally={&#x27;120&#x27;: 6}  -&gt; ANSWERED 120  gold=120  [OK]
+  q05: tally={&#x27;80&#x27;: 4, &#x27;75&#x27;: 3}  -&gt; ABSTAIN  gold=75
+  q06: tally={&#x27;25&#x27;: 1, &#x27;41&#x27;: 5}  -&gt; ANSWERED 41  gold=41  [OK]
+  q07: tally={&#x27;2600&#x27;: 4, &#x27;2800&#x27;: 1}  -&gt; ANSWERED 2600  gold=2600  [OK]
+  q08: tally={&#x27;19&#x27;: 2, &#x27;84&#x27;: 5}  -&gt; ANSWERED 84  gold=84  [OK]
+  q09: tally={&#x27;8&#x27;: 6, &#x27;9&#x27;: 1}  -&gt; ANSWERED 8  gold=8  [OK]
+  q10: tally={&#x27;900&#x27;: 5, &#x27;600&#x27;: 2}  -&gt; ANSWERED 900  gold=900  [OK]
+  coverage=0.90 (9/10)  accuracy_on_answered=1.00 (9/9)
+
+[saved output to C:\Users\aryan\Documents\GitHub\AA-AI465\lab5\outputs\exp5_exercises.txt]</pre><p class=cap>Figure 3. Mean accuracy over the five seeds against k (left, with each seed's individual accuracy shown as a faint point behind the mean) and total model calls against k (right). The per-seed spread is what makes the mean dip slightly at k=5; k is drawn on evenly spaced ticks, so the cost line bends even though calls are exactly k &times; 10 questions &times; 5 seeds.</p><img src='outputs/exp5_fig3_k_sweep.png' style='width:100%;'><h3>Discussion</h3><p>Mean accuracy rises steadily and noisily at small k (0.660 at k=1, with individual seeds ranging from 0.40 to 0.80, showing how unstable a single sample or a small sample is) up through 0.860 at k=3 and 0.840 at k=5, before reaching 0.960 at k=9 and staying at 0.960 at k=15 &mdash; so k=9 is the point beyond which accuracy stops improving appreciably in this run; doubling k to 15 buys no further mean accuracy at all, only 300 more calls. At k=9 the mean number of correct answers per seed is 9.60/10, for 90 calls per seed, giving 90 / 9.60 &asymp; 9.38 calls per correct answer at the plateau &mdash; noticeably worse than the 10/7 &asymp; 1.43 calls per correct answer of greedy CoT, which is the concrete cost of buying the extra ~2 correct answers that self-consistency recovers on this question set. The mean also masks real per-seed variance (k=5 dips to 0.60 accuracy on seed 11, worse than several k=1 seeds), which is exactly why the exercise asks for several seeds rather than reporting a single run's number as if it were k's true accuracy.</p><br style='page-break-before:always'><h2>Exercise 2 &mdash; Abstention by vote margin</h2><p><b>Task.</b> Add an abstention rule that answers only when the winning answer leads the runner-up by at least a stated margin, and otherwise declines to answer. Report coverage and accuracy on the answered subset for two different margins, and discuss the trade-off.</p><p><b>Approach.</b> Margin is defined as an absolute vote-count lead of the winning answer over the runner-up (<span class=m>winner_votes - runnerup_votes &ge; margin</span>); a question with only one distinct extracted answer is treated as having a runner-up count of 0, so a unanimous vote always clears any margin tested here. Two margins are tested at k=7, seed=42: margin=1 (answer whenever the winner has any lead at all) and margin=2 (require a lead of at least two votes).</p><p class=cap>Figure 4. Coverage and accuracy on the answered subset at each margin. Raising the margin from 1 to 2 drops one question (q05, the 4&ndash;3 split) out of the answered set, which is precisely the question the vote got wrong.</p><img src='outputs/exp5_fig4_abstention.png' style='width:70%;'><h3>Discussion</h3><p>At margin=1, coverage is 1.00 (10/10 questions answered) with accuracy-on-answered of 0.90 (9/10) &mdash; identical to the unconstrained self-consistency result, since every question in this run has at least a 1-vote lead for its plurality answer. At margin=2, the rule abstains on exactly q05 &mdash; the same question flagged in Observation 2 as having the narrowest margin in the whole run (80:4 vs 75:3, a lead of only 1 vote) &mdash; dropping coverage to 0.90 (9/10) but raising accuracy-on-answered to a perfect 1.00 (9/9). The trade-off is therefore visible in a single concrete case: tightening the margin from 1 to 2 sacrifices 10% coverage but removes precisely the one question the system was actually going to get wrong, because a narrow margin and a wrong answer coincided here. That is not a guarantee &mdash; a narrow margin only signals higher uncertainty in the vote, not certain wrongness &mdash; but it shows abstention buys a genuine accuracy improvement on the questions it still answers, at the cost of leaving the harder questions unanswered rather than answering them wrong.</p><br style='page-break-before:always'><h2>Conclusion</h2><p>The chain-of-thought self-consistency pipeline was implemented end to end on a fixed ten-question set: two prompt templates (Direct and worked-example CoT), a scripted per-question reasoner that renders a correct path and one or two plausible wrong paths, a regex-based <span class=m>extract_answer()</span> that normalises numeric answers to a canonical form and returns <span class=m>None</span> on unparseable traces, and a majority vote with a documented tie-break rule. Direct and CoT-greedy both scored 7/10 at 10 model calls each, since greedy's single fixed path takes the plausible-but-wrong shortcut on three questions built specifically to contain one; self-consistency at k=7 scored 9/10 at 70 calls, correcting two of those three by plurality vote while its remaining error coincided with the single narrowest vote margin observed anywhere in the run.</p><p>The two exercises then quantified that trade-off directly. Sweeping k over {1, 3, 5, 9, 15} across five seeds each showed mean accuracy climbing from 0.660 to a 0.960 plateau reached at k=9, at a marginal cost of about 9.38 calls per correct answer at that plateau versus roughly 1.43 for greedy CoT &mdash; the price of self-consistency's k-times-the-calls scaling made concrete. Adding an abstention rule keyed on the winning margin then showed that the question self-consistency still gets wrong is exactly the one with the thinnest vote margin: tightening the margin requirement from 1 to 2 votes dropped coverage from 1.00 to 0.90 but raised accuracy on the answered subset from 0.90 to a perfect 1.00, by declining to answer precisely the question the vote was least confident about.</p><h2>Execution environment and declaration</h2><table class=g><tr><th style='width:22%'>Item</th><th style='width:78%'>Detail</th></tr><tr><td>Execution</td><td>Python 3.12.1 on Windows (AMD64), executed 24 September 2026, 19:29</td></tr><tr><td>Files</td><td>questions.py, exp5_cot_selfconsistency.py, exp5_exercises.py, make_plots.py, make_report.py</td></tr><tr><td>Libraries used</td><td>Python standard library only (<span class=m>random</span>, <span class=m>re</span>, <span class=m>collections.Counter</span>) for every program that produces a result; Matplotlib (permitted, Table 1) is used solely by <span class=m>make_plots.py</span> to draw the figures, and influences no reported number &mdash; it imports the same functions the console programs call and plots their return values. No agent framework, orchestration library, or external API/network access was used, in accordance with clause 3.1 of the Rules and Regulations.</td></tr><tr><td>Reproducibility</td><td>The question set and gold answers are fixed, every sampled trace is drawn from a <span class=m>random.Random</span> seeded deterministically from (seed, question id, sample index), and the greedy path per question is fixed, so every run at a given seed and k reproduces exactly.</td></tr><tr><td>Sources consulted</td><td>Course manual for Experiment 5 (chain-of-thought prompting, self-consistency by sampling, majority voting over extracted answers).</td></tr></table><p class=note>All output reproduced above was produced by executing the programs listed in this record on the machine and at the time stated in the table.</p></div></body>
+</html>

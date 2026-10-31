@@ -1,0 +1,4 @@
+reached 1
+replans 1
+steps 57
+bumps 1

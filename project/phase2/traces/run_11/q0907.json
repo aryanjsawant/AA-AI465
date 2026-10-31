@@ -1,0 +1,317 @@
+{
+ "idx": 907,
+ "question": "Sarah has 9 books and Joseph had twice the number of Sarah’s books, but he lost 2 of them. How many books does Joseph currently have?",
+ "gold": "16",
+ "run": "run_11",
+ "model": "qwen2.5-1.5b-instruct-q4_k_m",
+ "runtime": "llama.cpp llama-server build b11429 (commit d81235049), CPU x64",
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "top_k": 0,
+  "min_p": 0.0,
+  "repeat_penalty": 1.0,
+  "max_tokens": 256
+ },
+ "created": "2026-10-06 20:14:14",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You solve grade-school math word problems. Reason in two to four short sentences, doing one calculation per sentence, and then write the last line exactly as \"Final answer: <number>\"."
+  },
+  {
+   "role": "user",
+   "content": "A shop sells pens at 12 rupees each. Ravi buys 7 pens and pays with a 100 rupee note. How much change does he get?"
+  },
+  {
+   "role": "assistant",
+   "content": "The 7 pens cost 7 * 12 = 84 rupees. His change is 100 - 84 = 16 rupees.\nFinal answer: 16"
+  },
+  {
+   "role": "user",
+   "content": "A tank holds 240 litres. A pipe adds 15 litres per minute while a leak removes 3 litres per minute. How many minutes does it take to fill the empty tank?"
+  },
+  {
+   "role": "assistant",
+   "content": "The tank gains 15 - 3 = 12 litres every minute. Filling 240 litres takes 240 / 12 = 20 minutes.\nFinal answer: 20"
+  },
+  {
+   "role": "user",
+   "content": "Meena reads 18 pages on each weekday and 30 pages on each weekend day. How many pages does she read in 2 weeks?"
+  },
+  {
+   "role": "assistant",
+   "content": "On the 5 weekdays she reads 5 * 18 = 90 pages. On the 2 weekend days she reads 2 * 30 = 60 pages. One week is 90 + 60 = 150 pages, so 2 weeks is 150 * 2 = 300 pages.\nFinal answer: 300"
+  },
+  {
+   "role": "user",
+   "content": "Sarah has 9 books and Joseph had twice the number of Sarah’s books, but he lost 2 of them. How many books does Joseph currently have?"
+  }
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "wall_s": 10.177,
+   "samples": [
+    {
+     "seed": 11090700,
+     "text": "Joseph had 9 * 2 = 18 books initially. After losing 2, he now has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 41,
+     "latency_s": 9.544,
+     "error": null,
+     "sample_index": 0,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090701,
+     "text": "Joseph initially had 9 * 2 = 18 books. After losing 2 books, Joseph has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 41,
+     "latency_s": 9.538,
+     "error": null,
+     "sample_index": 1,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090702,
+     "text": "Joseph had twice the number of Sarah's books, which is 2 * 9 = 18 books. After losing 2 books, Joseph has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 50,
+     "latency_s": 10.174,
+     "error": null,
+     "sample_index": 2,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090703,
+     "text": "Joseph originally had 9 * 2 = 18 books. After losing 2, he has 18 - 2 = 16 books currently.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 41,
+     "latency_s": 9.559,
+     "error": null,
+     "sample_index": 3,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090704,
+     "text": "Joseph had 2 * 9 = 18 books initially. Joseph then lost 2 books, leaving him with 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 43,
+     "latency_s": 9.781,
+     "error": null,
+     "sample_index": 4,
+     "pred": "16",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "wall_s": 6.984,
+   "samples": [
+    {
+     "seed": 11090705,
+     "text": "Joseph originally had 9 * 2 = 18 books. Joseph lost 18 - 2 = 16 books. He currently has 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 43,
+     "latency_s": 6.983,
+     "error": null,
+     "sample_index": 5,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090706,
+     "text": "Joseph originally had 2 * 9 = 18 books. Joseph lost 2 books, leaving him with 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 42,
+     "latency_s": 6.926,
+     "error": null,
+     "sample_index": 6,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090707,
+     "text": "Joseph originally had 2 * 9 = 18 books. Joseph now has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 36,
+     "latency_s": 5.909,
+     "error": null,
+     "sample_index": 7,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090708,
+     "text": "Joseph originally had 9 * 2 = 18 books. After losing 2, he now has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 41,
+     "latency_s": 6.817,
+     "error": null,
+     "sample_index": 8,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090709,
+     "text": "Joseph originally had 9 * 2 = 18 books. After losing 2 books, Joseph has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 41,
+     "latency_s": 6.822,
+     "error": null,
+     "sample_index": 9,
+     "pred": "16",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "wall_s": 6.831,
+   "samples": [
+    {
+     "seed": 11090710,
+     "text": "Joseph originally had 2 * 9 = 18 books. Joseph then has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 36,
+     "latency_s": 6.071,
+     "error": null,
+     "sample_index": 10,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090711,
+     "text": "Joseph originally had 9 * 2 = 18 books. Joseph now has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 36,
+     "latency_s": 6.064,
+     "error": null,
+     "sample_index": 11,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090712,
+     "text": "Joseph originally had 9 * 2 = 18 books. After losing 2, he now has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 41,
+     "latency_s": 6.771,
+     "error": null,
+     "sample_index": 12,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090713,
+     "text": "Joseph originally had 9 * 2 = 18 books. He lost 2, so he currently has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 42,
+     "latency_s": 6.828,
+     "error": null,
+     "sample_index": 13,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090714,
+     "text": "Joseph initially had 2 * 9 = 18 books. After losing 2, Joseph has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 40,
+     "latency_s": 6.673,
+     "error": null,
+     "sample_index": 14,
+     "pred": "16",
+     "correct": true
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "wall_s": 7.599,
+   "samples": [
+    {
+     "seed": 11090715,
+     "text": "Joseph had 9 * 2 = 18 books at first. After losing 2 books, Joseph has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 42,
+     "latency_s": 7.217,
+     "error": null,
+     "sample_index": 15,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090716,
+     "text": "Joseph originally had 2 * 9 = 18 books. After losing 2, he now has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 41,
+     "latency_s": 7.095,
+     "error": null,
+     "sample_index": 16,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090717,
+     "text": "Joseph originally had 9 * 2 = 18 books. He lost 2, so he currently has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 42,
+     "latency_s": 7.221,
+     "error": null,
+     "sample_index": 17,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090718,
+     "text": "Joseph had twice as many books as Sarah, which is 2 * 9 = 18 books. After losing 2 books, Joseph has 18 - 2 = 16 books.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 49,
+     "latency_s": 7.596,
+     "error": null,
+     "sample_index": 18,
+     "pred": "16",
+     "correct": true
+    },
+    {
+     "seed": 11090719,
+     "text": "Joseph originally had 9 * 2 = 18 books. After losing 2, he has 18 - 2 = 16 books remaining.\nFinal answer: 16",
+     "finish_reason": "stop",
+     "prompt_tokens": 389,
+     "completion_tokens": 41,
+     "latency_s": 7.099,
+     "error": null,
+     "sample_index": 19,
+     "pred": "16",
+     "correct": true
+    }
+   ]
+  }
+ ]
+}
