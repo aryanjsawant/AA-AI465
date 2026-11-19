@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Microsoft Office temporary lock files
+~$*.docx
+~$*.pptx
+~$*.doc
+~$*.xlsx
+
+# Operating System
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor artifacts
+.idea/
+*.swp
+*.swo

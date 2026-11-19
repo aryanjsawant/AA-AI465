@@ -26,8 +26,9 @@ Self-Consistency for Multi-step Reasoning*, ICLR 2024 (arXiv:2401.10480).
 | `src/evaluate.py` | Step 2: traces to tables (no model calls) |
 | `src/plots.py` | Step 3: tables to figures |
 | `demo.py` | Live ESC on one question |
+| `demo_output.txt` | Detailed working output trace across 5 diagnostic scenarios (early-stop, multi-window, false consensus, budget exhaustion, greedy vs SC) |
 | `traces/` | Full traces of the reported runs: prompt, every sample, tokens, timing |
-| `results/` | `per_question.csv`, `summary.csv`, `table_main.md`, `failure_cases.md`, `checker_audit.csv`, `summary.json` |
+| `results/` | `per_question.csv`, `summary.csv`, `table_main.md`, `failure_cases.md`, `checker_audit.csv`, `summary.json`, `model_working_output.txt` |
 | `figures/` | The four figures of the report |
 | `report/` | Report and slides, and the scripts that build them |
 
